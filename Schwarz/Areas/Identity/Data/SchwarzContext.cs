@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
+using Schwarz.Models;
 
 namespace Schwarz.Data;
 
@@ -11,8 +12,9 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
         : base(options)
     {
     }
-
-    protected override void OnModelCreating(ModelBuilder builder)
+    public DbSet<Ideia> Ideia { get; set; }
+	public DbSet<EquipeIdeia> EquipeIdeia{ get; set; }
+	protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
         // Customize the ASP.NET Identity model and override the defaults if needed.

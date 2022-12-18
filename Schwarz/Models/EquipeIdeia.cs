@@ -9,16 +9,14 @@ namespace Schwarz.Models
 	{
 		[Key]
 		public int IDEquipeIdeia { get; set; }
-		[ForeignKey("AspNetUser")]
-		public string IdUser { get; set; }
-		public virtual SchwarzUser User { get; set; }
+		[ForeignKey("User")]
+		public string IDUser { get; set; }
+		public virtual SchwarzUser? User { get; set; }
 
+		[ForeignKey("Ideia")]
+		public int IDIdeia { get; set; }
+		public virtual Ideia? Ideia { get; set; }
 
-		EquipeIdeia() { }
-		public void GetTeste()
-		{
-			EquipeIdeia User = new();
-		}
 
 	}
 }
