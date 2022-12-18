@@ -1,4 +1,27 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var tabs = document.querySelectorAll(".lboard_tabs ul li"),
+    month = document.querySelector(".month"),
+    year = document.querySelector(".year"),
+    items = document.querySelectorAll(".lboard_item");
 
-// Write your JavaScript code.
+tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+        var currentdatali = tab.getAttribute("data-li");
+
+        tabs.forEach(function (tab) {
+            tab.classList.remove("active");
+        })
+
+        tab.classList.add("active");
+
+        items.forEach(function (item) {
+            item.style.display = "none";
+        })
+
+        if (currentdatali == "mes") {
+            month.style.display = "block";
+        }
+        else {
+            year.style.display = "block";
+        }
+    })
+});

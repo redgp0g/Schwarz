@@ -1,0 +1,55 @@
+﻿@model Ideia
+
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Detalhes";
+	var numero = 1;
+}
+
+<h1 class="titulo">Detalhes da Falha</h1>
+
+<div class="container">
+	<form>
+
+		<div class="falha-details">
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.Descricao)</label>
+				<label class="form-control">@Html.DisplayFor(model => model.Descricao)</label>
+			</div>
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.Data)</label>
+				<label class="form-control">@Html.DisplayFor(model => model.Data)</label>
+			</div>
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.Status)</label>
+				<label class="form-control">@Html.DisplayFor(model => model.Status)</label>
+			</div>
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.Ganho)</label>
+				<label class="form-control">@Html.DisplayFor(model => model.Ganho)</label>
+			</div>
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.Investimento)</label>
+				<label class="form-control">R$@string.Format("{0:#.00}", Convert.ToDecimal(Model.Investimento))</label>
+			</div>
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.Feedback)</label>
+				<label class="form-control">@Html.DisplayFor(model => model.Feedback)</label>
+			</div>
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.NomeEquipe)</label>
+				<label class="form-control">@Html.DisplayFor(model => model.NomeEquipe)</label>
+			</div>
+			@foreach (var participante in Model.EquipeIdeia)
+			{
+				<div class="textfield">
+					<label class="control-label">Participante @numero</label>
+					<label class="form-control">@participante.User.Nome</label>
+				</div>
+				numero = numero + 1;
+			}
+			<div class="mb-3">
+				<a class="btn" asp-action="Index"> Voltar para Lista</a>
+			</div>
+	</form>
+</div>

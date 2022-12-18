@@ -1,0 +1,61 @@
+﻿@model Ideia
+@{
+	List<string> equipe = new();
+}
+<head>
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<table class="table table-sortable" id="table-falhas">
+	<thead>
+		<tr>
+			<th>
+				Equipe
+			</th>
+			<th>
+				Data
+			</th>
+			<th>
+				Descrição
+			</th>
+			<th>
+				Ganho
+			</th>
+			<th>
+				Investimento
+			</th>
+			<th class="acoes">
+				Ações
+			</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.GetIdeias())
+		{
+			equipe.Clear();
+
+			foreach (var func in item.EquipeIdeia)
+			{
+				equipe.Add(func.User.Nome);
+			}
+			<tr>
+				<td>(@Html.DisplayFor(modelItem => item.NomeEquipe)) @string.Join(",",equipe)</td>
+				<td data-label="Data:">
+					@Html.DisplayFor(modelItem => item.Data)
+				</td>
+				<td data-label="Descrição:" style="word-break:break-all">
+					@Html.DisplayFor(modelItem => item.Descricao)
+				</td>
+				<td data-label="Ganho:">
+					@Html.DisplayFor(modelItem => item.Ganho)
+				</td>
+				<td data-label="Investimento:">
+					R$@string.Format("{0:#.00}", Convert.ToDecimal(item.Investimento))
+				</td>
+				<td>
+					<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDIdeia">Detalhes</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

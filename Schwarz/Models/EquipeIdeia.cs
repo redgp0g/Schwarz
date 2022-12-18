@@ -7,6 +7,7 @@ namespace Schwarz.Models
 {
 	public class EquipeIdeia
 	{
+
 		[Key]
 		public int IDEquipeIdeia { get; set; }
 		[ForeignKey("User")]
@@ -17,6 +18,10 @@ namespace Schwarz.Models
 		public int IDIdeia { get; set; }
 		public virtual Ideia? Ideia { get; set; }
 
-
+		public EquipeIdeia(string iDUser, int iDIdeia)
+		{
+			IDUser = iDUser;
+			IDIdeia = iDIdeia;
+		}
 	}
 }

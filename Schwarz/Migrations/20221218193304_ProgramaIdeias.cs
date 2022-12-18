@@ -31,6 +31,7 @@ namespace Schwarz.Migrations
                     Matricula = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Setor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Turno = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -181,7 +182,7 @@ namespace Schwarz.Migrations
                         column: x => x.IDUser,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,7 +208,7 @@ namespace Schwarz.Migrations
                         column: x => x.IDIdeia,
                         principalTable: "Ideia",
                         principalColumn: "IDIdeia",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

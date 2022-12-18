@@ -55,9 +55,20 @@ namespace Schwarz.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "O usuário é obrigatório")]
             [Display(Name = "Usuário")]
             public string Usuario { get; set; }
+
+            [Required]
+            [StringLength(100, ErrorMessage = "A {0} deve ter pelo menos {2} e no máximo {1} caracteres.", MinimumLength = 6)]
+            [DataType(DataType.Password, ErrorMessage = "A senha é obrigatória")]
+            [Display(Name = "Senha")]
+            public string Password { get; set; }
+
+            [DataType(DataType.Password,ErrorMessage = "A senha é obrigatória")]
+            [Display(Name = "Senha de confirmação")]
+            [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não são iguas.")]
+            public string ConfirmPassword { get; set; }
 
             [Required(ErrorMessage = "Digite a matrícula do funcionário")]
             [Display(Name = "Matrícula")]
@@ -71,16 +82,9 @@ namespace Schwarz.Areas.Identity.Pages.Account
             [Display(Name = "Setor")]
             public string Setor { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "A {0} deve ter pelo menos {2} e no máximo {1} caracteres.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Senha")]
-            public string Password { get; set; }
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Senha de confirmação")]
-            [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não são iguas.")]
-            public string ConfirmPassword { get; set; }
+            [Required(ErrorMessage = "Selecione o turno do funcionário")]
+            [Display(Name = "Turno")]
+            public string Turno { get; set; }
         }
 
 
@@ -100,10 +104,10 @@ namespace Schwarz.Areas.Identity.Pages.Account
                 user.Setor = Input.Setor;
                 user.Nome = Input.Nome;
                 user.Matricula = Input.Matricula;
+                user.Turno = Input.Turno;
                 user.EmailConfirmed = true;
 
                 await _userStore.SetUserNameAsync(user, Input.Usuario, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Usuario, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

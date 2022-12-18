@@ -12,7 +12,7 @@ using Schwarz.Data;
 namespace Schwarz.Migrations
 {
     [DbContext(typeof(SchwarzContext))]
-    [Migration("20221218151713_ProgramaIdeias")]
+    [Migration("20221218193304_ProgramaIdeias")]
     partial class ProgramaIdeias
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -217,6 +217,10 @@ namespace Schwarz.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Setor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Turno")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
