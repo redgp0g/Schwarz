@@ -23,22 +23,6 @@ namespace Schwarz.Migrations
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Funcionario",
-                columns: table => new
-                {
-                    IDFuncionario = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Matricula = table.Column<int>(type: "int", nullable: false),
-                    Setor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Turno = table.Column<int>(type: "int", nullable: false),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Funcionario", x => x.IDFuncionario);
-                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",

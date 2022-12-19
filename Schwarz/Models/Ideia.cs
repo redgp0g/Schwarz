@@ -54,7 +54,8 @@ namespace Schwarz.Models
 		}
 		public List<Funcionario> GetFuncionarios()
 		{
-			return _context.Funcionario.ToList();
+			List<SchwarzUser> users = _context.Users.ToList();
+			return _context.Funcionario.Where(x => x.SchwarzUser != null).ToList();
 		}
 	}
 }

@@ -13,8 +13,10 @@ namespace Schwarz.Models
 		public string Nome { get; set; }
 		public int Matricula { get; set; }
 		public string Setor { get; set; }
-		public int Turno { get; set; }
+		public int? Turno { get; set; }
 		public bool Ativo { get; set; }
+
+		public List<SchwarzUser>? SchwarzUser{ get;set; }
 
 	}
 }
