@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Schwarz.Areas.Identity.Data;
+using Schwarz.Data;
+using Schwarz.Models;
 
 namespace Schwarz.Areas.Identity.Pages.Account
 {
@@ -30,13 +32,15 @@ namespace Schwarz.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<SchwarzUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly SchwarzContext _context;
 
         public RegisterModel(
             UserManager<SchwarzUser> userManager,
             IUserStore<SchwarzUser> userStore,
             SignInManager<SchwarzUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            SchwarzContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +48,7 @@ namespace Schwarz.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [BindProperty]
@@ -70,21 +75,10 @@ namespace Schwarz.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não são iguas.")]
             public string ConfirmPassword { get; set; }
 
-            [Required(ErrorMessage = "Digite a matrícula do funcionário")]
-            [Display(Name = "Matrícula")]
-            public int Matricula { get; set; }
+            [Required(ErrorMessage = "Selecione o funcionário")]
+            [Display(Name = "Funcionario")]
+            public int IDFuncionario { get; set; }
 
-            [Required(ErrorMessage = "Digite o nome do funcionário")]
-            [Display(Name = "Nome do Funcionário")]
-            public string Nome { get; set; }
-
-            [Required(ErrorMessage = "Digite o Setor do funcionário")]
-            [Display(Name = "Setor")]
-            public string Setor { get; set; }
-
-            [Required(ErrorMessage = "Selecione o turno do funcionário")]
-            [Display(Name = "Turno")]
-            public string Turno { get; set; }
         }
 
 
@@ -101,10 +95,7 @@ namespace Schwarz.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-                user.Setor = Input.Setor;
-                user.Nome = Input.Nome;
-                user.Matricula = Input.Matricula;
-                user.Turno = Input.Turno;
+                user.IDFuncionario = Input.IDFuncionario;
                 user.EmailConfirmed = true;
 
                 await _userStore.SetUserNameAsync(user, Input.Usuario, CancellationToken.None);
@@ -157,6 +148,11 @@ namespace Schwarz.Areas.Identity.Pages.Account
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
             return (IUserEmailStore<SchwarzUser>)_userStore;
+        }
+
+        public List<Funcionario> GetFuncionarios()
+        {
+            return _context.Funcionario.ToList();
         }
     }
 }

@@ -15,17 +15,9 @@ namespace Schwarz.Areas.Identity.Data;
 public class SchwarzUser : IdentityUser
 {
 	[Required]
-	[Display(Name = "Matrícula")]
-	public int Matricula { get; set; }
-	[Required]
-	public string Nome { get; set; }
-	[Required]
-	public string Setor { get; set; }
-
-    [Required]
-    public string Turno { get; set; }
-    [Required]
-	public bool Ativo { get; set; }
+	[ForeignKey("Funcionario")]
+	public int IDFuncionario { get; set; }
+	public virtual Funcionario Funcionario { get; set; }
 
 }
 

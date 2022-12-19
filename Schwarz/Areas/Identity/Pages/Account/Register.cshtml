@@ -28,31 +28,16 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-floating">
-                <input asp-for="Input.Nome" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Nome"></label>
-                <span asp-validation-for="Input.Nome" class="text-danger"></span>
-            </div>
-             <div class="form-floating">
-                <input asp-for="Input.Matricula" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Matricula"></label>
-                <span asp-validation-for="Input.Matricula" class="text-danger"></span>
-            </div>
-             <div class="form-floating">
-                <input asp-for="Input.Setor" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Setor"></label>
-                <span asp-validation-for="Input.Setor" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <select asp-for="Input.Turno" class="form-control" autocomplete="username" aria-required="true">
-                    <option disabled selected value="">Selecione o Turno</option>
-                    <option value="1">1° Turno</option>
-                    <option value="2">2° Turno</option>
-                    <option value="3">3° Turno</option>
-                    <option value="5">ADM</option>
+                <select asp-for="Input.IDFuncionario" class="form-control" autocomplete="username" aria-required="true">
+                    <option value="" disabled selected>Selecione o Funcionário</option>
+                    @foreach(var funcionario in Model.GetFuncionarios())
+                    {
+                        <option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
+                    }
                 </select>
-                <label asp-for="Input.Turno"></label>
-                <span asp-validation-for="Input.Turno" class="text-danger"></span>
-            </div>
+                <label asp-for="Input.IDFuncionario"></label>
+                <span asp-validation-for="Input.IDFuncionario" class="text-danger"></span>
+                </div>
 
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Schwarz.Migrations
 {
-    public partial class ProgramaIdeias : Migration
+    public partial class teste : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,33 +24,20 @@ namespace Schwarz.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "Funcionario",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Matricula = table.Column<int>(type: "int", nullable: false),
+                    IDFuncionario = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Matricula = table.Column<int>(type: "int", nullable: false),
                     Setor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Turno = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                    Turno = table.Column<int>(type: "int", nullable: false),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_Funcionario", x => x.IDFuncionario);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +58,38 @@ namespace Schwarz.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IDFuncionario = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Funcionario_IDFuncionario",
+                        column: x => x.IDFuncionario,
+                        principalTable: "Funcionario",
+                        principalColumn: "IDFuncionario",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -182,7 +201,7 @@ namespace Schwarz.Migrations
                         column: x => x.IDUser,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,24 +210,24 @@ namespace Schwarz.Migrations
                 {
                     IDEquipeIdeia = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IDUser = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IDFuncionario = table.Column<int>(type: "int", nullable: false),
                     IDIdeia = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EquipeIdeia", x => x.IDEquipeIdeia);
                     table.ForeignKey(
-                        name: "FK_EquipeIdeia_AspNetUsers_IDUser",
-                        column: x => x.IDUser,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        name: "FK_EquipeIdeia_Funcionario_IDFuncionario",
+                        column: x => x.IDFuncionario,
+                        principalTable: "Funcionario",
+                        principalColumn: "IDFuncionario",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EquipeIdeia_Ideia_IDIdeia",
                         column: x => x.IDIdeia,
                         principalTable: "Ideia",
                         principalColumn: "IDIdeia",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
@@ -244,6 +263,11 @@ namespace Schwarz.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_IDFuncionario",
+                table: "AspNetUsers",
+                column: "IDFuncionario");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
@@ -251,14 +275,14 @@ namespace Schwarz.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EquipeIdeia_IDFuncionario",
+                table: "EquipeIdeia",
+                column: "IDFuncionario");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EquipeIdeia_IDIdeia",
                 table: "EquipeIdeia",
                 column: "IDIdeia");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EquipeIdeia_IDUser",
-                table: "EquipeIdeia",
-                column: "IDUser");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ideia_IDUser",
@@ -294,6 +318,9 @@ namespace Schwarz.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Funcionario");
         }
     }
 }

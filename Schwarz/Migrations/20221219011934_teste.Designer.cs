@@ -12,8 +12,8 @@ using Schwarz.Data;
 namespace Schwarz.Migrations
 {
     [DbContext(typeof(SchwarzContext))]
-    [Migration("20221218193304_ProgramaIdeias")]
-    partial class ProgramaIdeias
+    [Migration("20221219011934_teste")]
+    partial class teste
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,9 +169,6 @@ namespace Schwarz.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -183,18 +180,14 @@ namespace Schwarz.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int>("IDFuncionario")
+                        .HasColumnType("int");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("Matricula")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -216,14 +209,6 @@ namespace Schwarz.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Setor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Turno")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -232,6 +217,8 @@ namespace Schwarz.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IDFuncionario");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -252,20 +239,49 @@ namespace Schwarz.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDEquipeIdeia"), 1L, 1);
 
+                    b.Property<int>("IDFuncionario")
+                        .HasColumnType("int");
+
                     b.Property<int>("IDIdeia")
                         .HasColumnType("int");
 
-                    b.Property<string>("IDUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("IDEquipeIdeia");
+
+                    b.HasIndex("IDFuncionario");
 
                     b.HasIndex("IDIdeia");
 
-                    b.HasIndex("IDUser");
-
                     b.ToTable("EquipeIdeia");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Funcionario", b =>
+                {
+                    b.Property<int>("IDFuncionario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDFuncionario"), 1L, 1);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Matricula")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Setor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Turno")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDFuncionario");
+
+                    b.ToTable("Funcionario");
                 });
 
             modelBuilder.Entity("Schwarz.Models.Ideia", b =>
@@ -363,23 +379,34 @@ namespace Schwarz.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Schwarz.Areas.Identity.Data.SchwarzUser", b =>
+                {
+                    b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funcionario");
+                });
+
             modelBuilder.Entity("Schwarz.Models.EquipeIdeia", b =>
                 {
+                    b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Schwarz.Models.Ideia", "Ideia")
                         .WithMany()
                         .HasForeignKey("IDIdeia")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Schwarz.Areas.Identity.Data.SchwarzUser", "User")
-                        .WithMany()
-                        .HasForeignKey("IDUser")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Funcionario");
 
                     b.Navigation("Ideia");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Schwarz.Models.Ideia", b =>

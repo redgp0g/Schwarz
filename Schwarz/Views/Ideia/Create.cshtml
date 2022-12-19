@@ -45,9 +45,9 @@
                         <label class="control-label">Participante @x</label>
                         <select style="height:100px" asp-for="Participantes" class="form-select required participante">
                             <option selected disabled value="">Selecione o funcionário</option>
-                            @foreach (var user in Model.GetUsers().OrderBy(x => x.Nome))
+                            @foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
                             {
-                                <option value="@user.Id">@user.Nome</option>
+                                <option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
                             }
                         </select>
                         <span class="field-validation-error hide participante">Escolha o participante</span>

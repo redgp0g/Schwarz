@@ -10,17 +10,17 @@ namespace Schwarz.Models
 
 		[Key]
 		public int IDEquipeIdeia { get; set; }
-		[ForeignKey("User")]
-		public string IDUser { get; set; }
-		public virtual SchwarzUser? User { get; set; }
+		[ForeignKey("Funcionario")]
+		public int IDFuncionario { get; set; }
+		public virtual Funcionario? Funcionario{ get; set; }
 
 		[ForeignKey("Ideia")]
 		public int IDIdeia { get; set; }
 		public virtual Ideia? Ideia { get; set; }
 
-		public EquipeIdeia(string iDUser, int iDIdeia)
+		public EquipeIdeia(int iDFuncionario, int iDIdeia)
 		{
-			IDUser = iDUser;
+			IDFuncionario = iDFuncionario;
 			IDIdeia = iDIdeia;
 		}
 	}

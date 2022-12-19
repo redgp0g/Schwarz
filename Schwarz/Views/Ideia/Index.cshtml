@@ -36,7 +36,7 @@
 
 			foreach (var func in item.EquipeIdeia)
 			{
-				equipe.Add(func.User.Nome);
+				equipe.Add(func.Funcionario.Nome);
 			}
 			<tr>
 				<td>(@Html.DisplayFor(modelItem => item.NomeEquipe)) @string.Join(",",equipe)</td>

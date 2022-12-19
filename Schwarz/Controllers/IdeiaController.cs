@@ -20,17 +20,15 @@ namespace ProgramaIdeias.Controllers
 
 		}
 
-		[Authorize]
 		[HttpGet]
 		public IActionResult Index()
 		{
 			Ideia ideia = new(_context);
-			var equipes = _context.EquipeIdeia.ToList();
-			var func = _context.Users.ToList();
+			var equipeIdeias = _context.EquipeIdeia.ToList();
+			var func = _context.Funcionario.ToList();
 			return View(ideia);
 		}
 
-		[Authorize]
 		public async Task<IActionResult> Details(int? id)
 		{
 
@@ -44,7 +42,7 @@ namespace ProgramaIdeias.Controllers
 			{
 				return NotFound();
 			}
-			var funcionarios = _context.Users.ToList();
+			var funcionarios = _context.Funcionario.ToList();
 			var equipes = _context.EquipeIdeia.ToList();
 			return View(cadastropare);
 		}

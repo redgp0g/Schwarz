@@ -14,6 +14,7 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     }
     public DbSet<Ideia> Ideia { get; set; }
 	public DbSet<EquipeIdeia> EquipeIdeia{ get; set; }
+	public DbSet<Funcionario> Funcionario { get; set; }
 	protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

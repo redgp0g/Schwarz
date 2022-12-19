@@ -34,11 +34,10 @@ namespace Schwarz.Models
 		[Required(ErrorMessage = "O Nome da Equipe é obrigatório")]
         public string NomeEquipe { get; set; }
 
-		[NotMapped]
 		public virtual List<EquipeIdeia>? EquipeIdeia { get; set; }
 
 		[NotMapped]
-		public List<string>? Participantes { get; set; }
+		public List<int>? Participantes { get; set; }
 
 		private readonly SchwarzContext _context;
 		public Ideia()
@@ -53,9 +52,9 @@ namespace Schwarz.Models
 		{
 			return _context.Ideia.ToList();
 		}
-		public List<SchwarzUser> GetUsers()
+		public List<Funcionario> GetFuncionarios()
 		{
-			return _context.Users.ToList();
+			return _context.Funcionario.ToList();
 		}
 	}
 }
