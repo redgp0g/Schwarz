@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Schwarz.Migrations
 {
-    public partial class teste : Migration
+    public partial class Teste : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,7 +22,6 @@ namespace Schwarz.Migrations
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
-
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -302,9 +301,6 @@ namespace Schwarz.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Funcionario");
         }
     }
 }

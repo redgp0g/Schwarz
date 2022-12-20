@@ -274,7 +274,7 @@ namespace Schwarz.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Turno")
+                    b.Property<int?>("Turno")
                         .HasColumnType("int");
 
                     b.HasKey("IDFuncionario");
@@ -380,7 +380,7 @@ namespace Schwarz.Migrations
             modelBuilder.Entity("Schwarz.Areas.Identity.Data.SchwarzUser", b =>
                 {
                     b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
-                        .WithMany()
+                        .WithMany("SchwarzUser")
                         .HasForeignKey("IDFuncionario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -397,7 +397,7 @@ namespace Schwarz.Migrations
                         .IsRequired();
 
                     b.HasOne("Schwarz.Models.Ideia", "Ideia")
-                        .WithMany()
+                        .WithMany("EquipeIdeia")
                         .HasForeignKey("IDIdeia")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -416,6 +416,16 @@ namespace Schwarz.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Funcionario", b =>
+                {
+                    b.Navigation("SchwarzUser");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Ideia", b =>
+                {
+                    b.Navigation("EquipeIdeia");
                 });
 #pragma warning restore 612, 618
         }
