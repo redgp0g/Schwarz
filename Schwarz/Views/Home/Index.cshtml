@@ -1,8 +1,22 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página Inicial";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container" style="display:flex;justify-content:space-around;">
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="imagem de um desenho de peças">
+        <div class="card-body">
+            <h5 class="card-title">Controle de Desenhos</h5>
+            <p class="card-text">Nessa página você realizar a busca e cadastro de Ideias, tanto de clientes quanto internos!</p>
+            <a asp-controller="Desenho" asp-action="Buscar" class="btn btn-primary">Acessar</a>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="imagem de um fluxo de processos">
+        <div class="card-body">
+            <h5 class="card-title">Controle de Fluxos</h5>
+            <p class="card-text">Aqui você pode modificar e encontrar fluxos cadastrados, além de cadastrar novos!</p>
+            <a asp-controller="Fluxo" asp-action="Buscar" class="btn btn-primary">Acessar</a>
+        </div>
+    </div>
 </div>

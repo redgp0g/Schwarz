@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Schwarz.Data;
 
@@ -11,9 +12,10 @@ using Schwarz.Data;
 namespace Schwarz.Migrations
 {
     [DbContext(typeof(SchwarzContext))]
-    partial class SchwarzContextModelSnapshot : ModelSnapshot
+    [Migration("20221221113234_ControleOleo")]
+    partial class ControleOleo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

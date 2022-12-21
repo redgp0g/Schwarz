@@ -1,0 +1,36 @@
+﻿@model CadastroOleo
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+<form method="post" asp-action="CadastrarDados">
+    <div class="text-field">
+        <label class="control-laber">Máquina</label>
+        <select class="form-control" asp-for="IDMaquina">
+            <option value="" disabled selected>Selecione a máquina</option>
+            @foreach (var maquina in Model.GetMaquinas())
+            {
+                <option value="@maquina.IDDMaquina">@maquina.Nome</option>
+            }
+        </select>
+        @Html.ValidationMessageFor(x => x.Maquina)
+    </div>
+    <div class="text-field">
+        <label class="control-laber">Tipo</label>
+        <input class="form-control" asp-for="Tipo" placeholder="Descreva o tipo do óleo" />
+        @Html.ValidationMessageFor(x => x.Litros)
+    </div>
+    <div class="text-field">
+        <label class="control-laber">Litros</label>
+        <input class="form-control" asp-for="Litros" />
+        @Html.ValidationMessageFor(x => x.Litros)
+    </div>
+    <div class="text-field">
+        <label class="control-laber">Diário de Bordo</label>
+        <input class="form-control" asp-for="DiarioBordo" />
+    </div>
+    <button type="submit" class="btn-success">Cadastrar</button>
+</form>

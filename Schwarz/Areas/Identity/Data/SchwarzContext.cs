@@ -15,7 +15,9 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     public DbSet<Ideia> Ideia { get; set; }
 	public DbSet<EquipeIdeia> EquipeIdeia{ get; set; }
 	public DbSet<Funcionario> Funcionario { get; set; }
-	protected override void OnModelCreating(ModelBuilder builder)
+    public DbSet<Maquina> Maquina { get; set; }
+    public DbSet<CadastroOleo> CadastroOleo { get; set; }
+    protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
         // Customize the ASP.NET Identity model and override the defaults if needed.
