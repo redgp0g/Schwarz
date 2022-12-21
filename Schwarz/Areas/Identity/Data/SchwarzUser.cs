@@ -16,7 +16,7 @@ public class SchwarzUser : IdentityUser
 {
 	[Required]
 	[ForeignKey("Funcionario")]
-	public int IDFuncionario { get; set; }
+	public int? IDFuncionario { get; set; }
 	public virtual Funcionario Funcionario { get; set; }
 
 }
