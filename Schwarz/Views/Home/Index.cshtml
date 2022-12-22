@@ -1,22 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Página Inicial";
 }
-
-<div class="container" style="display:flex;justify-content:space-around;">
+<head>
+    <link rel="stylesheet" href="~/css/tabela.css" asp-append-version="true" />
+</head>
+    
+<div style="display:flex;justify-content:space-around;">
     <div class="card" style="width: 18rem;">
-        <img src="" class="card-img-top" alt="imagem de um desenho de peças">
+        <img src="https://img.freepik.com/free-vector/creative-hand-drawn-light-bulb-collection_23-2148966847.jpg?w=1060&t=st=1671671392~exp=1671671992~hmac=42b9106ad3aea9e9dd0d1d5f84abed1ac78fff0948e872d8f478b2edf0957e33" class="card-img-top" alt="imagem de lampadas">
         <div class="card-body">
-            <h5 class="card-title">Controle de Desenhos</h5>
-            <p class="card-text">Nessa página você realizar a busca e cadastro de Ideias, tanto de clientes quanto internos!</p>
-            <a asp-controller="Desenho" asp-action="Buscar" class="btn btn-primary">Acessar</a>
+            <h5 class="card-title">Programa de Ideias</h5>
+            <p class="card-text">Nessa página você consegue realizar a busca e cadastro de Ideias!</p>
+            <a asp-controller="Ideia" asp-action="Index" class="btn btn-primary">Acessar</a>
         </div>
     </div>
     <div class="card" style="width: 18rem;">
-        <img src="" class="card-img-top" alt="imagem de um fluxo de processos">
+        <img src="https://img.freepik.com/premium-photo/ecological-catastrophe-barrels-with-spilled-oil-which-tanker-floats-yellow-background_407474-1697.jpg?w=1380" class="card-img-top" alt="imagem de óleo">
         <div class="card-body">
-            <h5 class="card-title">Controle de Fluxos</h5>
-            <p class="card-text">Aqui você pode modificar e encontrar fluxos cadastrados, além de cadastrar novos!</p>
-            <a asp-controller="Fluxo" asp-action="Buscar" class="btn btn-primary">Acessar</a>
+            <h5 class="card-title">Controle do Óleo</h5>
+            <p class="card-text">Aqui você pode encontrar cadastros de óleos, além de cadastrar novos!</p>
+            <a asp-controller="Oleo" asp-action="Index" class="btn btn-primary">Acessar</a>
         </div>
     </div>
 </div>

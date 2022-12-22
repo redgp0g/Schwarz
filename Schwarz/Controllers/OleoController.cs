@@ -18,7 +18,7 @@ namespace Schwarz.Controllers
         }
 
         [Authorize]
-        public IActionResult Cadastrar()
+        public IActionResult Create()
         {
             CadastroOleo cadastroOleo = new(_context);
             return View(cadastroOleo);
@@ -38,7 +38,7 @@ namespace Schwarz.Controllers
         {
             try
             {
-                cadastroOleo.Usuario = _signInManager.UserManager.GetUserId(User);
+                cadastroOleo.IDUser = _signInManager.UserManager.GetUserId(User);
                 _context.Add(cadastroOleo);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
@@ -46,7 +46,7 @@ namespace Schwarz.Controllers
             catch (Exception erro)
             {
                 TempData["MensagemErro"] = $"Ops, houve um erro, por favor verifique os campos e tente novamente. Detalhe do erro: {erro.Message}";
-                return RedirectToAction("Cadastrar");
+                return RedirectToAction("Create");
             }
         }
     }

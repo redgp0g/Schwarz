@@ -1,56 +1,51 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Schwarz</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Schwarz.styles.css" asp-append-version="true" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Schwarz</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/Schwarz.styles.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/5d8b80ea21.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Schwarz</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ideia" asp-action="Index">Ideias Cadastradas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ideia" asp-action="Create">Cadastrar Ideia</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Oleo" asp-action="Cadastrar">Cadastrar Óleo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Oleo" asp-action="Index">Controle Óleo</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+	<header>
+		<nav>
+			<a class="navbar-brand" asp-controller="Home" asp-action="Index"><img src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="Logo da Schwarz S/A" /></a>
+			<input type="checkbox" id="check" />
+			<label for="check" class="checkbtn">
+				<i class="fa-solid fa-bars"></i>
+			</label>
+			<ul class="nav-list">
+				<li>
+					<a asp-controller="Ideia" asp-action="Index">Ideias Cadastradas</a>
+				</li>
+				<li>
+					<a asp-controller="Oleo" asp-action="Index">Controle Óleo</a>
+				</li>
+				<partial name="_LoginPartial" />
+			</ul>
 
-    <footer class="border-top footer text-muted">
-        <div style="color: white;text-align:center">
-            &copy; 2022 - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
-        </div>
-    </footer>
+		</nav>
+	</header>
+	<div>
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
 
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+	<footer class="footer">
+		<div style="color: white;text-align:center">
+			&copy; 2022 - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
+		</div>
+	</footer>
+
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

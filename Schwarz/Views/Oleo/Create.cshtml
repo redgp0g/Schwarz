@@ -13,7 +13,7 @@
             <option value="" disabled selected>Selecione a máquina</option>
             @foreach (var maquina in Model.GetMaquinas())
             {
-                <option value="@maquina.IDDMaquina">@maquina.Nome</option>
+                <option value="@maquina.IDMaquina">@maquina.Nome</option>
             }
         </select>
         @Html.ValidationMessageFor(x => x.Maquina)

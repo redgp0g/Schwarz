@@ -76,7 +76,7 @@ namespace Schwarz.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required(ErrorMessage = "Selecione o funcionário")]
-            [Display(Name = "Funcionario")]
+            [Display(Name = "Funcionário")]
             public int IDFuncionario { get; set; }
 
         }
@@ -152,6 +152,7 @@ namespace Schwarz.Areas.Identity.Pages.Account
 
         public List<Funcionario> GetFuncionarios()
         {
+            var aspnetusers = _context.Users.ToList();
             return _context.Funcionario.ToList();
         }
     }

@@ -16,7 +16,7 @@ namespace Schwarz.Models
 		public int? Turno { get; set; }
 		public bool Ativo { get; set; }
 
-		public List<SchwarzUser>? SchwarzUser{ get;set; }
+		public virtual List<SchwarzUser>? SchwarzUser{ get;set; }
 
 	}
 }

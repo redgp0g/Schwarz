@@ -12,7 +12,7 @@ namespace Schwarz.Models
         [Key]
         public int IDCadastroOleo { get; set; }
         [ForeignKey("User")]
-        public string Usuario { get; set; }
+        public string IDUser { get; set; }
         public SchwarzUser? User { get; set; }
 
         [ForeignKey("Maquina")]
