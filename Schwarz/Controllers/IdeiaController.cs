@@ -10,13 +10,15 @@ namespace ProgramaIdeias.Controllers
 {
 	public class IdeiaController : Controller
 	{
+        private readonly UserManager<SchwarzUser> _userManager;
         private readonly SignInManager<SchwarzUser> _signInManager;
         private readonly SchwarzContext _context;
 
-		public IdeiaController(SchwarzContext contexto, SignInManager<SchwarzUser> signInManager)
+		public IdeiaController(SchwarzContext contexto, SignInManager<SchwarzUser> signInManager, UserManager<SchwarzUser> userManager)
 		{
 			_context = contexto;
 			_signInManager = signInManager;
+			_userManager= userManager;
 
 		}
 
