@@ -26,8 +26,6 @@ namespace ProgramaIdeias.Controllers
 		public IActionResult Index()
 		{
 			Ideia ideia = new(_context);
-			var equipeIdeias = _context.EquipeIdeia.ToList();
-			var func = _context.Funcionario.ToList();
 			return View(ideia);
 		}
 
@@ -44,8 +42,6 @@ namespace ProgramaIdeias.Controllers
 			{
 				return NotFound();
 			}
-			var funcionarios = _context.Funcionario.ToList();
-			var equipes = _context.EquipeIdeia.ToList();
 			return View(cadastropare);
 		}
 

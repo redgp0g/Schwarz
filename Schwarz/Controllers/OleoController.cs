@@ -29,7 +29,6 @@ namespace Schwarz.Controllers
         public IActionResult Index()
         {
             List<CadastroOleo> cadastroOleos = _context.CadastroOleo.ToList();
-            var maquinas = _context.Maquina.ToList();
             return View(cadastroOleos);
         }
 

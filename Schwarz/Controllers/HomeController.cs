@@ -19,7 +19,6 @@ namespace Schwarz.Controllers
 
 		public IActionResult Index()
 		{
-			var funcionarios = _context.Funcionario.ToList();
 			return View();
 		}
 
