@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Schwarz.Areas.Identity.Data
+
+@inject SignInManager<SchwarzUser> SignInManager
+@inject UserManager<SchwarzUser> UserManager
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8" />

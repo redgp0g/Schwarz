@@ -27,7 +27,7 @@ namespace Schwarz.Models
         public string Ganho { get; set; }
 
         [Required(ErrorMessage = "O Investimento é obrigatório")]
-        public float Investimento { get; set; }
+        public string? Investimento { get; set; }
 		public string? Feedback { get; set; }
 
 		[Display(Name = "Nome da Equipe")]

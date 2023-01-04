@@ -34,7 +34,7 @@
 			</div>
 			<div class="textfield">
 				<label class="control-label">@Html.DisplayNameFor(model => model.Investimento)</label>
-				<label class="form-control">R$@string.Format("{0:#.00}", Convert.ToDecimal(Model.Investimento))</label>
+				<label class="form-control">@Html.DisplayFor(model => model.Investimento)</label>
 			</div>
 			<div class="textfield">
 				<label class="control-label">@Html.DisplayNameFor(model => model.Feedback)</label>

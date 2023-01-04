@@ -4,7 +4,7 @@
     ViewData["Title"] = "Registrar";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>@ViewData["Title"]</h1> 
 
 <div class="row">
     <div class="col-md-4">
@@ -29,22 +29,22 @@
             </div>
             <div class="form-floating">
                 <select asp-for="Input.IDFuncionario" class="form-control" autocomplete="username" aria-required="true">
-                    <option value="" disabled selected>Selecione o Funcionário</option>
+                    <option value="" disabled selected>Selecione o funcionário</option>
                     @foreach(var funcionario in Model.GetFuncionarios().Where(x => x.SchwarzUser == null))
                     {
                         <option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
                     }
                 </select>
-                <label asp-for="Input.IDFuncionario"></label>
+                <label asp-for="Input.IDFuncionario">Funcionário da conta</label>
                 <span asp-validation-for="Input.IDFuncionario" class="text-danger"></span>
                 </div>
 
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrar</button>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h3>Use another service to register.</h3>
+            <h3>Crie uma conta para aproveitar ao máximo o site.</h3>
             <hr />
         </section>
     </div>

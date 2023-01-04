@@ -70,7 +70,7 @@ namespace ProgramaIdeias.Controllers
 			try
 			{
 				ideia.Data = DateTime.Now;
-				ideia.Status = "Em Análise";
+				ideia.Status = "Em Processo";
 				ideia.IDUser = _signInManager.UserManager.GetUserId(User);
 				_context.Add(ideia);
 				_context.SaveChanges();
