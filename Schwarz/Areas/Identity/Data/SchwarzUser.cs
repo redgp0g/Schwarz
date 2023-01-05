@@ -19,5 +19,6 @@ public class SchwarzUser : IdentityUser
 	public int? IDFuncionario { get; set; }
 	public virtual Funcionario Funcionario { get; set; }
 
+
 }
 

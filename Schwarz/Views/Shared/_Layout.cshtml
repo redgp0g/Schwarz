@@ -29,9 +29,16 @@
 				<li>
 					<a asp-controller="Ideia" asp-action="Index">Ideias Cadastradas</a>
 				</li>
-				<li>
-					<a asp-controller="Oleo" asp-action="Index">Controle Óleo</a>
-				</li>
+				@if (SignInManager.IsSignedIn(User))
+				{
+					@if (UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("Oleo"))
+				{
+					<li>
+						<a asp-controller="Oleo" asp-action="Index">Controle Óleo</a>
+					</li>
+				}
+				}
+
 				<partial name="_LoginPartial" />
 			</ul>
 

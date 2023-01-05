@@ -25,7 +25,8 @@ namespace ProgramaIdeias.Controllers
 		[HttpGet]
 		public IActionResult Index()
 		{
-			Ideia ideia = new(_context);
+			
+				Ideia ideia = new(_context);
 			return View(ideia);
 		}
 

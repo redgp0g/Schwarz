@@ -16,7 +16,7 @@ builder.Services.AddDbContext<SchwarzContext>
 				   .UseSqlServer(connectionString)
 );
 
-builder.Services.AddDefaultIdentity<SchwarzUser>(options =>
+builder.Services.AddIdentity<SchwarzUser, IdentityRole>(options =>
 	{
 		options.SignIn.RequireConfirmedAccount = true;
 
@@ -36,11 +36,12 @@ builder.Services.AddDefaultIdentity<SchwarzUser>(options =>
 		options.User.AllowedUserNameCharacters =
 		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
 		options.User.RequireUniqueEmail = false;
-	}).AddEntityFrameworkStores<SchwarzContext>();
+	}).AddDefaultUI()
+	.AddEntityFrameworkStores<SchwarzContext>()
+	.AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-	// Cookie settings
 	options.Cookie.HttpOnly = true;
 	options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
 

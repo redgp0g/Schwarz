@@ -24,7 +24,7 @@ namespace Schwarz.Controllers
             return View(cadastroOleo);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Oleo")]
         [HttpGet]
         public IActionResult Index()
         {
