@@ -32,7 +32,7 @@ namespace Schwarz.Models
 
 		[Display(Name = "Nome da Equipe")]
 		[Required(ErrorMessage = "O Nome da Equipe é obrigatório")]
-        public string NomeEquipe { get; set; }
+        public string? NomeEquipe { get; set; }
 
 		public virtual List<EquipeIdeia>? EquipeIdeia { get; set; }
 
