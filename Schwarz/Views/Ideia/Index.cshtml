@@ -40,7 +40,14 @@
 				equipe.Add(func.Funcionario.Nome);
 			}
 			<tr>
-				<td>(@Html.DisplayFor(modelItem => item.NomeEquipe)) @string.Join(",",equipe)</td>
+				@if (item.NomeEquipe != null)
+				{
+					<td>(@Html.DisplayFor(modelItem => item.NomeEquipe)) @string.Join(",",equipe)</td>
+				}
+				else
+				{
+					<td>@string.Join(",",equipe)</td>
+				}
 				<td data-label="Data:">
 					@Html.DisplayFor(modelItem => item.Data)
 				</td>

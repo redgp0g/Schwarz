@@ -23,21 +23,18 @@ namespace Schwarz.Models
 		public string Status { get; set; }
 
 		[Display(Name = "Ganho")]
-        [Required(ErrorMessage = "O Ganho é obrigatório")]
         public string Ganho { get; set; }
 
-        [Required(ErrorMessage = "O Investimento é obrigatório")]
         public string? Investimento { get; set; }
 		public string? Feedback { get; set; }
 
 		[Display(Name = "Nome da Equipe")]
-		[Required(ErrorMessage = "O Nome da Equipe é obrigatório")]
         public string? NomeEquipe { get; set; }
 
 		public virtual List<EquipeIdeia>? EquipeIdeia { get; set; }
 
 		[NotMapped]
-		public List<int>? Participantes { get; set; }
+		public IEnumerable<int>? Participantes { get; set; }
 
 		private readonly SchwarzContext _context;
 		public Ideia()
