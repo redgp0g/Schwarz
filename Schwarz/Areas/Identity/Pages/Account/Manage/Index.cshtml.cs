@@ -25,6 +25,7 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
             _userManager = userManager;
             _signInManager = signInManager;
         }
+        [Display(Name = "Usuário")]
         public string Username { get; set; }
 
         [TempData]

@@ -63,7 +63,7 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 12vh;
+    height: 10vh;
     background-color: #FFFFFF;
     border-bottom: 3px solid #0D0D0D;
 }
@@ -109,16 +109,16 @@ nav {
 @media (max-width: 999px) {
 
     main {
-        height: 77vh;
+        height: 80vh;
     }
 
     .nav-list {
         position: absolute;
         z-index: 10;
-        top: 12vh;
+        top: 10vh;
         right: 0;
         width: 100vw;
-        height: 88vh;
+        height: 90vh;
         background: #545454;
         flex-direction: column;
         align-items: center;
