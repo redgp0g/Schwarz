@@ -17,6 +17,18 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
 	public DbSet<Funcionario> Funcionario { get; set; }
     public DbSet<Maquina> Maquina { get; set; }
     public DbSet<CadastroOleo> CadastroOleo { get; set; }
+    public DbSet<Boleto> Boleto{ get; set; }
+    public DbSet<DesenhoBoleto> DesenhoBoleto { get; set; }
+    public DbSet<Desenho> Desenho { get; set; }
+    public DbSet<Cliente> Cliente { get; set; }
+    public DbSet<Produto> Produto { get; set; }
+    public DbSet<ProcessoProduto> ProcessoProduto { get; set; }
+    public DbSet<Processo> Processo { get; set; }
+    public DbSet<Operacao> Operacao { get; set; }
+    public DbSet<FluxoOperacao> FluxoOperacao { get; set; }
+    public DbSet<Fluxo> Fluxo{ get; set; }
+
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

@@ -4,12 +4,34 @@ using Microsoft.AspNetCore.Identity;
 using Schwarz.Data;
 using Schwarz.Areas.Identity.Data;
 using Microsoft.Extensions.Options;
+using Schwarz.Repository.Interfaces;
+using Schwarz.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SchwarzContextConnection") ?? throw new InvalidOperationException("Connection string 'SchwarzContextConnection' not found.");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddScoped<IBaseRepository, BaseRepository>();
+builder.Services.AddScoped<IBoletoRepository, BoletoRepository>();
+builder.Services.AddScoped<ICadastroOleoRepository, CadastroOleoRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IDesenhoRepository, DesenhoRepository>();
+builder.Services.AddScoped<IDesenhoBoletoRepository, DesenhoBoletoRepository>();
+builder.Services.AddScoped<IEquipeIdeiaRepository, EquipeIdeiaRepository>();
+builder.Services.AddScoped<IFluxoOperacaoRepository, FluxoOPRepository>();
+builder.Services.AddScoped<IFluxoOperacaoRepository, FluxoRepository>();
+builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+builder.Services.AddScoped<IIdeiaRepository, IdeiaRepository>();
+
+builder.Services.AddScoped<IOperacaoRepository, OperacaoRepository>();
+builder.Services.AddScoped<IProcessoRepository, ProcessoRepository>();
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+
+
+
 
 builder.Services.AddDbContext<SchwarzContext>
 (options => options.UseLazyLoadingProxies()

@@ -152,7 +152,6 @@ namespace Schwarz.Areas.Identity.Pages.Account
 
         public List<Funcionario> GetFuncionarios()
         {
-            var aspnetusers = _context.Users.ToList();
             return _context.Funcionario.ToList();
         }
     }
