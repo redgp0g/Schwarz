@@ -7,14 +7,20 @@ namespace Schwarz.Repository.Interfaces
         public void Add<T>(T entity) where T : class;
         public void Update<T>(T entity) where T : class;
         public void Delete<T>(T entity) where T : class;
-        IEnumerable<DesenhoBoleto> GetDesenhosBoletos();
-        IEnumerable<Desenho> GetDesenhos();
-        IEnumerable<Funcionario> GetFuncionarios();
-        IEnumerable<Produto> GetProdutos();
-        IEnumerable<Operacao> GetOperacoes();
-        IEnumerable<Processo> GetProcessos();
-        IEnumerable<Cliente> GetClientes();
-        IEnumerable<Fluxo> GetFluxos();
-
+		IEnumerable<Boleto> GetBoletos();
+		IEnumerable<CadastroOleo> GetCadastroOleos();
+		IEnumerable<Cliente> GetClientes();
+		IEnumerable<Desenho> GetDesenhos();
+		IEnumerable<DesenhoBoleto> GetDesenhosBoletos();
+		IEnumerable<EquipeIdeia> GetEquipeIdeias();
+		IEnumerable<Fluxo> GetFluxos();
+		IEnumerable<FluxoOperacao> GetFluxoOperacaos();
+		IEnumerable<Funcionario> GetFuncionarios();
+		IEnumerable<Ideia> GetIdeias();
+		IEnumerable<Maquina> GetMaquinas();
+		IEnumerable<Operacao> GetOperacoes();
+		IEnumerable<Processo> GetProcessos();
+		IEnumerable<ProcessoProduto> GetProcessoProdutos();
+		IEnumerable<Produto> GetProdutos();
     }
 }

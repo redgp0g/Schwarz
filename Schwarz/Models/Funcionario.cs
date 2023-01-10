@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
+using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-	public class Funcionario
+	public class Funcionario : FuncionarioRepository
 	{
 		[Key]
 		public int IDFuncionario { get; set; }

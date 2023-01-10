@@ -1,6 +1,9 @@
-﻿namespace Schwarz.Repository.Interfaces
+﻿using Schwarz.Models;
+
+namespace Schwarz.Repository.Interfaces
 {
-    public interface IDesenhoBoletoRepository
-    {
-    }
+    public interface IDesenhoBoletoRepository : IBaseRepository
+	{
+		DesenhoBoleto GetDesenhoBoletoById(int id);
+	}
 }

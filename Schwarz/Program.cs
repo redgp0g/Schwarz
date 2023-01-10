@@ -21,13 +21,14 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IDesenhoRepository, DesenhoRepository>();
 builder.Services.AddScoped<IDesenhoBoletoRepository, DesenhoBoletoRepository>();
 builder.Services.AddScoped<IEquipeIdeiaRepository, EquipeIdeiaRepository>();
-builder.Services.AddScoped<IFluxoOperacaoRepository, FluxoOPRepository>();
-builder.Services.AddScoped<IFluxoOperacaoRepository, FluxoRepository>();
+builder.Services.AddScoped<IFluxoOperacaoRepository, FluxoOperacaoRepository>();
+builder.Services.AddScoped<IFluxoRepository, FluxoRepository>();
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<IIdeiaRepository, IdeiaRepository>();
-
+builder.Services.AddScoped<IMaquinaRepository, MaquinaRepository>();
 builder.Services.AddScoped<IOperacaoRepository, OperacaoRepository>();
 builder.Services.AddScoped<IProcessoRepository, ProcessoRepository>();
+builder.Services.AddScoped<IProcessoProdutoRepository, ProcessoProdutoRepository>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
 

@@ -1,6 +1,6 @@
 ﻿namespace Schwarz.Repository.Interfaces
 {
-    public interface IProcessoRepository
-    {
+    public interface IProcessoRepository : IBaseRepository
+	{
     }
 }

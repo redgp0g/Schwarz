@@ -1,6 +1,6 @@
 ﻿namespace Schwarz.Repository.Interfaces
 {
-    public interface IEquipeIdeiaRepository
-    {
+    public interface IEquipeIdeiaRepository : IBaseRepository
+	{
     }
 }

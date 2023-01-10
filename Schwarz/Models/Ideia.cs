@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
+using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-    public class Ideia
+    public class Ideia : IdeiaRepository
     {
 		[Key]
 		public int IDIdeia { get; set; }
@@ -36,7 +37,6 @@ namespace Schwarz.Models
 		[NotMapped]
 		public IEnumerable<int>? Participantes { get; set; }
 
-		private readonly SchwarzContext _context;
 		public Ideia()
 		{
 
@@ -44,14 +44,6 @@ namespace Schwarz.Models
 		public Ideia(SchwarzContext contexto)
 		{
 			_context = contexto;
-		}
-		public List<Ideia> GetIdeias()
-		{
-			return _context.Ideia.ToList();
-		}
-		public List<Funcionario> GetFuncionarios()
-		{
-			return _context.Funcionario.ToList();
 		}
 	}
 }

@@ -1,11 +1,12 @@
 ﻿
 using Schwarz.Areas.Identity.Data;
+using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-	public class EquipeIdeia
+	public class EquipeIdeia : EquipeIdeiaRepository
 	{
 
 		[Key]

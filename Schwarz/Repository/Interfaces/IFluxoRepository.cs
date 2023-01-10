@@ -1,6 +1,6 @@
 ﻿namespace Schwarz.Repository.Interfaces
 {
-    public interface IFluxoRepository
-    {
+    public interface IFluxoRepository : IBaseRepository
+	{
     }
 }

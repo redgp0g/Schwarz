@@ -4,10 +4,11 @@ using System.Xml.Linq;
 using Schwarz.Data;
 using System.Security.Permissions;
 using Schwarz.Areas.Identity.Data;
+using Schwarz.Repository;
 
 namespace Schwarz.Models
 {
-    public class CadastroOleo
+    public class CadastroOleo : CadastroOleoRepository
     {
         [Key]
         public int IDCadastroOleo { get; set; }
@@ -27,7 +28,6 @@ namespace Schwarz.Models
 
         [Display(Name = "Diário de Bordo")]
         public string? DiarioBordo { get; set; }
-        private readonly SchwarzContext _context;
 
         public CadastroOleo()
         {
@@ -36,10 +36,6 @@ namespace Schwarz.Models
         public CadastroOleo(SchwarzContext contexto)
         {
             _context= contexto;
-        }
-        public List<Maquina> GetMaquinas()
-        {
-            return _context.Maquina.ToList();
         }
     }
 }
