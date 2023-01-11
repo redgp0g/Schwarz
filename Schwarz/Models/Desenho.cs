@@ -36,7 +36,7 @@ namespace Schwarz.Models
 		[ForeignKey("FuncionarioAprovador")]
 		public int? IDFuncionarioAprovador { get; set; }
 		public virtual Funcionario? FuncionarioAprovador { get; set; }
-		public ICollection<DesenhoBoleto>? DesenhoBoletos { get; set; }
+		public virtual ICollection<DesenhoBoleto>? DesenhoBoletos { get; set; }
 
 		public Desenho()
 		{

@@ -25,8 +25,8 @@ namespace Schwarz.Models
 		public virtual Funcionario? FuncionarioAprovador { get; set; }
 
 		[Display(Name = "Data de Criação")]
-		public DateOnly DataCriacao { get; set; }
-		public DateOnly Data { get; set; }
+		public DateTime DataCriacao { get; set; }
+		public DateTime Data { get; set; }
 
 		[Display(Name = "Aplicação")]
 		public string Aplicacao { get; set; }

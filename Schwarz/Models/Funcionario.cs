@@ -19,5 +19,13 @@ namespace Schwarz.Models
 
 		public virtual SchwarzUser SchwarzUser{ get;set; }
 
+		public Funcionario()
+		{
+
+		}
+		public Funcionario(SchwarzContext contexto) : base(contexto)
+		{
+			_context = contexto;
+		}
 	}
 }

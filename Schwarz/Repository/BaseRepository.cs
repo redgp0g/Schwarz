@@ -57,6 +57,10 @@ namespace Schwarz.Repository
             return _context.DesenhoBoleto.ToList();
         }
 
+		public IEnumerable<EquipeFSP> GetEquipesFSPs()
+		{
+			return _context.EquipeFSP.ToList();
+		}
 		public IEnumerable<EquipeIdeia> GetEquipeIdeias()
 		{
 			return _context.EquipeIdeia.ToList();
@@ -70,6 +74,10 @@ namespace Schwarz.Repository
 		public IEnumerable<FluxoOperacao> GetFluxoOperacaos()
 		{
 			return _context.FluxoOperacao.ToList();
+		}
+		public IEnumerable<FSP> GetFSPs()
+		{
+			return _context.FSP.ToList();
 		}
 
 		public IEnumerable<Funcionario> GetFuncionarios()
@@ -95,6 +103,11 @@ namespace Schwarz.Repository
 		public IEnumerable<Processo> GetProcessos()
 		{
 			return _context.Processo.ToList();
+		}
+
+		public IEnumerable<PlanoAcao> GetPlanoAcaos()
+		{
+			return _context.PlanoAcao.ToList();
 		}
 
 		public IEnumerable<ProcessoProduto> GetProcessoProdutos()

@@ -1,5 +1,6 @@
 ﻿
 using Schwarz.Areas.Identity.Data;
+using Schwarz.Data;
 using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,14 @@ namespace Schwarz.Models
 		public int IDIdeia { get; set; }
 		public virtual Ideia? Ideia { get; set; }
 
+		public EquipeIdeia()
+		{
+
+		}
+		public EquipeIdeia(SchwarzContext contexto) : base(contexto)
+		{
+			_context = contexto;
+		}
 		public EquipeIdeia(int iDFuncionario, int iDIdeia)
 		{
 			IDFuncionario = iDFuncionario;

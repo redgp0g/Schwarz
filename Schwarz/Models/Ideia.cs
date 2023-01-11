@@ -41,7 +41,7 @@ namespace Schwarz.Models
 		{
 
 		}
-		public Ideia(SchwarzContext contexto)
+		public Ideia(SchwarzContext contexto) : base(contexto)
 		{
 			_context = contexto;
 		}

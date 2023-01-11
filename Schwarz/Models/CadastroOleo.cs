@@ -33,7 +33,7 @@ namespace Schwarz.Models
         {
 
         }
-        public CadastroOleo(SchwarzContext contexto)
+        public CadastroOleo(SchwarzContext contexto) : base(contexto)
         {
             _context= contexto;
         }

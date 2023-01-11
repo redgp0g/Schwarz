@@ -12,13 +12,16 @@ namespace Schwarz.Repository.Interfaces
 		IEnumerable<Cliente> GetClientes();
 		IEnumerable<Desenho> GetDesenhos();
 		IEnumerable<DesenhoBoleto> GetDesenhosBoletos();
+		IEnumerable<EquipeFSP> GetEquipesFSPs();
 		IEnumerable<EquipeIdeia> GetEquipeIdeias();
 		IEnumerable<Fluxo> GetFluxos();
 		IEnumerable<FluxoOperacao> GetFluxoOperacaos();
+		IEnumerable<FSP> GetFSPs();
 		IEnumerable<Funcionario> GetFuncionarios();
 		IEnumerable<Ideia> GetIdeias();
 		IEnumerable<Maquina> GetMaquinas();
 		IEnumerable<Operacao> GetOperacoes();
+		IEnumerable<PlanoAcao> GetPlanoAcaos();
 		IEnumerable<Processo> GetProcessos();
 		IEnumerable<ProcessoProduto> GetProcessoProdutos();
 		IEnumerable<Produto> GetProdutos();
