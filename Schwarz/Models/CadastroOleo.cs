@@ -14,12 +14,12 @@ namespace Schwarz.Models
         public int IDCadastroOleo { get; set; }
         [ForeignKey("User")]
         public string IDUser { get; set; }
-        public virtual SchwarzUser? User { get; set; }
+        public virtual SchwarzUser User { get; set; }
 
         [ForeignKey("Maquina")]
         [Required(ErrorMessage = "Selecione uma máquina")]
         public int IDMaquina { get; set; }
-        public virtual Maquina? Maquina { get; set; }
+        public virtual Maquina Maquina { get; set; }
 
         [Display(Name = "Tipo do Óleo")]
         public string Tipo { get; set; }

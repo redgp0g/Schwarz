@@ -15,7 +15,7 @@ namespace Schwarz.Models
 		[ForeignKey("User")]
 		[Display(Name = "Usuário Logado")]
 		public string IDUser { get; set; }
-		public virtual SchwarzUser? User { get; set; }
+		public virtual SchwarzUser User { get; set; }
 
 		[Display(Name = "Descrição da Ideia")]
 		[Required(ErrorMessage = "Descreva a ideia")]
@@ -32,7 +32,7 @@ namespace Schwarz.Models
 		[Display(Name = "Nome da Equipe")]
         public string? NomeEquipe { get; set; }
 
-		public virtual List<EquipeIdeia>? EquipeIdeia { get; set; }
+		public virtual List<EquipeIdeia> EquipeIdeia { get; set; }
 
 		[NotMapped]
 		public IEnumerable<int>? Participantes { get; set; }

@@ -11,7 +11,7 @@ namespace Schwarz.Models
         [Key]
         public int IDMaquina { get; set; }
         public string Nome { get; set; }
-
+		public string Tag { get; set; }
 		public Maquina()
 		{
 
