@@ -14,7 +14,8 @@ namespace Schwarz.Repository.Interfaces
 		IEnumerable<DesenhoBoleto> GetDesenhosBoletos();
 		IEnumerable<EquipeFSP> GetEquipesFSPs();
 		IEnumerable<EquipeIdeia> GetEquipeIdeias();
-		IEnumerable<Fluxo> GetFluxos();
+        IEnumerable<Falha> GetFalhas();
+        IEnumerable<Fluxo> GetFluxos();
 		IEnumerable<FluxoOperacao> GetFluxoOperacaos();
 		IEnumerable<FSP> GetFSPs();
 		IEnumerable<Funcionario> GetFuncionarios();

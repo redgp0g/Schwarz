@@ -66,7 +66,12 @@ namespace Schwarz.Repository
 			return _context.EquipeIdeia.ToList();
 		}
 
-		public IEnumerable<Fluxo> GetFluxos()
+        public IEnumerable<Falha> GetFalhas()
+        {
+            return _context.Falha.ToList();
+        }
+
+        public IEnumerable<Fluxo> GetFluxos()
 		{
 			return _context.Fluxo.ToList();
 		}
