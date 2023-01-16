@@ -35,7 +35,12 @@
 						<a asp-controller="Oleo" asp-action="Index">Controle Óleo</a>
 					</li>
 				}
-
+				@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("FSP"))
+				{
+					<li>
+						<a asp-controller="FSP" asp-action="Index">FSP</a>
+					</li>
+				}
 				<partial name="_LoginPartial" />
 			</ul>
 

@@ -38,6 +38,7 @@ namespace Schwarz.Controllers
             try
             {
                 cadastroOleo.IDUser = _signInManager.UserManager.GetUserId(User);
+                cadastroOleo.Data = DateTime.Now;
                 _context.Add(cadastroOleo);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
