@@ -1,4 +1,4 @@
-﻿@model List<Ideia>
+﻿@model IEnumerable<Ideia>
 @{
 	List<string> equipe = new();
 }
@@ -41,11 +41,11 @@
 			<tr>
 				@if (item.NomeEquipe != null)
 				{
-					<td>(@Html.DisplayFor(modelItem => item.NomeEquipe)) @string.Join(",",equipe)</td>
+					<td>(@Html.DisplayFor(modelItem => item.NomeEquipe)) @string.Join(", ",equipe)</td>
 				}
 				else
 				{
-					<td>@string.Join(",",equipe)</td>
+					<td>@string.Join(", ",equipe)</td>
 				}
 				<td data-label="Data:">
 					@Html.DisplayFor(modelItem => item.Data)

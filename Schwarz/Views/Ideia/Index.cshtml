@@ -3,6 +3,7 @@
 <div class="col-sm-12">
 	<div style="display:flex" class="form-inline pull-right">
 		<input style="padding: 10px; margin-bottom:10px;width: 600px;" type="text" class="form-control" id="txtPesquisa" placeholder="Digite algo para buscar" />
+		<button onclick="carregarIdeias()" class="btn btn-info">Pesquisar</button>
 	</div>
 </div>
 <div id="grdIdeias"></div>
@@ -11,10 +12,6 @@
 
 	$(() => {
 		carregarIdeias();
-
-		$('#txtPesquisa').on('keyup', () => {
-			carregarIdeias();
-		});
 	});
 
 	function carregarIdeias() {
