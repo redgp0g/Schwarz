@@ -18,7 +18,7 @@
 	</div>
 	<div class="text-field">
 		<label asp-for="IDFalha" class="control-laber"></label>
-		<select style="height:100px" asp-for="IDFalha" class="form-select">
+		<select asp-for="IDFalha" class="form-select">
 			<option selected disabled value="">Selecione a falha</option>
 			@foreach (var falha in Model.GetFalhas())
 			{
@@ -27,16 +27,103 @@
 		</select>
 		@Html.ValidationMessageFor(x => x.IDFalha)
 	</div>
+	<br />
+	<h1>Equipe Multifuncional:</h1>
+	@for (int i = 1; i <= 10; i++)
+	{
+		<div class="input-group mb-3">
+			<label class="input-group-text">Nome</label>
+			<select asp-for="EquipeMultiFuncional" class="form-select">
+				<option selected value="">Selecione o funcionário</option>
+				@foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
+				{
+					<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
+				}
+			</select>
+		</div>
+	}
+	<br />
+	<h1>Diagrama de Causa - Efeito (Ishikawa):</h1>
 	<div class="text-field">
-		<label class="control-laber">Nome</label>
-		<select style="height:100px" asp-for="EquipeMultiFuncional" class="form-select">
-			<option selected disabled value="">Selecione o funcionário</option>
-			@foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
-			{
-				<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
-			}
-		</select>
-		@Html.ValidationMessageFor(x => x.EquipeMultiFuncional)
+		<label asp-for="MaodeObra" class="control-laber"></label>
+		<input class="form-control" asp-for="MaodeObra">
 	</div>
-	<button type="submit" class="btn-success">Cadastrar</button>
+	<div class="text-field">
+		<label asp-for="Maquina" class="control-laber"></label>
+		<input class="form-control" asp-for="Maquina">
+	</div>
+	<div class="text-field">
+		<label asp-for="Medicao" class="control-laber"></label>
+		<input class="form-control" asp-for="Medicao">
+	</div>
+	<div class="text-field">
+		<label asp-for="MeioAmbiente" class="control-laber"></label>
+		<input class="form-control" asp-for="MeioAmbiente">
+	</div>
+	<div class="text-field">
+		<label asp-for="Material" class="control-laber"></label>
+		<input class="form-control" asp-for="Material">
+	</div>
+	<div class="text-field">
+		<label asp-for="Metodo" class="control-laber"></label>
+		<input class="form-control" asp-for="Metodo">
+	</div>
+	<br />
+	<h1>Análise dos 5 Porquês - Por que ocorreu a não conformidade:</h1>
+	<h2>Por que Falhou?</h2>
+	<div>
+		<div style="display:block" class="row row-cols-5">
+			<div class="text-field">
+				<input class="form-control" asp-for="PorqueFalhou1">
+			</div>
+			<div class="text-field">
+				<input class="form-control" asp-for="PorqueFalhou2">
+			</div>
+			<div class="text-field">
+				<input class="form-control" asp-for="PorqueFalhou3">
+			</div>
+			<div class="text-field">
+				<input class="form-control" asp-for="PorqueFalhou4">
+			</div>
+			<div class="text-field">
+				<input class="form-control" asp-for="PorqueFalhou5">
+			</div>
+			<div class="text-field">
+				<label asp-for="CausaRaizFalha" class="control-label"></label>
+				<input class="form-control" asp-for="CausaRaizFalha">
+			</div>
+		</div>
+	</div>
+	<h2>Por que Passou?</h2>
+	<div>
+		<div style="display:block" class="row row-cols-5">
+			<div class="text-field">
+				<input class="form-control" asp-for="PorquePassou1">
+			</div>
+			<div class="text-field">
+				<input class="form-control" asp-for="PorquePassou2">
+			</div>
+			<div class="text-field">
+				<input class="form-control" asp-for="PorquePassou3">
+			</div>
+			<div class="text-field">
+				<input class="form-control" asp-for="PorquePassou4">
+			</div>
+			<div class="text-field">
+				<input class="form-control" asp-for="PorquePassou5">
+			</div>
+			<div class="text-field">
+				<label asp-for="CausaRaizPassou" class="control-label"></label>
+				<input class="form-control" asp-for="CausaRaizPassou">
+			</div>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-success">Cadastrar</button>
 </form>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('.form-select').removeAttr('multiple');
+	});
+</script>

@@ -45,7 +45,7 @@
                     <div class="textfield divparticipantes required hide">
                         <img style="width:65px;height:55px" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
                         <label class="control-label">Participante @x</label>
-                        <select style="height:100px" asp-for="Participantes" class="form-select required participante">
+                        <select asp-for="Participantes" class="form-select required participante">
                             <option selected disabled value="">Selecione o funcionário</option>
                             @foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
                             {
@@ -79,7 +79,11 @@
     </form>
 </div>
 
-<script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.form-select').removeAttr('multiple');
+    });
     const divParticipantes = document.querySelectorAll('.divparticipantes'),
         nParticipantes = document.getElementById('nparticipantes'),
         formIdeia = document.getElementById('form'),

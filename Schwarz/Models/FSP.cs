@@ -38,7 +38,10 @@ namespace Schwarz.Models
         [Display(Name = "Máquina")]
         public string? Maquina { get; set; }
 
-        public string? Medida { get; set; }
+        [Display(Name = "Medição")]
+        public string? Medicao { get; set; }
+
+        [Display(Name = "Matéria Prima")]
         public string? Material { get; set; }
 
         [Display(Name = "Meio Ambiente")]
