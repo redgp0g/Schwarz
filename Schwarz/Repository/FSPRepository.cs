@@ -11,8 +11,8 @@ namespace Schwarz.Repository
         {
 
         }
-        public FSPRepository(SchwarzContext contexto)
-        {
+        public FSPRepository(SchwarzContext contexto) : base(contexto)
+		{
             _context = contexto;
         }
         

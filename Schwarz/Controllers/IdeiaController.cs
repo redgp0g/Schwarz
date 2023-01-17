@@ -70,14 +70,8 @@ namespace ProgramaIdeias.Controllers
 			{
 				ideia.Data = DateTime.Now;
 				ideia.Status = "Em Processo";
-				if (ideia.Ganho == null) 
-				{
-					ideia.Ganho = "Não identificado";
-				}
-                if (ideia.Investimento == null)
-                {
-                    ideia.Investimento = "Não identificado";
-                }
+				ideia.Ganho ??= "Não identificado";
+                ideia.Investimento ??= "Não identificado";
                 ideia.IDUser = _signInManager.UserManager.GetUserId(User);
 				_context.Add(ideia);
 				_context.SaveChanges();

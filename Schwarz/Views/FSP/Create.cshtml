@@ -1,1 +1,42 @@
-﻿
+﻿@model FSP
+
+<form method="post" asp-action="Cadastrar">
+	<div class="text-field">
+		<label asp-for="Produto" class="control-laber"></label>
+		<input class="form-control" asp-for="Produto">
+		@Html.ValidationMessageFor(x => x.Produto)
+	</div>
+	<div class="text-field">
+		<label asp-for="Codigo" class="control-laber"></label>
+		<input class="form-control" asp-for="Codigo">
+		@Html.ValidationMessageFor(x => x.Codigo)
+	</div>
+	<div class="text-field">
+		<label asp-for="Origem" class="control-laber"></label>
+		<input class="form-control" asp-for="Origem">
+		@Html.ValidationMessageFor(x => x.Origem)
+	</div>
+	<div class="text-field">
+		<label asp-for="IDFalha" class="control-laber"></label>
+		<select style="height:100px" asp-for="IDFalha" class="form-select">
+			<option selected disabled value="">Selecione a falha</option>
+			@foreach (var falha in Model.GetFalhas())
+			{
+				<option value="@falha.IDFalha">@falha.Codigo - @falha.Descricao</option>
+			}
+		</select>
+		@Html.ValidationMessageFor(x => x.IDFalha)
+	</div>
+	<div class="text-field">
+		<label class="control-laber">Nome</label>
+		<select style="height:100px" asp-for="EquipeMultiFuncional" class="form-select">
+			<option selected disabled value="">Selecione o funcionário</option>
+			@foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
+			{
+				<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
+			}
+		</select>
+		@Html.ValidationMessageFor(x => x.EquipeMultiFuncional)
+	</div>
+	<button type="submit" class="btn-success">Cadastrar</button>
+</form>
