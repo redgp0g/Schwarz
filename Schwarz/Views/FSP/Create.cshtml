@@ -33,7 +33,7 @@
 	{
 		<div class="input-group mb-3">
 			<label class="input-group-text">Nome</label>
-			<select asp-for="EquipeMultiFuncional" class="form-select">
+			<select name="ListaFuncionarios" class="form-select">
 				<option selected value="">Selecione o funcionário</option>
 				@foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
 				{
@@ -118,12 +118,38 @@
 			</div>
 		</div>
 	</div>
-
+	<h2>Plano de Ação</h2>
+	<div class="text-field">
+		<label class="control-label">N°</label>
+		<input value="1" readonly class="form-control" name="Numero">
+	</div>
+	<div class="text-field">
+		<label class="control-label">Ação</label>
+		<input class="form-control" name="Acoes">
+	</div>
+	<div class="text-field">
+		<label class="control-label">Responsável</label>
+		<select class="form-control" name="Responsaveis">
+			<option selected disabled value="">Selecione o funcionário</option>
+			@foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
+			{
+				<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
+			}
+		</select>
+	</div>
+	<div class="text-field">
+		<label class="control-label">Prazo</label>
+		<input type="date" class="form-control" name="Prazos">
+	</div>
+	<div class="text-field">
+		<label class="control-label">Status</label>
+		<input type="text" class="form-control" name="Status">
+	</div>
 	<button type="submit" class="btn btn-success">Cadastrar</button>
 </form>
 
 <script type="text/javascript">
-	$(document).ready(function () {
-		$('.form-select').removeAttr('multiple');
-	});
+
+
+
 </script>

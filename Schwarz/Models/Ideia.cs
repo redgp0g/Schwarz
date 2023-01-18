@@ -34,9 +34,6 @@ namespace Schwarz.Models
 
 		public virtual List<EquipeIdeia> EquipeIdeia { get; set; }
 
-		[NotMapped]
-		public IEnumerable<int>? Participantes { get; set; }
-
 		public Ideia()
 		{
 

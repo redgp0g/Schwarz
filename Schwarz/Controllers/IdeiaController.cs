@@ -64,7 +64,7 @@ namespace ProgramaIdeias.Controllers
 		[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Cadastrar(Ideia ideia)
+		public ActionResult Cadastrar(Ideia ideia, List<int> Participantes)
 		{
 			try
 			{
@@ -75,7 +75,7 @@ namespace ProgramaIdeias.Controllers
                 ideia.IDUser = _signInManager.UserManager.GetUserId(User);
 				_context.Add(ideia);
 				_context.SaveChanges();
-				foreach (var participante in ideia.Participantes)
+				foreach (var participante in Participantes)
 				{
 					EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
 					_context.Add(equipeIdeia);

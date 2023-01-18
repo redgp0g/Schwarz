@@ -232,9 +232,6 @@ namespace Schwarz.Models
         public int? IDFuncionarioNovaFSP { get; set; }
         public virtual Funcionario FuncionarioNovaFSP { get; set; }
 
-        [NotMapped]
-        [Required(ErrorMessage = "Selecione o funcionário")]
-        public IEnumerable<int>? EquipeMultiFuncional { get; set; }
 
         public FSP()
 		{
