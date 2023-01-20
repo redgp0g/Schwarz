@@ -11,6 +11,7 @@ namespace Schwarz.Models
 	{
 		[Key]
 		public int IDFSP { get; set; }
+        public int Numero { get; set; }
         [Display(Name = "Data de Abertura")]
         public DateTime DataAbertura { get; set; }
         [Display(Name = "Data de Fechamento")]
@@ -198,10 +199,10 @@ namespace Schwarz.Models
         [ForeignKey("FuncionarioAlertaQualidade")]
         [Display(Name = "Responsável")]
         public int? IDFuncionarioAlertaQualidade { get; set; }
-        public virtual Funcionario FuncionarioQualidade { get; set; }
+        public virtual Funcionario FuncionarioAlertaQualidade { get; set; }
 
         [Display(Name = "Prazo")]
-        public DateTime? PrazolAlertaQualidade { get; set; }
+        public DateTime? PrazoAlertaQualidade { get; set; }
 
         [Display(Name = "Realizado?")]
         public bool? RealizadoAlertaQualidade { get; set; }
@@ -228,7 +229,7 @@ namespace Schwarz.Models
         public virtual FSP NovaFSP { get; set; }
 
         [ForeignKey("FuncionarioNovaFSP")]
-        [Display(Name = "Responsável")]
+        [Display(Name = "Responsável Nova FSP")]
         public int? IDFuncionarioNovaFSP { get; set; }
         public virtual Funcionario FuncionarioNovaFSP { get; set; }
 

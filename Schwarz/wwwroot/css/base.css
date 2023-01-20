@@ -28,10 +28,6 @@ body, html {
         left: 50%;
         width: 250px;
         height: 300px;
-        background: url(https://cdn-icons-png.flaticon.com/512/3471/3471635.png);
-        background-size:cover;
-        background-position:center;
-        transform:translateX(-50%) translateY(-100px) scale(0.75);
         animation: animate 2s steps(1) infinite;
         animation-delay: calc(0.1s * var(--i));
     }
@@ -40,13 +36,13 @@ body, html {
             background: url(https://cdn-icons-png.flaticon.com/512/3471/3471635.png);
             background-size: cover;
             background-position: center;
-            transform: translateX(-50%) translateY(-100px) scale(0.50);
+            transform: translateX(-50%) translateY(-65px) scale(0.40);
         }
         50% {
             background: url(https://cdn-icons-png.flaticon.com/512/3625/3625060.png);
             background-size: cover;
             background-position: center;
-            transform: translateX(-50%) translateY(-100px) scale(0.60);
+            transform: translateX(-50%) translateY(-65px) scale(0.50);
         }
     }
 
@@ -296,4 +292,19 @@ input {
 
 p {
     margin-bottom: 0px;
+}
+
+.radio__label {
+    padding: 8px 7px;
+    text-align: center;
+    font-size: 15px;
+    color: #0D0D0D;
+    background: #FFFFFF;
+    margin: 0;
+    cursor: pointer;
+}
+
+.radio__input:checked + .radio__label {
+    background: #3c3a3a;
+    color: #FFFFFF;
 }

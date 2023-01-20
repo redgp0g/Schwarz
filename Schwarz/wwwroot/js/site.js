@@ -40,10 +40,10 @@ function ShowLoading() {
     divbox.classList.add("box");
 
     label.innerText = "Carregando... Por favor aguarde";
-    label.style = "color:white;margin-top:40px;";
+    label.style = "color:white;";
 
-    divloading.appendChild(divbox);
     divloading.appendChild(label);
+    divloading.appendChild(divbox);
     document.body.insertAdjacentElement('afterbegin',divloading);
 
 }
