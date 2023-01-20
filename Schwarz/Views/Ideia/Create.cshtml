@@ -47,7 +47,7 @@
                         <label class="control-label">Participante @x</label>
                         <select name="Participantes" class="form-select required participante">
                             <option selected disabled value="">Selecione o funcionário</option>
-                            @foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
+                            @foreach (var funcionario in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
                             {
                                 <option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
                             }

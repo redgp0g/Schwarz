@@ -30,7 +30,7 @@
             <div class="form-floating">
                 <select asp-for="Input.IDFuncionario" class="form-control" autocomplete="username" aria-required="true">
                     <option value="" disabled selected>Selecione o funcionário</option>
-                    @foreach(var funcionario in Model.GetFuncionarios().Where(x => x.SchwarzUser == null))
+                    @foreach(var funcionario in Model.GetFuncionarios().Where(x => x.SchwarzUser == null && x.Ativo == true))
                     {
                         <option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
                     }

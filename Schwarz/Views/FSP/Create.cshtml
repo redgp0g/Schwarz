@@ -35,7 +35,7 @@
 			<label class="input-group-text">Nome</label>
 			<select name="ListaFuncionarios" class="form-select">
 				<option selected value="">Selecione o funcionário</option>
-				@foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
+				@foreach (var funcionario in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
 				{
 					<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
 				}
@@ -94,7 +94,7 @@
 			</div>
 		</div>
 	</div>
-	<h2>Por que Passou?</h2>
+	<h1>Por que Passou?</h1>
 	<div>
 		<div style="display:block" class="row row-cols-5">
 			<div class="text-field">
@@ -118,7 +118,7 @@
 			</div>
 		</div>
 	</div>
-	<h2>Plano de Ação</h2>
+	<h1>Plano de Ação</h1>
 	<div class="text-field">
 		<label class="control-label">N°</label>
 		<input value="1" readonly class="form-control" name="Numero">
@@ -131,7 +131,7 @@
 		<label class="control-label">Responsável</label>
 		<select class="form-control" name="Responsaveis">
 			<option selected disabled value="">Selecione o funcionário</option>
-			@foreach (var funcionario in Model.GetFuncionarios().OrderBy(x => x.Nome))
+			@foreach (var funcionario in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
 			{
 				<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
 			}
@@ -143,7 +143,210 @@
 	</div>
 	<div class="text-field">
 		<label class="control-label">Status</label>
-		<input type="text" class="form-control" name="Status">
+		<select type="text" class="form-control" name="Status">
+			<option selected disabled value="">Selecione o status</option>
+			<option value="Concluído">Concluído</option>
+			<option value="Em Andamento">Em Andamento</option>
+			<option value="Postergado">Postergado</option>
+		</select>
+	</div>
+	<h1>Atualização de Documentação</h1>
+	<h2>Atualizar FMEA?</h2>
+	<div class="text-field">
+		<input type="radio" class="form-control" asp-for="AtualizarFMEA" value="true">
+		<label for="AtualizarFMEA">Sim</label>
+		<input type="radio" class="form-control" asp-for="AtualizarFMEA" value="false">
+		<label for="AtualizarFMEA">Não</label>
+	</div>
+	<div class="text-field">
+		<label asp-for="QualFMEA" class="control-laber"></label>
+		<input class="form-control" asp-for="QualFMEA">
+	</div>
+	<div class="text-field">
+		<label asp-for="IDFuncionarioFMEA" class="control-laber"></label>
+		<select class="form-control" asp-for="IDFuncionarioFMEA">
+			<option selected disabled value="">Selecione o responsável</option>
+			@foreach (var func in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
+			{
+				<option value="@func.IDFuncionario">@func.Nome</option>
+			}
+		</select>
+	</div>
+	<div class="text-field">
+		<label asp-for="PrazoFMEA" class="control-laber"></label>
+		<input class="form-control" asp-for="PrazoFMEA">
+	</div>
+	<div class="text-field">
+		<label asp-for="RealizadoFMEA" class="control-laber"></label>
+		<input class="hide" type="radio" asp-for="RealizadoFMEA" value="true">
+		<label for="RealizadoFMEA">Sim</label>
+		<input class="hide" type="radio" asp-for="RealizadoFMEA" value="false">
+		<label for="RealizadoFMEA">Não</label>
+	</div>
+
+	<h2>Alterar Instrução de Trabalho?</h2>
+	<div class="text-field">
+		<input type="radio" class="form-control" asp-for="AtualizarInstrucao" value="true">
+		<label for="AtualizarInstrucao">Sim</label>
+		<input type="radio" class="form-control" asp-for="AtualizarInstrucao" value="false">
+		<label for="AtualizarInstrucao">Não</label>
+	</div>
+	<div class="text-field">
+		<label asp-for="QualInstrucao" class="control-laber"></label>
+		<input class="form-control" asp-for="QualInstrucao">
+	</div>
+	<div class="text-field">
+		<label asp-for="IDFuncionarioInstrucao" class="control-laber"></label>
+		<select class="form-control" asp-for="IDFuncionarioInstrucao">
+			<option selected disabled value="">Selecione o responsável</option>
+			@foreach (var func in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
+			{
+				<option value="@func.IDFuncionario">@func.Nome</option>
+			}
+		</select>
+	</div>
+	<div class="text-field">
+		<label asp-for="PrazoInstrucao" class="control-laber"></label>
+		<input class="form-control" asp-for="PrazoInstrucao">
+	</div>
+	<div class="text-field">
+		<label asp-for="RealizadoInstrucao" class="control-laber"></label>
+		<input class="hide" type="radio" asp-for="RealizadoInstrucao" value="true">
+		<label for="RealizadoInstrucao">Sim</label>
+		<input class="hide" type="radio" asp-for="RealizadoInstrucao" value="false">
+		<label for="RealizadoInstrucao">Não</label>
+	</div>
+
+	<h2>Alterar Plano de Controle?</h2>
+	<div class="text-field">
+		<input type="radio" class="form-control" asp-for="AtualizarPlanoControle" value="true">
+		<label for="AtualizarPlanoControle">Sim</label>
+		<input type="radio" class="form-control" asp-for="AtualizarPlanoControle" value="false">
+		<label for="AtualizarPlanoControle">Não</label>
+	</div>
+	<div class="text-field">
+		<label asp-for="QualPlanoControle" class="control-laber"></label>
+		<input class="form-control" asp-for="QualPlanoControle">
+	</div>
+	<div class="text-field">
+		<label asp-for="IDFuncionarioPlanoControle" class="control-laber"></label>
+		<select class="form-control" asp-for="IDFuncionarioPlanoControle">
+			<option selected disabled value="">Selecione o responsável</option>
+			@foreach (var func in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
+			{
+				<option value="@func.IDFuncionario">@func.Nome</option>
+			}
+		</select>
+	</div>
+	<div class="text-field">
+		<label asp-for="PrazoPlanoControle" class="control-laber"></label>
+		<input class="form-control" asp-for="PrazoPlanoControle">
+	</div>
+	<div class="text-field">
+		<label asp-for="RealizadoPlanoControle" class="control-laber"></label>
+		<input class="hide" type="radio" asp-for="RealizadoPlanoControle" value="true">
+		<label for="RealizadoPlanoControle">Sim</label>
+		<input class="hide" type="radio" asp-for="RealizadoPlanoControle" value="false">
+		<label for="RealizadoPlanoControle">Não</label>
+	</div>
+
+	<h2>É possível utilizar Poka Yoke</h2>
+	<div class="text-field">
+		<input type="radio" class="form-control" asp-for="UtilizarPokaYoke" value="true">
+		<label for="UtilizarPokaYoke">Sim</label>
+		<input type="radio" class="form-control" asp-for="UtilizarPokaYoke" value="false">
+		<label for="UtilizarPokaYoke">Não</label>
+	</div>
+	<div class="text-field">
+		<label asp-for="QualPokaYoke" class="control-laber"></label>
+		<input class="form-control" asp-for="QualPokaYoke">
+	</div>
+	<div class="text-field">
+		<label asp-for="IDFuncionarioPokaYoke" class="control-laber"></label>
+		<select class="form-control" asp-for="IDFuncionarioPokaYoke">
+			<option selected disabled value="">Selecione o responsável</option>
+			@foreach (var func in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
+			{
+				<option value="@func.IDFuncionario">@func.Nome</option>
+			}
+		</select>
+	</div>
+	<div class="text-field">
+		<label asp-for="PrazoPokaYoke" class="control-laber"></label>
+		<input class="form-control" asp-for="PrazoPokaYoke">
+	</div>
+	<div class="text-field">
+		<label asp-for="RealizadoPokaYoke" class="control-laber"></label>
+		<input class="hide" type="radio" asp-for="RealizadoPokaYoke" value="true">
+		<label for="RealizadoPokaYoke">Sim</label>
+		<input class="hide" type="radio" asp-for="RealizadoPokaYoke" value="false">
+		<label for="RealizadoPokaYoke">Não</label>
+	</div>
+
+	<h2>É necessário aplicar Treinamento</h2>
+	<div class="text-field">
+		<input type="radio" class="form-control" asp-for="AplicarTreinamento" value="true">
+		<label for="AplicarTreinamento">Sim</label>
+		<input type="radio" class="form-control" asp-for="AplicarTreinamento" value="false">
+		<label for="AplicarTreinamento">Não</label>
+	</div>
+	<div class="text-field">
+		<label asp-for="QualTreinamento" class="control-laber"></label>
+		<input class="form-control" asp-for="QualTreinamento">
+	</div>
+	<div class="text-field">
+		<label asp-for="IDFuncionarioTreinamento" class="control-laber"></label>
+		<select class="form-control" asp-for="IDFuncionarioTreinamento">
+			<option selected disabled value="">Selecione o responsável</option>
+			@foreach (var func in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
+			{
+				<option value="@func.IDFuncionario">@func.Nome</option>
+			}
+		</select>
+	</div>
+	<div class="text-field">
+		<label asp-for="PrazoTreinamento" class="control-laber"></label>
+		<input class="form-control" asp-for="PrazoTreinamento">
+	</div>
+	<div class="text-field">
+		<label asp-for="RealizadoTreinamento" class="control-laber"></label>
+		<input class="hide" type="radio" asp-for="RealizadoTreinamento" value="true">
+		<label for="RealizadoTreinamento">Sim</label>
+		<input class="hide" type="radio" asp-for="RealizadoTreinamento" value="false">
+		<label for="RealizadoTreinamento">Não</label>
+	</div>
+
+	<h2>É necessário emitir Alerta de Qualidade</h2>
+	<div class="text-field">
+		<input type="radio" class="form-control" asp-for="EmitirAlertaQualidade" value="true">
+		<label for="EmitirAlertaQualidade">Sim</label>
+		<input type="radio" class="form-control" asp-for="EmitirAlertaQualidade" value="false">
+		<label for="EmitirAlertaQualidade">Não</label>
+	</div>
+	<div class="text-field">
+		<label asp-for="QualAlertaQualidade" class="control-laber"></label>
+		<input class="form-control" asp-for="QualAlertaQualidade">
+	</div>
+	<div class="text-field">
+		<label asp-for="IDFuncionarioAlertaQualidade" class="control-laber"></label>
+		<select class="form-control" asp-for="IDFuncionarioAlertaQualidade">
+			<option selected disabled value="">Selecione o responsável</option>
+			@foreach (var func in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
+			{
+				<option value="@func.IDFuncionario">@func.Nome</option>
+			}
+		</select>
+	</div>
+	<div class="text-field">
+		<label asp-for="PrazolAlertaQualidade" class="control-laber"></label>
+		<input class="form-control" asp-for="PrazolAlertaQualidade">
+	</div>
+	<div class="text-field">
+		<label asp-for="RealizadoAlertaQualidade" class="control-laber"></label>
+		<input class="hide" type="radio" asp-for="RealizadoAlertaQualidade" value="true">
+		<label for="RealizadoAlertaQualidade">Sim</label>
+		<input class="hide" type="radio" asp-for="RealizadoAlertaQualidade" value="false">
+		<label for="RealizadoAlertaQualidade">Não</label>
 	</div>
 	<button type="submit" class="btn btn-success">Cadastrar</button>
 </form>

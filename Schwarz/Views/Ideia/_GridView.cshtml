@@ -9,6 +9,9 @@
 	<thead>
 		<tr>
 			<th>
+				Nome da Equipe
+			</th>
+			<th>
 				Equipe
 			</th>
 			<th>
@@ -16,6 +19,9 @@
 			</th>
 			<th>
 				Descrição
+			</th>
+			<th>
+				Status
 			</th>
 			<th>
 				Ganho
@@ -33,25 +39,25 @@
 		@foreach (var item in Model)
 		{
 			equipe.Clear();
-
-			foreach (var func in item.EquipeIdeia)
+			foreach(var func in item.EquipeIdeia)
 			{
 				equipe.Add(func.Funcionario.Nome);
 			}
 			<tr>
-				@if (item.NomeEquipe != null)
-				{
-					<td>(@Html.DisplayFor(modelItem => item.NomeEquipe)) @string.Join(", ",equipe)</td>
-				}
-				else
-				{
-					<td>@string.Join(", ",equipe)</td>
-				}
+				<td data-label="Nome da Equipe:">
+					@Html.DisplayFor(modelItem => item.NomeEquipe)
+				</td>
+				<td data-label="Equipe:">
+					@string.Join(", ", equipe)
+				</td>
 				<td data-label="Data:">
 					@Html.DisplayFor(modelItem => item.Data)
 				</td>
 				<td data-label="Descrição:" style="word-break:break-all">
 					@Html.DisplayFor(modelItem => item.Descricao)
+				</td>
+				<td data-label="Status:">
+					@Html.DisplayFor(modelItem => item.Status)
 				</td>
 				<td data-label="Ganho:">
 					@Html.DisplayFor(modelItem => item.Ganho)

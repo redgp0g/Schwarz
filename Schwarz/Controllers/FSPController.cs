@@ -20,5 +20,10 @@ namespace Schwarz.Controllers
             FSP fSP = new(_context);
             return View(fSP);
         }
+
+        public ActionResult Cadastrar(FSP fSP)
+        {
+            return View("Index");
+        }
     }
 }

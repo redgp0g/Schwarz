@@ -108,7 +108,7 @@ namespace Schwarz.Models
 
 
 
-        [Display(Name = "Atualizar Instrução?")]
+        [Display(Name = "Alterar Instrução de Trabalho?")]
         [Required(ErrorMessage = "Selecione a opção")]
         public bool AtualizarInstrucao { get; set; }
 
@@ -128,7 +128,7 @@ namespace Schwarz.Models
 
 
 
-        [Display(Name = "Atualizar Plano de Controle?")]
+        [Display(Name = "Alterar Plano de Controle?")]
         [Required(ErrorMessage = "Selecione a opção")]
         public bool AtualizarPlanoControle { get; set; }
 
@@ -148,7 +148,7 @@ namespace Schwarz.Models
 
 
 
-        [Display(Name = "Utilizar Poka Yoke?")]
+        [Display(Name = "É possível utilizar Poka Yoke?")]
         [Required(ErrorMessage = "Selecione a opção")]
         public bool UtilizarPokaYoke { get; set; }
 
@@ -168,7 +168,7 @@ namespace Schwarz.Models
 
 
 
-        [Display(Name = "Aplicar Treinamento?")]
+        [Display(Name = "É necessário aplicar Treinamento?")]
         [Required(ErrorMessage = "Selecione a opção")]
         public bool AplicarTreinamento { get; set; }
 
@@ -188,7 +188,7 @@ namespace Schwarz.Models
 
 
 
-        [Display(Name = "Emitir Alerta da Qualidade?")]
+        [Display(Name = "É necessário emitir Alerta da Qualidade?")]
         [Required(ErrorMessage = "Selecione a opção")]
         public bool EmitirAlertaQualidade { get; set; }
 

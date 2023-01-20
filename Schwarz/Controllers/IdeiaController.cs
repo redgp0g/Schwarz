@@ -92,11 +92,12 @@ namespace ProgramaIdeias.Controllers
 
 		public PartialViewResult PesquisarIdeia(string txtPesquisa)
 		{
+
 			var model = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
 			if (txtPesquisa != null)
 			{
 				txtPesquisa = txtPesquisa.ToLower();
-				IEnumerable<Ideia> resultado = model.Where(x => x.Descricao.ToLower().Contains(txtPesquisa) || x.Status.ToString().Contains(txtPesquisa) || x.Ganho.ToLower().Contains(txtPesquisa) || x.Data.ToString().Contains(txtPesquisa) || (x.Investimento != null && x.Investimento.ToLower().Contains(txtPesquisa)) || (x.NomeEquipe != null && x.NomeEquipe.ToLower().Contains(txtPesquisa)) || (x.Feedback != null && x.Feedback.ToLower().Contains(txtPesquisa)) || x.EquipeIdeia.Any(x => x.Funcionario.Nome.ToLower().Contains(txtPesquisa)) ).ToList();
+				IEnumerable<Ideia> resultado = model.Where(x => x.Descricao.ToLower().Contains(txtPesquisa) || x.Status.Contains(txtPesquisa) || x.Ganho.ToLower().Contains(txtPesquisa) || x.Data.ToString().Contains(txtPesquisa) || (x.Investimento != null && x.Investimento.ToLower().Contains(txtPesquisa)) || (x.NomeEquipe != null && x.NomeEquipe.ToLower().Contains(txtPesquisa)) || x.EquipeIdeia.Any(x => x.Funcionario.Nome.ToLower().Contains(txtPesquisa)) ).ToList();
 				return PartialView("_GridView", resultado);
 			}
 			return PartialView("_GridView", model);
