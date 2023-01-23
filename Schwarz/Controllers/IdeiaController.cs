@@ -90,15 +90,23 @@ namespace ProgramaIdeias.Controllers
 			}
 		}
 
-		public PartialViewResult PesquisarIdeia(string txtPesquisa)
+		public PartialViewResult PesquisarIdeia(string txtPesquisa, int? ano)
 		{
 
-			var model = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
+			IEnumerable<Ideia> model = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
 			if (txtPesquisa != null)
 			{
 				txtPesquisa = txtPesquisa.ToLower();
 				IEnumerable<Ideia> resultado = model.Where(x => x.Descricao.ToLower().Contains(txtPesquisa) || x.Status.ToLower().Contains(txtPesquisa) || x.Ganho.ToLower().Contains(txtPesquisa) || x.Data.ToString().Contains(txtPesquisa) || (x.Investimento != null && x.Investimento.ToLower().Contains(txtPesquisa)) || (x.NomeEquipe != null && x.NomeEquipe.ToLower().Contains(txtPesquisa)) || x.EquipeIdeia.Any(x => x.Funcionario.Nome.ToLower().Contains(txtPesquisa)) ).ToList();
+				if(ano != null)
+				{
+					resultado = resultado.Where(x => x.Data.Year == ano);
+				}
 				return PartialView("_GridView", resultado);
+			}
+			if (ano != null)
+			{
+				model = model.Where(x => x.Data.Year == ano);
 			}
 			return PartialView("_GridView", model);
 
