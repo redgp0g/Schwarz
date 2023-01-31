@@ -40,7 +40,7 @@ namespace ProgramaIdeias.Controllers
 				return NotFound();
 			}
 
-			var cadastropare = _context.Ideia.FirstOrDefault(m => m.IDIdeia == id);
+			var cadastropare = _context.Ideia.Find(id);
 			if (cadastropare == null)
 			{
 				return NotFound();

@@ -21,8 +21,9 @@ namespace Schwarz.Controllers
             return View(fSP);
         }
 
-        public ActionResult Cadastrar(FSP fSP)
+        public ActionResult Cadastrar(FSP fSP, List<int> EquipeMultiFuncional)
         {
+            
             return View("Index");
         }
     }

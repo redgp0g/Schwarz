@@ -90,7 +90,11 @@ namespace Schwarz.Repository
             return _context.Funcionario.ToList();
         }
 
-		public IEnumerable<Ideia> GetIdeias()
+        public IEnumerable<Funcionario> GetFuncionariosAtivos()
+        {
+            return _context.Funcionario.Where(x => x.Ativo == true).ToList();
+        }
+        public IEnumerable<Ideia> GetIdeias()
 		{
 			return _context.Ideia.ToList();
 		}

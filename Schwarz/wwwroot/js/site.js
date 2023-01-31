@@ -1,8 +1,9 @@
 ﻿var tabs = document.querySelectorAll(".lboard_tabs ul li"),
     month = document.querySelector(".month"),
     year = document.querySelector(".year"),
-    items = document.querySelectorAll(".lboard_item");
-
+    items = document.querySelectorAll(".lboard_item"),
+    adicionaracao = document.getElementById('adicionar_acao'),
+    removeracao = document.querySelectorAll('remover_acao');
 tabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
         var currentdatali = tab.getAttribute("data-li");

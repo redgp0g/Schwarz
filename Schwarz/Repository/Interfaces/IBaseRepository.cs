@@ -19,7 +19,8 @@ namespace Schwarz.Repository.Interfaces
 		IEnumerable<FluxoOperacao> GetFluxoOperacaos();
 		IEnumerable<FSP> GetFSPs();
 		IEnumerable<Funcionario> GetFuncionarios();
-		IEnumerable<Ideia> GetIdeias();
+        IEnumerable<Funcionario> GetFuncionariosAtivos();
+        IEnumerable<Ideia> GetIdeias();
 		IEnumerable<Maquina> GetMaquinas();
 		IEnumerable<Operacao> GetOperacoes();
 		IEnumerable<PlanoAcao> GetPlanoAcaos();
