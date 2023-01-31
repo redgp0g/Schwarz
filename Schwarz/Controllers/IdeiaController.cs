@@ -90,7 +90,7 @@ namespace ProgramaIdeias.Controllers
 			}
 		}
 
-		public PartialViewResult PesquisarIdeia(string txtPesquisa, int? ano)
+		public PartialViewResult PesquisarIdeia(string txtPesquisa, int? ano, string status)
 		{
 
 			IEnumerable<Ideia> model = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
@@ -102,13 +102,21 @@ namespace ProgramaIdeias.Controllers
 				{
 					resultado = resultado.Where(x => x.Data.Year == ano);
 				}
-				return PartialView("_GridView", resultado);
+                if (status != null)
+                {
+                    resultado = resultado.Where(x => x.Status == status);
+                }
+                return PartialView("_GridView", resultado);
 			}
 			if (ano != null)
 			{
 				model = model.Where(x => x.Data.Year == ano);
 			}
-			return PartialView("_GridView", model);
+            if (status != null)
+            {
+                model = model.Where(x => x.Status == status);
+            }
+            return PartialView("_GridView", model);
 
 		}
 	}

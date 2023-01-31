@@ -150,9 +150,9 @@ namespace Schwarz.Areas.Identity.Pages.Account
             return (IUserEmailStore<SchwarzUser>)_userStore;
         }
 
-        public List<Funcionario> GetFuncionarios()
+        public List<Funcionario> GetFuncionariosAtivos()
         {
-            return _context.Funcionario.ToList();
+            return _context.Funcionario.Where(x => x.Ativo == true).ToList();
         }
     }
 }

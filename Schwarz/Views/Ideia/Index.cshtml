@@ -1,12 +1,12 @@
 ﻿<a class="btn btn-success" asp-action="Create">Cadastrar Ideia</a>
 <h1 style="color:black" class="titulo">Tabela de Ideias</h1>
 <div class="col-sm-12">
-	<div style="display:flex" class="form-inline pull-right">
+	<div style="display:flex;justify-content:space-around;align-items:center" class="form-inline pull-right">
 		<input style="padding: 10px; margin-bottom:10px;width: 600px;" type="text" class="form-control" id="txtPesquisa" placeholder="Digite algo para buscar" />
 		<button onclick="ShowLoading(),carregarIdeias()" class="btn btn-info">Pesquisar</button>
 		<div>
 			<label>Ano</label>
-			<select onchange="carregarIdeias()" class="select-control" id="selectanos">
+			<select onchange="ShowLoading(),carregarIdeias()" class="form-select" id="selectanos">
 				<option select value=""></option>
 				<option value="2019">2019</option>
 				<option value="2020">2020</option>
@@ -16,18 +16,17 @@
 			</select>
 		</div>
 		<div>
-			<ul class="list-items">
-				<li class="item ano" id="2022">
-					<span class="checkbox">
-						<i>2022</i> 
-					</span>
-				</li>
-				<li class="item ano" id="2023">
-					<span class="checkbox">
-						<i>2023</i> 
-					</span>
-				</li>
-			</ul>
+			<label>Status</label>
+			<select onchange="ShowLoading(),carregarIdeias()" class="form-select" id="selectstatus">
+				<option select value=""></option>
+				<option value="Aplicada">Aplicada</option>
+				<option value="Aprovada">Aprovada</option>
+				<option value="Cancelada">Cancelada</option>
+				<option value="Conferido">Conferido</option>
+				<option value="Direcionada">Direcionada</option>
+				<option value="Em Processo">Em Processo</option>
+				<option value="Recebido">Recebido</option>
+			</select>
 		</div>
 
 	</div>
@@ -44,7 +43,6 @@
 	const anos = []
 	itemano.forEach( (i) => {
 		if(i.classList.contains('checked')){
-			anos.
 		}
 	});
 	
@@ -53,7 +51,7 @@
 			url: '@Url.Action("PesquisarIdeia","Ideia")',
 			datatype: 'html',
 			method: 'GET',
-			data: { txtPesquisa: $('#txtPesquisa').val(), ano: $('#selectanos').val() },
+			data: { txtPesquisa: $('#txtPesquisa').val(), ano: $('#selectanos').val(), status: $('#selectstatus').val() },
 			success: function (res) {
 				$('#grdIdeias').html('').html(res);
 				HideLoading();
