@@ -1,1 +1,48 @@
-﻿
+﻿@model IEnumerable<FSP>
+<head>
+	<link rel="stylesheet" href="~/css/tabela.css" asp-append-version="true" />
+</head>
+<table class="table table-sortable" id="table-falhas">
+	<thead>
+		<tr>
+			<th>
+				N°
+			</th>
+			<th>
+				Data Abertura
+			</th>
+			<th>
+				Produto
+			</th>
+			<th>
+				Problema
+			</th>
+			<th class="acoes">
+				Ações
+			</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td data-label="N°:">
+					@Html.DisplayFor(modelItem => item.Numero)
+				</td>
+				<td data-label="Data Abertura:">
+					@Html.DisplayFor(modelItem => item.DataAbertura)
+				</td>
+				<td data-label="Produto:">
+					@Html.DisplayFor(modelItem => item.Produto)
+				</td>
+				<td data-label="Problema:">
+					@Html.DisplayFor(modelItem => item.Falha.Descricao)
+				</td>
+				<td>
+					<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDFSP">Detalhes</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

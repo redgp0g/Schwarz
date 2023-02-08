@@ -239,30 +239,30 @@ input {
 .btn {
     padding: 16px 0px;
     border: 3px solid black;
-    width:150px;
+    width: 150px;
     border-radius: 20px;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 1px;
-    color: #2b134b;
-    background: #2468bb;
+    background: #FFFFFF;
+    color: #0D0D0D;
 }
 
     .btn:hover {
-        background: #FFFFFF;
-        color: #0D0D0D;
+        background: black;
+        color: #FFFFFF;
     }
 
 .btn-edit {
-    background: #FC8E08;
+    background: #FFFFFF;
 }
 
 .btn-info {
-    background: #20ACD6;
+    background: #FFFFFF;
 }
 
 .btn-danger {
-    background: #FF2036;
+    background: #FFFFFF;
 }
 
 
