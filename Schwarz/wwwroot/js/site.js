@@ -4,6 +4,7 @@
     items = document.querySelectorAll(".lboard_item"),
     adicionaracao = document.getElementById('adicionar_acao'),
     removeracao = document.querySelectorAll('remover_acao');
+
 tabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
         var currentdatali = tab.getAttribute("data-li");
