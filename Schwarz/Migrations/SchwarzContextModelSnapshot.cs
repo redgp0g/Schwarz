@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Schwarz.Data;
 
@@ -18,33 +17,30 @@ namespace Schwarz.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.12")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
                 });
@@ -55,17 +51,15 @@ namespace Schwarz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
@@ -80,17 +74,15 @@ namespace Schwarz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
@@ -102,19 +94,17 @@ namespace Schwarz.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -126,10 +116,10 @@ namespace Schwarz.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -141,18 +131,16 @@ namespace Schwarz.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -162,72 +150,97 @@ namespace Schwarz.Migrations
             modelBuilder.Entity("Schwarz.Areas.Identity.Data.SchwarzUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("varchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int?>("IDFuncionario")
                         .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IDFuncionario");
+                    b.HasIndex("IDFuncionario")
+                        .IsUnique();
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Boleto", b =>
+                {
+                    b.Property<int>("IDBoleto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Caracteristica")
+                        .HasColumnType("longtext");
+
+                    b.Property<float>("Cota")
+                        .HasColumnType("float");
+
+                    b.Property<float>("Numeracao")
+                        .HasColumnType("float")
+                        .HasColumnName("Boleto");
+
+                    b.Property<string>("Tolerancia")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IDBoleto");
+
+                    b.ToTable("Boleto");
                 });
 
             modelBuilder.Entity("Schwarz.Models.CadastroOleo", b =>
@@ -236,33 +249,134 @@ namespace Schwarz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDCadastroOleo"), 1L, 1);
-
                     b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("DiarioBordo")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("IDMaquina")
                         .HasColumnType("int");
 
+                    b.Property<string>("IDUser")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
                     b.Property<double>("Litros")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Usuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("IDCadastroOleo");
 
                     b.HasIndex("IDMaquina");
 
+                    b.HasIndex("IDUser");
+
                     b.ToTable("CadastroOleo");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Cliente", b =>
+                {
+                    b.Property<int>("IDCliente")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IDCliente");
+
+                    b.ToTable("Cliente");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Desenho", b =>
+                {
+                    b.Property<int>("IDDesenho")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DescricaoRevisao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("IDFuncionarioAprovador")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioDesenhador")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDProcesso")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDProduto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Observacoes")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Revisao")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDDesenho");
+
+                    b.HasIndex("IDFuncionarioAprovador");
+
+                    b.HasIndex("IDFuncionarioDesenhador");
+
+                    b.HasIndex("IDProcesso");
+
+                    b.HasIndex("IDProduto");
+
+                    b.ToTable("Desenho");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.DesenhoBoleto", b =>
+                {
+                    b.Property<int>("IDDesenhoBoleto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDBoleto")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDDesenho")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDDesenhoBoleto");
+
+                    b.HasIndex("IDBoleto");
+
+                    b.HasIndex("IDDesenho");
+
+                    b.ToTable("DesenhoBoleto");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.EquipeFSP", b =>
+                {
+                    b.Property<int>("IDEquipeFSP")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDFSP")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDFuncionario")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDEquipeFSP");
+
+                    b.HasIndex("IDFSP");
+
+                    b.HasIndex("IDFuncionario");
+
+                    b.ToTable("EquipeFSP");
                 });
 
             modelBuilder.Entity("Schwarz.Models.EquipeIdeia", b =>
@@ -270,8 +384,6 @@ namespace Schwarz.Migrations
                     b.Property<int>("IDEquipeIdeia")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDEquipeIdeia"), 1L, 1);
 
                     b.Property<int>("IDFuncionario")
                         .HasColumnType("int");
@@ -288,30 +400,337 @@ namespace Schwarz.Migrations
                     b.ToTable("EquipeIdeia");
                 });
 
+            modelBuilder.Entity("Schwarz.Models.Falha", b =>
+                {
+                    b.Property<int>("IDFalha")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Codigo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Identificacao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IDFalha");
+
+                    b.ToTable("Falha");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Fluxo", b =>
+                {
+                    b.Property<int>("IDFluxo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Aplicacao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CodigoFL")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("DescricaoRevisao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("IDFuncionarioAprovador")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDFuncionarioCriador")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDProduto")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Revisao")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDFluxo");
+
+                    b.HasIndex("IDFuncionarioAprovador");
+
+                    b.HasIndex("IDFuncionarioCriador");
+
+                    b.HasIndex("IDProduto");
+
+                    b.ToTable("Fluxo");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.FluxoOperacao", b =>
+                {
+                    b.Property<int>("IDFluxoOperacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDFluxo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDOperacao")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDFluxoOperacao");
+
+                    b.HasIndex("IDFluxo");
+
+                    b.HasIndex("IDOperacao");
+
+                    b.ToTable("FluxoOperacao");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.FSP", b =>
+                {
+                    b.Property<int>("IDFSP")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("AplicarTreinamento")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("AtualizarFMEA")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("AtualizarInstrucao")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("AtualizarPlanoControle")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("CausaRaizFalha")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CausaRaizPassou")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Codigo")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataAbertura")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DataFechamento")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DataVerificacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool?>("EficazVerificacao")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("EmitirAlertaQualidade")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("IDFalha")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioAlertaQualidade")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioFMEA")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioInstrucao")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioNovaFSP")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioPlanoControle")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioPokaYoke")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioTreinamento")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDFuncionarioVerificacao")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IDNovaFSP")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IndicadorVerificacao")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MaodeObra")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Maquina")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Material")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Medicao")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MeioAmbiente")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Metodo")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MetodologiaVerificacao")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Origem")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorqueFalhou1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorqueFalhou2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorqueFalhou3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorqueFalhou4")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorqueFalhou5")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorquePassou1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorquePassou2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorquePassou3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorquePassou4")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PorquePassou5")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("PrazoAlertaQualidade")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PrazoFMEA")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PrazoInstrucao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PrazoPlanoControle")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PrazoPokaYoke")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PrazoTreinamento")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Produto")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("QualAlertaQualidade")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("QualFMEA")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("QualInstrucao")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("QualPlanoControle")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("QualPokaYoke")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("QualTreinamento")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool?>("RealizadoAlertaQualidade")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("RealizadoFMEA")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("RealizadoInstrucao")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("RealizadoPlanoControle")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("RealizadoPokaYoke")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("RealizadoTreinamento")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("UtilizarPokaYoke")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("IDFSP");
+
+                    b.HasIndex("IDFalha");
+
+                    b.HasIndex("IDFuncionarioAlertaQualidade");
+
+                    b.HasIndex("IDFuncionarioFMEA");
+
+                    b.HasIndex("IDFuncionarioInstrucao");
+
+                    b.HasIndex("IDFuncionarioNovaFSP");
+
+                    b.HasIndex("IDFuncionarioPlanoControle");
+
+                    b.HasIndex("IDFuncionarioPokaYoke");
+
+                    b.HasIndex("IDFuncionarioTreinamento");
+
+                    b.HasIndex("IDFuncionarioVerificacao");
+
+                    b.HasIndex("IDNovaFSP");
+
+                    b.ToTable("FSP");
+                });
+
             modelBuilder.Entity("Schwarz.Models.Funcionario", b =>
                 {
                     b.Property<int>("IDFuncionario")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDFuncionario"), 1L, 1);
-
                     b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("Matricula")
+                    b.Property<int?>("Matricula")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Setor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
-                    b.Property<int?>("Turno")
-                        .HasColumnType("int");
+                    b.Property<string>("Turno")
+                        .HasColumnType("longtext");
 
                     b.HasKey("IDFuncionario");
 
@@ -324,36 +743,33 @@ namespace Schwarz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDIdeia"), 1L, 1);
-
                     b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Feedback")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Ganho")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("IDUser")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<float>("Investimento")
-                        .HasColumnType("real");
+                    b.Property<string>("Investimento")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NomeEquipe")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("IDIdeia");
 
@@ -364,19 +780,142 @@ namespace Schwarz.Migrations
 
             modelBuilder.Entity("Schwarz.Models.Maquina", b =>
                 {
-                    b.Property<int>("IDDMaquina")
+                    b.Property<int>("IDMaquina")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDDMaquina"), 1L, 1);
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IDMaquina");
+
+                    b.ToTable("Maquina");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Operacao", b =>
+                {
+                    b.Property<int>("IDOperacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Procedimento")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Sequencia")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubSequencia")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDOperacao");
+
+                    b.ToTable("Operacao");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.PlanoAcao", b =>
+                {
+                    b.Property<int>("IDPlanoAcao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("IDFSP")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDFuncionario")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Prazo")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IDPlanoAcao");
+
+                    b.HasIndex("IDFSP");
+
+                    b.HasIndex("IDFuncionario");
+
+                    b.ToTable("PlanoAcao");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Processo", b =>
+                {
+                    b.Property<int>("IDProcesso")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CodigoInterno")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDOperacao")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDProduto")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDProcesso");
+
+                    b.HasIndex("IDOperacao");
+
+                    b.HasIndex("IDProduto");
+
+                    b.ToTable("Processo");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.ProcessoProduto", b =>
+                {
+                    b.Property<int>("IDProcessoProduto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDProcesso")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDProduto")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDProcessoProduto");
+
+                    b.HasIndex("IDProcesso");
+
+                    b.HasIndex("IDProduto");
+
+                    b.ToTable("ProcessoProduto");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Produto", b =>
+                {
+                    b.Property<int>("IDProduto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CodigoCliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDCliente")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
-                    b.HasKey("IDDMaquina");
+                    b.HasKey("IDProduto");
 
-                    b.ToTable("Maquina");
+                    b.HasIndex("IDCliente");
+
+                    b.ToTable("Produto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -433,8 +972,8 @@ namespace Schwarz.Migrations
             modelBuilder.Entity("Schwarz.Areas.Identity.Data.SchwarzUser", b =>
                 {
                     b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
-                        .WithMany("SchwarzUser")
-                        .HasForeignKey("IDFuncionario")
+                        .WithOne("SchwarzUser")
+                        .HasForeignKey("Schwarz.Areas.Identity.Data.SchwarzUser", "IDFuncionario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -449,7 +988,80 @@ namespace Schwarz.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Schwarz.Areas.Identity.Data.SchwarzUser", "User")
+                        .WithMany()
+                        .HasForeignKey("IDUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Maquina");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Desenho", b =>
+                {
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioAprovador")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioAprovador");
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioDesenhador")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioDesenhador");
+
+                    b.HasOne("Schwarz.Models.Processo", "Processo")
+                        .WithMany("Desenhos")
+                        .HasForeignKey("IDProcesso");
+
+                    b.HasOne("Schwarz.Models.Produto", "Produto")
+                        .WithMany("Desenhos")
+                        .HasForeignKey("IDProduto");
+
+                    b.Navigation("FuncionarioAprovador");
+
+                    b.Navigation("FuncionarioDesenhador");
+
+                    b.Navigation("Processo");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.DesenhoBoleto", b =>
+                {
+                    b.HasOne("Schwarz.Models.Boleto", "Boleto")
+                        .WithMany("DesenhoBoletos")
+                        .HasForeignKey("IDBoleto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Desenho", "Desenho")
+                        .WithMany("DesenhoBoletos")
+                        .HasForeignKey("IDDesenho")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Boleto");
+
+                    b.Navigation("Desenho");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.EquipeFSP", b =>
+                {
+                    b.HasOne("Schwarz.Models.FSP", "FSP")
+                        .WithMany()
+                        .HasForeignKey("IDFSP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FSP");
+
+                    b.Navigation("Funcionario");
                 });
 
             modelBuilder.Entity("Schwarz.Models.EquipeIdeia", b =>
@@ -471,6 +1083,117 @@ namespace Schwarz.Migrations
                     b.Navigation("Ideia");
                 });
 
+            modelBuilder.Entity("Schwarz.Models.Fluxo", b =>
+                {
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioAprovador")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioAprovador")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioCriador")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioCriador")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("IDProduto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FuncionarioAprovador");
+
+                    b.Navigation("FuncionarioCriador");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.FluxoOperacao", b =>
+                {
+                    b.HasOne("Schwarz.Models.Fluxo", "Fluxo")
+                        .WithMany("FluxoOperacoes")
+                        .HasForeignKey("IDFluxo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Operacao", "Operacao")
+                        .WithMany()
+                        .HasForeignKey("IDOperacao")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Fluxo");
+
+                    b.Navigation("Operacao");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.FSP", b =>
+                {
+                    b.HasOne("Schwarz.Models.Falha", "Falha")
+                        .WithMany()
+                        .HasForeignKey("IDFalha")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioAlertaQualidade")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioAlertaQualidade");
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioFMEA")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioFMEA");
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioInstrucao")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioInstrucao");
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioNovaFSP")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioNovaFSP");
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioPlanoControle")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioPlanoControle");
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioPokaYoke")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioPokaYoke");
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioTreinamento")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioTreinamento");
+
+                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioVerificacao")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionarioVerificacao");
+
+                    b.HasOne("Schwarz.Models.FSP", "NovaFSP")
+                        .WithMany()
+                        .HasForeignKey("IDNovaFSP");
+
+                    b.Navigation("Falha");
+
+                    b.Navigation("FuncionarioAlertaQualidade");
+
+                    b.Navigation("FuncionarioFMEA");
+
+                    b.Navigation("FuncionarioInstrucao");
+
+                    b.Navigation("FuncionarioNovaFSP");
+
+                    b.Navigation("FuncionarioPlanoControle");
+
+                    b.Navigation("FuncionarioPokaYoke");
+
+                    b.Navigation("FuncionarioTreinamento");
+
+                    b.Navigation("FuncionarioVerificacao");
+
+                    b.Navigation("NovaFSP");
+                });
+
             modelBuilder.Entity("Schwarz.Models.Ideia", b =>
                 {
                     b.HasOne("Schwarz.Areas.Identity.Data.SchwarzUser", "User")
@@ -482,14 +1205,115 @@ namespace Schwarz.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Schwarz.Models.PlanoAcao", b =>
+                {
+                    b.HasOne("Schwarz.Models.FSP", "FSP")
+                        .WithMany()
+                        .HasForeignKey("IDFSP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("IDFuncionario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FSP");
+
+                    b.Navigation("Funcionario");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Processo", b =>
+                {
+                    b.HasOne("Schwarz.Models.Operacao", "Operacao")
+                        .WithMany("Processos")
+                        .HasForeignKey("IDOperacao")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Produto", "Produto")
+                        .WithMany("Processos")
+                        .HasForeignKey("IDProduto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Operacao");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.ProcessoProduto", b =>
+                {
+                    b.HasOne("Schwarz.Models.Processo", "Processo")
+                        .WithMany()
+                        .HasForeignKey("IDProcesso")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Schwarz.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("IDProduto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Processo");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Produto", b =>
+                {
+                    b.HasOne("Schwarz.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("IDCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Boleto", b =>
+                {
+                    b.Navigation("DesenhoBoletos");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Desenho", b =>
+                {
+                    b.Navigation("DesenhoBoletos");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Fluxo", b =>
+                {
+                    b.Navigation("FluxoOperacoes");
+                });
+
             modelBuilder.Entity("Schwarz.Models.Funcionario", b =>
                 {
-                    b.Navigation("SchwarzUser");
+                    b.Navigation("SchwarzUser")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Schwarz.Models.Ideia", b =>
                 {
                     b.Navigation("EquipeIdeia");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Operacao", b =>
+                {
+                    b.Navigation("Processos");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Processo", b =>
+                {
+                    b.Navigation("Desenhos");
+                });
+
+            modelBuilder.Entity("Schwarz.Models.Produto", b =>
+                {
+                    b.Navigation("Desenhos");
+
+                    b.Navigation("Processos");
                 });
 #pragma warning restore 612, 618
         }
