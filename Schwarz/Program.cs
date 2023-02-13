@@ -40,7 +40,7 @@ builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
 builder.Services.AddDbContext<SchwarzContext>
 (options => options.UseLazyLoadingProxies()
-				   .UseMySql(connectionString, ServerVersion.Parse("8.0.29-mysql"))
+                   .UseSqlServer(connectionString)
 );
 
 builder.Services.AddIdentity<SchwarzUser, IdentityRole>(options =>
