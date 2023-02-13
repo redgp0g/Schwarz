@@ -1,9 +1,11 @@
-﻿<a class="btn btn-success" asp-action="Create">Cadastrar Ideia</a>
+﻿
 <h1 style="color:black" class="titulo">Tabela de Ideias</h1>
 <div class="col-sm-12">
 	<div style="display:flex;justify-content:space-around;align-items:center" class="form-inline pull-right">
-		<input style="padding: 10px; margin-bottom:10px;width: 600px;" type="text" class="form-control" id="txtPesquisa" placeholder="Digite algo para buscar" />
-		<button onclick="ShowLoading(),carregarIdeias()" class="btn btn-info">Pesquisar</button>
+		<div>	
+			<input style="padding: 10px; margin-bottom:10px;width: 600px;" type="text" class="form-control" id="txtPesquisa" placeholder="Digite algo para buscar" />
+			<button onclick="ShowLoading(),carregarIdeias()" class="btn btn-info">Pesquisar</button>
+		</div>
 		<div>
 			<label>Ano</label>
 			<select onchange="ShowLoading(),carregarIdeias()" class="form-select" id="selectanos">
@@ -27,7 +29,9 @@
 				<option value="Recebida">Recebida</option>
 			</select>
 		</div>
-
+		<div>
+			<a class="btn btn-success" asp-action="Create">Cadastrar Ideia</a>
+		</div>
 	</div>
 </div>
 <div id="grdIdeias"></div>

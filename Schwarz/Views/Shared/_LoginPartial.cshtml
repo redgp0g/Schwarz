@@ -22,12 +22,17 @@
                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Sair</button>
             </form>
         </li>
+        @if (UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("ADM"))
+        {
+            <li>
+                <a id="register" asp-area="Identity" asp-page="/Account/Register">Registrar</a>
+            </li>
+        }
+
     }
     else
     {
-        <li>
-            <a id="register" asp-area="Identity" asp-page="/Account/Register">Registrar</a>
-        </li>
+    
         <li>
             <a id="login" asp-area="Identity" asp-page="/Account/Login">Entrar</a>
         </li>

@@ -16,6 +16,7 @@ namespace Schwarz.Models
 		public string Setor { get; set; }
 		public string? Turno { get; set; }
 		public bool Ativo { get; set; }
+		public DateTime DataNascimento { get; set; }
 
 		public virtual SchwarzUser SchwarzUser{ get;set; }
 

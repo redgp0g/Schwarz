@@ -20,5 +20,11 @@ public class SchwarzUser : IdentityUser
 	public virtual Funcionario Funcionario { get; set; }
 
 
+	public string GetPassword()
+	{
+		return "teste";
+	}
+
+
 }
 
