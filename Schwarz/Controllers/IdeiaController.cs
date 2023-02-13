@@ -49,7 +49,7 @@ namespace ProgramaIdeias.Controllers
 		}
 
 		[Authorize]
-		public IActionResult Leaderboard()
+		public IActionResult Edit()
 		{
 			return View();
 		}
@@ -69,7 +69,7 @@ namespace ProgramaIdeias.Controllers
 			try
 			{
 				ideia.Data = DateTime.Now;
-				ideia.Status = "Em Processo";
+				ideia.Status = "Recebida";
 				ideia.Ganho ??= "Não identificado";
                 ideia.Investimento ??= "Não identificado";
                 ideia.IDUser = _signInManager.UserManager.GetUserId(User);
