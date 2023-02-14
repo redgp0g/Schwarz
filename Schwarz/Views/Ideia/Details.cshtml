@@ -44,6 +44,14 @@
 				<label class="control-label">@Html.DisplayNameFor(model => model.NomeEquipe)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.NomeEquipe)</label>
 			</div>
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.OS)</label>
+				<label class="form-control">@Html.DisplayFor(model => model.OS)</label>
+			</div>
+			<div class="textfield">
+				<label class="control-label">@Html.DisplayNameFor(model => model.SolicitacaoAnalise)</label>
+				<label class="form-control">@Html.DisplayFor(model => model.SolicitacaoAnalise)</label>
+			</div>
 			@foreach (var participante in Model.EquipeIdeia)
 			{
 				<div class="textfield">

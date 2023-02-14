@@ -9,9 +9,6 @@
 	<thead>
 		<tr>
 			<th>
-				Nome da Equipe
-			</th>
-			<th>
 				Equipe
 			</th>
 			<th>
@@ -44,16 +41,13 @@
 				equipe.Add(func.Funcionario.Nome);
 			}
 			<tr>
-				<td data-label="Nome da Equipe:">
-					@Html.DisplayFor(modelItem => item.NomeEquipe)
-				</td>
 				<td data-label="Equipe:">
 					@string.Join(", ", equipe)
 				</td>
 				<td data-label="Data:">
 					@Html.DisplayFor(modelItem => item.Data)
 				</td>
-				<td data-label="Descrição:" style="word-break:break-all">
+				<td data-label="Descrição:">
 					@Html.DisplayFor(modelItem => item.Descricao)
 				</td>
 				<td data-label="Status:">

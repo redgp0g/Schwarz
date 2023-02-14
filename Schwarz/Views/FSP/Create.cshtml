@@ -5,22 +5,22 @@
 
 <form method="post" asp-action="Cadastrar">
 	<div class="text-field">
-		<label asp-for="Produto" class="control-laber"></label>
+		<label asp-for="Produto" ></label>
 		<input class="form-control" asp-for="Produto">
 		@Html.ValidationMessageFor(x => x.Produto)
 	</div>
 	<div class="text-field">
-		<label asp-for="Codigo" class="control-laber"></label>
+		<label asp-for="Codigo" ></label>
 		<input class="form-control" asp-for="Codigo">
 		@Html.ValidationMessageFor(x => x.Codigo)
 	</div>
 	<div class="text-field">
-		<label asp-for="Origem" class="control-laber"></label>
+		<label asp-for="Origem" ></label>
 		<input class="form-control" asp-for="Origem">
 		@Html.ValidationMessageFor(x => x.Origem)
 	</div>
 	<div class="text-field">
-		<label asp-for="IDFalha" class="control-laber"></label>
+		<label asp-for="IDFalha" ></label>
 		<select asp-for="IDFalha" class="form-select">
 			<option selected disabled value="">Selecione a falha</option>
 			@foreach (var falha in Model.GetFalhas())
@@ -48,27 +48,27 @@
 	<br />
 	<h1>Diagrama de Causa - Efeito (Ishikawa):</h1>
 	<div class="text-field">
-		<label asp-for="MaodeObra" class="control-laber"></label>
+		<label asp-for="MaodeObra" ></label>
 		<input class="form-control" asp-for="MaodeObra">
 	</div>
 	<div class="text-field">
-		<label asp-for="Maquina" class="control-laber"></label>
+		<label asp-for="Maquina" ></label>
 		<input class="form-control" asp-for="Maquina">
 	</div>
 	<div class="text-field">
-		<label asp-for="Medicao" class="control-laber"></label>
+		<label asp-for="Medicao" ></label>
 		<input class="form-control" asp-for="Medicao">
 	</div>
 	<div class="text-field">
-		<label asp-for="MeioAmbiente" class="control-laber"></label>
+		<label asp-for="MeioAmbiente" ></label>
 		<input class="form-control" asp-for="MeioAmbiente">
 	</div>
 	<div class="text-field">
-		<label asp-for="Material" class="control-laber"></label>
+		<label asp-for="Material" ></label>
 		<input class="form-control" asp-for="Material">
 	</div>
 	<div class="text-field">
-		<label asp-for="Metodo" class="control-laber"></label>
+		<label asp-for="Metodo" ></label>
 		<input class="form-control" asp-for="Metodo">
 	</div>
 	<br />
@@ -187,11 +187,8 @@
 				<option value="Postergado">Postergado</option>
 			</select>
 		</div>
-		<a class="btn btn-danger remover_acao">Remover Ação</a>
 	</div>
-	<a id="adicionar_acao" class="btn btn-success">Adicionar Ação</a>
 	
-
 	<h1>Atualização de Documentação</h1>
 	<h2>Atualizar FMEA?</h2>
 	<div class="text-field">
@@ -202,11 +199,11 @@
 		@Html.ValidationMessageFor(x => x.AtualizarFMEA)
 	</div>
 	<div class="text-field">
-		<label asp-for="QualFMEA" class="control-laber"></label>
+		<label asp-for="QualFMEA" ></label>
 		<input class="form-control" asp-for="QualFMEA">
 	</div>
 	<div class="text-field">
-		<label asp-for="IDFuncionarioFMEA" class="control-laber"></label>
+		<label asp-for="IDFuncionarioFMEA" ></label>
 		<select class="form-control" asp-for="IDFuncionarioFMEA">
 			<option selected disabled value="">Selecione o responsável</option>
 			@foreach (var func in funcionarios)
@@ -216,11 +213,11 @@
 		</select>
 	</div>
 	<div class="text-field">
-		<label asp-for="PrazoFMEA" class="control-laber"></label>
+		<label asp-for="PrazoFMEA" ></label>
 		<input class="form-control" asp-for="PrazoFMEA">
 	</div>
 	<div class="text-field">
-		<label asp-for="RealizadoFMEA" class="control-laber"></label>
+		<label asp-for="RealizadoFMEA" ></label>
 		<input class="radio__input hide" type="radio" id="radiosimrealizadofmea" asp-for="RealizadoFMEA" value="1">
 		<label class="radio__label" for="radiosimrealizadofmea">Sim</label>
 		<input class="radio__input hide" type="radio" id="radionaorealizadofmea" asp-for="RealizadoFMEA" value="0">
@@ -236,11 +233,11 @@
 		@Html.ValidationMessageFor(x => x.AtualizarInstrucao)
 	</div>
 	<div class="text-field">
-		<label asp-for="QualInstrucao" class="control-laber"></label>
+		<label asp-for="QualInstrucao" ></label>
 		<input class="form-control" asp-for="QualInstrucao">
 	</div>
 	<div class="text-field">
-		<label asp-for="IDFuncionarioInstrucao" class="control-laber"></label>
+		<label asp-for="IDFuncionarioInstrucao" ></label>
 		<select class="form-control" asp-for="IDFuncionarioInstrucao">
 			<option selected disabled value="">Selecione o responsável</option>
 			@foreach (var func in funcionarios)
@@ -250,13 +247,13 @@
 		</select>
 	</div>y
 	<div class="text-field">
-		<label asp-for="PrazoInstrucao" class="control-laber"></label>
+		<label asp-for="PrazoInstrucao" ></label>
 		<input class="form-control" asp-for="PrazoInstrucao">
 	</div>
 	<div class="text-field">
-		<label asp-for="RealizadoInstrucao" class="control-laber"></label>
-		<input class="radio__input hide" type="radio" id="radionaorealizadoinstrucao" asp-for="RealizadoInstrucao" value="1">
-		<label class="radio__label" for="radionaorealizadoinstrucao">Sim</label>
+		<label asp-for="RealizadoInstrucao" ></label>
+		<input class="radio__input hide" type="radio" id="radiosimrealizadoinstrucao" asp-for="RealizadoInstrucao" value="1">
+		<label class="radio__label" for="radiosimrealizadoinstrucao">Sim</label>
 		<input class="radio__input hide" type="radio" id="radionaorealizadoinstrucao" asp-for="RealizadoInstrucao" value="0">
 		<label class="radio__label" for="radionaorealizadoinstrucao">Não</label>
 	</div>
@@ -270,11 +267,11 @@
 		@Html.ValidationMessageFor(x => x.AtualizarPlanoControle)
 	</div>
 	<div class="text-field">
-		<label asp-for="QualPlanoControle" class="control-laber"></label>
+		<label asp-for="QualPlanoControle" ></label>
 		<input class="form-control" asp-for="QualPlanoControle">
 	</div>
 	<div class="text-field">
-		<label asp-for="IDFuncionarioPlanoControle" class="control-laber"></label>
+		<label asp-for="IDFuncionarioPlanoControle" ></label>
 		<select class="form-control" asp-for="IDFuncionarioPlanoControle">
 			<option selected disabled value="">Selecione o responsável</option>
 			@foreach (var func in funcionarios)
@@ -284,15 +281,15 @@
 		</select>
 	</div>
 	<div class="text-field">
-		<label asp-for="PrazoPlanoControle" class="control-laber"></label>
+		<label asp-for="PrazoPlanoControle" ></label>
 		<input class="form-control" asp-for="PrazoPlanoControle">
 	</div>
 	<div class="text-field">
-		<label asp-for="RealizadoPlanoControle" class="control-laber"></label>
+		<label asp-for="RealizadoPlanoControle" ></label>
 		<input class="radio__input hide" type="radio" id="radiosimrealizadoplanocontrole" asp-for="RealizadoPlanoControle" value="1">
 		<label class="radio__label" for="radiosimrealizadoplanocontrole">Sim</label>
-		<input class="radio__input hide" type="radio" id="radiosimrealizadoplanocontrole" asp-for="RealizadoPlanoControle" value="0">
-		<label class="radio__label" for="radiosimrealizadoplanocontrole">Não</label>
+		<input class="radio__input hide" type="radio" id="radionaorealizadoplanocontrole" asp-for="RealizadoPlanoControle" value="0">
+		<label class="radio__label" for="radionaorealizadoplanocontrole">Não</label>
 	</div>
 
 	<h2>É possível utilizar Poka Yoke?</h2>
@@ -304,11 +301,11 @@
 		@Html.ValidationMessageFor(x => x.UtilizarPokaYoke)
 	</div>
 	<div class="text-field">
-		<label asp-for="QualPokaYoke" class="control-laber"></label>
+		<label asp-for="QualPokaYoke" ></label>
 		<input class="form-control" asp-for="QualPokaYoke">
 	</div>
 	<div class="text-field">
-		<label asp-for="IDFuncionarioPokaYoke" class="control-laber"></label>
+		<label asp-for="IDFuncionarioPokaYoke" ></label>
 		<select class="form-control" asp-for="IDFuncionarioPokaYoke">
 			<option selected disabled value="">Selecione o responsável</option>
 			@foreach (var func in funcionarios)
@@ -318,11 +315,11 @@
 		</select>
 	</div>
 	<div class="text-field">
-		<label asp-for="PrazoPokaYoke" class="control-laber"></label>
+		<label asp-for="PrazoPokaYoke" ></label>
 		<input class="form-control" asp-for="PrazoPokaYoke">
 	</div>
 	<div class="text-field">
-		<label asp-for="RealizadoPokaYoke" class="control-laber"></label>
+		<label asp-for="RealizadoPokaYoke" ></label>
 		<input class="radio__input hide" type="radio" id="radiosimrealizadopokayoke" asp-for="RealizadoPokaYoke" value="1">
 		<label class="radio__label" for="radiosimrealizadopokayoke">Sim</label>
 		<input class="radio__input hide" type="radio" id="radionaorealizadopokayoke" asp-for="RealizadoPokaYoke" value="0">
@@ -338,11 +335,11 @@
 		@Html.ValidationMessageFor(x => x.AplicarTreinamento)
 	</div>
 	<div class="text-field">
-		<label asp-for="QualTreinamento" class="control-laber"></label>
+		<label asp-for="QualTreinamento" ></label>
 		<input class="form-control" asp-for="QualTreinamento">
 	</div>
 	<div class="text-field">
-		<label asp-for="IDFuncionarioTreinamento" class="control-laber"></label>
+		<label asp-for="IDFuncionarioTreinamento" ></label>
 		<select class="form-control" asp-for="IDFuncionarioTreinamento">
 			<option selected disabled value="">Selecione o responsável</option>
 			@foreach (var func in funcionarios)
@@ -352,11 +349,11 @@
 		</select>
 	</div>
 	<div class="text-field">
-		<label asp-for="PrazoTreinamento" class="control-laber"></label>
+		<label asp-for="PrazoTreinamento" ></label>
 		<input class="form-control" asp-for="PrazoTreinamento">
 	</div>
 	<div class="text-field">
-		<label asp-for="RealizadoTreinamento" class="control-laber"></label>
+		<label asp-for="RealizadoTreinamento" ></label>
 		<input class="radio__input hide" type="radio" id="radiosimrealizadotreinamento" asp-for="RealizadoTreinamento" value="1">
 		<label class="radio__label" for="radiosimrealizadotreinamento">Sim</label>
 		<input class="radio__input hide" type="radio" id="radionaorealizadotreinamento" asp-for="RealizadoTreinamento" value="0">
@@ -372,11 +369,11 @@
 		@Html.ValidationMessageFor(x => x.EmitirAlertaQualidade)
 	</div>
 	<div class="text-field">
-		<label asp-for="QualAlertaQualidade" class="control-laber"></label>
+		<label asp-for="QualAlertaQualidade" ></label>
 		<input class="form-control" asp-for="QualAlertaQualidade">
 	</div>
 	<div class="text-field">
-		<label asp-for="IDFuncionarioAlertaQualidade" class="control-laber"></label>
+		<label asp-for="IDFuncionarioAlertaQualidade" ></label>
 		<select class="form-control" asp-for="IDFuncionarioAlertaQualidade">
 			<option selected disabled value="">Selecione o responsável</option>
 			@foreach (var func in funcionarios)
@@ -386,11 +383,11 @@
 		</select>
 	</div>
 	<div class="text-field">
-		<label asp-for="PrazoAlertaQualidade" class="control-laber"></label>
+		<label asp-for="PrazoAlertaQualidade" ></label>
 		<input class="form-control" asp-for="PrazoAlertaQualidade">
 	</div>
 	<div class="text-field">
-		<label asp-for="RealizadoAlertaQualidade" class="control-laber"></label>
+		<label asp-for="RealizadoAlertaQualidade" ></label>
 		<input class="radio__input hide" type="radio" id="radiosimrealizadoalertaqualidade" asp-for="RealizadoAlertaQualidade" value="1">
 		<label class="radio__label" for="radiosimrealizadoalertaqualidade">Sim</label>
 		<input class="radio__input hide" type="radio" id="radionaorealizadoalertaqualidade" asp-for="RealizadoAlertaQualidade" value="0">
@@ -398,7 +395,7 @@
 	</div>
 	<h1>Verificação da Eficácia</h1>
 	<div class="text-field">
-		<label asp-for="IDFuncionarioVerificacao" class="control-laber"></label>
+		<label asp-for="IDFuncionarioVerificacao" ></label>
 		<select class="form-control" asp-for="IDFuncionarioVerificacao">
 			<option selected value="">Selecione o responsável</option>
 			@foreach (var func in funcionarios)
@@ -408,30 +405,30 @@
 		</select>
 	</div>
 	<div class="text-field">
-		<label asp-for="DataVerificacao" class="control-laber"></label>
+		<label asp-for="DataVerificacao" ></label>
 		<input class="form-control" asp-for="DataVerificacao">
 	</div>
 	<div class="text-field">
-		<label asp-for="IndicadorVerificacao" class="control-laber"></label>
+		<label asp-for="IndicadorVerificacao" ></label>
 		<input class="form-control" asp-for="IndicadorVerificacao">
 	</div>
 	<div class="text-field">
-		<label asp-for="MetodologiaVerificacao" class="control-laber"></label>
+		<label asp-for="MetodologiaVerificacao" ></label>
 		<input class="form-control" asp-for="MetodologiaVerificacao">
 	</div>
 	<div class="text-field">
-		<label asp-for="EficazVerificacao" class="control-laber"></label>
+		<label asp-for="EficazVerificacao" ></label>
 		<input class="radio__input hide" type="radio" id="radiosimeficazverificacao" asp-for="EficazVerificacao" value="1">
 		<label class="radio__label" for="radiosimeficazverificacao">Sim</label>
 		<input class="radio__input hide" type="radio" id="radionaoeficazverificacao" asp-for="EficazVerificacao" value="0">
 		<label class="radio__label" for="radionaoeficazverificacao">Não</label>
 	</div>
 	<div class="text-field">
-		<label asp-for="DataFechamento" class="control-laber"></label>
+		<label asp-for="DataFechamento" ></label>
 		<input class="form-control" asp-for="DataFechamento">
 	</div>
 	<div class="text-field">
-		<label asp-for="IDNovaFSP" class="control-laber"></label>
+		<label asp-for="IDNovaFSP" ></label>
 		<select class="form-control" asp-for="IDNovaFSP">
 			<option selected value="">Selecione a nova FSP</option>
 			@foreach (var fsp in Model.GetFSPs())
@@ -441,7 +438,7 @@
 		</select>
 	</div>
 	<div class="text-field">
-		<label asp-for="IDFuncionarioNovaFSP" class="control-laber"></label>
+		<label asp-for="IDFuncionarioNovaFSP" ></label>
 		<select class="form-control" asp-for="IDFuncionarioNovaFSP">
 			<option selected value="">Selecione o responsável</option>
 			@foreach (var func in funcionarios)

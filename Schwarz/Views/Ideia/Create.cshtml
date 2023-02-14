@@ -23,7 +23,7 @@
         <div style="margin-bottom:10px;margin-top:10px">
             <div class="falha-details">
                 <div class="textfield">
-                    <img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/6967/6967748.png" alt="imagem pessoas" />
+                    <img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/6967/6967748.png" alt="imagem de pessoas" />
                     <label class="control-label">Número de Participantes</label>
                     <select id="nparticipantes" class="form-select required nparticipantes" onchange="AtualizarParticipantes()">
                         <option selected disabled value="">Selecione a quantidade de participantes</option>
@@ -64,6 +64,16 @@
                     <img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/2543/2543190.png" alt="imagem de um time" />
                     <label class="control-label">Quanto foi ou será o investimento?</label>
                     <input asp-for="Investimento" class="form-control" autocomplete="off" placeholder="Investimento">
+                </div>
+                <div class="textfield">
+                    <img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/825/825792.png" alt="imagem de um capacete e uma engrenagem" />
+                    <label class="control-label">Se precisar da ajuda da Engenharia digite o número da Solicitação de Análise</label>
+                    <input asp-for="SolicitacaoAnalise" class="form-control" autocomplete="off" placeholder="N° Solicitação de Análise">
+                </div>
+                <div class="textfield">
+                    <img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/4259/4259285.png" alt="imagem de duas ferramentas" />
+                    <label class="control-label">Se precisar da ajuda da Manutenção digite o número da OS aberta</label>
+                    <input asp-for="OS" class="form-control" autocomplete="off" placeholder="N° da OS aberta">
                 </div>
             </div>
         </div>

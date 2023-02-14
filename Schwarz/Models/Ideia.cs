@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Razor.Language.Extensions;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
 using Schwarz.Repository;
@@ -31,6 +32,12 @@ namespace Schwarz.Models
 
 		[Display(Name = "Nome da Equipe")]
         public string? NomeEquipe { get; set; }
+		
+		[Display(Name = "N° da OS")]
+		public int? OS { get; set; }
+
+		[Display(Name = "N° Solicitação de Análise")]
+		public int? SolicitacaoAnalise { get; set; }
 
 		public virtual List<EquipeIdeia> EquipeIdeia { get; set; }
 
