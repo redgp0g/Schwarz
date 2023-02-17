@@ -49,8 +49,13 @@ namespace ProgramaIdeias.Controllers
 		}
 
 		[Authorize]
-		public IActionResult Edit()
+		public IActionResult Edit(int id)
 		{
+			var ideia = _context.Ideia.Find(id);
+			if(ideia == null)
+			{
+				return NotFound();
+			}
 			return View();
 		}
 

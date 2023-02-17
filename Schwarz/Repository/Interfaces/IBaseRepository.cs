@@ -1,4 +1,5 @@
-﻿using Schwarz.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using Schwarz.Models;
 
 namespace Schwarz.Repository.Interfaces
 {

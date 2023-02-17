@@ -1,4 +1,6 @@
-﻿using Schwarz.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using Schwarz.Areas.Identity.Data;
+using Schwarz.Data;
 using Schwarz.Models;
 using Schwarz.Repository.Interfaces;
 
@@ -7,7 +9,7 @@ namespace Schwarz.Repository
     public class BaseRepository : IBaseRepository
     {
         private readonly SchwarzContext _context;
-        public BaseRepository()
+		public BaseRepository()
         {
 
         }
@@ -128,7 +130,6 @@ namespace Schwarz.Repository
         {
             return _context.Produto.ToList();
         }
-        
 
-	}
+    }
 }
