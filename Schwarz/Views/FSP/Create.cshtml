@@ -122,72 +122,42 @@
 		</div>
 	</div>
 	<h1>Plano de Ação</h1>
-	<div>
-		<div class="text-field">
-			<label class="control-label">N°</label>
-			<input value="1" readonly class="form-control" name="Numeros">
+	@for (int i = 1; i <= 10; i++)
+	{
+		<div class="acao">
+			<div class="text-field">
+				<label class="control-label">N°</label>
+				<input value="" class="form-control" name="Numeros">
+			</div>
+			<div class="text-field">
+				<label class="control-label">Ação</label>
+				<input class="form-control" name="Acoes">
+			</div>
+			<div class="text-field">
+				<label class="control-label">Responsável</label>
+				<select class="form-control" name="Responsaveis">
+					<option selected disabled value="">Selecione o funcionário</option>
+					@foreach (var funcionario in funcionarios)
+					{
+						<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
+					}
+				</select>
+			</div>
+			<div class="text-field">
+				<label class="control-label">Prazo</label>
+				<input type="date" class="form-control" name="Prazos">
+			</div>
+			<div class="text-field">
+				<label class="control-label">Status</label>
+				<select type="text" class="form-control" name="Status">
+					<option selected disabled value="">Selecione o status</option>
+					<option value="Concluído">Concluído</option>
+					<option value="Em Andamento">Em Andamento</option>
+					<option value="Postergado">Postergado</option>
+				</select>
+			</div>
 		</div>
-		<div class="text-field">
-			<label class="control-label">Ação</label>
-			<input class="form-control" name="Acoes">
-		</div>
-		<div class="text-field">
-			<label class="control-label">Responsável</label>
-			<select class="form-control" name="Responsaveis">
-				<option selected disabled value="">Selecione o funcionário</option>
-				@foreach (var funcionario in funcionarios)
-				{
-					<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
-				}
-			</select>
-		</div>
-		<div class="text-field">
-			<label class="control-label">Prazo</label>
-			<input type="date" class="form-control" name="Prazos">
-		</div>
-		<div class="text-field">
-			<label class="control-label">Status</label>
-			<select type="text" class="form-control" name="Status">
-				<option selected disabled value="">Selecione o status</option>
-				<option value="Concluído">Concluído</option>
-				<option value="Em Andamento">Em Andamento</option>
-				<option value="Postergado">Postergado</option>
-			</select>
-		</div>
-	</div>
-	<div>
-		<div class="text-field">
-			<label class="control-label">N°</label>
-			<input value="2" readonly class="form-control" name="Numeros">
-		</div>
-		<div class="text-field">
-			<label class="control-label">Ação</label>
-			<input class="form-control" name="Acoes">
-		</div>
-		<div class="text-field">
-			<label class="control-label">Responsável</label>
-			<select class="form-control" name="Responsaveis">
-				<option selected disabled value="">Selecione o funcionário</option>
-				@foreach (var funcionario in funcionarios)
-				{
-					<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
-				}
-			</select>
-		</div>
-		<div class="text-field">
-			<label class="control-label">Prazo</label>
-			<input type="date" class="form-control" name="Prazos">
-		</div>
-		<div class="text-field">
-			<label class="control-label">Status</label>
-			<select type="text" class="form-control" name="Status">
-				<option selected disabled value="">Selecione o status</option>
-				<option value="Concluído">Concluído</option>
-				<option value="Em Andamento">Em Andamento</option>
-				<option value="Postergado">Postergado</option>
-			</select>
-		</div>
-	</div>
+	}
 	
 	<h1>Atualização de Documentação</h1>
 	<h2>Atualizar FMEA?</h2>
@@ -449,4 +419,3 @@
 	</div>
 	<button type="submit" class="btn btn-success">Cadastrar</button>
 </form>
-

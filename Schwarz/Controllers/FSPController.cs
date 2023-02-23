@@ -13,7 +13,8 @@ namespace Schwarz.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var fsps = _context.FSP.ToList();
+            return View(fsps);
         }
         public IActionResult Create()
         {
@@ -31,12 +32,43 @@ namespace Schwarz.Controllers
             
             fSP.DataAbertura = DateTime.Now;
             _context.Add(fSP);
-			foreach (int i in EquipeMultiFuncional)
+			foreach (int idfuncionario in EquipeMultiFuncional)
 			{
-
+				EquipeFSP equipeFSP = new()
+				{
+					IDFuncionario = idfuncionario,
+					IDFSP = fSP.IDFSP
+				};
+				_context.Add(equipeFSP);
 
 			}
+            _context.SaveChanges();
 			return View("Index");
         }
-    }
+
+		[HttpPost]
+		public ActionResult Editar(FSP fSP, List<int> EquipeMultiFuncional, List<int> Numeros, List<string> Acoes, List<int> Responsaveis, List<DateTime> Prazos, List<string> Status)
+		{
+
+			for (int i = 1; i < Numeros.Count; i++)
+			{
+
+			}
+
+			fSP.DataAbertura = DateTime.Now;
+			_context.Add(fSP);
+			foreach (int idfuncionario in EquipeMultiFuncional)
+			{
+				EquipeFSP equipeFSP = new()
+				{
+					IDFuncionario = idfuncionario,
+					IDFSP = fSP.IDFSP
+				};
+				_context.Add(equipeFSP);
+
+			}
+			_context.SaveChanges();
+			return View("Index");
+		}
+	}
 }

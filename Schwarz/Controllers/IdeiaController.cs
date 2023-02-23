@@ -56,7 +56,7 @@ namespace ProgramaIdeias.Controllers
 			{
 				return NotFound();
 			}
-			return View();
+			return View(ideia);
 		}
 
 		[Authorize]
@@ -123,6 +123,28 @@ namespace ProgramaIdeias.Controllers
             }
             return PartialView("_GridView", model);
 
+		}
+
+		public List<string> GetFuncionariosNomes()
+		{
+			var funcs = _context.Funcionario.Where(x => x.Ativo == true).OrderBy(x => x.Nome).ToList();
+			List<string> nomes = new();
+			foreach (var func in funcs)
+			{
+				nomes.Add(func.Nome);
+			}
+			return nomes;
+		}
+
+		public List<int> GetFuncionariosIDs()
+		{
+			var funcs = _context.Funcionario.Where(x => x.Ativo == true).OrderBy(x => x.Nome).ToList();
+			List<int> ids = new();
+			foreach (var func in funcs)
+			{
+				ids.Add(func.IDFuncionario);
+			}
+			return ids;
 		}
 	}
 }
