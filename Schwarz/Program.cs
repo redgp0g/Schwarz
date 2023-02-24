@@ -55,7 +55,7 @@ builder.Services.AddIdentity<SchwarzUser, IdentityRole>(options =>
 		options.Password.RequiredUniqueChars = 0;
 
 		// Lockout settings.
-		options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+		options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
 		options.Lockout.MaxFailedAccessAttempts = 5;
 		options.Lockout.AllowedForNewUsers = true;
 

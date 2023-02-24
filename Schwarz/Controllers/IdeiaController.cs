@@ -39,7 +39,6 @@ namespace ProgramaIdeias.Controllers
 			{
 				return NotFound();
 			}
-
 			var cadastropare = _context.Ideia.Find(id);
 			if (cadastropare == null)
 			{
@@ -65,7 +64,6 @@ namespace ProgramaIdeias.Controllers
 			Ideia ideia = new(_context);
 			return View(ideia);
 		}
-
 		[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
@@ -75,8 +73,8 @@ namespace ProgramaIdeias.Controllers
 			{
 				ideia.Data = DateTime.Now;
 				ideia.Status = "Recebida";
-				ideia.Ganho ??= "Não identificado";
-                ideia.Investimento ??= "Não identificado";
+				ideia.Ganho ??= "Não Identificado";
+                ideia.Investimento ??= "Não Identificado";
                 ideia.IDUser = _signInManager.UserManager.GetUserId(User);
 				_context.Add(ideia);
 				_context.SaveChanges();
