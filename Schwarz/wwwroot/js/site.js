@@ -2,6 +2,7 @@
     $('.alert').hide('hide');
 });
 
+
 var tabs = document.querySelectorAll(".lboard_tabs ul li"),
     month = document.querySelector(".month"),
     year = document.querySelector(".year"),

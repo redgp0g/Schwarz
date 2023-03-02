@@ -2,7 +2,8 @@
 @{
 	ViewData["Title"] = "Editar";
 	Layout = "_Layout";
-
+	int i = 0;
+	var s = "";
 }
 
 <style>
@@ -20,19 +21,34 @@
 					<label id="labelparticipantes" class="control-label">Participantes</label>
 					@foreach (var equipe in Model.EquipeIdeia)
 					{
+						i++;
+						if (i == 1){
+							s = "required";
+						}
 						<div id="select">
-							<select name="Participantes" class="form-select required participante" id="selectfuncionarios">
-								<option selected disabled value="@equipe.IDFuncionario">@equipe.Funcionario.Nome</option>
+							<select name="Participantes" class="form-select participante" id="selectfuncionarios" @s>
+								<option value="">Selecione o funcionário</option>
+								<option selected value="@equipe.IDFuncionario">@equipe.Funcionario.Nome</option>
 								@foreach (var funcionario in Model.GetFuncionariosAtivos().Where(x => x.IDFuncionario != equipe.IDFuncionario).OrderBy(x => x.Nome))
 								{
 									<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
 								}
 							</select>
-							<span class="field-validation-error hide participante">Escolha o participante</span>
-							<button id="RemoverParticipante" class="btn btn-danger">Remover</button>
+						</div>
+						s = "";
+					}
+					@for(var n = i; n < 4; n++)
+					{
+						<div id="select">
+							<select name="Participantes" class="form-select participante" id="selectfuncionarios">
+								<option selected value="">Selecione o funcionário</option>
+								@foreach (var funcionario in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
+								{
+									<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
+								}
+							</select>
 						</div>
 					}
-					<button id="AdicionarParticipante" class="btn btn-success">Adicionar Participante</button>
 				</div>
 				<div class="textfield">
 					<img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
@@ -189,13 +205,12 @@
 				var novooption = '<div id="select" >' + 
 				'<select name="Participantes" class="form-select required participante" id = "selectfuncionarios" >' + 
 				'</select>' + 
-				'< span class="field-validation-error hide participante">Escolha o participante</span>' + 
-				'<button id = "RemoverParticipante" class="btn btn-danger">Remover</button>' +
-				'< /div>';
+				'<span class="field-validation-error hide participante">Escolha o participante</span>' + 
+				'<button id = "RemoverParticipante" class="btn btn-danger">Remover</button>'
 				$('#labelparticipantes').append(novooption);
 				i += 1;
 			}
 		});
 	});
-	console.log(ids[0]);
+	console.log(ids[200]);
 </script>

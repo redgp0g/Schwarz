@@ -25,7 +25,7 @@ namespace Schwarz.Models
 		public string Status { get; set; }
 
 		[Display(Name = "Ganho")]
-        public string Ganho { get; set; }
+        public string? Ganho { get; set; }
 
         public string? Investimento { get; set; }
 		public string? Feedback { get; set; }
