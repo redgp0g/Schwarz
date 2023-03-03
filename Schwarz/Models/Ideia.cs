@@ -23,10 +23,7 @@ namespace Schwarz.Models
 		public string Descricao { get; set; }
 		public DateTime Data { get; set; }
 		public string Status { get; set; }
-
-		[Display(Name = "Ganho")]
         public string? Ganho { get; set; }
-
         public string? Investimento { get; set; }
 		public string? Feedback { get; set; }
 

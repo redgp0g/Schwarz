@@ -73,8 +73,6 @@ namespace ProgramaIdeias.Controllers
 			{
 				ideia.Data = DateTime.Now;
 				ideia.Status = "Recebida";
-				ideia.Ganho ??= "Não Identificado";
-                ideia.Investimento ??= "Não Identificado";
                 ideia.IDUser = _signInManager.UserManager.GetUserId(User);
 				_context.Add(ideia);
 				_context.SaveChanges();

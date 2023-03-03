@@ -9,14 +9,7 @@
 <head>
     <link rel="stylesheet" href="~/css/tabela.css" asp-append-version="true" />
 </head>
-@if (TempData["MensagemErro"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn-danger btn-sm close-alert" aria-label="Close">X</button>
-        @TempData["MensagemErro"]
-        <a asp-area="Identity" asp-page="/Account/Manage/ChangePassword">aqui</a>
-    </div>
-}
+
 <div style="display:flex;justify-content:space-around;">
     <div class="card" style="width: 18rem;">
         <img src="https://img.freepik.com/free-vector/creative-hand-drawn-light-bulb-collection_23-2148966847.jpg?w=1060&t=st=1671671392~exp=1671671992~hmac=42b9106ad3aea9e9dd0d1d5f84abed1ac78fff0948e872d8f478b2edf0957e33" class="card-img-top" alt="imagem de lampadas">
