@@ -93,31 +93,38 @@ namespace ProgramaIdeias.Controllers
 
 		public PartialViewResult PesquisarIdeia(string txtPesquisa, int? ano, string status)
 		{
-
-			IEnumerable<Ideia> model = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
-			if (txtPesquisa != null)
+			try
 			{
-				txtPesquisa = txtPesquisa.ToLower();
-				IEnumerable<Ideia> resultado = model.Where(x => x.Descricao.ToLower().Contains(txtPesquisa) || x.Status.ToLower().Contains(txtPesquisa) || (x.Ganho != null &&   x.Ganho.ToLower().Contains(txtPesquisa)) || x.Data.ToString().Contains(txtPesquisa) || (x.Investimento != null && x.Investimento.ToLower().Contains(txtPesquisa)) || (x.NomeEquipe != null && x.NomeEquipe.ToLower().Contains(txtPesquisa)) || x.EquipeIdeia.Any(x => x.Funcionario.Nome.ToLower().Contains(txtPesquisa)) ).ToList();
-				if(ano != null)
+				IEnumerable<Ideia> model = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
+				if (txtPesquisa != null)
 				{
-					resultado = resultado.Where(x => x.Data.Year == ano);
+					txtPesquisa = txtPesquisa.ToLower();
+					IEnumerable<Ideia> resultado = model.Where(x => x.Descricao.ToLower().Contains(txtPesquisa) || x.Status.ToLower().Contains(txtPesquisa) || (x.Ganho != null && x.Ganho.ToLower().Contains(txtPesquisa)) || x.Data.ToString().Contains(txtPesquisa) || (x.Investimento != null && x.Investimento.ToLower().Contains(txtPesquisa)) || (x.NomeEquipe != null && x.NomeEquipe.ToLower().Contains(txtPesquisa)) || x.EquipeIdeia.Any(x => x.Funcionario.Nome.ToLower().Contains(txtPesquisa))).ToList();
+					if (ano != null)
+					{
+						resultado = resultado.Where(x => x.Data.Year == ano);
+					}
+					if (status != null)
+					{
+						resultado = resultado.Where(x => x.Status == status);
+					}
+					return PartialView("_GridView", resultado);
 				}
-                if (status != null)
-                {
-                    resultado = resultado.Where(x => x.Status == status);
-                }
-                return PartialView("_GridView", resultado);
+				if (ano != null)
+				{
+					model = model.Where(x => x.Data.Year == ano);
+				}
+				if (status != null)
+				{
+					model = model.Where(x => x.Status == status);
+				}
+				return PartialView("_GridView", model);
 			}
-			if (ano != null)
+			catch
 			{
-				model = model.Where(x => x.Data.Year == ano);
+				IEnumerable<Ideia> ideias = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
+				return PartialView("_GridView", ideias);
 			}
-            if (status != null)
-            {
-                model = model.Where(x => x.Status == status);
-            }
-            return PartialView("_GridView", model);
 
 		}
 
