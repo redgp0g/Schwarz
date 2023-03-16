@@ -11,17 +11,17 @@ namespace ProgramaIdeias.Controllers
 {
 	public class IdeiaController : Controller
 	{
-        private readonly UserManager<SchwarzUser> _userManager;
-        private readonly SignInManager<SchwarzUser> _signInManager;
-        private readonly SchwarzContext _context;
-		private readonly IBaseRepository _baseRepository;
+		private readonly UserManager<SchwarzUser> _userManager;
+		private readonly SignInManager<SchwarzUser> _signInManager;
+		private readonly SchwarzContext _context;
+		private readonly IIdeiaRepository _ideiaRepository;
 
-		public IdeiaController(SchwarzContext contexto, SignInManager<SchwarzUser> signInManager, UserManager<SchwarzUser> userManager, IBaseRepository baseRepository)
+		public IdeiaController(SchwarzContext contexto, SignInManager<SchwarzUser> signInManager, UserManager<SchwarzUser> userManager, IIdeiaRepository ideiaRepository)
 		{
 			_context = contexto;
 			_signInManager = signInManager;
-			_userManager= userManager;
-			_baseRepository= baseRepository;
+			_userManager = userManager;
+			_ideiaRepository = ideiaRepository;
 
 		}
 
@@ -51,20 +51,19 @@ namespace ProgramaIdeias.Controllers
 		public IActionResult Edit(int id)
 		{
 			var ideia = _context.Ideia.Find(id);
-			if(ideia == null)
+			if (ideia == null)
 			{
 				return NotFound();
 			}
 			return View(ideia);
 		}
 
-		[Authorize]
 		public IActionResult Create()
 		{
 			Ideia ideia = new(_context);
 			return View(ideia);
 		}
-		[Authorize]
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Cadastrar(Ideia ideia, List<int> Participantes)
@@ -73,60 +72,54 @@ namespace ProgramaIdeias.Controllers
 			{
 				ideia.Data = DateTime.Now;
 				ideia.Status = "Recebida";
-                ideia.IDUser = _signInManager.UserManager.GetUserId(User);
-				_context.Add(ideia);
-				_context.SaveChanges();
-				foreach (var participante in Participantes)
+				ideia.IDUser = _signInManager.UserManager.GetUserId(User);
+				using var transaction = _context.Database.BeginTransaction();
+				try
 				{
-					EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
-					_context.Add(equipeIdeia);
-					_context.SaveChanges();//Verificar como funciona o SaveChanges e considerar possível melhoria de desempenho
+
+					_context.Add(ideia);
+					foreach (var participante in Participantes)
+					{
+						EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
+						_context.Add(equipeIdeia);
+					}
+					_context.SaveChanges();
+					transaction.Commit();
+					return RedirectToAction(nameof(Index));
 				}
-				return RedirectToAction(nameof(Index));
+				catch (Exception ex)
+				{
+					transaction.Rollback();
+					TempData["Mensagem Erro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
+					return View("Create");
+				}
 			}
 			catch (Exception ex)
 			{
 				TempData["Mensagem Erro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
-				return View("Create", ideia);
+				return View("Create");
 			}
 		}
+
 
 		public PartialViewResult PesquisarIdeia(string txtPesquisa, int? ano, string status)
 		{
-			try
+			IEnumerable<Ideia> model = _ideiaRepository.GetIdeias().OrderByDescending(x => x.Data);
+			model = model.Where(x => x.Data.Year == (ano ?? DateTime.Now.Year));
+			model = model.Where(x => x.Status == (status ?? x.Status));
+			// Validate input parameters
+			if (string.IsNullOrEmpty(txtPesquisa))
 			{
-				IEnumerable<Ideia> model = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
-				if (txtPesquisa != null)
-				{
-					txtPesquisa = txtPesquisa.ToLower();
-					IEnumerable<Ideia> resultado = model.Where(x => x.Descricao.ToLower().Contains(txtPesquisa) || x.Status.ToLower().Contains(txtPesquisa) || (x.Ganho != null && x.Ganho.ToLower().Contains(txtPesquisa)) || x.Data.ToString().Contains(txtPesquisa) || (x.Investimento != null && x.Investimento.ToLower().Contains(txtPesquisa)) || (x.NomeEquipe != null && x.NomeEquipe.ToLower().Contains(txtPesquisa)) || x.EquipeIdeia.Any(x => x.Funcionario.Nome.ToLower().Contains(txtPesquisa))).ToList();
-					if (ano != null)
-					{
-						resultado = resultado.Where(x => x.Data.Year == ano);
-					}
-					if (status != null)
-					{
-						resultado = resultado.Where(x => x.Status == status);
-					}
-					return PartialView("_GridView", resultado);
-				}
-				if (ano != null)
-				{
-					model = model.Where(x => x.Data.Year == ano);
-				}
-				if (status != null)
-				{
-					model = model.Where(x => x.Status == status);
-				}
 				return PartialView("_GridView", model);
 			}
-			catch
-			{
-				IEnumerable<Ideia> ideias = _baseRepository.GetIdeias().OrderByDescending(x => x.Data);
-				return PartialView("_GridView", ideias);
-			}
 
+			// Simplify search criteria
+			txtPesquisa = txtPesquisa.ToLower();
+			IEnumerable<Ideia> resultado = model.Where(x => $"{x.Descricao} {x.Status} {x.Ganho} {x.Investimento} {x.NomeEquipe} {x.Data.ToString()} {string.Join(" ", x.EquipeIdeia.Select(e => e.Funcionario.Nome))}".ToLower().Contains(txtPesquisa)).ToList();
+
+			return PartialView("_GridView", resultado);
 		}
+
 
 		public List<string> GetFuncionariosNomes()
 		{
