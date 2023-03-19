@@ -76,7 +76,6 @@ namespace ProgramaIdeias.Controllers
 				using var transaction = _context.Database.BeginTransaction();
 				try
 				{
-
 					_context.Add(ideia);
 					foreach (var participante in Participantes)
 					{

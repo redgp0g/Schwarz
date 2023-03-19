@@ -1,4 +1,6 @@
 ﻿
+
+using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
 using Schwarz.Repository;

@@ -7,12 +7,16 @@ using Schwarz.Data;
 
 namespace Schwarz.Models
 {
+	[Index(nameof(Numero),IsUnique = true)]
 	public class FSP : FSPRepository
 	{
 		[Key]
 		public int IDFSP { get; set; }
-        public int Numero { get; set; }
-        [Display(Name = "Data de Abertura")]
+		
+		[Display(Name = "Número da FSP")]
+		public int Numero { get; set; }
+		
+		[Display(Name = "Data de Abertura")]
         public DateTime DataAbertura { get; set; }
         [Display(Name = "Data de Fechamento")]
         public DateTime? DataFechamento { get; set; }
