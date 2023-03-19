@@ -7,7 +7,7 @@ using Schwarz.Data;
 
 namespace Schwarz.Models
 {
-	[Index(nameof(Numero),IsUnique = true)]
+	[Index(nameof(Numero),IsUnique = true)]//Not Working
 	public class FSP : FSPRepository
 	{
 		[Key]

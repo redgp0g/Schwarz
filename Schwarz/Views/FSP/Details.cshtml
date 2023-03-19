@@ -9,11 +9,22 @@
 		color: #ffffff;
 	}
 </style>
-<h1 class="titulo">Detalhes da Falha</h1>
+<h1 class="titulo">Detalhes da FSP</h1>
 
 <div class="container">
 	<form>
-
+		<div class="textfield">
+			<label class="control-label">@Html.DisplayNameFor(model => model.Numero)</label>
+			<label class="form-control">@Html.DisplayFor(model => model.Numero)</label>
+		</div>
+		<div class="textfield">
+			<label class="control-label">@Html.DisplayNameFor(model => model.DataAbertura)</label>
+			<label class="form-control">@Html.DisplayFor(model => model.DataAbertura)</label>
+		</div>
+		<div class="textfield">
+			<label class="control-label">@Html.DisplayNameFor(model => model.Produto)</label>
+			<label class="form-control">@Html.DisplayFor(model => model.Produto)</label>
+		</div>
 			<div class="mb-3">
 				<a class="btn" asp-action="Index"> Voltar para Lista</a>
 			</div>>

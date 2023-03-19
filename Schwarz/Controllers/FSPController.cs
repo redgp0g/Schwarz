@@ -22,6 +22,20 @@ namespace Schwarz.Controllers
 			return View(fSP);
 		}
 
+		public IActionResult Details(int? id)
+		{
+			if (id == null || _context.Ideia == null)
+			{
+				return NotFound();
+			}
+			var fsp = _context.FSP.Find(id);
+			if (fsp == null)
+			{
+				return NotFound();
+			}
+			return View(fsp);
+		}
+
 		public ActionResult Cadastrar(FSP fSP, List<int> EquipeMultiFuncional, List<int> Numeros, List<string> Acoes, List<int> Responsaveis, List<DateTime> Prazos, List<string> Status)
 		{
 			fSP.DataAbertura = DateTime.Now;
