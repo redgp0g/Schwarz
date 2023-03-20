@@ -2,8 +2,6 @@
 @{
 	ViewData["Title"] = "Editar";
 	Layout = "_Layout";
-	int i = 0;
-	var s = "";
 }
 
 <style>
@@ -16,17 +14,13 @@
 	<form asp-action="Editar" id="form" method="post">
 		<div style="margin-bottom:10px;margin-top:10px">
 			<div class="falha-details">
-				<div class="textfield divparticipantes required">
+				<div id="participantes" class="textfield divparticipantes required">
 					<img style="width:65px;height:55px" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
-					<label id="labelparticipantes" class="control-label">Participantes</label>
+					<label  class="control-label">Participantes</label>
 					@foreach (var equipe in Model.EquipeIdeia)
 					{
-						i++;
-						if (i == 1){
-							s = "required";
-						}
 						<div id="select">
-							<select name="Participantes" class="form-select participante" id="selectfuncionarios" @s>
+							<select name="Participantes" class="form-select participante" id="selectfuncionarios" required>
 								<option value="">Selecione o funcionário</option>
 								<option selected value="@equipe.IDFuncionario">@equipe.Funcionario.Nome</option>
 								@foreach (var funcionario in Model.GetFuncionariosAtivos().Where(x => x.IDFuncionario != equipe.IDFuncionario).OrderBy(x => x.Nome))
@@ -34,21 +28,10 @@
 									<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
 								}
 							</select>
-						</div>
-						s = "";
-					}
-					@for(var n = i; n < 4; n++)
-					{
-						<div id="select">
-							<select name="Participantes" class="form-select participante" id="selectfuncionarios">
-								<option selected value="">Selecione o funcionário</option>
-								@foreach (var funcionario in Model.GetFuncionarios().Where(x => x.Ativo == true).OrderBy(x => x.Nome))
-								{
-									<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
-								}
-							</select>
+							<btn id="RemoverParticipante" onclick="ExcluirCampo(this)" class="btn btn-danger">Remover</btn>
 						</div>
 					}
+					<btn id="AdicionarParticipante" class="btn btn-success">Adicionar participante</btn>
 				</div>
 				<div class="textfield">
 					<img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
@@ -106,9 +89,9 @@
 		formIdeia = document.getElementById('form'),
 		investimentoInput = document.getElementById('investimento'),
 		requiredInputs = document.querySelectorAll('.required'),
-		errors = document.querySelectorAll('.field-validation-error'),
-		removerparticipante = document.querySelectorAll('#RemoverParticipante'),
-		adicionarparticipante = document.querySelectorAll('#AdicionarParticipante');
+		errors = document.querySelectorAll('.field-validation-error');
+	var removerparticipante = document.querySelectorAll('#RemoverParticipante');
+	var adicionarparticipante = document.querySelectorAll('#AdicionarParticipante');
 
 	var i = removerparticipante.length;
 
@@ -155,7 +138,7 @@
 		method: 'GET',
 		data: {},
 		success: function (n) {
-			nomes.push(n);
+			nomes.push(...n);
 		},
 		error: function (err) {
 			console.log(err);
@@ -168,49 +151,43 @@
 		method: 'GET',
 		data: {},
 		success: function (i) {
-			ids.push(i);
+			ids.push(...i);
 		},
 		error: function (err) {
 			console.log(err);
 		}
 	});
 
-	class Funcionario  {
-		constructor(nome, idfuncionario){
-			this.nome = nome;
-			this.idfuncionario = idfuncionario;
-		}
-	}
 
-	function OptionsFuncionario(){
+	function OptionsFuncionario() {
 		var html = '';
 		for (var i = 0; i < nomes.length; i++) {
-			html = html + '<option value="' + ids.findIndex(i) + '">' + nomes[i] + '</option>';
+			html = html + '<option value="' + ids[i] + '">' + nomes[i] + '</option>';
 		}
+		console.log(nomes);
 		return html;
 	}
-	
-	removerparticipante.forEach((btn) => {
-		btn.addEventListener("click", function () {
-			if (i > 1) {
-				$(this).parents("#select").remove();
-				i -= 1;
-			}
-		});
-	});
 
-	adicionarparticipante.forEach((btn) => {
-		btn.addEventListener("click", function () {
-			if (i < 4) {
-				var novooption = '<div id="select" >' + 
-				'<select name="Participantes" class="form-select required participante" id = "selectfuncionarios" >' + 
-				'</select>' + 
-				'<span class="field-validation-error hide participante">Escolha o participante</span>' + 
-				'<button id = "RemoverParticipante" class="btn btn-danger">Remover</button>'
-				$('#labelparticipantes').append(novooption);
-				i += 1;
-			}
+	function ExcluirCampo(obj) {
+		if (i > 1) {
+			$(obj).parent("#select").remove();
+			i -= 1;
+		}
+	}
+
+		adicionarparticipante.forEach((btn) => {
+			btn.addEventListener("click", function () {
+				if (i < 4) {
+					var novooption = '<div id="select" >' +
+						'<select name="Participantes" class="form-select required participante" id = "selectfuncionarios" >' + OptionsFuncionario() +
+						'</select>' +
+						'<span class="field-validation-error hide participante">Escolha o participante</span>' +
+					'<btn onclick="ExcluirCampo(this)" class="btn btn-danger">Remover</btn>' +
+						'</div>'
+					$('#participantes').append(novooption);
+					i += 1;
+				}
+			});
 		});
-	});
-	console.log(ids[200]);
+
 </script>
