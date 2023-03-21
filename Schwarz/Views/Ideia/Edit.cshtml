@@ -11,7 +11,7 @@
 </style>
 <h1 class="titulo">Formulário de Cadastro</h1>
 <div class="container">
-	<form asp-action="Editar" id="form" method="post">
+	<form id="form" method="post">
 		<div style="margin-bottom:10px;margin-top:10px">
 			<div class="falha-details">
 				<div id="participantes" class="textfield divparticipantes required">
@@ -179,9 +179,8 @@
 			btn.addEventListener("click", function () {
 				if (i < 4) {
 					var novooption = '<div id="select" >' +
-						'<select name="Participantes" class="form-select required participante" id = "selectfuncionarios" >' + OptionsFuncionario() +
+					'<select name="Participantes" class="form-select required participante" id = "selectfuncionarios" required>' + '< option value = "" >Selecione o funcionário</option>' + OptionsFuncionario() +
 						'</select>' +
-						'<span class="field-validation-error hide participante">Escolha o participante</span>' +
 					'<btn onclick="ExcluirCampo(this)" class="btn btn-danger">Remover</btn>' +
 						'</div>'
 					$('#participantes').append(novooption);

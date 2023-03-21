@@ -66,7 +66,7 @@ namespace ProgramaIdeias.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Cadastrar(Ideia ideia, List<int> Participantes)
+		public IActionResult Create(Ideia ideia, List<int> Participantes)
 		{
 			try
 			{
