@@ -38,7 +38,7 @@ namespace Schwarz.Controllers
 
 		public ActionResult Cadastrar(FSP fSP, List<int> EquipeMultiFuncional, List<int> Numeros, List<string> Acoes, List<int> Responsaveis, List<DateTime> Prazos, List<string> Status)
 		{
-			fSP.DataAbertura = DateTime.Now;
+				fSP.DataAbertura = DateTime.Now;
 
 			using var transaction = _context.Database.BeginTransaction();
 			try

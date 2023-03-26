@@ -167,10 +167,10 @@
 	<h1>Atualização de Documentação</h1>
 	<h2>Atualizar FMEA?</h2>
 	<div class="text-field">
-		<input type="radio" class="radio__input hide" id="radionaofmea" asp-for="AtualizarFMEA" value="1">
-		<label class="radio__label" for="radionaofmea">Sim</label>
-		<input type="radio" class="radio__input hide" id="radiosimfmea" asp-for="AtualizarFMEA" value="0">
-		<label class="radio__label" for="radiosimfmea">Não</label>
+		<input type="radio" class="radio__input hide" id="radiosimfmea" asp-for="AtualizarFMEA" value="true">
+		<label class="radio__label" for="radiosimfmea">Sim</label>
+		<input type="radio" class="radio__input hide" id="radionaofmea" asp-for="AtualizarFMEA" value="false">
+		<label class="radio__label" for="radionaofmea">Não</label>
 		@Html.ValidationMessageFor(x => x.AtualizarFMEA)
 	</div>
 	<div class="text-field">
@@ -193,17 +193,17 @@
 	</div>
 	<div class="text-field">
 		<label asp-for="RealizadoFMEA" ></label>
-		<input class="radio__input hide" type="radio" id="radiosimrealizadofmea" asp-for="RealizadoFMEA" value="1">
+		<input class="radio__input hide" type="radio" id="radiosimrealizadofmea" asp-for="RealizadoFMEA" value="true">
 		<label class="radio__label" for="radiosimrealizadofmea">Sim</label>
-		<input class="radio__input hide" type="radio" id="radionaorealizadofmea" asp-for="RealizadoFMEA" value="0">
+		<input class="radio__input hide" type="radio" id="radionaorealizadofmea" asp-for="RealizadoFMEA" value="false">
 		<label class="radio__label" for="radionaorealizadofmea">Não</label>
 	</div>
 
 	<h2>Alterar Instrução de Trabalho?</h2>
 	<div class="text-field">
-		<input type="radio" class="radio__input hide" id="radiosimatualizarinstrucao" asp-for="AtualizarInstrucao" value="1">
+		<input type="radio" class="radio__input hide" id="radiosimatualizarinstrucao" asp-for="AtualizarInstrucao" value="true">
 		<label class="radio__label" for="radiosimatualizarinstrucao">Sim</label>
-		<input type="radio" class="radio__input hide" id="radionaoatualizarinstrucao" asp-for="AtualizarInstrucao" value="0">
+		<input type="radio" class="radio__input hide" id="radionaoatualizarinstrucao" asp-for="AtualizarInstrucao" value="false">
 		<label class="radio__label" for="radionaoatualizarinstrucao">Não</label>
 		@Html.ValidationMessageFor(x => x.AtualizarInstrucao)
 	</div>
@@ -227,17 +227,17 @@
 	</div>
 	<div class="text-field">
 		<label asp-for="RealizadoInstrucao" ></label>
-		<input class="radio__input hide" type="radio" id="radiosimrealizadoinstrucao" asp-for="RealizadoInstrucao" value="1">
+		<input class="radio__input hide" type="radio" id="radiosimrealizadoinstrucao" asp-for="RealizadoInstrucao" value="true">
 		<label class="radio__label" for="radiosimrealizadoinstrucao">Sim</label>
-		<input class="radio__input hide" type="radio" id="radionaorealizadoinstrucao" asp-for="RealizadoInstrucao" value="0">
+		<input class="radio__input hide" type="radio" id="radionaorealizadoinstrucao" asp-for="RealizadoInstrucao" value="false">
 		<label class="radio__label" for="radionaorealizadoinstrucao">Não</label>
 	</div>
 
 	<h2>Alterar Plano de Controle?</h2>
 	<div class="text-field">
-		<input type="radio" class="radio__input hide" id="radiosimatualizarplanocontrole" asp-for="AtualizarPlanoControle" value="1">
+		<input type="radio" class="radio__input hide" id="radiosimatualizarplanocontrole" asp-for="AtualizarPlanoControle" value="true">
 		<label class="radio__label" for="radiosimatualizarplanocontrole">Sim</label>
-		<input type="radio" class="radio__input hide" id="radionaomatualizarplanocontrole" asp-for="AtualizarPlanoControle" value="0">
+		<input type="radio" class="radio__input hide" id="radionaomatualizarplanocontrole" asp-for="AtualizarPlanoControle" value="false">
 		<label class="radio__label" for="radionaomatualizarplanocontrole">Não</label>
 		@Html.ValidationMessageFor(x => x.AtualizarPlanoControle)
 	</div>
@@ -261,17 +261,17 @@
 	</div>
 	<div class="text-field">
 		<label asp-for="RealizadoPlanoControle" ></label>
-		<input class="radio__input hide" type="radio" id="radiosimrealizadoplanocontrole" asp-for="RealizadoPlanoControle" value="1">
+		<input class="radio__input hide" type="radio" id="radiosimrealizadoplanocontrole" asp-for="RealizadoPlanoControle" value="true">
 		<label class="radio__label" for="radiosimrealizadoplanocontrole">Sim</label>
-		<input class="radio__input hide" type="radio" id="radionaorealizadoplanocontrole" asp-for="RealizadoPlanoControle" value="0">
+		<input class="radio__input hide" type="radio" id="radionaorealizadoplanocontrole" asp-for="RealizadoPlanoControle" value="false">
 		<label class="radio__label" for="radionaorealizadoplanocontrole">Não</label>
 	</div>
 
 	<h2>É possível utilizar Poka Yoke?</h2>
 	<div class="text-field">
-		<input type="radio" class="radio__input hide" id="radiosimutilizarpokayoke" asp-for="UtilizarPokaYoke" value="1">
+		<input type="radio" class="radio__input hide" id="radiosimutilizarpokayoke" asp-for="UtilizarPokaYoke" value="true">
 		<label class="radio__label" for="radiosimutilizarpokayoke">Sim</label>
-		<input type="radio" class="radio__input hide" id="radionaoutilizarpokayoke" asp-for="UtilizarPokaYoke" value="0">
+		<input type="radio" class="radio__input hide" id="radionaoutilizarpokayoke" asp-for="UtilizarPokaYoke" value="false">
 		<label class="radio__label" for="radionaoutilizarpokayoke">Não</label>
 		@Html.ValidationMessageFor(x => x.UtilizarPokaYoke)
 	</div>
@@ -295,17 +295,17 @@
 	</div>
 	<div class="text-field">
 		<label asp-for="RealizadoPokaYoke" ></label>
-		<input class="radio__input hide" type="radio" id="radiosimrealizadopokayoke" asp-for="RealizadoPokaYoke" value="1">
+		<input class="radio__input hide" type="radio" id="radiosimrealizadopokayoke" asp-for="RealizadoPokaYoke" value="true">
 		<label class="radio__label" for="radiosimrealizadopokayoke">Sim</label>
-		<input class="radio__input hide" type="radio" id="radionaorealizadopokayoke" asp-for="RealizadoPokaYoke" value="0">
+		<input class="radio__input hide" type="radio" id="radionaorealizadopokayoke" asp-for="RealizadoPokaYoke" value="false">
 		<label class="radio__label" for="radionaorealizadopokayoke">Não</label>
 	</div>
 
 	<h2>É necessário aplicar Treinamento?</h2>
 	<div class="text-field">
-		<input type="radio" class="radio__input hide" id="radiosimaplicartreinamento" asp-for="AplicarTreinamento" value="1">
+		<input type="radio" class="radio__input hide" id="radiosimaplicartreinamento" asp-for="AplicarTreinamento" value="true">
 		<label class="radio__label" for="radiosimaplicartreinamento">Sim</label>
-		<input type="radio" class="radio__input hide" id="radionaoaplicartreinamento" asp-for="AplicarTreinamento" value="0">
+		<input type="radio" class="radio__input hide" id="radionaoaplicartreinamento" asp-for="AplicarTreinamento" value="false">
 		<label class="radio__label" for="radionaoaplicartreinamento">Não</label>
 		@Html.ValidationMessageFor(x => x.AplicarTreinamento)
 	</div>
@@ -336,10 +336,28 @@
 	</div>
 
 	<h2>É necessário emitir Alerta de Qualidade?</h2>
+	<div class="form-group">
+		@Html.LabelFor(model => model.EmitirAlertaQualidade, new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			<div class="radio">
+				<label>
+					@Html.RadioButtonFor(model => model.EmitirAlertaQualidade, true)
+					Sim
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					@Html.RadioButtonFor(model => model.EmitirAlertaQualidade, false)
+					Não
+				</label>
+			</div>
+			@Html.ValidationMessageFor(model => model.EmitirAlertaQualidade)
+		</div>
+	</div>
 	<div class="text-field">
-		<input type="radio" class="radio__input hide" id="radiosimemitiralertaqualidade" asp-for="EmitirAlertaQualidade" value="1">
+		<input type="radio" class="radio__input hide" id="radiosimemitiralertaqualidade" asp-for="EmitirAlertaQualidade" value="true">
 		<label class="radio__label" for="radiosimemitiralertaqualidade">Sim</label>
-		<input type="radio" class="radio__input hide" id="radionaoemitiralertaqualidade" asp-for="EmitirAlertaQualidade" value="0">
+		<input type="radio" class="radio__input hide" id="radionaoemitiralertaqualidade" asp-for="EmitirAlertaQualidade" value="false">
 		<label class="radio__label" for="radionaoemitiralertaqualidade">Não</label>
 		@Html.ValidationMessageFor(x => x.EmitirAlertaQualidade)
 	</div>
@@ -363,9 +381,9 @@
 	</div>
 	<div class="text-field">
 		<label asp-for="RealizadoAlertaQualidade" ></label>
-		<input class="radio__input hide" type="radio" id="radiosimrealizadoalertaqualidade" asp-for="RealizadoAlertaQualidade" value="1">
+		<input class="radio__input hide" type="radio" id="radiosimrealizadoalertaqualidade" asp-for="RealizadoAlertaQualidade" value="true">
 		<label class="radio__label" for="radiosimrealizadoalertaqualidade">Sim</label>
-		<input class="radio__input hide" type="radio" id="radionaorealizadoalertaqualidade" asp-for="RealizadoAlertaQualidade" value="0">
+		<input class="radio__input hide" type="radio" id="radionaorealizadoalertaqualidade" asp-for="RealizadoAlertaQualidade" value="false">
 		<label class="radio__label" for="radionaorealizadoalertaqualidade">Não</label>
 	</div>
 	<h1>Verificação da Eficácia</h1>
@@ -393,9 +411,9 @@
 	</div>
 	<div class="text-field">
 		<label asp-for="EficazVerificacao" ></label>
-		<input class="radio__input hide" type="radio" id="radiosimeficazverificacao" asp-for="EficazVerificacao" value="1">
+		<input class="radio__input hide" type="radio" id="radiosimeficazverificacao" asp-for="EficazVerificacao" value="true">
 		<label class="radio__label" for="radiosimeficazverificacao">Sim</label>
-		<input class="radio__input hide" type="radio" id="radionaoeficazverificacao" asp-for="EficazVerificacao" value="0">
+		<input class="radio__input hide" type="radio" id="radionaoeficazverificacao" asp-for="EficazVerificacao" value="false">
 		<label class="radio__label" for="radionaoeficazverificacao">Não</label>
 	</div>
 	<div class="text-field">

@@ -94,7 +94,7 @@ namespace Schwarz.Repository
 
         public IEnumerable<Funcionario> GetFuncionariosAtivos()
         {
-            return _context.Funcionario.Where(x => x.Ativo == true).ToList();
+            return _context.Funcionario.Where(x => x.Ativo == true).ToList().OrderBy(x => x.Nome);
         }
         public IEnumerable<Ideia> GetIdeias()
 		{

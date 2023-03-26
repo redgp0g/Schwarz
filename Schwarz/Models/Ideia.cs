@@ -35,7 +35,6 @@ namespace Schwarz.Models
 
 		[Display(Name = "N° Solicitação de Análise")]
 		public int? SolicitacaoAnalise { get; set; }
-		public int? Reconhecimento { get; set; }
 
 		public virtual List<EquipeIdeia> EquipeIdeia { get; set; }
 

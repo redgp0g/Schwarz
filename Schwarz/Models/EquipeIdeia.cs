@@ -19,6 +19,7 @@ namespace Schwarz.Models
 		[ForeignKey("Ideia")]
 		public int IDIdeia { get; set; }
 		public virtual Ideia Ideia { get; set; }
+		public decimal Reconhecimento { get; set; }
 
 		public EquipeIdeia()
 		{
