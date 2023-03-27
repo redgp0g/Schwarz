@@ -1118,3 +1118,4 @@ D:\Documentos\Guilherme\HTML & CSS\Exercícios\Schwarz\Schwarz\obj\Debug\net6.0\
 D:\Documentos\Guilherme\HTML & CSS\Exercícios\Schwarz\Schwarz\obj\Debug\net6.0\Schwarz.pdb
 D:\Documentos\Guilherme\HTML & CSS\Exercícios\Schwarz\Schwarz\obj\Debug\net6.0\Schwarz.genruntimeconfig.cache
 D:\Documentos\Guilherme\HTML & CSS\Exercícios\Schwarz\Schwarz\obj\Debug\net6.0\ref\Schwarz.dll
+\\Sch-fns03a\ds1\Inovacao1\Guilherme\Projetos VS\Schwarz\Schwarz\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll

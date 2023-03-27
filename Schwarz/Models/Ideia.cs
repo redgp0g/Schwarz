@@ -11,6 +11,7 @@ namespace Schwarz.Models
     public class Ideia : IdeiaRepository
     {
 		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int IDIdeia { get; set; }
 
 		[ForeignKey("User")]

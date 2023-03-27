@@ -60,15 +60,17 @@ namespace ProgramaIdeias.Controllers
 			return View(ideia);
 		}
 
+		[Authorize]
 		public IActionResult Create()
 		{
 			Ideia ideia = new(_context);
 			return View(ideia);
 		}
 
+		[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Create(Ideia ideia, List<int> Participantes)
+		public ActionResult Create(Ideia ideia, List<int> Participantes)
 		{
 			try
 			{
@@ -79,6 +81,7 @@ namespace ProgramaIdeias.Controllers
 				try
 				{
 					_context.Add(ideia);
+					_context.SaveChanges();
 					foreach (var participante in Participantes)
 					{
 						EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
@@ -92,13 +95,13 @@ namespace ProgramaIdeias.Controllers
 				{
 					transaction.Rollback();
 					TempData["Mensagem Erro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
-					return View("Create");
+					return RedirectToAction("Create");
 				}
 			}
 			catch (Exception ex)
 			{
 				TempData["Mensagem Erro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
-				return View("Create");
+				return RedirectToAction("Create");
 			}
 		}
 
