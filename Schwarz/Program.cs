@@ -8,7 +8,19 @@ using Schwarz.Repository.Interfaces;
 using Schwarz.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("SchwarzContextConnection") ?? throw new InvalidOperationException("Connection string 'SchwarzContextConnection' not found.");
+string connectionType = "W";
+string connectionString;
+
+if (connectionType == "W")
+{
+	connectionString = builder.Configuration.GetConnectionString("SchwarzContextConnection") ?? throw new InvalidOperationException("Connection string 'SchwarzContextConnection' not found.");
+}
+else
+{
+	connectionString = builder.Configuration.GetConnectionString("HomeContextConnection") ?? throw new InvalidOperationException("Connection string 'SchwarzContextConnection' not found.");
+
+}
+ 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
