@@ -29,7 +29,7 @@
 		</div>
 	</div>
 </div>
-<table class="table" id="table-ideias">
+<table class="table bg-dark text-light" id="table-ideias">
 	<thead>
 		<tr>
 			<th>
@@ -108,7 +108,15 @@
 			},
 			columnDefs: [
 				{ targets: 3, searchable: true } // torna a quarta coluna pesquisável
-			]
+			],
+			"dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
+				'<"row"<"col-sm-12"tr>>' +
+				'<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+			"scrollY": "60vh",
+			"scrollCollapse": true,
+			"autoWidth": true,
+			"responsive": true
 		});
 
 		// preenche o select status com os valores únicos da quarta coluna da tabela
