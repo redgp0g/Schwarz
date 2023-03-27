@@ -28,7 +28,9 @@ namespace ProgramaIdeias.Controllers
 		[HttpGet]
 		public IActionResult Index()
 		{
-			Ideia ideia = new(_context);
+			var equipes = _context.EquipeIdeia.ToList();
+
+			var ideia = _context.Ideia.ToList();
 			return View(ideia);
 		}
 
@@ -98,25 +100,6 @@ namespace ProgramaIdeias.Controllers
 				TempData["Mensagem Erro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
 				return View("Create");
 			}
-		}
-
-
-		public PartialViewResult PesquisarIdeia(string txtPesquisa, int? ano, string status)
-		{
-			IEnumerable<Ideia> model = _ideiaRepository.GetIdeias().OrderByDescending(x => x.Data);
-			model = model.Where(x => x.Data.Year == (ano ?? DateTime.Now.Year));
-			model = model.Where(x => x.Status == (status ?? x.Status));
-			// Validate input parameters
-			if (string.IsNullOrEmpty(txtPesquisa))
-			{
-				return PartialView("_GridView", model);
-			}
-
-			// Simplify search criteria
-			txtPesquisa = txtPesquisa.ToLower();
-			IEnumerable<Ideia> resultado = model.Where(x => $"{x.Descricao} {x.Status} {x.Ganho} {x.Investimento} {x.NomeEquipe} {x.Data.ToString()} {string.Join(" ", x.EquipeIdeia.Select(e => e.Funcionario.Nome))}".ToLower().Contains(txtPesquisa)).ToList();
-
-			return PartialView("_GridView", resultado);
 		}
 
 

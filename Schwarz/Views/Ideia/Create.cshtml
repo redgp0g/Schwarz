@@ -20,7 +20,7 @@
 				<div class="textfield divparticipantes">
 					<img style="width:65px;height:55px" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
 					<label class="control-label">Participantes</label>
-					<select name="Participantes" class="form-select participante" required>
+					<select name="Participantes" class="select2 participante" required>
 							<option selected disabled value="">Selecione o funcionário</option>
 							@foreach (var f in funcionarios)
 							{
@@ -29,7 +29,7 @@
 						</select>
 					@for (int x = 1; x <= 3; x++)
 					{
-						<select name="Participantes" class="form-select participante">
+						<select name="Participantes" class="select2 participante">
 							<option selected value="">Selecione o funcionário</option>
 							@foreach (var f in funcionarios)
 							{
