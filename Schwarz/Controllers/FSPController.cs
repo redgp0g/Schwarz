@@ -57,15 +57,15 @@ namespace Schwarz.Controllers
         // GET: FSP/Create
         public IActionResult Create()
         {
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha");
-            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
-            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
-            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
-            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
-            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
-            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
-            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
-            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
+            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "Descricao");
+            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
             ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Origem");
             return View();
         }

@@ -13,12 +13,12 @@
 			<a class="btn btn-success" asp-action="Create">Cadastrar Ideia</a>
 		</div>
 		<div>
-			<label for="filtrostatus">Filtrar Status por:</label>
-			<select id="filtrostatus"><option value="">Todos</option></select>
+			<label for="filtrostatus" class="form-label">Filtrar Status por:</label>
+			<select id="filtrostatus" class="form-select"><option value="">Todos</option></select>
 		</div>
 		<div>
-			<label for="filtroano">Filtrar Ano por:</label>
-			<select id="filtroano">
+			<label for="filtroano" class="form-label">Filtrar Ano por:</label>
+			<select id="filtroano" class="form-select">
 				<option value="">Todos</option>
 				<option value="2023">2023</option>
 				<option value="2022">2022</option>
@@ -98,6 +98,7 @@
 	$(document).ready(function () {
 		// inicializa o DataTables
 		var table = $('#table-ideias').DataTable({
+            "order": [],
 			"language": {
 				"url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
 			},
@@ -107,7 +108,7 @@
 				selector: 'td:nth-child(4)' // aplica o filtro apenas na quarta coluna
 			},
 			columnDefs: [
-				{ targets: 3, searchable: true } // torna a quarta coluna pesquisável
+				{ "type": "date", targets: 1 },
 			],
 			"dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
 				'<"row"<"col-sm-12"tr>>' +
@@ -141,7 +142,6 @@
 			// filtra a tabela com base no valor selecionado
 			table.column(1).search(filtro).draw();
 		});
-
 
 	});
 

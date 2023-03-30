@@ -7,12 +7,12 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Abrir FSP</a>
 </p>
-<table class="table">
+<table class="table" id="table-fsp">
     <thead>
         <tr>
-            <th></th>
+            <th>Ações</th>
             <th>
                 @Html.DisplayNameFor(model => model.Numero)
             </th>
@@ -196,9 +196,9 @@
 @foreach (var item in Model) {
         <tr>
                         <td>
-                <a asp-action="Edit" asp-route-id="@item.IDFSP">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IDFSP">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IDFSP">Delete</a>
+                    <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-edit" asp-action="Edit" asp-route-id="@item.IDFSP">Editar</a>
+                    <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDFSP">Detalhes</a>
+                    <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDFSP">Deletar</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Numero)
@@ -381,3 +381,22 @@
 }
     </tbody>
 </table>
+
+<script>
+    $(document).ready(function () {
+        // inicializa o DataTables
+        var table = $('#table-fsp').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
+            },
+            "dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
+                '<"row"<"col-sm-12"tr>>' +
+                '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "scrollY": "60vh",
+            "scrollCollapse": true,
+            "autoWidth": true,
+            "responsive": true
+        });
+    });
+</script>

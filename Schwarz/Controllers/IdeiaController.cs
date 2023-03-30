@@ -30,7 +30,7 @@ namespace ProgramaIdeias.Controllers
 		{
 			var equipes = _context.EquipeIdeia.ToList();
 
-			var ideia = _context.Ideia.ToList();
+			var ideia = _context.Ideia.ToList().OrderByDescending(x => x.Data);
 			return View(ideia);
 		}
 
@@ -49,7 +49,7 @@ namespace ProgramaIdeias.Controllers
 			return View(cadastropare);
 		}
 
-		[Authorize]
+		[Authorize(Roles = "IdeiaADM")]
 		public IActionResult Edit(int id)
 		{
 			var ideia = _context.Ideia.Find(id);

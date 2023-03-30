@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_Layout";
 }
 
 <h1>Create</h1>
@@ -44,7 +45,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFalha" class="control-label"></label>
-                <select asp-for="IDFalha" class ="form-control" asp-items="ViewBag.IDFalha"></select>
+                <select asp-for="IDFalha" class ="form-control" asp-items="ViewBag.IDFalha">
+                    <option value="" selected>Selecione a Falha</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="MaodeObra" class="control-label"></label>
@@ -148,7 +151,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioFMEA" class="control-label"></label>
-                <select asp-for="IDFuncionarioFMEA" class ="form-control" asp-items="ViewBag.IDFuncionarioFMEA"></select>
+                <select asp-for="IDFuncionarioFMEA" class ="form-control" asp-items="ViewBag.IDFuncionarioFMEA">
+                    <option value="" selected>Selecione o Funcionário</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoFMEA" class="control-label"></label>
@@ -172,7 +177,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioInstrucao" class="control-label"></label>
-                <select asp-for="IDFuncionarioInstrucao" class ="form-control" asp-items="ViewBag.IDFuncionarioInstrucao"></select>
+                <select asp-for="IDFuncionarioInstrucao" class ="form-control" asp-items="ViewBag.IDFuncionarioInstrucao">
+                    <option value="" selected>Selecione o Funcionário</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoInstrucao" class="control-label"></label>
@@ -196,7 +203,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioPlanoControle" class="control-label"></label>
-                <select asp-for="IDFuncionarioPlanoControle" class ="form-control" asp-items="ViewBag.IDFuncionarioPlanoControle"></select>
+                <select asp-for="IDFuncionarioPlanoControle" class ="form-control" asp-items="ViewBag.IDFuncionarioPlanoControle">
+                    <option value="" selected>Selecione o Funcionário</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoPlanoControle" class="control-label"></label>
@@ -220,7 +229,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioPokaYoke" class="control-label"></label>
-                <select asp-for="IDFuncionarioPokaYoke" class ="form-control" asp-items="ViewBag.IDFuncionarioPokaYoke"></select>
+                <select asp-for="IDFuncionarioPokaYoke" class="form-control" asp-items="ViewBag.IDFuncionarioPokaYoke">
+                    <option value="" selected>Selecione o Funcionário</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoPokaYoke" class="control-label"></label>
@@ -244,7 +255,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioTreinamento" class="control-label"></label>
-                <select asp-for="IDFuncionarioTreinamento" class ="form-control" asp-items="ViewBag.IDFuncionarioTreinamento"></select>
+                <select asp-for="IDFuncionarioTreinamento" class="form-control" asp-items="ViewBag.IDFuncionarioTreinamento">
+                    <option value="" selected>Selecione o Funcionário</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoTreinamento" class="control-label"></label>
@@ -268,7 +281,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioAlertaQualidade" class="control-label"></label>
-                <select asp-for="IDFuncionarioAlertaQualidade" class ="form-control" asp-items="ViewBag.IDFuncionarioAlertaQualidade"></select>
+                <select asp-for="IDFuncionarioAlertaQualidade" class="form-control" asp-items="ViewBag.IDFuncionarioAlertaQualidade">
+                    <option value="" selected>Selecione o Funcionário</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoAlertaQualidade" class="control-label"></label>
@@ -282,7 +297,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioVerificacao" class="control-label"></label>
-                <select asp-for="IDFuncionarioVerificacao" class ="form-control" asp-items="ViewBag.IDFuncionarioVerificacao"></select>
+                <select asp-for="IDFuncionarioVerificacao" class="form-control" asp-items="ViewBag.IDFuncionarioVerificacao">
+                    <option value="" selected>Selecione o Funcionário</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="DataVerificacao" class="control-label"></label>
@@ -306,11 +323,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDNovaFSP" class="control-label"></label>
-                <select asp-for="IDNovaFSP" class ="form-control" asp-items="ViewBag.IDNovaFSP"></select>
+                <select asp-for="IDNovaFSP" class="form-control" asp-items="ViewBag.IDNovaFSP">
+                    <option value="" selected>Selecione a nova FSP</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioNovaFSP" class="control-label"></label>
-                <select asp-for="IDFuncionarioNovaFSP" class ="form-control" asp-items="ViewBag.IDFuncionarioNovaFSP"></select>
+                <select asp-for="IDFuncionarioNovaFSP" class ="form-control" asp-items="ViewBag.IDFuncionarioNovaFSP">
+                    <option value="" selected>Selecione o funcionário</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -320,7 +341,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar para a Lista</a>
 </div>
 
 @section Scripts {
