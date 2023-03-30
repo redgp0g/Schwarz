@@ -35,7 +35,7 @@ namespace Schwarz.Models
         [Display(Name = "Descrição Não Conformidade")]
         [Required(ErrorMessage = "Selecione a não conformidade")]
         public int IDFalha { get; set; }
-		public virtual Falha Falha { get; set; }
+		public virtual Falha? Falha { get; set; }
 
         [Display(Name = "Mão de Obra")]
 		public string? MaodeObra { get; set; }
@@ -103,7 +103,7 @@ namespace Schwarz.Models
         [ForeignKey("FuncionarioFMEA")]
         [Display(Name = "Responsável")]
         public int? IDFuncionarioFMEA { get; set; }
-        public virtual Funcionario FuncionarioFMEA { get; set; }
+        public virtual Funcionario? FuncionarioFMEA { get; set; }
 
         [Display(Name = "Prazo")]
         public DateTime? PrazoFMEA{ get; set; }
@@ -123,7 +123,7 @@ namespace Schwarz.Models
         [ForeignKey("FuncionarioInstrucao")]
         [Display(Name = "Responsável")]
         public int? IDFuncionarioInstrucao { get; set; }
-        public virtual Funcionario FuncionarioInstrucao { get; set; }
+        public virtual Funcionario? FuncionarioInstrucao { get; set; }
 
         [Display(Name = "Prazo")]
         public DateTime? PrazoInstrucao { get; set; }
@@ -143,7 +143,7 @@ namespace Schwarz.Models
         [ForeignKey("FuncionarioPlanoControle")]
         [Display(Name = "Responsável")]
         public int? IDFuncionarioPlanoControle { get; set; }
-        public virtual Funcionario FuncionarioPlanoControle { get; set; }
+        public virtual Funcionario? FuncionarioPlanoControle { get; set; }
 
         [Display(Name = "Prazo")]
         public DateTime? PrazoPlanoControle { get; set; }
@@ -163,7 +163,7 @@ namespace Schwarz.Models
         [ForeignKey("FuncionarioPokaYoke")]
         [Display(Name = "Responsável")]
         public int? IDFuncionarioPokaYoke { get; set; }
-        public virtual Funcionario FuncionarioPokaYoke { get; set; }
+        public virtual Funcionario? FuncionarioPokaYoke { get; set; }
 
         [Display(Name = "Prazo")]
         public DateTime? PrazoPokaYoke { get; set; }
@@ -183,7 +183,7 @@ namespace Schwarz.Models
         [ForeignKey("FuncionarioTreinamento")]
         [Display(Name = "Responsável")]
         public int? IDFuncionarioTreinamento { get; set; }
-        public virtual Funcionario FuncionarioTreinamento { get; set; }
+        public virtual Funcionario? FuncionarioTreinamento { get; set; }
 
         [Display(Name = "Prazo")]
         public DateTime? PrazoTreinamento { get; set; }
@@ -203,7 +203,7 @@ namespace Schwarz.Models
         [ForeignKey("FuncionarioAlertaQualidade")]
         [Display(Name = "Responsável")]
         public int? IDFuncionarioAlertaQualidade { get; set; }
-        public virtual Funcionario FuncionarioAlertaQualidade { get; set; }
+        public virtual Funcionario? FuncionarioAlertaQualidade { get; set; }
 
         [Display(Name = "Prazo")]
         public DateTime? PrazoAlertaQualidade { get; set; }
@@ -216,7 +216,7 @@ namespace Schwarz.Models
         [ForeignKey("FuncionarioVerificacao")]
         [Display(Name = "Responsável")]
         public int? IDFuncionarioVerificacao{ get; set; }
-        public virtual Funcionario FuncionarioVerificacao { get; set; }
+        public virtual Funcionario? FuncionarioVerificacao { get; set; }
 
         [Display(Name = "Data")]
         public DateTime? DataVerificacao { get; set; }
@@ -230,12 +230,12 @@ namespace Schwarz.Models
         [ForeignKey("NovaFSP")]
         [Display(Name = "Nova FSP")]
         public int? IDNovaFSP { get; set; }
-        public virtual FSP NovaFSP { get; set; }
+        public virtual FSP? NovaFSP { get; set; }
 
         [ForeignKey("FuncionarioNovaFSP")]
         [Display(Name = "Responsável Nova FSP")]
         public int? IDFuncionarioNovaFSP { get; set; }
-        public virtual Funcionario FuncionarioNovaFSP { get; set; }
+        public virtual Funcionario? FuncionarioNovaFSP { get; set; }
 
 
         public FSP()

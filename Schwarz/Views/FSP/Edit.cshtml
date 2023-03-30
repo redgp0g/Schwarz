@@ -1,17 +1,18 @@
 ﻿@model Schwarz.Models.FSP
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
 <h4>FSP</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IDFSP" />
             <div class="form-group">
                 <label asp-for="Numero" class="control-label"></label>
                 <input asp-for="Numero" class="form-control" />
@@ -44,7 +45,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFalha" class="control-label"></label>
-                <select asp-for="IDFalha" class ="form-control" asp-items="ViewBag.IDFalha"></select>
+                <select asp-for="IDFalha" class="form-control" asp-items="ViewBag.IDFalha"></select>
+                <span asp-validation-for="IDFalha" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MaodeObra" class="control-label"></label>
@@ -148,7 +150,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioFMEA" class="control-label"></label>
-                <select asp-for="IDFuncionarioFMEA" class ="form-control" asp-items="ViewBag.IDFuncionarioFMEA"></select>
+                <select asp-for="IDFuncionarioFMEA" class="form-control" asp-items="ViewBag.IDFuncionarioFMEA"></select>
+                <span asp-validation-for="IDFuncionarioFMEA" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoFMEA" class="control-label"></label>
@@ -172,7 +175,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioInstrucao" class="control-label"></label>
-                <select asp-for="IDFuncionarioInstrucao" class ="form-control" asp-items="ViewBag.IDFuncionarioInstrucao"></select>
+                <select asp-for="IDFuncionarioInstrucao" class="form-control" asp-items="ViewBag.IDFuncionarioInstrucao"></select>
+                <span asp-validation-for="IDFuncionarioInstrucao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoInstrucao" class="control-label"></label>
@@ -196,7 +200,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioPlanoControle" class="control-label"></label>
-                <select asp-for="IDFuncionarioPlanoControle" class ="form-control" asp-items="ViewBag.IDFuncionarioPlanoControle"></select>
+                <select asp-for="IDFuncionarioPlanoControle" class="form-control" asp-items="ViewBag.IDFuncionarioPlanoControle"></select>
+                <span asp-validation-for="IDFuncionarioPlanoControle" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoPlanoControle" class="control-label"></label>
@@ -220,7 +225,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioPokaYoke" class="control-label"></label>
-                <select asp-for="IDFuncionarioPokaYoke" class ="form-control" asp-items="ViewBag.IDFuncionarioPokaYoke"></select>
+                <select asp-for="IDFuncionarioPokaYoke" class="form-control" asp-items="ViewBag.IDFuncionarioPokaYoke"></select>
+                <span asp-validation-for="IDFuncionarioPokaYoke" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoPokaYoke" class="control-label"></label>
@@ -244,7 +250,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioTreinamento" class="control-label"></label>
-                <select asp-for="IDFuncionarioTreinamento" class ="form-control" asp-items="ViewBag.IDFuncionarioTreinamento"></select>
+                <select asp-for="IDFuncionarioTreinamento" class="form-control" asp-items="ViewBag.IDFuncionarioTreinamento"></select>
+                <span asp-validation-for="IDFuncionarioTreinamento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoTreinamento" class="control-label"></label>
@@ -268,7 +275,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioAlertaQualidade" class="control-label"></label>
-                <select asp-for="IDFuncionarioAlertaQualidade" class ="form-control" asp-items="ViewBag.IDFuncionarioAlertaQualidade"></select>
+                <select asp-for="IDFuncionarioAlertaQualidade" class="form-control" asp-items="ViewBag.IDFuncionarioAlertaQualidade"></select>
+                <span asp-validation-for="IDFuncionarioAlertaQualidade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoAlertaQualidade" class="control-label"></label>
@@ -282,7 +290,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioVerificacao" class="control-label"></label>
-                <select asp-for="IDFuncionarioVerificacao" class ="form-control" asp-items="ViewBag.IDFuncionarioVerificacao"></select>
+                <select asp-for="IDFuncionarioVerificacao" class="form-control" asp-items="ViewBag.IDFuncionarioVerificacao"></select>
+                <span asp-validation-for="IDFuncionarioVerificacao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DataVerificacao" class="control-label"></label>
@@ -306,14 +315,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDNovaFSP" class="control-label"></label>
-                <select asp-for="IDNovaFSP" class ="form-control" asp-items="ViewBag.IDNovaFSP"></select>
+                <select asp-for="IDNovaFSP" class="form-control" asp-items="ViewBag.IDNovaFSP"></select>
+                <span asp-validation-for="IDNovaFSP" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioNovaFSP" class="control-label"></label>
-                <select asp-for="IDFuncionarioNovaFSP" class ="form-control" asp-items="ViewBag.IDFuncionarioNovaFSP"></select>
+                <select asp-for="IDFuncionarioNovaFSP" class="form-control" asp-items="ViewBag.IDFuncionarioNovaFSP"></select>
+                <span asp-validation-for="IDFuncionarioNovaFSP" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

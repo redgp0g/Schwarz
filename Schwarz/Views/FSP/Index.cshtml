@@ -1,51 +1,383 @@
-﻿@model IEnumerable<FSP>
-<head>
-	<link rel="stylesheet" href="~/css/tabela.css" asp-append-version="true" />
-</head>
-<div>
-	<a class="btn btn-success" asp-action="Create">Cadastrar FSP</a>
-</div>
-<table class="table table-sortable">
-	<thead>
-		<tr>
-			<th>
-				N°
-			</th>
-			<th>
-				Data Abertura
-			</th>
-			<th>
-				Produto
-			</th>
-			<th>
-				Problema
-			</th>
-			<th class="acoes">
-				Ações
-			</th>
+﻿@model IEnumerable<Schwarz.Models.FSP>
 
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td data-label="N°:">
-					@Html.DisplayFor(modelItem => item.Numero)
-				</td>
-				<td data-label="Data Abertura:">
-					@Html.DisplayFor(modelItem => item.DataAbertura)
-				</td>
-				<td data-label="Produto:">
-					@Html.DisplayFor(modelItem => item.Produto)
-				</td>
-				<td data-label="Problema:">
-					@Html.DisplayFor(modelItem => item.Falha.Descricao)
-				</td>
-				<td>
-					<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDFSP">Detalhes</a>
-				</td>
-			</tr>
-		}
-	</tbody>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataAbertura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFechamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Origem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Falha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaodeObra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maquina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MeioAmbiente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Metodo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorqueFalhou1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorqueFalhou2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorqueFalhou3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorqueFalhou4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorqueFalhou5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CausaRaizFalha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorquePassou1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorquePassou2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorquePassou3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorquePassou4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PorquePassou5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CausaRaizPassou)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AtualizarFMEA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualFMEA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioFMEA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrazoFMEA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealizadoFMEA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AtualizarInstrucao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualInstrucao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioInstrucao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrazoInstrucao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealizadoInstrucao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AtualizarPlanoControle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualPlanoControle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioPlanoControle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrazoPlanoControle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealizadoPlanoControle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UtilizarPokaYoke)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualPokaYoke)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioPokaYoke)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrazoPokaYoke)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealizadoPokaYoke)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AplicarTreinamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualTreinamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioTreinamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrazoTreinamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealizadoTreinamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmitirAlertaQualidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualAlertaQualidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioAlertaQualidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrazoAlertaQualidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealizadoAlertaQualidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioVerificacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataVerificacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndicadorVerificacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EficazVerificacao)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                        <td>
+                <a asp-action="Edit" asp-route-id="@item.IDFSP">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IDFSP">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IDFSP">Delete</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAbertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFechamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Origem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Falha.IDFalha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaodeObra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Maquina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeioAmbiente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Metodo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorqueFalhou1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorqueFalhou2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorqueFalhou3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorqueFalhou4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorqueFalhou5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CausaRaizFalha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorquePassou1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorquePassou2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorquePassou3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorquePassou4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PorquePassou5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CausaRaizPassou)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AtualizarFMEA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualFMEA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuncionarioFMEA.IDFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrazoFMEA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealizadoFMEA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AtualizarInstrucao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualInstrucao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuncionarioInstrucao.IDFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrazoInstrucao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealizadoInstrucao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AtualizarPlanoControle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualPlanoControle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuncionarioPlanoControle.IDFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrazoPlanoControle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealizadoPlanoControle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UtilizarPokaYoke)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualPokaYoke)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuncionarioPokaYoke.IDFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrazoPokaYoke)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealizadoPokaYoke)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AplicarTreinamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualTreinamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuncionarioTreinamento.IDFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrazoTreinamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealizadoTreinamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmitirAlertaQualidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualAlertaQualidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuncionarioAlertaQualidade.IDFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrazoAlertaQualidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealizadoAlertaQualidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuncionarioVerificacao.IDFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataVerificacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndicadorVerificacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EficazVerificacao)
+            </td>
+        </tr>
+}
+    </tbody>
 </table>
