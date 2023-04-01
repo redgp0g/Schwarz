@@ -14,15 +14,6 @@ html {
     min-height: 100%;
 }
 
-.footer {
-    background: #222;
-    align-items: center;
-    text-align: center;
-    border-top: 2px solid #0D0D0D;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
 
 .box{
     position:relative;
@@ -155,14 +146,6 @@ nav {
     }
 }
 
-.titulo {
-    color: #FFFFFF;
-    font-weight: 800;
-    text-align: center;
-    padding: 15px 20px;
-}
-
-
 .form-select {
     border: none;
     height: fit-content;
@@ -184,9 +167,6 @@ nav {
     box-sizing: border-box;
 }
 
-input {
-    width: 100%;
-}
 
 .btn {
     border: 3px solid black;

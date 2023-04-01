@@ -6,9 +6,9 @@
 }
 @inject SignInManager<SchwarzUser> SignInManager
 @inject UserManager<SchwarzUser> UserManager
-<h1 class="titulo">Painel de Ideias</h1>
+<h1 class="fw-bold text-center fs-1">Painel de Ideias</h1>
 <div class="col-sm-12">
-	<div style="display:flex;justify-content:space-around;align-items:center" class="form-inline pull-right">
+	<div>
 		<div>
 			<a class="btn btn-success" asp-action="Create">Cadastrar Ideia</a>
 		</div>
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 </div>
-<table class="table bg-dark text-light" id="table-ideias">
+<table class="table bg-dark text-light table-sm" id="table-ideias">
 	<thead>
 		<tr>
 			<th>

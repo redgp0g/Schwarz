@@ -39,6 +39,10 @@ namespace Schwarz.Models
 
 		public virtual List<EquipeIdeia> EquipeIdeia { get; set; }
 
+		[NotMapped]
+		[Required(ErrorMessage = "Selecione pelo menos um funcionário")]
+		public List<int> Participantesids { get; set; }
+
 
 		public Ideia()
 		{

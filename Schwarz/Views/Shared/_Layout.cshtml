@@ -10,38 +10,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - Schwarz</title>
 	
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-	<link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
+	
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 	<script src="https://kit.fontawesome.com/5d8b80ea21.js" crossorigin="anonymous"></script>
-	
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 </head>
 <body>
 	<header>
 		<nav class="w-100">
-			<a class="navbar-brand" asp-controller="Home" asp-action="Index"><img src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="Logo da Schwarz S/A" /></a>
+			<a class="navbar-brand ms-2" asp-controller="Home" asp-action="Index"><img src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="Logo da Schwarz S/A" /></a>
 			<input type="checkbox" id="check" />
 			<label for="check" class="checkbtn">
 				<i class="fa-solid fa-bars"></i>
 			</label>
 			<ul class="nav-list p-0 m-0 w-100">
 				<li>
-					<a asp-controller="Ideia" asp-action="Index">Ideias Cadastradas</a>
+					<a class="fs-4" asp-controller="Ideia" asp-action="Index">Ideias Cadastradas</a>
 				</li>
 				@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("Oleo"))
 				{
 					<li>
-						<a  asp-controller="Oleo" asp-action="Index">Controle Óleo</a>
+						<a class="fs-4" asp-controller="Oleo" asp-action="Index">Controle Óleo</a>
 					</li>
 				}
 				@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("FSP"))
 				{
 					<li>
-						<a asp-controller="FSP" asp-action="Index">FSP</a>
+						<a class="fs-4" asp-controller="FSP" asp-action="Index">FSP</a>
 					</li>
 				}
 				<partial name="_LoginPartial" />
@@ -49,7 +50,8 @@
 
 		</nav>
 	</header>
-	<div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+	<div>
+		<main>
 			@if (TempData["MensagemErro"] != null)
 			{
 				<div class="alert alert-danger" role="alert">
@@ -59,16 +61,16 @@
 				</div>
 			}
 			@RenderBody()
+		</main>
 	</div>
 
-	<footer class="bd-footer py-4 bg-dark fixed-bottom">
+	<footer class="bd-footer py-4 bg-dark fixed-bottom border-top border-dark">
 		<div style="text-align:center" class="text-white">
 			&copy; 2022 - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
 		</div>
 	</footer>
 
 	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)

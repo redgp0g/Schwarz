@@ -70,7 +70,7 @@ namespace ProgramaIdeias.Controllers
 		[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(Ideia ideia, List<int> Participantes)
+		public ActionResult Create(Ideia ideia)
 		{
 			try
 			{
@@ -82,7 +82,7 @@ namespace ProgramaIdeias.Controllers
 				{
 					_context.Add(ideia);
 					_context.SaveChanges();
-					foreach (var participante in Participantes)
+					foreach (var participante in ideia.Participantesids)
 					{
 						EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
 						_context.Add(equipeIdeia);
