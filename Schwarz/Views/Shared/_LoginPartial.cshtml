@@ -3,23 +3,16 @@
 
 @inject SignInManager<SchwarzUser> SignInManager
 @inject UserManager<SchwarzUser> UserManager
-<style>
-    .btn-link {
-        background-color: red;
-        padding: 0;
-        width: 50px;
-    }
-</style>
 
     @if (SignInManager.IsSignedIn(User))
     {
 
         <li>
-        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome!</a>
+        <a class="text-capitalize" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome.ToLower()!</a>
         </li>
         <li>
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Sair</button>
+            <button id="logout" type="submit" class="nav-link btn btn-link text-dark bg-danger w-100">Sair</button>
             </form>
         </li>
         @if (UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("ADM"))

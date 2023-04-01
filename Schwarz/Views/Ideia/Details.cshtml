@@ -5,56 +5,50 @@
 	ViewData["Title"] = "Detalhes";
 	var numero = 1;
 }
-<style>
-	label {
-		color: #ffffff;
-	}
-</style>
-<h1 class="titulo" style="color: black">Detalhes da Ideia</h1>
+<h1 class="titulo text-black">Detalhes da Ideia</h1>
 
 <div class="container">
 	<form>
-
-		<div class="falha-details">
-			<div class="textfield">
+		<div class="row row-cols-2">
+			<div>
 				<label class="control-label">@Html.DisplayNameFor(model => model.Descricao)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.Descricao)</label>
 			</div>
-			<div class="textfield">
+			<div class="">
 				<label class="control-label">@Html.DisplayNameFor(model => model.Data)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.Data)</label>
 			</div>
-			<div class="textfield">
+			<div class="">
 				<label class="control-label">@Html.DisplayNameFor(model => model.Status)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.Status)</label>
 			</div>
-			<div class="textfield">
+			<div class="">
 				<label class="control-label">@Html.DisplayNameFor(model => model.Ganho)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.Ganho)</label>
 			</div>
-			<div class="textfield">
+			<div class="">
 				<label class="control-label">@Html.DisplayNameFor(model => model.Investimento)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.Investimento)</label>
 			</div>
-			<div class="textfield">
+			<div class="">
 				<label class="control-label">@Html.DisplayNameFor(model => model.Feedback)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.Feedback)</label>
 			</div>
-			<div class="textfield">
+			<div class="">
 				<label class="control-label">@Html.DisplayNameFor(model => model.NomeEquipe)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.NomeEquipe)</label>
 			</div>
-			<div class="textfield">
+			<div class="">
 				<label class="control-label">@Html.DisplayNameFor(model => model.OS)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.OS)</label>
 			</div>
-			<div class="textfield">
+			<div class="">
 				<label class="control-label">@Html.DisplayNameFor(model => model.SolicitacaoAnalise)</label>
 				<label class="form-control">@Html.DisplayFor(model => model.SolicitacaoAnalise)</label>
 			</div>
 			@foreach (var participante in Model.EquipeIdeia)
 			{
-				<div class="textfield">
+				<div class="">
 					<label class="control-label">Participante @numero</label>
 					<label class="form-control">@participante.Funcionario.Nome</label>
 				</div>
