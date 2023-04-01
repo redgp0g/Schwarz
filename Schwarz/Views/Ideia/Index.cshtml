@@ -7,16 +7,15 @@
 @inject SignInManager<SchwarzUser> SignInManager
 @inject UserManager<SchwarzUser> UserManager
 <h1 class="fw-bold text-center fs-1">Painel de Ideias</h1>
-<div class="col-sm-12">
-	<div>
-		<div>
+	<div class="row mb-4">
+		<div class="col-6 d-flex justify-content-center align-items-center">
 			<a class="btn btn-success" asp-action="Create">Cadastrar Ideia</a>
 		</div>
-		<div>
+		<div class="col">
 			<label for="filtrostatus" class="form-label">Filtrar Status por:</label>
 			<select id="filtrostatus" class="form-select"><option value="">Todos</option></select>
 		</div>
-		<div>
+		<div class="col">
 			<label for="filtroano" class="form-label">Filtrar Ano por:</label>
 			<select id="filtroano" class="form-select">
 				<option value="">Todos</option>
@@ -28,7 +27,6 @@
 			</select>
 		</div>
 	</div>
-</div>
 <table class="table bg-dark text-light table-sm" id="table-ideias">
 	<thead>
 		<tr>

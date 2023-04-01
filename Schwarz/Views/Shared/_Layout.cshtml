@@ -22,8 +22,8 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 </head>
 <body>
-	<header>
-		<nav class="w-100">
+	<header class="header mb-5 pb-3">
+		<nav class="nav navbar w-100 fixed-top flex-nowrap" style="max-height:6vh">
 			<a class="navbar-brand ms-2" asp-controller="Home" asp-action="Index"><img src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="Logo da Schwarz S/A" /></a>
 			<input type="checkbox" id="check" />
 			<label for="check" class="checkbtn">
@@ -50,7 +50,7 @@
 
 		</nav>
 	</header>
-	<div>
+	<div class="mt-5">
 		<main>
 			@if (TempData["MensagemErro"] != null)
 			{
@@ -64,8 +64,8 @@
 		</main>
 	</div>
 
-	<footer class="bd-footer py-4 bg-dark fixed-bottom border-top border-dark">
-		<div style="text-align:center" class="text-white">
+	<footer class="bd-footer bg-dark fixed-bottom border-top border-b" style="height: 4vh">
+		<div class="text-center text-white fs-5">
 			&copy; 2022 - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
 		</div>
 	</footer>
