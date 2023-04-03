@@ -34,6 +34,8 @@ namespace Schwarz.Models
 		[Required(ErrorMessage = "Selecione pelo menos um funcionário")]
 		public List<int>? Participantesids { get; set; }
 
+		[NotMapped]
+		public string DataFormatada => Data.ToString("dd/MM/yyyy");
 
 		public Ideia()
 		{
