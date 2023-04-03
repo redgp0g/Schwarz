@@ -1,186 +1,76 @@
 ﻿@model Ideia
 @{
-	ViewData["Title"] = "Editar";
-	Layout = "_Layout";
+    ViewData["Title"] = "Editar";
+    Layout = "_Layout";
 }
 
-<h1 class="titulo">Formulário de Cadastro</h1>
-<div class="container">
-	<form id="form" method="post">
-		<div style="margin-bottom:10px;margin-top:10px">
-			<div>
-				<div id="participantes" class="textfield divparticipantes required">
-					<img style="width:65px;height:55px" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
-					<label  class="control-label">Participantes</label>
-					@foreach (var equipe in Model.EquipeIdeia)
-					{
-						<div id="select">
-							<select name="Participantes" class="form-select participante" id="selectfuncionarios" required>
-								<option value="">Selecione o funcionário</option>
-								<option selected value="@equipe.IDFuncionario">@equipe.Funcionario.Nome</option>
-								@foreach (var funcionario in Model.GetFuncionariosAtivos().Where(x => x.IDFuncionario != equipe.IDFuncionario).OrderBy(x => x.Nome))
-								{
-									<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
-								}
-							</select>
-							<btn id="RemoverParticipante" onclick="ExcluirCampo(this)" class="btn btn-danger">Remover</btn>
-						</div>
-					}
-					<btn id="AdicionarParticipante" class="btn btn-success">Adicionar participante</btn>
-				</div>
-				<div class="textfield">
-					<img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
-					<label asp-for="Descricao" class="control-label required"></label>
-					<textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="form-control descricao required" autocomplete="off" placeholder="Descreva sobre sua ideia"></textarea>
-					@Html.ValidationMessageFor(x => x.Descricao)
-				</div>
-				<div class="textfield">
-					<img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/2460/2460494.png" alt="imagem de dinheiro" />
-					<label asp-for="Ganho" class="control-label"></label>
-					<input asp-for="Ganho" class="form-control" autocomplete="off" placeholder="Descreva qual foi o ganho" />
-				</div>
-				<div class="textfield">
-					<img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/2543/2543190.png" alt="imagem de um time" />
-					<label class="control-label">Quanto foi ou será o investimento?</label>
-					<input asp-for="Investimento" class="form-control" autocomplete="off" placeholder="Investimento">
-				</div>
-				<div class="textfield">
-					<img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/825/825792.png" alt="imagem de um capacete e uma engrenagem" />
-					<label class="control-label">Se precisar da ajuda da Engenharia digite o número da Solicitação de Análise</label>
-					<input asp-for="SolicitacaoAnalise" class="form-control" autocomplete="off" placeholder="N° Solicitação de Análise">
-				</div>
-				<div class="textfield">
-					<img style="width:70px;height:60px" src="https://cdn-icons-png.flaticon.com/512/4259/4259285.png" alt="imagem de duas ferramentas" />
-					<label class="control-label">Se precisar da ajuda da Manutenção digite o número da OS aberta</label>
-					<input asp-for="OS" class="form-control" autocomplete="off" placeholder="N° da OS aberta">
-				</div>
-				<div class="textfield">
-					<label class="control-label">Reconhecimento</label>
-				</div>
-				<div class="textfield">
-					<label asp-for="Status" class="control-label"></label>
-					<select asp-for="Status" class="form-select">
-						<option value="Aplicada">Aplicada</option>
-						<option value="Recebida">Recebida</option>
-						<option value="Aprovada">Aprovada</option>
-						<option value="Cancelada">Cancelada</option>
-						<option value="Direcionada">Direcionada</option>
-						<option value="Em Processo">Em Processo</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="mb-3">
-			<input style="padding: 16px 0px;margin-top:16px;" type="submit" value="Editar" class="btn btn-edit" />
-		</div>
-	</form>
+<h1 class="text-center fw-bold fs-1 text-warning">Editar</h1>
+<div class="container p-3 mb-auto text-light">
+    <form id="form" method="post">
+        <div class="row">
+            <div class="col">
+                <img class="icone" src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
+                <label asp-for="Descricao" class="control-label required"></label>
+                <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="form-control descricao required" autocomplete="off" placeholder="Descreva sobre sua ideia"></textarea>
+                @Html.ValidationMessageFor(x => x.Descricao)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <img class="icone" src="https://cdn-icons-png.flaticon.com/512/2460/2460494.png" alt="imagem de dinheiro" />
+                <label asp-for="Ganho" class="control-label"></label>
+                <input asp-for="Ganho" class="form-control" autocomplete="off" placeholder="Descreva qual foi o ganho" />
+            </div>
+            <div class="col">
+                <img class="icone" src="https://cdn-icons-png.flaticon.com/512/2543/2543190.png" alt="imagem de um time" />
+                <label class="control-label">Quanto foi ou será o investimento?</label>
+                <input asp-for="Investimento" class="form-control" autocomplete="off" placeholder="Investimento">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <img class="icone" src="https://cdn-icons-png.flaticon.com/512/825/825792.png" alt="imagem de um capacete e uma engrenagem" />
+                <label class="control-label">Se houver, digite o número da Solicitação de Análise</label>
+                <input asp-for="SolicitacaoAnalise" class="form-control" autocomplete="off" placeholder="N° Solicitação de Análise">
+            </div>
+            <div class="col">
+                <img class="icone" src="https://cdn-icons-png.flaticon.com/512/4259/4259285.png" alt="imagem de duas ferramentas" />
+                <label class="control-label">Se houver, digite o número da OS aberta</label>
+                <input asp-for="OS" class="form-control" autocomplete="off" placeholder="N° da OS aberta">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-select">
+                    <option value="">Selecione o Status</option>
+                    <option value="Aplicada">Aplicada</option>
+                    <option value="Recebida">Recebida</option>
+                    <option value="Aprovada">Aprovada</option>
+                    <option value="Cancelada">Cancelada</option>
+                    <option value="Direcionada">Direcionada</option>
+                    <option value="Em Processo">Em Processo</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Status)
+            </div>
+            <div class="col">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label asp-for="Feedback" class="control-label"></label>
+                <input asp-for="Feedback" class="form-control" />
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <input type="hidden" asp-for="IDIdeia" />
+            <input type="hidden" asp-for="NomeEquipe" />
+            <input style="padding: 16px 0px;margin-top:16px;" type="submit" value="Editar" class="btn btn-edit w-100" />
+        </div>
+    </form>
 </div>
-
-<script type="text/javascript">
-
-	const divParticipantes = document.querySelectorAll('.divparticipantes'),
-		nParticipantes = document.getElementById('nparticipantes'),
-		formIdeia = document.getElementById('form'),
-		investimentoInput = document.getElementById('investimento'),
-		requiredInputs = document.querySelectorAll('.required'),
-		errors = document.querySelectorAll('.field-validation-error');
-	var removerparticipante = document.querySelectorAll('#RemoverParticipante');
-	var adicionarparticipante = document.querySelectorAll('#AdicionarParticipante');
-
-	var i = removerparticipante.length;
-
-	function AtualizarParticipantes() {
-		divParticipantes.forEach((div) => {
-			div.classList.add('hide');
-		});
-
-		for (let x = 0; x < nParticipantes.value; x++) {
-			divParticipantes[x].classList.remove('hide');
-		}
-	}
-
-	formIdeia.addEventListener('submit', (f) => {
-		errors.forEach((e) => {
-			e.classList.add('hide');
-		});
-
-
-		requiredInputs.forEach((i) => {
-
-			if (!(i.parentElement.classList.contains('hide'))) {
-				if (i.value === '') {
-					var classlist = i.classList;
-					errors.forEach((e) => {
-						classlist.forEach((cl) => {
-							if (e.classList.contains(cl)) {
-								e.classList.remove('hide');
-							}
-						});
-					});
-					f.preventDefault();
-				}
-			}
-		});
-	});
-
-	var nomes = [];
-	var ids = [];
-
-	$.ajax({
-		url: '@Url.Action("GetFuncionariosNomes","Ideia")',
-		datatype: 'html',
-		method: 'GET',
-		data: {},
-		success: function (n) {
-			nomes.push(...n);
-		},
-		error: function (err) {
-			console.log(err);
-		}
-	});
-
-	$.ajax({
-		url: '@Url.Action("GetFuncionariosIDs","Ideia")',
-		datatype: 'html',
-		method: 'GET',
-		data: {},
-		success: function (i) {
-			ids.push(...i);
-		},
-		error: function (err) {
-			console.log(err);
-		}
-	});
-
-
-	function OptionsFuncionario() {
-		var html = '';
-		for (var i = 0; i < nomes.length; i++) {
-			html = html + '<option value="' + ids[i] + '">' + nomes[i] + '</option>';
-		}
-		console.log(nomes);
-		return html;
-	}
-
-	function ExcluirCampo(obj) {
-		if (i > 1) {
-			$(obj).parent("#select").remove();
-			i -= 1;
-		}
-	}
-
-		adicionarparticipante.forEach((btn) => {
-			btn.addEventListener("click", function () {
-				if (i < 4) {
-					var novooption = '<div id="select" >' +
-					'<select name="Participantes" class="form-select required participante" id = "selectfuncionarios" required>' + '< option value = "" >Selecione o funcionário</option>' + OptionsFuncionario() +
-						'</select>' +
-					'<btn onclick="ExcluirCampo(this)" class="btn btn-danger">Remover</btn>' +
-						'</div>'
-					$('#participantes').append(novooption);
-					i += 1;
-				}
-			});
-		});
-
-</script>

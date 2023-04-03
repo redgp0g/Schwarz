@@ -9,8 +9,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - Schwarz</title>
-	
-	
+		
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
@@ -22,16 +21,16 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 </head>
 <body>
-	<header class="header mb-5 pb-3">
-		<nav class="nav navbar w-100 fixed-top flex-nowrap" style="max-height:6vh">
-			<a class="navbar-brand ms-2" asp-controller="Home" asp-action="Index"><img src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="Logo da Schwarz S/A" /></a>
+	<header class="header pb-3">
+		<nav class="nav navbar w-100 fixed-top flex-nowrap" style="max-height:10vh">
+			<a class="navbar-brand ms-2" asp-controller="Home" asp-action="Index"><img style="max-height:8vh" src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="Logo da Schwarz S/A" /></a>
 			<input type="checkbox" id="check" />
 			<label for="check" class="checkbtn">
 				<i class="fa-solid fa-bars"></i>
 			</label>
 			<ul class="nav-list p-0 m-0 w-100">
 				<li>
-					<a class="fs-4" asp-controller="Ideia" asp-action="Index">Ideias Cadastradas</a>
+					<a class="fs-4" asp-controller="Ideia" asp-action="Index">Painel de Ideias</a>
 				</li>
 				@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("Oleo"))
 				{
@@ -39,7 +38,7 @@
 						<a class="fs-4" asp-controller="Oleo" asp-action="Index">Controle Óleo</a>
 					</li>
 				}
-				@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("FSP"))
+				@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("FSPAdmin"))
 				{
 					<li>
 						<a class="fs-4" asp-controller="FSP" asp-action="Index">FSP</a>
@@ -50,7 +49,7 @@
 
 		</nav>
 	</header>
-	<div class="mt-5">
+	<div class="mb-3" style="margin-top: 4rem !important">
 		<main>
 			@if (TempData["MensagemErro"] != null)
 			{
@@ -64,8 +63,8 @@
 		</main>
 	</div>
 
-	<footer class="bd-footer bg-dark fixed-bottom border-top border-b" style="height: 4vh">
-		<div class="text-center text-white fs-5">
+	<footer class="bd-footer bg-dark sticky-bottom border-top border-b" style="height: 4vh">
+		<div class="text-center text-white">
 			&copy; 2022 - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
 		</div>
 	</footer>

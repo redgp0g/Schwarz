@@ -118,7 +118,7 @@ nav {
 @media (max-width: 999px) {
     .nav-list {
         position:fixed;
-        top:6vh;
+        top:10vh;
         bottom:0;
         z-index: 1045;
         background: #545454;
@@ -283,7 +283,6 @@ p {
 
 
 .table td, .table th {
-    padding: 12px 15px;
     text-align: center;
 }
 

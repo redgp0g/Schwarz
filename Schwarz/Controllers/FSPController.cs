@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace Schwarz.Controllers
         }
 
         // GET: FSP
+        [Authorize(Roles = "FSPAdmin")]
         public async Task<IActionResult> Index()
         {
             var schwarzContext = _context.FSP.Include(f => f.Falha).Include(f => f.FuncionarioAlertaQualidade).Include(f => f.FuncionarioFMEA).Include(f => f.FuncionarioInstrucao).Include(f => f.FuncionarioNovaFSP).Include(f => f.FuncionarioPlanoControle).Include(f => f.FuncionarioPokaYoke).Include(f => f.FuncionarioTreinamento).Include(f => f.FuncionarioVerificacao).Include(f => f.NovaFSP);
@@ -27,6 +29,7 @@ namespace Schwarz.Controllers
         }
 
         // GET: FSP/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.FSP == null)
@@ -55,6 +58,7 @@ namespace Schwarz.Controllers
         }
 
         // GET: FSP/Create
+        [Authorize(Roles = "FSPAdmin")]
         public IActionResult Create()
         {
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "Descricao");
@@ -75,6 +79,7 @@ namespace Schwarz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "FSPAdmin")]
         public async Task<IActionResult> Create([Bind("IDFSP,Numero,DataAbertura,DataFechamento,Produto,Codigo,Origem,IDFalha,MaodeObra,Maquina,Medicao,Material,MeioAmbiente,Metodo,PorqueFalhou1,PorqueFalhou2,PorqueFalhou3,PorqueFalhou4,PorqueFalhou5,CausaRaizFalha,PorquePassou1,PorquePassou2,PorquePassou3,PorquePassou4,PorquePassou5,CausaRaizPassou,AtualizarFMEA,QualFMEA,IDFuncionarioFMEA,PrazoFMEA,RealizadoFMEA,AtualizarInstrucao,QualInstrucao,IDFuncionarioInstrucao,PrazoInstrucao,RealizadoInstrucao,AtualizarPlanoControle,QualPlanoControle,IDFuncionarioPlanoControle,PrazoPlanoControle,RealizadoPlanoControle,UtilizarPokaYoke,QualPokaYoke,IDFuncionarioPokaYoke,PrazoPokaYoke,RealizadoPokaYoke,AplicarTreinamento,QualTreinamento,IDFuncionarioTreinamento,PrazoTreinamento,RealizadoTreinamento,EmitirAlertaQualidade,QualAlertaQualidade,IDFuncionarioAlertaQualidade,PrazoAlertaQualidade,RealizadoAlertaQualidade,IDFuncionarioVerificacao,DataVerificacao,IndicadorVerificacao,EficazVerificacao,MetodologiaVerificacao,IDNovaFSP,IDFuncionarioNovaFSP")] FSP fSP)
         {
             if (ModelState.IsValid)
@@ -97,6 +102,7 @@ namespace Schwarz.Controllers
         }
 
         // GET: FSP/Edit/5
+        [Authorize(Roles = "FSPAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.FSP == null)
@@ -127,6 +133,7 @@ namespace Schwarz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "FSPAdmin")]
         public async Task<IActionResult> Edit(int id, [Bind("IDFSP,Numero,DataAbertura,DataFechamento,Produto,Codigo,Origem,IDFalha,MaodeObra,Maquina,Medicao,Material,MeioAmbiente,Metodo,PorqueFalhou1,PorqueFalhou2,PorqueFalhou3,PorqueFalhou4,PorqueFalhou5,CausaRaizFalha,PorquePassou1,PorquePassou2,PorquePassou3,PorquePassou4,PorquePassou5,CausaRaizPassou,AtualizarFMEA,QualFMEA,IDFuncionarioFMEA,PrazoFMEA,RealizadoFMEA,AtualizarInstrucao,QualInstrucao,IDFuncionarioInstrucao,PrazoInstrucao,RealizadoInstrucao,AtualizarPlanoControle,QualPlanoControle,IDFuncionarioPlanoControle,PrazoPlanoControle,RealizadoPlanoControle,UtilizarPokaYoke,QualPokaYoke,IDFuncionarioPokaYoke,PrazoPokaYoke,RealizadoPokaYoke,AplicarTreinamento,QualTreinamento,IDFuncionarioTreinamento,PrazoTreinamento,RealizadoTreinamento,EmitirAlertaQualidade,QualAlertaQualidade,IDFuncionarioAlertaQualidade,PrazoAlertaQualidade,RealizadoAlertaQualidade,IDFuncionarioVerificacao,DataVerificacao,IndicadorVerificacao,EficazVerificacao,MetodologiaVerificacao,IDNovaFSP,IDFuncionarioNovaFSP")] FSP fSP)
         {
             if (id != fSP.IDFSP)
@@ -198,6 +205,7 @@ namespace Schwarz.Controllers
         // POST: FSP/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "FSPAdmin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.FSP == null)

@@ -60,10 +60,10 @@
 			equipe.Clear();
 			foreach (var func in item.EquipeIdeia)
 			{
-				equipe.Add(func.Funcionario.Nome);
+				equipe.Add(func.Funcionario.Nome.ToString().ToLower());
 			}
 			<tr>
-				<td data-label="Equipe:">
+				<td data-label="Equipe:" class="text-capitalize">
 					@string.Join(", ", equipe)
 				</td>
 				<td data-label="Data:">
@@ -82,9 +82,10 @@
 					@Html.DisplayFor(modelItem => item.Investimento)
 				</td>
 				<td>
-					@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("Oleo"))
+					@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("IdeiaAdmin"))
 					{
 						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-edit" asp-action="Edit" asp-route-id="@item.IDIdeia">Editar</a>
+						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDIdeia">Deletar</a>
 					}
 					<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDIdeia">Detalhes</a>
 				</td>
@@ -94,6 +95,8 @@
 </table>
 <script>
 	$(document).ready(function () {
+
+		ShowLoading();
 		// inicializa o DataTables
 		var table = $('#table-ideias').DataTable({
             "order": [],
@@ -112,6 +115,8 @@
 			"autoWidth": true,
 			"responsive": true
 		});
+
+		
 
 		// preenche o select status com os valores únicos da quarta coluna da tabela
 		table.column(3).data().unique().sort().each(function (value, index) {
@@ -134,6 +139,10 @@
 
 			// filtra a tabela com base no valor selecionado
 			table.column(1).search(filtro).draw();
+		});
+
+		table.on('init.dt', function () {
+			HideLoading();
 		});
 
 	});

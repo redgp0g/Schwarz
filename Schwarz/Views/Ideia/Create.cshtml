@@ -2,7 +2,6 @@
 @{
 	ViewData["Title"] = "Cadastrar";
 	Layout = "_Layout";
-	var funcionarios = Model.GetFuncionariosAtivos();
 }
 
 <h1 class="text-center fw-bold fs-1 text-black">Formulário de Cadastro</h1>
@@ -13,7 +12,7 @@
 				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
 				<label class="control-label">Participantes</label>
 				<select asp-for="Participantesids" class="form-select js-example-basic-multiple" required multiple>
-					@foreach (var funcionario in funcionarios)
+					@foreach (var funcionario in Model.GetFuncionariosAtivos())
 					{
 						<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
 					}
@@ -24,7 +23,7 @@
 
 		<div class="row">
 			<div class="col">
-				<img  src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
+				<img class="icone"  src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
 				<label asp-for="Descricao" class="control-label required"></label>
 				<textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="form-control descricao required" autocomplete="off" placeholder="Descreva sobre sua ideia"></textarea>
 				@Html.ValidationMessageFor(x => x.Descricao)
@@ -33,12 +32,12 @@
 
 		<div class="row">
 			<div class="col">
-				<img  src="https://cdn-icons-png.flaticon.com/512/2460/2460494.png" alt="imagem de dinheiro" />
+				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/2460/2460494.png" alt="imagem de dinheiro" />
 				<label asp-for="Ganho" class="control-label"></label>
 				<input asp-for="Ganho" class="form-control" autocomplete="off" placeholder="Descreva qual foi o ganho" />
 			</div>
 			<div class="col">
-				<img  src="https://cdn-icons-png.flaticon.com/512/2543/2543190.png" alt="imagem de um time" />
+				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/2543/2543190.png" alt="imagem de um time" />
 				<label class="control-label">Quanto foi ou será o investimento?</label>
 				<input asp-for="Investimento" class="form-control" autocomplete="off" placeholder="Investimento">
 			</div>
@@ -46,13 +45,13 @@
 
 		<div class="row">
 			<div class="col">
-				<img  src="https://cdn-icons-png.flaticon.com/512/825/825792.png" alt="imagem de um capacete e uma engrenagem" />
-				<label class="control-label">Se precisar da ajuda da Engenharia digite o número da Solicitação de Análise</label>
+				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/825/825792.png" alt="imagem de um capacete e uma engrenagem" />
+				<label class="control-label">Se houver, digite o número da Solicitação de Análise</label>
 				<input asp-for="SolicitacaoAnalise" class="form-control" autocomplete="off" placeholder="N° Solicitação de Análise">
 			</div>
 			<div class="col">
-				<img  src="https://cdn-icons-png.flaticon.com/512/4259/4259285.png" alt="imagem de duas ferramentas" />
-				<label class="control-label">Se precisar da ajuda da Manutenção digite o número da OS aberta</label>
+				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/4259/4259285.png" alt="imagem de duas ferramentas" />
+				<label class="control-label">Se houver, digite o número da OS aberta</label>
 				<input asp-for="OS" class="form-control" autocomplete="off" placeholder="N° da OS aberta">
 			</div>
 		</div>
