@@ -61,7 +61,17 @@ namespace Schwarz.Controllers
         [Authorize(Roles = "FSPAdmin")]
         public IActionResult Create()
         {
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "Descricao");
+            var falhas = _context.Falha.ToList();
+            var falhaList = new List<SelectListItem>();
+            foreach (var falha in falhas)
+            {
+                falhaList.Add(new SelectListItem
+                {
+                    Value = falha.IDFalha.ToString(),
+                    Text = $"{falha.Identificacao}{falha.Codigo} - {falha.Descricao}"
+                });
+            }
+            ViewData["Falhas"] = falhaList;
             ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
             ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
             ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
@@ -89,15 +99,15 @@ namespace Schwarz.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", fSP.IDFalha);
-            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioAlertaQualidade);
-            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioFMEA);
-            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioInstrucao);
-            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioNovaFSP);
-            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioPlanoControle);
-            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioPokaYoke);
-            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioTreinamento);
-            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioVerificacao);
-            ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Origem", fSP.IDNovaFSP);
+            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioAlertaQualidade);
+            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioFMEA);
+            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioInstrucao);
+            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioNovaFSP);
+            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPlanoControle);
+            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPokaYoke);
+            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioTreinamento);
+            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioVerificacao);
+            ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Numero", fSP.IDNovaFSP);
             return View(fSP);
         }
 
@@ -116,15 +126,15 @@ namespace Schwarz.Controllers
                 return NotFound();
             }
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", fSP.IDFalha);
-            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioAlertaQualidade);
-            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioFMEA);
-            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioInstrucao);
-            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioNovaFSP);
-            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioPlanoControle);
-            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioPokaYoke);
-            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioTreinamento);
-            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", fSP.IDFuncionarioVerificacao);
-            ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Origem", fSP.IDNovaFSP);
+            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioAlertaQualidade);
+            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioFMEA);
+            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioInstrucao);
+            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioNovaFSP);
+            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPlanoControle);
+            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPokaYoke);
+            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioTreinamento);
+            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioVerificacao);
+            ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Numero", fSP.IDNovaFSP);
             return View(fSP);
         }
 
