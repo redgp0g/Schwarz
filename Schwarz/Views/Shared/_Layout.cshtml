@@ -37,6 +37,8 @@
 					</svg>
 				</button>
 			</div>
+
+			<!--Menu de FSP-->
 			<div class="hidden lg:flex lg:gap-x-12">
 				<div class="relative">
 					<button type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias')">
@@ -91,7 +93,7 @@
 						</div>
 					</div>
 				</div>
-				@if (UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("FSPAdmin"))
+				@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("FSPAdmin"))
 				{
 					<div class="relative">
 						<button type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFSP')">
@@ -140,13 +142,13 @@
 				<a asp-area="Identity" asp-page="/Account/Login" class="text-xl font-semibold leading-6 text-gray-900">Logar<span aria-hidden="true">&rarr;</span></a>
 			</div>
 		</nav>
-		<!-- Mobile menu, show/hide based on menu open state. -->
+		<!-- Menu Mobile-->
 		<div class="lg:hidden hidden" role="dialog" aria-modal="true" aria-expanded="false" id="sideBar">
 			<!-- Background backdrop, show/hide based on slide-over state. -->
 			<div class="fixed inset-0 z-10"></div>
 			<div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
 				<div class="flex items-center justify-between">
-					<a href="#" class="-m-1.5 p-1.5">
+					<a asp-action="Index" asp-controller="Home" class="-m-1.5 p-1.5">
 						<span class="sr-only">Your Company</span>
 						<img class="h-8 w-auto" src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="">
 					</a>
@@ -160,31 +162,38 @@
 				<div class="mt-6 flow-root">
 					<div class="-my-6 divide-y divide-gray-500/10">
 						<div class="space-y-2 py-6">
+							<!-- Sidebar de Ideia -->
 							<div class="-mx-3">
-								<button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('disclosure-1')">
+								<button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileIdeia')">
 									Programa de Ideias
 									<svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 										<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
 									</svg>
 								</button>
-								<!-- 'Product' sub-menu, show/hide based on menu state. -->
-								<div class="mt-2 space-y-2 hidden" id="disclosure-1" aria-expanded="false">
+								<!-- 'Ideia' sub-menu -->
+								<div class="mt-2 space-y-2 hidden" id="subMenuMobileIdeia" aria-expanded="false">
 									<a asp-action="Create" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
 
-									<a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Engagement</a>
+									<a asp-action="Index" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Painel de Ideias</a>
 
-									<a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Security</a>
-
-									<a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Integrations</a>
-
-									<a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Automations</a>
-
-									<a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Watch demo</a>
-
-									<a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact sales</a>
 								</div>
 							</div>
-							<a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+							<!-- Sidebar de FSP -->
+							<div class="-mx-3">
+								<button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileFSP')">
+									Controle de FSP
+									<svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+										<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+									</svg>
+								</button>
+								<!-- 'FSP' sub-menu -->
+								<div class="mt-2 space-y-2 hidden" id="subMenuMobileFSP" aria-expanded="false">
+									<a asp-action="Create" asp-controller="FSP" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
+
+									<a asp-action="Index" asp-controller="FSP" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Tabela de FSP</a>
+
+								</div>
+							</div>
 							<a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
 							<a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
 						</div>
