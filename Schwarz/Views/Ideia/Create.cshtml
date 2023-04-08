@@ -4,63 +4,80 @@
 	Layout = "_Layout";
 }
 
-<h1 class="text-center fw-bold fs-1 text-black">Formulário de Cadastro</h1>
-<div class="container p-3 mb-auto text-light">
-	<form id="form" method="post">
-		<div class="row">
-			<div class="col ">
-				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
-				<label class="control-label">Participantes</label>
-				<select asp-for="Participantesids" class="form-select js-example-basic-multiple" required multiple>
-					@foreach (var funcionario in Model.GetFuncionariosAtivos())
-					{
-						<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
-					}
-				</select>
-				@Html.ValidationMessageFor(x => x.Participantesids)
-			</div>
-		</div>
+<div class="container mx-auto">
+	<div class="flex justify-center px-6 my-12">
+		<div class="w-full xl:w-3/4 lg:w-11/12 flex">
+			<div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
+				 style="background-image: url('/image/ampola-com-grafico-do-desenho.png')"></div>
 
-		<div class="row">
-			<div class="col">
-				<img class="icone"  src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
-				<label asp-for="Descricao" class="control-label required"></label>
-				<textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="form-control descricao required" autocomplete="off" placeholder="Descreva sobre sua ideia"></textarea>
-				@Html.ValidationMessageFor(x => x.Descricao)
-			</div>
-		</div>
+			<div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
+				<h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
+				<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+					<div class="mb-4">
+						<div class="mb-4">
+							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
+							<label class="block mb-2 text-sm font-bold text-gray-700l flex">Participantes<div class="text-red-500">*</div></label>
+							<select asp-for="Participantesids" class="form-select js-example-basic-multiple w-full" required multiple>
+								@foreach (var funcionario in Model.GetFuncionariosAtivos())
+								{
+									<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
+								}
+							</select>
+							@Html.ValidationMessageFor(x => x.Participantesids)
+						</div>
+					</div>
 
-		<div class="row">
-			<div class="col">
-				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/2460/2460494.png" alt="imagem de dinheiro" />
-				<label asp-for="Ganho" class="control-label"></label>
-				<input asp-for="Ganho" class="form-control" autocomplete="off" placeholder="Descreva qual foi o ganho" />
-			</div>
-			<div class="col">
-				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/2543/2543190.png" alt="imagem de um time" />
-				<label class="control-label">Quanto foi ou será o investimento?</label>
-				<input asp-for="Investimento" class="form-control" autocomplete="off" placeholder="Investimento">
-			</div>
-		</div>
+					<div class="mb-4">
+						<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
+						<label asp-for="Descricao" class="block mb-2 text-sm font-bold text-gray-700l flex">Descrição da Ideia<div class="text-red-500">*</div></label>
+						<textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
+						@Html.ValidationMessageFor(x => x.Descricao)
+					</div>
 
-		<div class="row">
-			<div class="col">
-				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/825/825792.png" alt="imagem de um capacete e uma engrenagem" />
-				<label class="control-label">Se houver, digite o número da Solicitação de Análise</label>
-				<input asp-for="SolicitacaoAnalise" class="form-control" autocomplete="off" placeholder="N° Solicitação de Análise">
-			</div>
-			<div class="col">
-				<img class="icone" src="https://cdn-icons-png.flaticon.com/512/4259/4259285.png" alt="imagem de duas ferramentas" />
-				<label class="control-label">Se houver, digite o número da OS aberta</label>
-				<input asp-for="OS" class="form-control" autocomplete="off" placeholder="N° da OS aberta">
-			</div>
-		</div>
+					<div class="mb-4 md:flex md:justify-between">
+						<div class="col">
+							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/2460/2460494.png" alt="imagem de dinheiro" />
+							<label asp-for="Ganho" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+							<input asp-for="Ganho" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva qual foi o ganho" />
+						</div>
+						<div class="col">
+							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/2543/2543190.png" alt="imagem de um time" />
+							<label class="block mb-2 text-sm font-bold text-gray-700l">Quanto foi ou será o investimento?</label>
+							<input asp-for="Investimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Investimento">
+						</div>
+					</div>
 
-		<div class="mb-3 justify-content-center d-flex">
-			<input type="submit" value="Cadastrar" class="btn py-3 my-3 w-75 bg-success" />
+
+					<div class="mb-4 md:flex md:justify-between">
+						<div class="col">
+							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/825/825792.png" alt="imagem de um capacete e uma engrenagem" />
+							<label class="block mb-2 text-sm font-bold text-gray-700l">N° da Solicitação de Análise</label>
+							<input asp-for="SolicitacaoAnalise" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Solicitação de Análise">
+						</div>
+						<div class="col">
+							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/4259/4259285.png" alt="imagem de duas ferramentas" />
+							<label class="block mb-2 text-sm font-bold text-gray-700l">N° da OS</label>
+							<input asp-for="OS" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="da OS aberta">
+						</div>
+					</div>
+					<div class="mb-6 text-center">
+						<input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full focus:outline-none focus:shadow-outline" />
+					</div>
+					<hr class="mb-6 border-t" />
+					<div class="text-center">
+						<p class="inline-block text-sm text-red-500 align-baseline">
+							Os campos com * são obrigatórios
+						</p>
+					</div>
+
+
+				</form>
+			</div>
 		</div>
-	</form>
+	</div>
+
 </div>
+
 
 <script>
 	$(document).ready(function () {

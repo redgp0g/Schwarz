@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
 using Schwarz.Models;
+using Schwarz.Repository;
 using Schwarz.Repository.Interfaces;
 using System.Diagnostics;
 
@@ -36,7 +37,15 @@ namespace ProgramaIdeias.Controllers
             return View(ideia);
         }
 
-        public async Task<IActionResult> Details(int? id)
+		public PartialViewResult BuscarIdeias()
+		{
+
+			IEnumerable<Ideia> model = _ideiaRepository.GetIdeias().OrderByDescending(x => x.Data);
+			return PartialView("_GridViewIdeias", model);
+
+		}
+
+		public async Task<IActionResult> Details(int? id)
         {
 
             if (id == null || _context.Ideia == null)

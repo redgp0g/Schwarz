@@ -1,150 +1,29 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@using Schwarz.Areas.Identity.Data;
-@model IEnumerable<Ideia>
-@{
-	List<string> equipe = new();
-}
-@inject SignInManager<SchwarzUser> SignInManager
-@inject UserManager<SchwarzUser> UserManager
-<h1 class="fw-bold text-center fs-1">Painel de Ideias</h1>
-	<div class="row mb-4">
-		<div class="col-6 d-flex justify-content-center align-items-center">
-			<a class="btn btn-success" asp-action="Create">Cadastrar Ideia</a>
-		</div>
-		<div class="col">
-			<label for="filtrostatus" class="form-label">Filtrar Status por:</label>
-			<select id="filtrostatus" class="form-select"><option value="">Todos</option></select>
-		</div>
-		<div class="col">
-			<label for="filtroano" class="form-label">Filtrar Ano por:</label>
-			<select id="filtroano" class="form-select">
-				<option value="">Todos</option>
-				<option value="2023">2023</option>
-				<option value="2022">2022</option>
-				<option value="2021">2021</option>
-				<option value="2020">2020</option>
-				<option value="2019">2019</option>
-			</select>
-		</div>
-	</div>
-<table class="table bg-dark text-light table-sm" id="table-ideias">
-	<thead>
-		<tr>
-			<th>
-				Equipe
-			</th>
-			<th>
-				Data
-			</th>
-			<th>
-				Descrição
-			</th>
-			<th>
-				Status
-			</th>
-			<th>
-				Ganho
-			</th>
-			<th>
-				Investimento
-			</th>
-			<th class="acoes">
-				Ações
-			</th>
+﻿
+<div class="container mx-auto px-4 sm:px-8">
+<div>
+<h2 class="text-2xl font-semibold leading-tight">Painel de Ideias</h2>
+</div>
+<div id="grdIdeias"></div>
 
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			equipe.Clear();
-			foreach (var func in item.EquipeIdeia)
-			{
-				equipe.Add(func.Funcionario.Nome.ToString().ToLower());
-			}
-			<tr>
-				<td data-label="Equipe:" class="text-capitalize">
-					@string.Join(", ", equipe)
-				</td>
-				<td data-label="Data:">
-					@Html.DisplayFor(modelItem => item.DataFormatada)
-				</td>
-				<td data-label="Descrição:">
-					@Html.DisplayFor(modelItem => item.Descricao)
-				</td>
-				<td data-label="Status:">
-					@Html.DisplayFor(modelItem => item.Status)
-				</td>
-				<td data-label="Ganho:">
-					@Html.DisplayFor(modelItem => item.Ganho)
-				</td>
-				<td data-label="Investimento:">
-					@Html.DisplayFor(modelItem => item.Investimento)
-				</td>
-				<td>
-					@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("IdeiaAdmin"))
-					{
-						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-edit" asp-action="Edit" asp-route-id="@item.IDIdeia">Editar</a>
-						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDIdeia">Deletar</a>
-					}
-					<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDIdeia">Detalhes</a>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
 <script>
-	$(document).ready(function () {
-
+	$(() => {
 		ShowLoading();
-		// inicializa o DataTables
-		var table = $('#table-ideias').DataTable({
-            "order": [],
-			"language": {
-				"url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
-			},
-			columnDefs: [
-				{ "type": "date", targets: 1 },
-			],
-			"dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
-				'<"row"<"col-sm-12"tr>>' +
-				'<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
-			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-			"scrollY": "60vh",
-			"scrollCollapse": true,
-			"autoWidth": true,
-			"responsive": true
-		});
-
-		
-
-		// preenche o select status com os valores únicos da quarta coluna da tabela
-		table.column(3).data().unique().sort().each(function (value, index) {
-			$('#filtrostatus').append('<option value="' + value + '">' + value + '</option>');
-		});
-
-		// adiciona um evento de mudança ao elemento <select>
-		$('#filtrostatus').on('change', function () {
-			// obtém o valor selecionado
-			var filtro = $(this).val();
-
-			// filtra a tabela com base no valor selecionado
-			table.column(3).search(filtro).draw();
-		});
-
-		// adiciona um evento de mudança ao elemento <select> de ano
-		$('#filtroano').on('change', function () {
-			// obtém o valor selecionado
-			var filtro = $(this).val();
-
-			// filtra a tabela com base no valor selecionado
-			table.column(1).search(filtro).draw();
-		});
-
-		table.on('init.dt', function () {
-			HideLoading();
-		});
-
+		carregarIdeias();
 	});
-
+	
+	function carregarIdeias() {
+		$.ajax({
+			url: '@Url.Action("BuscarIdeias","Ideia")',
+			datatype: 'html',
+			method: 'GET',
+			data: { },
+			success: function (res) {
+				$('#grdIdeias').html('').html(res);
+				HideLoading();
+			},
+			error: function (err) {
+				console.log(err);
+			}
+		})
+	}
 </script>
