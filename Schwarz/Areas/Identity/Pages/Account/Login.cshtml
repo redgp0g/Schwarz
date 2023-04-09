@@ -8,37 +8,16 @@
 
 <div class="relative min-h-screen flex ">
 	<div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
-		<div class="sm:w-1/2 xl:w-2/5 h-full hidden md:flex flex-auto items-center justify-start p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative" style="background-image: url(https://images.unsplash.com/photo-1579451861283-a2239070aaa9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80);">
-			<div class="absolute bg-gradient-to-b from-blue-900 to-gray-900 opacity-75 inset-0 z-0"></div>
+		<div class="sm:w-1/2 xl:w-2/5 h-full hidden md:flex flex-auto items-center justify-start p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative" style="background-image: url(https://img.freepik.com/fotos-gratis/retrato-de-um-jovem-trabalhador-em-um-capacete-em-uma-grande-usina-de-metais_146671-19548.jpg?w=1380&t=st=1681005136~exp=1681005736~hmac=88dbb60feda88f0022f0c849766e69d2e400016e6e7872c155a77f4c24419496;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80);">
+			<div class="absolute bg-gradient-to-b from-zinc-900 to-slate-50 opacity-75 inset-0 z-0"></div>
 			<div class="absolute triangle  min-h-screen right-0 w-16" style=""></div>
-			<img src="https://jasper-pimstorage-skullcandy.s3.us-west-1.amazonaws.com/bd2253a9671dac36a95faf821b52e78935050140be1718ce001f6aace45cf25c.png" class="h-96 absolute right-5 mr-5">
-			<div class="w-full  max-w-md z-10">
-				<div class="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6">Reference site about Lorem Ipsum..</div>
-				<div class="sm:text-sm xl:text-md text-gray-200 font-normal">
-					What is Lorem Ipsum Lorem Ipsum is simply dummy
-					text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever
-					since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it
-					has?
-				</div>
-			</div>
-			<!---remove custom style-->
-			<ul class="circles">
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
+			<img src="/image/forjadoquente7.png" class="h-96 absolute right-5 mr-5">
+
 		</div>
 		<div class="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full w-2/5 xl:w-2/5 p-8  md:p-10 lg:p-14 sm:rounded-lg md:rounded-none bg-white ">
 			<div class="max-w-md w-full space-y-8">
 				<div class="text-center">
-					<h2 class="mt-6 text-3xl font-bold text-gray-900">
+					<h2 class="mt-6 text-4xl font-bold text-gray-900">
 						Boas Vindas!
 					</h2>
 				</div>
@@ -46,21 +25,16 @@
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 					<input type="hidden" name="remember" value="true">
 					<div class="relative">
-						<div class="absolute right-3 mt-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-							</svg>
-						</div>
 						<label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Usuário</label>
 						<input asp-for="Input.Usuario" class=" w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" placeholder="Digite seu usuário">
-						<span asp-validation-for="Input.Usuario" class="text-danger"></span>
 					</div>
 					<div class="mt-8 content-center">
-						<label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">
-							Senha
-						</label>
-						<input asp-for="Input.Password" class="w-full content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-indigo-500" type="password" autocomplete="current-password" placeholder="Digite sua Senha">
-						<span asp-validation-for="Input.Password" class="text-danger"></span>
+						<div class="relative">
+							<label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">
+								Senha
+							</label>
+							<input asp-for="Input.Password" class="w-full content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-indigo-500" type="password" autocomplete="current-password" placeholder="Digite sua Senha">
+						</div>
 					</div>
 					<div class="flex items-center justify-between">
 						<div class="flex items-center">
@@ -76,7 +50,7 @@
 						</div>
 					</div>
 					<div>
-						<button type="submit" class="w-full flex justify-center bg-gradient-to-r from-indigo-500 to-blue-600  hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-4  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
+						<button type="submit" class="w-full flex justify-center bg-gradient-to-r from-zinc-700 to-slate-600  hover:bg-gradient-to-l hover:from-zinc-900 hover:to-slate-400 text-gray-100 p-4  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
 							Entrar
 						</button>
 					</div>

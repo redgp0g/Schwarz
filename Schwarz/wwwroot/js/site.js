@@ -1,9 +1,4 @@
-﻿$('.close-alert').click(function () {
-    $('.alert').hide('hide');
-});
-
-
-const tabs = document.querySelectorAll(".lboard_tabs ul li");
+﻿const tabs = document.querySelectorAll(".lboard_tabs ul li");
 const month = document.querySelector(".month");
 const year = document.querySelector(".year");
 const items = document.querySelectorAll(".lboard_item");

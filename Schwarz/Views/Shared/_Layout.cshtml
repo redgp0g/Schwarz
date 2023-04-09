@@ -124,7 +124,7 @@
 			@if (SignInManager.IsSignedIn(User))
 			{
 				<div class="relative">
-					<button type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuUser')">
+					<button type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900 capitalize" onclick="toggleHidden('subMenuUser')">
 						Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome.ToLower()!
 						<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
@@ -135,13 +135,15 @@
 						<div class="p-4">
 							<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
 								<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-									<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+										</svg>
+
 								</div>
 								<div class="flex-auto">
 									<form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-										<button id="logout" type="submit" class="block font-semibold text-red-900">Sair<span class="absolute inset-0"></span></button>
+										<button id="logout" type="submit" class="block font-semibold text-red-500">Sair<span class="absolute inset-0"></span></button>
 									</form>
-									<p class="mt-1 text-gray-600">Não deixe sua criatividade ficar apenas na mente! Cadastre agora sua ideia!</p>
 								</div>
 							</div>
 						</div>
@@ -216,13 +218,31 @@
 									</div>
 								</div>
 							}
-
+							@if (SignInManager.IsSignedIn(User))
+							{
+								<div class="-mx-3">
+									<button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 capitalize" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileUser')">
+										Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome.ToLower()!
+										<svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+											<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+										</svg>
+									</button>
+									<!-- 'Ideia' sub-menu -->
+									<div class="mt-2 space-y-2 hidden" id="subMenuMobileUser" aria-expanded="false">
+										<form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+											<button id="logout" type="submit" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-red-500 hover:bg-gray-50">Sair<span class="absolute inset-0"></span></button>
+										</form>
+									</div>
+								</div>
+							}
+							else{
 							<div class="py-6">
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-5">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
 								</svg>
 								<a asp-area="Identity" asp-page="/Account/Login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Logar</a>
 							</div>
+							}
 						</div>
 					</div>
 				</div>
@@ -234,11 +254,13 @@
 		<main>
 			@if (TempData["MensagemErro"] != null)
 			{
-				<div class="alert alert-danger" role="alert">
-					<button type="button" class="btn-danger btn-sm close-alert" aria-label="Close">X</button>
-					@TempData["MensagemErro"]
-					<a asp-area="Identity" asp-page="/Account/Manage/ChangePassword">aqui</a>
+				<a asp-area="Identity" asp-page="/Account/Manage/ChangePassword">
+					<div class="fixed inset-x-0 top-18 z-50 flex justify-center">
+				<div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
+				@TempData["MensagemErro"]
 				</div>
+			</div>
+			</a>
 			}
 			@RenderBody()
 		</main>
@@ -259,6 +281,10 @@
 				element.classList.remove("hidden");
 			}
 		}
+		setTimeout(function () {
+			document.getElementById('notification').classList.add('hidden');
+		}, 7000);
+
 	</script>
 	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>

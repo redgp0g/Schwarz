@@ -33,7 +33,7 @@ namespace Schwarz.Controllers
 				var resultado = _userManager.PasswordHasher.VerifyHashedPassword(_userManager.Users.First(x => x.Id == _userManager.GetUserId(User)), senhabanco, senhausuariosemhash);
                 if (resultado != PasswordVerificationResult.Failed)
                 {
-                    TempData["MensagemErro"] = "Por questão de segurança troque sua senha, para isso clique ";
+                    TempData["MensagemErro"] = "Por questão de segurança troque sua senha, para isso clique aqui";
                 }
             }
 			
