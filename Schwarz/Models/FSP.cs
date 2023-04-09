@@ -13,7 +13,7 @@ namespace Schwarz.Models
 		[Key]
 		public int IDFSP { get; set; }
 		
-		[Display(Name = "Número da FSP")]
+		[Display(Name = "Documento N°")]
 		public int Numero { get; set; }
 		
 		[Display(Name = "Data de Abertura")]
