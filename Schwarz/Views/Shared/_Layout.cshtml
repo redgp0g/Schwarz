@@ -20,8 +20,8 @@
 	<link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 </head>
-<body class="bg-gray-200">
-	<header class="bg-white">
+<body class="bg-black">
+	<header class="bg-white">	
 		<nav class="mx-auto flex items-center justify-between p-6 lg:px-8 border-b-2 border-black" aria-label="Global">
 			<div class="flex lg:flex-1">
 				<a asp-action="Index" asp-controller="Home" class="-m-1.5 p-1.5">
@@ -39,7 +39,7 @@
 			</div>
 
 			<!--Menu de Ideia-->
-			<div class="hidden lg:flex lg:gap-x-12">
+			<div class="hidden lg:flex lg:gap-x-12 flex-1">
 				<div class="relative">
 					<button type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias')">
 						Programa de Ideias
@@ -131,7 +131,7 @@
 						</svg>
 					</button>
 
-					<div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuUser">
+					<div class="absolute -left-8 top-full z-10 mt-3 w-100 max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuUser">
 						<div class="p-4">
 							<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
 								<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
