@@ -13,12 +13,14 @@
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/21.1.35/material.css" />
 	<script src="https://kit.fontawesome.com/5d8b80ea21.js" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+	<script src="https://cdn.syncfusion.com/ej2/21.1.35/dist/ej2.min.js"></script>
 </head>
 <body class="bg-black">
 	<header class="bg-white">	
@@ -37,7 +39,6 @@
 					</svg>
 				</button>
 			</div>
-
 			<!--Menu de Ideia-->
 			<div class="hidden lg:flex lg:gap-x-12 flex-1">
 				<div class="relative">
@@ -291,5 +292,6 @@
 	<script src="//cdn.datatables.net/plug-ins/1.13.4/sorting/datetime-moment.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
+	<ejs-scripts></ejs-scripts>
 </body>
 </html>

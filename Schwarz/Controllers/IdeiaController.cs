@@ -52,8 +52,8 @@ namespace ProgramaIdeias.Controllers
             {
                 return NotFound();
             }
-            var cadastropare = _context.Ideia.Find(id);
-            if (cadastropare == null)
+			var cadastropare = await _context.Ideia.FindAsync(id);
+			if (cadastropare == null)
             {
                 return NotFound();
             }
@@ -180,6 +180,11 @@ namespace ProgramaIdeias.Controllers
                 return RedirectToAction(nameof(Index));
 			}
             
+        }
+
+        public async Task<IActionResult> Dashboard()
+        {
+            return View();
         }
 
         public List<string> GetFuncionariosNomes()
