@@ -1,32 +1,4 @@
-﻿const tabs = document.querySelectorAll(".lboard_tabs ul li");
-const month = document.querySelector(".month");
-const year = document.querySelector(".year");
-const items = document.querySelectorAll(".lboard_item");
-
-tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-        var currentdatali = tab.getAttribute("data-li");
-
-        tabs.forEach((tab) => {
-            tab.classList.remove("active");
-        })
-
-        tab.classList.add("active");
-
-        items.forEach((item) => {
-            item.style.display = "none";
-        })
-
-        if (currentdatali === "mes") {
-            month.style.display = "block";
-        }
-        else {
-            year.style.display = "block";
-        }
-    })
-});
-
-function ShowLoading() {
+﻿function ShowLoading() {
     const divloading = document.createElement("div");
     const divbox = document.createElement("div");
     const label = document.createElement("label");

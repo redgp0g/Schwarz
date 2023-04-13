@@ -5,32 +5,37 @@
 }
 
 <div class="container mx-auto">
-	<div class="flex justify-center px-6 my-12">
+	<div class="flex justify-center px-6 mt-2 mb-12" style="height:80vh">
 		<div class="w-full xl:w-3/4 lg:w-11/12 flex">
 			<div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
 				 style="background-image: url('/image/ampola-com-grafico-do-desenho.png')"></div>
 
-			<div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
+			<div class="w-full lg:w-7/12 bg-white p-2 rounded-lg lg:rounded-l-none">
 				<h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
-				<form action="Create" method="post" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-					<div class="mb-4">
-						<div class="mb-4">
+				<div class="text-center">
+					<p class="inline-block text-sm text-red-500 align-baseline">
+						Os campos com * são obrigatórios
+					</p>
+				</div>
+				<form action="Create" method="post" class="px-8 bg-white rounded">
+					<div class="mb-3">
+						<div class="mb-3">
 							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
-							<label class="block mb-2 text-sm font-bold text-gray-700l flex">Participantes<div class="text-red-500"> *</div></label>
+							<label class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><div class="text-red-500 text-2xl">*</div>Participantes</label>
 							<select asp-for="Participantesids" class="form-select js-example-basic-multiple w-full" required multiple asp-items="ViewBag.Funcionarios">
 							</select>
 							@Html.ValidationMessageFor(x => x.Participantesids)
 						</div>
 					</div>
 
-					<div class="mb-4">
+					<div class="mb-3">
 						<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/3176/3176212.png" alt="imagem de prancheta e caneta" />
-						<label asp-for="Descricao" class="block mb-2 text-sm font-bold text-gray-700l flex">Descrição da Ideia<div class="text-red-500"> *</div></label>
+						<label asp-for="Descricao" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><div class="text-red-500 text-2xl">*</div>Descrição da Ideia</label>
 						<textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
 						@Html.ValidationMessageFor(x => x.Descricao)
 					</div>
 
-					<div class="mb-4 md:flex md:justify-between">
+					<div class="mb-3 md:flex md:justify-between">
 						<div class="col">
 							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/2460/2460494.png" alt="imagem de dinheiro" />
 							<label asp-for="Ganho" class="block mb-2 text-sm font-bold text-gray-700l"></label>
@@ -44,7 +49,7 @@
 					</div>
 
 
-					<div class="mb-4 md:flex md:justify-between">
+					<div class="mb-3 md:flex md:justify-between">
 						<div class="col">
 							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/825/825792.png" alt="imagem de um capacete e uma engrenagem" />
 							<label class="block mb-2 text-sm font-bold text-gray-700l">N° da Solicitação de Análise</label>
@@ -53,20 +58,12 @@
 						<div class="col">
 							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/4259/4259285.png" alt="imagem de duas ferramentas" />
 							<label class="block mb-2 text-sm font-bold text-gray-700l">N° da OS</label>
-							<input asp-for="OS" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="da OS aberta">
+							<input asp-for="OS" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="OS">
 						</div>
 					</div>
-					<div class="mb-6 text-center">
+					<div class="mb-5 text-center">
 						<input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
 					</div>
-					<hr class="mb-6 border-t" />
-					<div class="text-center">
-						<p class="inline-block text-sm text-red-500 align-baseline">
-							Os campos com * são obrigatórios
-						</p>
-					</div>
-
-
 				</form>
 			</div>
 		</div>
