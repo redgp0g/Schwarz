@@ -90,8 +90,8 @@ namespace ProgramaIdeias.Controllers
         }
         public IActionResult Create()
         {
-            Ideia ideia = new(_context);
-            return View(ideia);
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            return View();
         }
 
         [HttpPost]
@@ -120,7 +120,7 @@ namespace ProgramaIdeias.Controllers
                 {
                     transaction.Rollback();
                     TempData["Mensagem Erro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
-                    return View("Create");
+                    return View(ideia);
                 }
             }
             catch (Exception ex)

@@ -84,7 +84,7 @@
 						@Html.DisplayFor(modelItem => item.Status)
 					</td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 						<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-						@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("IdeiaAdmin"))
+						@if (User.IsInRole("IdeiaAdmin"))
 						{
 							<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-edit" asp-action="Edit" asp-route-id="@item.IDIdeia">Editar</a>
 							<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDIdeia">Deletar</a>

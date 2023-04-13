@@ -17,11 +17,7 @@
 						<div class="mb-4">
 							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
 							<label class="block mb-2 text-sm font-bold text-gray-700l flex">Participantes<div class="text-red-500"> *</div></label>
-							<select asp-for="Participantesids" class="form-select js-example-basic-multiple w-full" required multiple>
-								@foreach (var funcionario in Model.GetFuncionariosAtivos())
-								{
-									<option value="@funcionario.IDFuncionario">@funcionario.Nome</option>
-								}
+							<select asp-for="Participantesids" class="form-select js-example-basic-multiple w-full" required multiple asp-items="ViewBag.Funcionarios">
 							</select>
 							@Html.ValidationMessageFor(x => x.Participantesids)
 						</div>
@@ -84,7 +80,13 @@
 		$('.js-example-basic-multiple').select2({
 			placeholder: "Selecione os participantes",
 			width: '100%',
-			maximumSelectionLength: 4
+			maximumSelectionLength: 4,
+			language: {
+  maximumSelected: function () {
+	return "O máximo de participantes é 4";
+  }
+}
 		});
+
 	});
 </script>

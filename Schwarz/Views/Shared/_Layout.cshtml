@@ -78,7 +78,7 @@
 						</div>
 					</div>
 				</div>
-				@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("FSPAdmin"))
+				@if (User.IsInRole("FSPAdmin"))
 				{
 					<div class="relative">
 						<button type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFSP')">
@@ -199,7 +199,7 @@
 
 								</div>
 							</div>
-							@if (SignInManager.IsSignedIn(User) && UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("FSPAdmin"))
+							@if (User.IsInRole("FSPAdmin"))
 							{
 								<!-- Sidebar de FSP -->
 								<div class="-mx-3">

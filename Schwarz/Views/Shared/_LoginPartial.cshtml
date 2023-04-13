@@ -15,7 +15,7 @@
             <button id="logout" type="submit" class="nav-link btn btn-link text-dark bg-danger w-100 h-100 rounded-0">Sair</button>
             </form>
         </li>
-        @if (UserManager.GetRolesAsync(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User))).Result.Contains("ADM"))
+        @if (User.IsInRole("ADM"))
         {
             <li>
                 <a class="fs-4" id="register" asp-area="Identity" asp-page="/Account/Register">Registrar</a>
