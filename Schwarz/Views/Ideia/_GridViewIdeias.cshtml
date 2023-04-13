@@ -56,7 +56,7 @@
 				<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 					Status
 				</th>
-				<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+				<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider hidden">
 					Ações
 				</th>
 
@@ -82,14 +82,14 @@
 					</td>
 						<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Status:">
 						@Html.DisplayFor(modelItem => item.Status)
-					</td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+					</td class="px-5 py-5 border-b border-gray-200 bg-white text-sm hidden">
 						<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 						@if (User.IsInRole("IdeiaAdmin"))
 						{
 							<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-edit" asp-action="Edit" asp-route-id="@item.IDIdeia">Editar</a>
 							<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDIdeia">Deletar</a>
 						}
-						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDIdeia">Detalhes</a>
+						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info hidden" asp-action="Details" asp-route-id="@item.IDIdeia">Detalhes</a>
 					</td>
 				</tr>
 			}

@@ -12,7 +12,7 @@
 
 			<div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
 				<h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
-				<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+				<form action="Create" method="post" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
 					<div class="mb-4">
 						<div class="mb-4">
 							<img class="icone hidden" src="https://cdn-icons-png.flaticon.com/512/3912/3912028.png" alt="imagem de duas pessoas juntas" />
@@ -84,7 +84,10 @@
 			language: {
   maximumSelected: function () {
 	return "O máximo de participantes é 4";
-  }
+  },
+				noResults: function () {
+					return "Nenhum resultado encontrado";
+				}
 }
 		});
 

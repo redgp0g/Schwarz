@@ -90,13 +90,12 @@ namespace ProgramaIdeias.Controllers
         }
         public IActionResult Create()
         {
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Ideia ideia)
+        public IActionResult Create(Ideia ideia)
         {
             try
             {
@@ -119,13 +118,13 @@ namespace ProgramaIdeias.Controllers
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    TempData["Mensagem Erro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
+                    TempData["MensagemErro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
                     return View(ideia);
                 }
             }
             catch (Exception ex)
             {
-                TempData["Mensagem Erro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
+                TempData["MensagemErro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
                 return RedirectToAction("Create");
             }
         }
