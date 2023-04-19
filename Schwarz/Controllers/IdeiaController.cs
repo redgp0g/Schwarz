@@ -181,9 +181,32 @@ namespace ProgramaIdeias.Controllers
             
         }
 
-        public async Task<IActionResult> Ranking()
+
+		public class Player
+		{
+			public string Nome { get; set; }
+			public int Points { get; set; }
+            public int Posicao { get; set; }
+			public Player(string nome, int points, int posicao)
+			{
+				Nome = nome;
+				Points = points;
+                Posicao = posicao;
+
+			}
+		}
+		List<Player> players = new List<Player>{
+		   new Player ("Guilherme", 10,1),
+		   new Player ("Andre", 9,2),
+		   new Player ("Rafa", 5,3),
+		   new Player ("Gilvania", 3,4),
+		   new Player ("Jhonatan", 2,5),
+		   new Player ("Camile", 1,6),
+
+		};
+		public async Task<IActionResult> Ranking()
         {
-            return View();
+            return View(players);
         }
 
         public List<string> GetFuncionariosNomes()
