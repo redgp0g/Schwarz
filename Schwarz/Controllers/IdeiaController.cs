@@ -181,7 +181,7 @@ namespace ProgramaIdeias.Controllers
             
         }
 
-        public async Task<IActionResult> Dashboard()
+        public async Task<IActionResult> Ranking()
         {
             return View();
         }
