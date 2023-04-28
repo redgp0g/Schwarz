@@ -12,13 +12,13 @@
         <div class="e-sample-resize-container carousel-sample">
             @(Html.EJS().Carousel("defaultCarousel").CssClass("default-carousel")
                 .Items(new List<CarouselItem> {
-        new CarouselItem { Template = "#itemTemplate1"  },
-        new CarouselItem { Template = "#itemTemplate2"  },
-        new CarouselItem { Template = "#itemTemplate3"  },
-        new CarouselItem { Template = "#itemTemplate4"  }
-        })
+                new CarouselItem { Template = "#itemTemplate1" },
+                new CarouselItem { Template = "#itemTemplate2" },
+                new CarouselItem { Template = "#itemTemplate3" },
+                new CarouselItem { Template = "#itemTemplate4" }
+             })
                 .Render()
-                )
+             )
         </div>
     </div>
     <script id="itemTemplate1" type="text/x-template">

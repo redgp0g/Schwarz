@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
 using Schwarz.Models;
 using Schwarz.Repository;
 using Schwarz.Repository.Interfaces;
+using Syncfusion.EJ2.Buttons;
 using System.Diagnostics;
 
 namespace ProgramaIdeias.Controllers
@@ -129,7 +131,8 @@ namespace ProgramaIdeias.Controllers
             }
         }
 
-        public async Task<IActionResult> Delete(int? id)
+
+		public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.FSP == null)
             {
@@ -181,32 +184,29 @@ namespace ProgramaIdeias.Controllers
             
         }
 
-
 		public class Player
 		{
 			public string Nome { get; set; }
 			public int Points { get; set; }
-            public int Posicao { get; set; }
-			public Player(string nome, int points, int posicao)
+			public Player(string nome, int points)
 			{
 				Nome = nome;
 				Points = points;
-                Posicao = posicao;
 
 			}
 		}
-		List<Player> players = new List<Player>{
-		   new Player ("Guilherme", 10,1),
-		   new Player ("Andre", 9,2),
-		   new Player ("Rafa", 5,3),
-		   new Player ("Gilvania", 3,4),
-		   new Player ("Jhonatan", 2,5),
-		   new Player ("Camile", 1,6),
-
+		IEnumerable<Player> players = new List<Player>{
+		   new Player ("Guilherme", new Random().Next(0,100)),
+		   new Player ("Andre", new Random().Next(0,100)),
+		   new Player ("Rafa", new Random().Next(0,100)),
+		   new Player ("Gilvania", new Random().Next(0,100)),
+		   new Player ("Jhonatan", new Random().Next(0,100)),
+		   new Player ("Camile", new Random().Next(0,100)),
+		   new Player ("Wesley", new Random().Next(0,100))
 		};
-		public async Task<IActionResult> Ranking()
+		public IActionResult Ranking()
         {
-            return View(players);
+            return View(players.OrderByDescending(x => x.Points));
         }
 
         public List<string> GetFuncionariosNomes()
