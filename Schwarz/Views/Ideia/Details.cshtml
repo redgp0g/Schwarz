@@ -15,7 +15,7 @@
 				{
 					<div class="col-6 border border-black">
 						<label class="control-label">Participante @numero:</label>
-						<label class=" text-capitalize">@participante.Funcionario.Nome.ToString()</label>
+						<label class="capitalize">@participante.Funcionario.Nome.ToLower()</label>
 					</div>
 					numero = numero + 1;
 				}
@@ -59,7 +59,7 @@
 				<label class="">@Html.DisplayFor(model => model.SolicitacaoAnalise)</label>
 			</div>
 			<div class="my-5">
-				<a class="text-xl w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-orange-300 to-yellow-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" asp-action="Index"> Voltar para Lista</a>
+				<a class="text-xl w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-orange-300 to-yellow-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" asp-action="Index"> Voltar para Painel</a>
 			</div>
 		</div>
 	</form>

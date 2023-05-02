@@ -29,6 +29,9 @@ namespace Schwarz.Models
 		[Display(Name = "N° Solicitação de Análise")]
 		public int? SolicitacaoAnalise { get; set; }
 
+		[Display(Name = "Ganho Realizado")]
+		public decimal? GanhoRealizado { get; set; }
+
 		public virtual ICollection<EquipeIdeia> EquipeIdeia { get; set; }
 		[NotMapped]
 		[Required(ErrorMessage = "Selecione pelo menos um funcionário")]
