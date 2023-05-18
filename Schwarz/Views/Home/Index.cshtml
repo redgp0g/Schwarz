@@ -12,13 +12,15 @@
         <div class="e-sample-resize-container carousel-sample">
             @(Html.EJS().Carousel("defaultCarousel").CssClass("default-carousel")
                 .Items(new List<CarouselItem> {
-                new CarouselItem { Template = "#itemTemplate1" },
-                new CarouselItem { Template = "#itemTemplate2" },
-                new CarouselItem { Template = "#itemTemplate3" },
-                new CarouselItem { Template = "#itemTemplate4" }
-             })
+        new CarouselItem { Template = "#itemTemplate1" },
+        new CarouselItem { Template = "#itemTemplate2" },
+        new CarouselItem { Template = "#itemTemplate3" },
+        new CarouselItem { Template = "#itemTemplate4" },
+        new CarouselItem { Template = "#itemTemplate5" },
+        new CarouselItem { Template = "#itemTemplate6" }
+        })
                 .Render()
-             )
+                )
         </div>
     </div>
     <script id="itemTemplate1" type="text/x-template">
@@ -39,6 +41,16 @@
     <script id="itemTemplate4" type="text/x-template">
         <figure class="img-container">
             <img src="@Url.Content("~/image/ideia implantada 4.jpeg")" class="w-full h-full rounded-lg border border-white"/>
+        </figure>
+    </script>
+    <script id="itemTemplate5" type="text/x-template">
+        <figure class="img-container">
+            <img src="@Url.Content("~/image/ideia implantada 5.jpg")" class="w-full h-full rounded-lg border border-white"/>
+        </figure>
+    </script>
+    <script id="itemTemplate6" type="text/x-template">
+        <figure class="img-container">
+            <img src="@Url.Content("~/image/ideia implantada 6.jpg")" class="w-full h-full rounded-lg border border-white"/>
         </figure>
     </script>
 }
