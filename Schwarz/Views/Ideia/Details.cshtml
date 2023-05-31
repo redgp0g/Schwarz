@@ -3,64 +3,82 @@
 @{
 	Layout = "_Layout";
 	ViewData["Title"] = "Detalhes";
-	var numero = 1;
 }
 <h1 class="fw-bold text-center fs-1 text-black">Detalhes da Ideia</h1>
 
-<div class="container container-xxl bd-gutter mt-3 my-md-4 bd-layout bg-white text-light">
-	<form>
-		<div class="p-3 row row-cols-2">
-			<div class="row m-0 ">
-				@foreach (var participante in Model.EquipeIdeia)
-				{
-					<div class="col-6 border border-black">
-						<label class="control-label">Participante @numero:</label>
-						<label class="capitalize">@participante.Funcionario.Nome.ToLower()</label>
+<div class="container mx-auto">
+	<div class="flex justify-center px-6 my-12">
+		<div class="w-full xl:w-3/4 lg:w-11/12 flex">
+			<div class="w-full bg-white p-2 rounded-lg">
+				<h3 class="pt-4 text-2xl text-center">Detalhes da Ideia</h3>
+				<div class="px-8 ">
+					<label class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Participantes</label>
+					<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						@foreach (var participante in Model.EquipeIdeia)
+						{
+
+							<div class="w-full bg-neutral-300 rounded-lg p-12 flex flex-col justify-center items-center">
+								<div class="mb-8">
+									<img class="object-center object-cover rounded-full h-48 w-36" src="/image/IMG_20230105_185421.jpg" alt="photo">
+								</div>
+								<div class="text-center">
+									<p class="text-xl text-gray-700 font-bold mb-2 capitalize">@participante.Funcionario.Nome.ToLower()</p>
+									<p class="text-base text-gray-400 font-normal">@participante.Funcionario.Setor.ToUpper()</p>
+								</div>
+							</div>
+						}
+									
+						
 					</div>
-					numero = numero + 1;
-				}
-			</div>
+					<div class="mb-4">
+						<label class="block mb-2 text-sm font-bold text-gray-700l flex items-center">@Html.DisplayNameFor(model => model.Descricao)</label>
+						<label style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" ">@Html.DisplayFor(model => model.Descricao)</label>
+					</div>
 
-			<div class="border border-black">
-					<label class="control-label">@Html.DisplayNameFor(model => model.Descricao):</label>
-					<label class="">@Html.DisplayFor(model => model.Descricao)</label>
+					<div class="mb-4 md:flex md:justify-between">
+						<div class="my-2">
+							<label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.GanhoRealizado)</label>
+							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@Html.DisplayFor(model => model.GanhoRealizado)</label>
+						</div>
+						<div class="my-2">
+							<label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.Ganho)</label>
+							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@Html.DisplayFor(model => model.Ganho)</label>
+						</div>
+
+						<div class="my-2">
+							<label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.Investimento)</label>
+							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@Html.DisplayFor(model => model.Investimento)</label>
+						</div>
+						<div class="my-2">
+							<label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.Data)</label>
+							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@Html.DisplayFor(model => model.Data)</label>
+						</div>
+					</div>
+
+					<div class="mb-4 md:flex md:justify-between">
+						<div class="my-2">
+							<label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.OS)</label>
+							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@Html.DisplayFor(model => model.OS)</label>
+						</div>
+						<div class="my-2">
+							<label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.Status)</label>
+							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@Html.DisplayFor(model => model.Status)</label>
+						</div>
+						<div class="my-2">
+							<label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.SolicitacaoAnalise)</label>
+							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@Html.DisplayFor(model => model.SolicitacaoAnalise)</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.Feedback)</label>
+						<label class="block w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@Html.DisplayFor(model => model.Feedback)</label>
+					</div>
+					<div class="my-5 text-center">
+						<a class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-sky-300 to-blue-700 rounded-full hover:bg-gradient-to-r hover:from-blue-400 hover:to-sky-800 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" href="/Ideia">Voltar para Painel</a>
+					</div>
 				</div>
-
-			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.Data):</label>
-				<label class="">@Html.DisplayFor(model => model.Data)</label>
-			</div>
-			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.Status):</label>
-				<label class="">@Html.DisplayFor(model => model.Status)</label>
-			</div>
-			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.Ganho):</label>
-				<label class="">@Html.DisplayFor(model => model.Ganho)</label>
-			</div>
-			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.Investimento):</label>
-				<label class="">@Html.DisplayFor(model => model.Investimento)</label>
-			</div>
-			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.Feedback):</label>
-				<label class="">@Html.DisplayFor(model => model.Feedback)</label>
-			</div>
-			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.NomeEquipe):</label>
-				<label class="">@Html.DisplayFor(model => model.NomeEquipe)</label>
-			</div>
-			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.OS):</label>
-				<label class="">@Html.DisplayFor(model => model.OS)</label>
-			</div>
-			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.SolicitacaoAnalise):</label>
-				<label class="">@Html.DisplayFor(model => model.SolicitacaoAnalise)</label>
-			</div>
-			<div class="my-5">
-				<a class="text-xl w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-orange-300 to-yellow-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" asp-action="Index"> Voltar para Painel</a>
 			</div>
 		</div>
-	</form>
+	</div>
 </div>

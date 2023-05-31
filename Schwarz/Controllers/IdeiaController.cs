@@ -98,14 +98,24 @@ namespace ProgramaIdeias.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Create(Ideia ideia)
+		public IActionResult Create(Ideia ideia, IFormFile file)
 		{
 			try
 			{
 				ideia.Data = DateTime.Now;
 				ideia.Status = "Recebida";
 				using var transaction = _context.Database.BeginTransaction();
-				try
+                if (file != null && file.Length > 0)
+                {
+                    // Lógica para salvar a imagem no servidor
+                    string nomeArquivo = Path.GetFileName(file.FileName);
+                    string filePath = Path.Combine("wwwroot/image", nomeArquivo);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                }
+                try
 				{
 					_context.Add(ideia);
 					_context.SaveChanges();

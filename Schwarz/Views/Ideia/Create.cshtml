@@ -17,7 +17,7 @@
                         Os campos com * são obrigatórios
                     </p>
                 </div>
-                <form action="Create" method="post" class="px-8 bg-white rounded">
+                <form action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
                     <div class="mb-4">
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><span class="text-red-500 text-2xl">*</span>Participantes</label>
@@ -55,9 +55,9 @@
                             <input asp-for="OS" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="OS">
                         </div>
                     </div>
-                    <div class="hidden">
-                        <label class="block mb-2 text-sm font-bold text-gray-700l">Arquivos de Anexo</label>
-                        <input multiple type="file" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Selecione um arquivo">
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-bold text-gray-700">Foto:</label>
+                        <input type="file" name="file">
                     </div>
                     <div class="mb-6 text-center">
                         <input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
