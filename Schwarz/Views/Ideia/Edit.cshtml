@@ -116,10 +116,14 @@
 			url: '/Ideia/AdicionarParticipante',
 			type: 'POST',
 			data: { idfuncionario: idfuncionario, idideia : idideia },
-			success: function (nomeparticipante) {
+			success: function (response) {
+				var nome = response.nome;
+				var idEquipeideia = response.idEquipe;
+
 				var divParticipanteExistente = $('.participante:first');
 				var divParticipanteClonada = divParticipanteExistente.clone();
-				divParticipanteClonada.find('label').text(nomeparticipante);
+				divParticipanteClonada.find('label').text(nome);
+				divParticipanteClonada.find('button').attr('data-id', idEquipeideia);
 
 				$('.listaparticipantes').append(divParticipanteClonada);
 				qtdpartc++;

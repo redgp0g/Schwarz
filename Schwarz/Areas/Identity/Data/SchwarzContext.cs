@@ -12,8 +12,9 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
         : base(options)
     {
     }
-	public DbSet<Boleto> Boleto { get; set; }
-	public DbSet<CadastroOleo> CadastroOleo { get; set; }
+    public DbSet<Arquivo> Arquivo { get; set; }
+    public DbSet<Boleto> Boleto { get; set; }
+    public DbSet<CadastroOleo> CadastroOleo { get; set; }
 	public DbSet<Cliente> Cliente { get; set; }
 	public DbSet<Desenho> Desenho { get; set; }
 	public DbSet<DesenhoBoleto> DesenhoBoleto { get; set; }
@@ -25,6 +26,7 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
 	public DbSet<FSP> FSP{ get; set; }
 	public DbSet<Funcionario> Funcionario { get; set; }
 	public DbSet<Ideia> Ideia { get; set; }
+    public DbSet<IdeiaArquivo> IdeiaArquivo { get; set; }
     public DbSet<Maquina> Maquina { get; set; }
 	public DbSet<Operacao> Operacao { get; set; }
 	public DbSet<PlanoAcao> PlanoAcao { get; set; }

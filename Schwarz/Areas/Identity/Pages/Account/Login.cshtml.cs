@@ -93,12 +93,12 @@ namespace Schwarz.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("Conta do usuário bloqueada por tentativas inváliddas");
+                    _logger.LogWarning("Conta do usuário bloqueada por tentativas inválidas");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Falha na tentativa de login");
+                    ModelState.AddModelError(string.Empty, "*Falha na tentativa de login");
                     return Page();
                 }
             }

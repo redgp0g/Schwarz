@@ -6,6 +6,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
+using Microsoft.AspNetCore.Http;
 using Schwarz.Models;
 using Schwarz.Repository;
 using Schwarz.Repository.Interfaces;
@@ -59,6 +60,7 @@ namespace ProgramaIdeias.Controllers
 			{
 				return NotFound();
 			}
+			_context.Arquivo.ToList();
 			return View(cadastropare);
 		}
 
@@ -98,23 +100,14 @@ namespace ProgramaIdeias.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Create(Ideia ideia, IFormFile file)
+		public IActionResult Create(Ideia ideia, List<IFormFile> files)
 		{
 			try
 			{
 				ideia.Data = DateTime.Now;
 				ideia.Status = "Recebida";
 				using var transaction = _context.Database.BeginTransaction();
-                if (file != null && file.Length > 0)
-                {
-                    // Lógica para salvar a imagem no servidor
-                    string nomeArquivo = Path.GetFileName(file.FileName);
-                    string filePath = Path.Combine("wwwroot/image", nomeArquivo);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
-                }
+
                 try
 				{
 					_context.Add(ideia);
@@ -123,15 +116,60 @@ namespace ProgramaIdeias.Controllers
 					{
 						EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
 						_context.Add(equipeIdeia);
+						_context.SaveChanges();
 					}
-					_context.SaveChanges();
+					foreach (var file in files)
+					{
+						if (file != null && file.Length > 0)
+						{
+							// Verifica se o arquivo com o mesmo nome já existe na pasta
+							string nomeArquivo = Path.GetFileName(file.FileName);
+							string filePath = Path.Combine("\\\\Sch-fns03a\\ds1\\Inovacao1\\Imagensdb", nomeArquivo);
+
+							if (System.IO.File.Exists(filePath))
+							{
+								TempData["MensagemErro"] = "Já existe um arquivo com o mesmo nome na pasta.";
+								ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
+								return View(ideia);
+							}
+
+							using (var stream = new FileStream(filePath, FileMode.Create))
+							{
+								file.CopyTo(stream);
+							}
+
+							// Registra os detalhes do arquivo na tabela "Arquivos"
+							Arquivo arquivo = new Arquivo
+							{
+								Nome = nomeArquivo,
+								Caminho = filePath,
+								TipoMIME = file.ContentType,
+								Tamanho = file.Length,
+								DataUpload = DateTime.Now
+							};
+
+							_context.Arquivo.Add(arquivo);
+							_context.SaveChanges();
+
+							// Associa o arquivo à ideia
+							IdeiaArquivo ideiaArquivo = new IdeiaArquivo
+							{
+								IDArquivo = arquivo.IDArquivo,
+								IDIdeia = ideia.IDIdeia
+							};
+
+							_context.IdeiaArquivo.Add(ideiaArquivo);
+							_context.SaveChanges();
+						}
+					}
 					transaction.Commit();
-					return RedirectToAction(nameof(Index));
-				}
+                    return RedirectToAction(nameof(Index));
+                }
 				catch (Exception ex)
 				{
 					transaction.Rollback();
 					TempData["MensagemErro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
+					ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
 					return View(ideia);
 				}
 			}
@@ -179,8 +217,23 @@ namespace ProgramaIdeias.Controllers
 					{
 						_context.EquipeIdeia.Remove(equipe);
 					}
-					_context.Ideia.Remove(ideia);
-				}
+                    _context.Ideia.Remove(ideia);
+                    // Excluir arquivos da pasta e do banco de dados
+                    foreach (var ideiaArquivo in ideia.IdeiaArquivos)
+                    {
+                        var arquivo = ideiaArquivo.Arquivo;
+
+                        // Remover o arquivo da pasta
+                        if (System.IO.File.Exists(arquivo.Caminho))
+                        {
+                            System.IO.File.Delete(arquivo.Caminho);
+                        }
+
+                        // Remover o arquivo do banco de dados
+                        _context.Arquivo.Remove(arquivo);
+                        _context.IdeiaArquivo.Remove(ideiaArquivo);
+                    }
+                }
 
 				await _context.SaveChangesAsync();
 				transaction.Commit();
@@ -231,17 +284,21 @@ namespace ProgramaIdeias.Controllers
 			return nomes;
 		}
 
-		public void DeletarParticipante(int id)
+		[HttpPost]
+		public IActionResult DeletarParticipante(int id)
 		{
 			var participante = _context.EquipeIdeia.Find(id);
 			if (participante != null)
 			{
 				_context.EquipeIdeia.Remove(participante);
 				_context.SaveChanges();
+				return Ok();
 			}
-		}
+            return NotFound();
+        }
 
-		public IActionResult? AdicionarParticipante(int idfuncionario, int idideia)
+		[HttpPost]
+		public IActionResult AdicionarParticipante(int idfuncionario, int idideia)
 		{
 			var func = _context.Funcionario.Find(idfuncionario);
 			if (func != null)
@@ -249,17 +306,24 @@ namespace ProgramaIdeias.Controllers
 				bool equipeIdeiaExistente = _context.EquipeIdeia.Any(ei => ei.IDFuncionario == func.IDFuncionario && ei.IDIdeia == idideia);
 				if (equipeIdeiaExistente)
 				{
-					Response.StatusCode = 409; // Conflito
-					return Content("Já existe esse participante na equipe!");
-				}
+                    return Conflict("Já existe esse participante na equipe!");
+                }
 
 				EquipeIdeia equipeIdeia = new(func.IDFuncionario, idideia);
 				_context.EquipeIdeia.Add(equipeIdeia);
 				_context.SaveChanges();
-				return Content(func.Nome);
+
+				var result = new
+				{
+					idEquipe = equipeIdeia.IDEquipeIdeia,
+					nome = func.Nome
+				};
+
+				return Ok(result);
+
 			}
-			return null;
-		}
+			return NotFound();
+        }
 
 	public List<int> GetFuncionariosIDs()
 	{
