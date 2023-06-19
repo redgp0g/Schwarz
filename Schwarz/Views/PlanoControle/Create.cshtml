@@ -1,0 +1,106 @@
+﻿@model PlanoControle
+@{
+	ViewData["Title"] = "Cadastrar";
+	Layout = "_Layout";
+}
+
+<div class="container mx-auto">
+	<div class="flex justify-center px-6 my-12">
+		<div class="w-full xl:w-3/4 lg:w-11/12 flex">
+			<div class="w-full bg-white p-2 rounded-lg">
+				<h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
+				<form action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
+					<div class="mb-4 md:flex md:justify-between">
+						<div class="col w-full">
+							<div>
+								<label asp-for="Status" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+									<option value="Protótipo">Protótipo</option>
+									<option value="Pré-Lançamento">Pré-Lançamento</option>
+									<option value="Produção">Produção</option>
+								</select>
+							</div>
+							<div>
+								<label asp-for="Produto" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="Produto" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Digite o Produto">
+							</div>
+							<div>
+								<label asp-for="Cliente" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="Cliente" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Digite o Cliente">
+							</div>
+							<div>
+								<label asp-for="Processo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Processo">
+							</div>
+						</div>
+						<div class="col w-full">
+							<div>
+								<label asp-for="CodigoCliente" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="CodigoCliente" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Código Cliente/ Revisão Cliente">
+							</div>
+							<div>
+								<label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="CodigoInterno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Código Interno">
+							</div>
+							<div>
+								<label asp-for="NFluxo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="NFluxo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Número do Fluxo">
+							</div>
+						</div>
+						<div class="col w-full">
+							<div>
+								<label asp-for="Revisao" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="Revisao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Revisão" />
+							</div>
+							<div>
+								<label asp-for="DataOrigem" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="DataOrigem" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+							</div>
+							<div>
+								<label asp-for="DataAtualizacao" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+								<input asp-for="DataAtualizacao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+							</div>
+						</div>
+					</div>
+					<div class="mb-4">
+						<label asp-for="Observacoes" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
+						<textarea asp-for="Observacoes" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva as observações"></textarea>
+					</div>
+					<div class="flex">
+						<div class="col w-full mx-2">
+							<div class="mb-4">
+								<label asp-for="IDFuncionarioElaborador" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
+								<select asp-for="IDFuncionarioElaborador" class="form-select select2 w-full" asp-items="ViewBag.Funcionarios">
+								</select>
+								@Html.ValidationMessageFor(x => x.IDFuncionarioElaborador)
+							</div>
+						</div>
+						<div class="col w-full mx-2">
+							<div class="mb-4">
+								<label asp-for="IDFuncionarioAprovador" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
+								<select asp-for="IDFuncionarioAprovador" class="form-select select2 w-full" asp-items="ViewBag.Funcionarios">
+								</select>
+								@Html.ValidationMessageFor(x => x.IDFuncionarioAprovador)
+							</div>
+						</div>
+					</div>
+					<div class="mb-6 text-center">
+						<input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<script>
+	$(document).ready(function () {
+		$('.select2').select2({
+			placeholder: "Selecione o funcionário",
+			width: '100%',
+		});
+
+	});
+</script>

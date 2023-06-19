@@ -1,6 +1,7 @@
 ﻿using Schwarz.Data;
 using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
@@ -8,13 +9,34 @@ namespace Schwarz.Models
 	{
 		[Key]
 		public int IDPlanoControle { get; set; }
+		[Display(Name = "Revisão")]
 		public int Revisao { get; set; }
+        [Display(Name = "Data de Origem")]
         public DateTime DataOrigem { get; set; }
-		public DateTime DataAtualizacao { get; set; }
-		public  Status{ get; set; }
-        public DateTime DataUpload{ get; set; }
+        [Display(Name = "Data de Atualização")]
+        public DateTime DataAtualizacao { get; set; }
+		public string Status{ get; set; }
+        public string Produto{ get; set; }
+		public string Cliente { get; set; }
+		public string Processo { get; set; }
+        [Display(Name = "Código Interno")]
+        public int CodigoInterno { get; set; }
+        [Display(Name = "Código / Revisão do Cliente")]
+        public string CodigoCliente { get; set; }
+        [Display(Name = "N° do Fluxo")]
+        public int NFluxo { get; set; }
+		[Display(Name = "Observações")]
+		public string? Observacoes { get; set; }
+		[ForeignKey("FuncionarioElaborador")]
+        [Display(Name = "Elaborador")]
+        public int IDFuncionarioElaborador { get; set; }
+		public virtual Funcionario FuncionarioElaborador { get; set; }
+		[ForeignKey("FuncionarioAprovador")]
+        [Display(Name = "Aprovador")]
+        public int IDFuncionarioAprovador { get; set; }
+		public virtual Funcionario FuncionarioAprovador { get; set; }
 
-        public PlanoControle()
+		public PlanoControle()
 		{
 
 		}

@@ -36,15 +36,12 @@ namespace Schwarz.Models
 		[Display(Name = "Descrição da Revisão")]
 		public string DescricaoRevisao { get; set; }
 		public virtual ICollection<FluxoOperacao>? FluxoOperacoes { get; set; }
-		private readonly SchwarzContext _context;
+		
 		public Fluxo()
 		{
 		}
-		public Fluxo(SchwarzContext contexto) : base(contexto)
-		{
-			_context = contexto;
-		}
-		public List<FluxoOperacao> CarregarOPsFluxo(int IDFLuxo)
+        public Fluxo(SchwarzContext contexto) : base(contexto) => _context = contexto;
+        public List<FluxoOperacao> CarregarOPsFluxo(int IDFLuxo)
 		{
 			return _context.FluxoOperacao.Where(x => x.IDFluxo == IDFLuxo).ToList();
 		}

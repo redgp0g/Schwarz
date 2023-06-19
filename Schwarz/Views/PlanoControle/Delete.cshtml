@@ -1,0 +1,393 @@
+﻿@model Schwarz.Models.FSP
+
+@{
+    ViewData["Title"] = "Deletar";
+}
+
+<h1>Deletar</h1>
+
+<h3>Você tem certeza que deseja deletar isso?</h3>
+<div>
+    <h4>FSP</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataAbertura)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataAbertura)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataFechamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataFechamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Produto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Produto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Origem)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Origem)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Falha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Falha.IDFalha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaodeObra)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaodeObra)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Maquina)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Maquina)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Medicao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Medicao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Material)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Material)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MeioAmbiente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MeioAmbiente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Metodo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Metodo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorqueFalhou1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorqueFalhou1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorqueFalhou2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorqueFalhou2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorqueFalhou3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorqueFalhou3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorqueFalhou4)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorqueFalhou4)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorqueFalhou5)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorqueFalhou5)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CausaRaizFalha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CausaRaizFalha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorquePassou1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorquePassou1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorquePassou2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorquePassou2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorquePassou3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorquePassou3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorquePassou4)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorquePassou4)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PorquePassou5)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PorquePassou5)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CausaRaizPassou)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CausaRaizPassou)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AtualizarFMEA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AtualizarFMEA)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QualFMEA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QualFMEA)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuncionarioFMEA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuncionarioFMEA.IDFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrazoFMEA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrazoFMEA)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RealizadoFMEA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RealizadoFMEA)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AtualizarInstrucao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AtualizarInstrucao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QualInstrucao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QualInstrucao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuncionarioInstrucao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuncionarioInstrucao.IDFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrazoInstrucao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrazoInstrucao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RealizadoInstrucao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RealizadoInstrucao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AtualizarPlanoControle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AtualizarPlanoControle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QualPlanoControle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QualPlanoControle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuncionarioPlanoControle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuncionarioPlanoControle.IDFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrazoPlanoControle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrazoPlanoControle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RealizadoPlanoControle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RealizadoPlanoControle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UtilizarPokaYoke)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UtilizarPokaYoke)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QualPokaYoke)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QualPokaYoke)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuncionarioPokaYoke)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuncionarioPokaYoke.IDFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrazoPokaYoke)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrazoPokaYoke)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RealizadoPokaYoke)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RealizadoPokaYoke)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AplicarTreinamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AplicarTreinamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QualTreinamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QualTreinamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuncionarioTreinamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuncionarioTreinamento.IDFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrazoTreinamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrazoTreinamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RealizadoTreinamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RealizadoTreinamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EmitirAlertaQualidade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EmitirAlertaQualidade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QualAlertaQualidade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QualAlertaQualidade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuncionarioAlertaQualidade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuncionarioAlertaQualidade.IDFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrazoAlertaQualidade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrazoAlertaQualidade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RealizadoAlertaQualidade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RealizadoAlertaQualidade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuncionarioVerificacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuncionarioVerificacao.IDFuncionario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataVerificacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataVerificacao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IndicadorVerificacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IndicadorVerificacao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EficazVerificacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EficazVerificacao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MetodologiaVerificacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MetodologiaVerificacao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NovaFSP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NovaFSP.Origem)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuncionarioNovaFSP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuncionarioNovaFSP.IDFuncionario)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IDFSP" />
+        <input type="submit" value="Deleta" class="btn btn-danger" />
+        <a class="btn btn-info" asp-action="Index">Voltar para a lista</a>
+    </form>
+</div>
