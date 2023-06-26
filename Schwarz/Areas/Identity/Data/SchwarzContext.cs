@@ -32,7 +32,6 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
 	public DbSet<Operacao> Operacao { get; set; }
 	public DbSet<PlanoAcao> PlanoAcao { get; set; }
 	public DbSet<PlanoControle> PlanoControle { get; set; }
-	public DbSet<PlanoControleCota> PlanoControleCota { get; set; }
 	public DbSet<Processo> Processo { get; set; }
 	public DbSet<ProcessoProduto> ProcessoProduto { get; set; }
 	public DbSet<Produto> Produto { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Schwarz.Data;
 using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
@@ -8,6 +9,9 @@ namespace Schwarz.Models
 	{
 		[Key]
 		public int IDCota { get; set; }
+		[ForeignKey("PlanoControle")]
+		public int IDPlanoControle { get; set; }
+		public PlanoControle PlanoControle { get; set; }
 		public string Item { get; set; }
 		public string? CaracteristicaEspecial { get; set; }
 		public string? Localizacao { get; set; }
