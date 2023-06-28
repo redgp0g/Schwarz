@@ -59,7 +59,6 @@ namespace ProgramaIdeias.Controllers
 			{
 				return NotFound();
 			}
-			_context.Arquivo.ToList();
 			return View(cadastropare);
 		}
 
