@@ -33,7 +33,6 @@ namespace Schwarz.Models
 		public decimal? GanhoRealizado { get; set; }
 
 		public virtual ICollection<EquipeIdeia> EquipeIdeia { get; set; }
-		public virtual ICollection<IdeiaArquivo> IdeiaArquivos { get; set; }
 		[NotMapped]
 		[Required(ErrorMessage = "Selecione pelo menos um funcionário")]
 		public List<int>? Participantesids { get; set; }

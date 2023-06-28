@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Http;
 using Schwarz.Models;
 using Schwarz.Repository;
 using Schwarz.Repository.Interfaces;
-using Syncfusion.EJ2.Buttons;
 using System.Diagnostics;
 
 namespace ProgramaIdeias.Controllers
@@ -151,14 +150,6 @@ namespace ProgramaIdeias.Controllers
 							_context.Arquivo.Add(arquivo);
 							_context.SaveChanges();
 
-							// Associa o arquivo à ideia
-							IdeiaArquivo ideiaArquivo = new IdeiaArquivo
-							{
-								IDArquivo = arquivo.IDArquivo,
-								IDIdeia = ideia.IDIdeia
-							};
-
-							_context.IdeiaArquivo.Add(ideiaArquivo);
 							_context.SaveChanges();
 						}
 					}
@@ -218,21 +209,6 @@ namespace ProgramaIdeias.Controllers
 						_context.EquipeIdeia.Remove(equipe);
 					}
                     _context.Ideia.Remove(ideia);
-                    // Excluir arquivos da pasta e do banco de dados
-                    foreach (var ideiaArquivo in ideia.IdeiaArquivos)
-                    {
-                        var arquivo = ideiaArquivo.Arquivo;
-
-                        // Remover o arquivo da pasta
-                        if (System.IO.File.Exists(arquivo.Caminho))
-                        {
-                            System.IO.File.Delete(arquivo.Caminho);
-                        }
-
-                        // Remover o arquivo do banco de dados
-                        _context.Arquivo.Remove(arquivo);
-                        _context.IdeiaArquivo.Remove(ideiaArquivo);
-                    }
                 }
 
 				await _context.SaveChangesAsync();

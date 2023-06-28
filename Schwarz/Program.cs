@@ -33,6 +33,7 @@ builder.Services.AddScoped<IIdeiaRepository, IdeiaRepository>();
 builder.Services.AddScoped<IMaquinaRepository, MaquinaRepository>();
 builder.Services.AddScoped<IOperacaoRepository, OperacaoRepository>();
 builder.Services.AddScoped<IPlanoAcaoRepository, PlanoAcaoRepository>();
+builder.Services.AddScoped<IPlanoControleRepository, PlanoControleRepository>();
 builder.Services.AddScoped<IProcessoRepository, ProcessoRepository>();
 builder.Services.AddScoped<IProcessoProdutoRepository, ProcessoProdutoRepository>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();

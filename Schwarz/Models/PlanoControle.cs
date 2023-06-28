@@ -30,11 +30,11 @@ namespace Schwarz.Models
 		[ForeignKey("FuncionarioElaborador")]
         [Display(Name = "Elaborador")]
         public int IDFuncionarioElaborador { get; set; }
-		public virtual Funcionario FuncionarioElaborador { get; set; }
+		public virtual Funcionario? FuncionarioElaborador { get; set; }
 		[ForeignKey("FuncionarioAprovador")]
         [Display(Name = "Aprovador")]
         public int IDFuncionarioAprovador { get; set; }
-		public virtual Funcionario FuncionarioAprovador { get; set; }
+		public virtual Funcionario? FuncionarioAprovador { get; set; }
 
 		public PlanoControle()
 		{

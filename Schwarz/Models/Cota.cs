@@ -11,7 +11,7 @@ namespace Schwarz.Models
 		public int IDCota { get; set; }
 		[ForeignKey("PlanoControle")]
 		public int IDPlanoControle { get; set; }
-		public PlanoControle PlanoControle { get; set; }
+		public virtual PlanoControle PlanoControle { get; set; }
 		public string Item { get; set; }
 		public string? CaracteristicaEspecial { get; set; }
 		public string? Localizacao { get; set; }

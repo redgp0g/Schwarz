@@ -1,0 +1,180 @@
+﻿@model Schwarz.Models.Cota
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1>Edit</h1>
+
+<h4>Cota</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IDCota" />
+            <div class="form-group">
+                <label asp-for="IDPlanoControle" class="control-label"></label>
+                <select asp-for="IDPlanoControle" class="form-control" asp-items="ViewBag.IDPlanoControle"></select>
+                <span asp-validation-for="IDPlanoControle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Item" class="control-label"></label>
+                <input asp-for="Item" class="form-control" />
+                <span asp-validation-for="Item" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaracteristicaEspecial" class="control-label"></label>
+                <input asp-for="CaracteristicaEspecial" class="form-control" />
+                <span asp-validation-for="CaracteristicaEspecial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localizacao" class="control-label"></label>
+                <input asp-for="Localizacao" class="form-control" />
+                <span asp-validation-for="Localizacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaracteristicaProduto" class="control-label"></label>
+                <input asp-for="CaracteristicaProduto" class="form-control" />
+                <span asp-validation-for="CaracteristicaProduto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaracteristicaProcesso" class="control-label"></label>
+                <input asp-for="CaracteristicaProcesso" class="form-control" />
+                <span asp-validation-for="CaracteristicaProcesso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToleranciaSuperior" class="control-label"></label>
+                <input asp-for="ToleranciaSuperior" class="form-control" />
+                <span asp-validation-for="ToleranciaSuperior" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToleranciaInferior" class="control-label"></label>
+                <input asp-for="ToleranciaInferior" class="form-control" />
+                <span asp-validation-for="ToleranciaInferior" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstrumentoPrincipal" class="control-label"></label>
+                <input asp-for="InstrumentoPrincipal" class="form-control" />
+                <span asp-validation-for="InstrumentoPrincipal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodigoIP" class="control-label"></label>
+                <input asp-for="CodigoIP" class="form-control" />
+                <span asp-validation-for="CodigoIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaDiaIP" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaDiaIP" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaDiaIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaTurnoIP" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaTurnoIP" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaTurnoIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaSetUpIP" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaSetUpIP" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaSetUpIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaParadaIP" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaParadaIP" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaParadaIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaFinalIP" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaFinalIP" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaFinalIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaAjusteIP" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaAjusteIP" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaAjusteIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaHoraIP" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaHoraIP" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaHoraIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmostragemIP" class="control-label"></label>
+                <input asp-for="AmostragemIP" class="form-control" />
+                <span asp-validation-for="AmostragemIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MetodoIP" class="control-label"></label>
+                <input asp-for="MetodoIP" class="form-control" />
+                <span asp-validation-for="MetodoIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstrumentoAlternativo" class="control-label"></label>
+                <input asp-for="InstrumentoAlternativo" class="form-control" />
+                <span asp-validation-for="InstrumentoAlternativo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaDiaIA" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaDiaIA" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaDiaIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaTurnoIA" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaTurnoIA" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaTurnoIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaSetUpIA" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaSetUpIA" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaSetUpIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaParadaIA" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaParadaIA" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaParadaIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaFinalIA" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaFinalIA" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaFinalIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaAjusteIA" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaAjusteIA" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaAjusteIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrequenciaMinimaHoraIA" class="control-label"></label>
+                <input asp-for="FrequenciaMinimaHoraIA" class="form-control" />
+                <span asp-validation-for="FrequenciaMinimaHoraIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmostragemIA" class="control-label"></label>
+                <input asp-for="AmostragemIA" class="form-control" />
+                <span asp-validation-for="AmostragemIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MetodoIA" class="control-label"></label>
+                <input asp-for="MetodoIA" class="form-control" />
+                <span asp-validation-for="MetodoIA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

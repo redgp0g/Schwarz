@@ -502,3 +502,4 @@ $RECYCLE.BIN/
 /Schwarz/bin/Debug/net6.0/Schwarz.staticwebassets.runtime.json
 /Schwarz/bin/Debug/net6.0/Schwarz.pdb
 /Schwarz/bin/Debug/net6.0/Schwarz.dll
+/Schwarz/Views/PlanoControles/CreateCota.cshtml

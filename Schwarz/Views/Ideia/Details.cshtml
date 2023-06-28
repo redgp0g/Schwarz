@@ -7,38 +7,6 @@
 @{
 	Layout = "_Layout";
 	ViewData["Title"] = "Detalhes";
-	string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
-	// URL do caminho da imagem
-	string imageUrl = "\\\\Sch - fns03a\\ds1\\Inovacao1\\Imagensdb\\Assinatura.jpg";
-
-	// Credenciais de login
-	string username = "sch/guilherme.gordiano";
-	string password = "Lathixp1";
-
-	// Criar um objeto HttpClient com as credenciais
-	var httpClientHandler = new HttpClientHandler
-			{
-				Credentials = new NetworkCredential(username, password)
-			};
-	var httpClient = new HttpClient(httpClientHandler);
-
-	// Fazer a solicitação GET para obter a imagem
-	var imageResponse = await httpClient.GetAsync(imageUrl);
-
-	// Verificar se a resposta foi bem-sucedida
-	if (imageResponse.IsSuccessStatusCode)
-	{
-		// Ler os bytes da imagem
-		byte[] imageBytes = await imageResponse.Content.ReadAsByteArrayAsync();
-
-		// Exibir a imagem
-		<img src="data:image/jpeg;base64,@Convert.ToBase64String(imageBytes)" alt="Imagem" />
-	}
-	else
-	{
-	// Tratar o caso de falha na solicitação da imagem
-		<p>Falha ao obter a imagem.</p>
-	}
 }
 
 <h1 class="fw-bold text-center fs-1 text-black">Detalhes da Ideia</h1>
@@ -113,37 +81,6 @@
 					</div>
 					<div class="mb-4">
 						<label class="block mb-2 text-sm font-bold text-gray-700l">Anexos</label>
-						@if (Model.IdeiaArquivos != null && Model.IdeiaArquivos.Count > 0)
-						{
-							<ul>
-								@foreach (var anexo in Model.IdeiaArquivos)
-								{
-										// Caminho do arquivo
-										string filePath = anexo.Arquivo.Caminho;
-
-										// Obter a extensão do arquivo
-										string fileExtension = System.IO.Path.GetExtension(filePath);
-
-										// Lista de extensões de imagem permitidas
-										
-									
-									<li>
-										@if (imageExtensions.Contains(fileExtension, StringComparer.OrdinalIgnoreCase))
-										{
-											<img src="@Url.Content(anexo.Arquivo.Caminho)" alt="@anexo.Arquivo.Nome" class="block w-full">
-										}
-										else
-										{
-											<a href="@Url.Content(anexo.Arquivo.Caminho)" target="_blank" class="block w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@anexo.Arquivo.Nome</a>
-										}
-									</li>
-								}
-							</ul>
-						}
-						else
-						{
-							<p>Nenhum anexo encontrado.</p>
-						}
 					</div>
 					<div class="my-5 text-center">
 						<a class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-sky-300 to-blue-700 rounded-full hover:bg-gradient-to-r hover:from-blue-400 hover:to-sky-800 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" href="/Ideia">Voltar para Painel</a>
