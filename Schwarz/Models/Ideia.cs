@@ -35,6 +35,8 @@ namespace Schwarz.Models
 		public decimal? GanhoRealizado { get; set; }
 
 		public virtual ICollection<EquipeIdeia> EquipeIdeia { get; set; }
+		[Column(TypeName = "varbinary(max)")]
+		public byte[]? Anexo { get; set; }
 		[NotMapped]
 		[Required(ErrorMessage = "Selecione pelo menos um funcionário")]
 		public List<int>? Participantesids { get; set; }

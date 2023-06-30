@@ -20,22 +20,22 @@ namespace ProgramaIdeias.Controllers
 		private readonly SignInManager<SchwarzUser> _signInManager;
 		private readonly SchwarzContext _context;
 		private readonly IIdeiaRepository _ideiaRepository;
+		private readonly IWebHostEnvironment _hostingEnvironment;
 
-		public IdeiaController(SchwarzContext contexto, SignInManager<SchwarzUser> signInManager, UserManager<SchwarzUser> userManager, IIdeiaRepository ideiaRepository)
+		public IdeiaController(SchwarzContext contexto, SignInManager<SchwarzUser> signInManager, UserManager<SchwarzUser> userManager, IIdeiaRepository ideiaRepository, IWebHostEnvironment hostingEnvironment)
 		{
 			_context = contexto;
 			_signInManager = signInManager;
 			_userManager = userManager;
 			_ideiaRepository = ideiaRepository;
+			_hostingEnvironment = hostingEnvironment;
 
 		}
 
 		[HttpGet]
 		public IActionResult Index()
 		{
-			var equipes = _context.EquipeIdeia.ToList();
-
-			var ideia = _context.Ideia.ToList().OrderByDescending(x => x.Data);
+			var ideia = _context.Ideia.Include(x => x.EquipeIdeia).ToList().OrderByDescending(x => x.Data);
 			return View(ideia);
 		}
 
@@ -54,12 +54,12 @@ namespace ProgramaIdeias.Controllers
 			{
 				return NotFound();
 			}
-			var cadastropare = await _context.Ideia.FindAsync(id);
-			if (cadastropare == null)
+			var ideia = await _context.Ideia.FindAsync(id);
+			if (ideia == null)
 			{
 				return NotFound();
 			}
-			return View(cadastropare);
+			return View(ideia);
 		}
 
 		[Authorize(Roles = "IdeiaAdmin")]
@@ -106,8 +106,28 @@ namespace ProgramaIdeias.Controllers
 				ideia.Status = "Recebida";
 				using var transaction = _context.Database.BeginTransaction();
 
-                try
+				try
 				{
+					// Verifique se existem arquivos
+					if (files != null && files.Count > 0)
+					{
+						foreach (var file in files)
+						{
+							// Verifique o tamanho do arquivo (opcional)
+							if (file.Length > 0)
+							{
+								// Leia o conteúdo do arquivo em um array de bytes
+								using (var memoryStream = new MemoryStream())
+								{
+									file.CopyTo(memoryStream);
+									byte[] fileBytes = memoryStream.ToArray();
+
+									// Atribua o conteúdo do arquivo à propriedade Anexo
+									ideia.Anexo = fileBytes;
+								}
+							}
+						}
+					}
 					_context.Add(ideia);
 					_context.SaveChanges();
 					foreach (var participante in ideia.Participantesids)
@@ -116,45 +136,9 @@ namespace ProgramaIdeias.Controllers
 						_context.Add(equipeIdeia);
 						_context.SaveChanges();
 					}
-					foreach (var file in files)
-					{
-						if (file != null && file.Length > 0)
-						{
-							// Verifica se o arquivo com o mesmo nome já existe na pasta
-							string nomeArquivo = Path.GetFileName(file.FileName);
-							string filePath = Path.Combine("\\\\Sch-fns03a\\ds1\\Inovacao1\\Imagensdb", nomeArquivo);
-
-							if (System.IO.File.Exists(filePath))
-							{
-								TempData["MensagemErro"] = "Já existe um arquivo com o mesmo nome na pasta.";
-								ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
-								return View(ideia);
-							}
-
-							using (var stream = new FileStream(filePath, FileMode.Create))
-							{
-								file.CopyTo(stream);
-							}
-
-							// Registra os detalhes do arquivo na tabela "Arquivos"
-							Arquivo arquivo = new Arquivo
-							{
-								Nome = nomeArquivo,
-								Caminho = filePath,
-								TipoMIME = file.ContentType,
-								Tamanho = file.Length,
-								DataUpload = DateTime.Now
-							};
-
-							_context.Arquivo.Add(arquivo);
-							_context.SaveChanges();
-
-							_context.SaveChanges();
-						}
-					}
 					transaction.Commit();
-                    return RedirectToAction(nameof(Index));
-                }
+					return RedirectToAction(nameof(Index));
+				}
 				catch (Exception ex)
 				{
 					transaction.Rollback();
@@ -207,8 +191,8 @@ namespace ProgramaIdeias.Controllers
 					{
 						_context.EquipeIdeia.Remove(equipe);
 					}
-                    _context.Ideia.Remove(ideia);
-                }
+					_context.Ideia.Remove(ideia);
+				}
 
 				await _context.SaveChangesAsync();
 				transaction.Commit();
@@ -269,8 +253,8 @@ namespace ProgramaIdeias.Controllers
 				_context.SaveChanges();
 				return Ok();
 			}
-            return NotFound();
-        }
+			return NotFound();
+		}
 
 		[HttpPost]
 		public IActionResult AdicionarParticipante(int idfuncionario, int idideia)
@@ -281,8 +265,8 @@ namespace ProgramaIdeias.Controllers
 				bool equipeIdeiaExistente = _context.EquipeIdeia.Any(ei => ei.IDFuncionario == func.IDFuncionario && ei.IDIdeia == idideia);
 				if (equipeIdeiaExistente)
 				{
-                    return Conflict("Já existe esse participante na equipe!");
-                }
+					return Conflict("Já existe esse participante na equipe!");
+				}
 
 				EquipeIdeia equipeIdeia = new(func.IDFuncionario, idideia);
 				_context.EquipeIdeia.Add(equipeIdeia);
@@ -298,17 +282,6 @@ namespace ProgramaIdeias.Controllers
 
 			}
 			return NotFound();
-        }
-
-	public List<int> GetFuncionariosIDs()
-	{
-		var funcs = _context.Funcionario.Where(x => x.Ativo == true).OrderBy(x => x.Nome).ToList();
-		List<int> ids = new();
-		foreach (var func in funcs)
-		{
-			ids.Add(func.IDFuncionario);
 		}
-		return ids;
 	}
-}
 }
