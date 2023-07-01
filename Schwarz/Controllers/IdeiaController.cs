@@ -47,6 +47,7 @@ namespace ProgramaIdeias.Controllers
 
 		}
 
+		[HttpGet]
 		public async Task<IActionResult> Details(int? id)
 		{
 
@@ -62,6 +63,7 @@ namespace ProgramaIdeias.Controllers
 			return View(ideia);
 		}
 
+		[HttpGet]
 		[Authorize(Roles = "IdeiaAdmin")]
 		public IActionResult Edit(int id)
 		{
@@ -91,6 +93,7 @@ namespace ProgramaIdeias.Controllers
 			}
 
 		}
+		[HttpGet]
 		public IActionResult Create()
 		{
 			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
@@ -108,6 +111,14 @@ namespace ProgramaIdeias.Controllers
 
 				try
 				{
+					_context.Add(ideia);
+					_context.SaveChanges();
+					foreach (var participante in ideia.Participantesids)
+					{
+						EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
+						_context.Add(equipeIdeia);
+						_context.SaveChanges();
+					}
 					// Verifique se existem arquivos
 					if (files != null && files.Count > 0)
 					{
@@ -122,19 +133,16 @@ namespace ProgramaIdeias.Controllers
 									file.CopyTo(memoryStream);
 									byte[] fileBytes = memoryStream.ToArray();
 
+									string tipoMime = file.ContentType;
+									string fileName = file.FileName;
+
+									IdeiaAnexo ideiaAnexo = new(fileName, fileBytes, tipoMime, ideia.IDIdeia);
+									_context.Add(ideiaAnexo);
+									_context.SaveChanges();
 									// Atribua o conteúdo do arquivo à propriedade Anexo
-									ideia.Anexo = fileBytes;
 								}
 							}
 						}
-					}
-					_context.Add(ideia);
-					_context.SaveChanges();
-					foreach (var participante in ideia.Participantesids)
-					{
-						EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
-						_context.Add(equipeIdeia);
-						_context.SaveChanges();
 					}
 					transaction.Commit();
 					return RedirectToAction(nameof(Index));
@@ -190,6 +198,10 @@ namespace ProgramaIdeias.Controllers
 					foreach (var equipe in ideia.EquipeIdeia)
 					{
 						_context.EquipeIdeia.Remove(equipe);
+					}
+					foreach (var anexo in ideia.IdeiaAnexo)
+					{
+						_context.IdeiaAnexo.Remove(anexo);
 					}
 					_context.Ideia.Remove(ideia);
 				}
@@ -280,6 +292,51 @@ namespace ProgramaIdeias.Controllers
 
 				return Ok(result);
 
+			}
+			return NotFound();
+		}
+		[HttpPost]
+		public IActionResult AdicionarAnexo(IFormFileCollection files, int idideia)
+		{
+			try
+			{
+				foreach (var file in files)
+				{
+					// Leia o conteúdo do arquivo em um array de bytes
+					using (var memoryStream = new MemoryStream())
+					{
+						file.CopyTo(memoryStream);
+						byte[] fileBytes = memoryStream.ToArray();
+
+						string tipoMime = file.ContentType;
+						string fileName = file.FileName;
+
+						IdeiaAnexo ideiaAnexo = new(fileName, fileBytes, tipoMime, idideia);
+						_context.Add(ideiaAnexo);
+						_context.SaveChanges();
+					}
+				}
+				return Ok();
+			}
+
+			catch (Exception ex)
+			{
+				return Json(new
+				{
+					error = "Ocorreu um erro ao adicionar o anexo: " + ex.Message
+				});
+			}
+		}
+
+		[HttpPost]
+		public IActionResult RemoverAnexo(int id)
+		{
+			var anexo = _context.IdeiaAnexo.Find(id);
+			if (anexo != null)
+			{
+				_context.IdeiaAnexo.Remove(anexo);
+				_context.SaveChanges();
+				return Ok();
 			}
 			return NotFound();
 		}

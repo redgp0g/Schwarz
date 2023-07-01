@@ -74,10 +74,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <label class="block mb-2 text-sm font-bold text-gray-700l">@Html.DisplayNameFor(model => model.Anexo)</label>
-                        @if (Model.Anexo != null)
+                        <label class="block mb-2 text-sm font-bold text-gray-700l">Anexos</label>
+                        @if (Model.IdeiaAnexo != null)
                         {
-                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.Anexo)" class="w-full h-auto"/>
+                            foreach(var anexo in Model.IdeiaAnexo)
+                            {
+                                <div class="mb-5">
+                                    <a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Anexo)" download class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@anexo.Nome</a>
+                                </div>
+                            }
+                            
                         }
                         else
                         {
