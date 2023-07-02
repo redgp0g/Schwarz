@@ -8,384 +8,431 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Schwarz</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Schwarz</title>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/21.1.35/material.css" />
-    <script src="https://kit.fontawesome.com/5d8b80ea21.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-    <script src="https://cdn.syncfusion.com/ej2/21.1.35/dist/ej2.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/21.1.35/material.css" />
+	<script src="https://kit.fontawesome.com/5d8b80ea21.js" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+	<script src="https://cdn.syncfusion.com/ej2/21.1.35/dist/ej2.min.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-black">
-    <header class="bg-white">
-        <nav class="mx-auto flex items-center justify-between p-6 lg:px-8 border-b-2 border-black" aria-label="Global">
-            <div class="flex lg:flex-1">
-                <a asp-action="Index" asp-controller="Home" class="-m-1.5 p-1.5">
-                    <span class="sr-only">Your Company</span>
-                    <img class="h-8 w-auto" src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="">
-                </a>
-            </div>
-            <div class="flex lg:hidden">
-                <button id="toggleSideBar" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onclick="toggleHidden('sideBar')">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                </button>
-            </div>
-            <!--Menu de Ideia-->
-            <div class="hidden lg:flex lg:gap-x-12 flex-1">
-                <div class="relative">
-                    <button type="button" id="toggleMenuIdeia" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias',this.id)">
-                        Programa de Ideias
-                        <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
+<body class="bg-no-repeat bg-cover" style="background-image: url(/image/fundo.jpg);">
+	<header class="bg-white">
+		<nav class="mx-auto flex items-center justify-between p-6 lg:px-8 border-b-2 border-black" aria-label="Global">
+			<div class="flex lg:flex-1">
+				<a asp-action="Index" asp-controller="Home" class="-m-1.5 p-1.5">
+					<span class="sr-only">Your Company</span>
+					<img class="h-8 w-auto" src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="">
+				</a>
+			</div>
+			<div class="flex lg:hidden">
+				<button id="toggleSideBar" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onclick="toggleHidden('sideBar')">
+					<span class="sr-only">Open main menu</span>
+					<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+					</svg>
+				</button>
+			</div>
+			<!--Menu de Ideia-->
+			<div class="hidden lg:flex lg:gap-x-12 flex-1">
+				<div class="relative">
+					<button type="button" id="toggleMenuIdeia" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias',this.id)">
+						Programa de Ideias
+						<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+						</svg>
+					</button>
 
-                    <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuIdeias">
-                        <div class="p-4">
-                            <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
-                                </div>
-                                <div class="flex-auto">
-                                    <a asp-action="Create" asp-controller="Ideia" class="block font-semibold text-gray-900">
-                                        Cadastrar
-                                        <span class="absolute inset-0"></span>
-                                    </a>
-                                    <p class="mt-1 text-gray-600">Não deixe sua criatividade ficar apenas na mente! Cadastre agora sua ideia!</p>
-                                </div>
-                            </div>
+					<div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuIdeias">
+						<div class="p-4">
+							<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+								<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+									<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+								</div>
+								<div class="flex-auto">
+									<a asp-action="Create" asp-controller="Ideia" class="block font-semibold text-gray-900">
+										Cadastrar
+										<span class="absolute inset-0"></span>
+									</a>
+									<p class="mt-1 text-gray-600">Não deixe sua criatividade ficar apenas na mente! Cadastre agora sua ideia!</p>
+								</div>
+							</div>
 
-                            <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                                </div>
-                                <div class="flex-auto">
-                                    <a asp-action="Index" asp-controller="Ideia" class="block font-semibold text-gray-900">
-                                        Painel de Ideias
-                                        <span class="absolute inset-0"></span>
-                                    </a>
-                                    <p class="mt-1 text-gray-600">Verifique aqui sua ideia e veja como podemos torná-la realidade!</p>
-                                </div>
-                            </div>
+							<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+								<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+									<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+								</div>
+								<div class="flex-auto">
+									<a asp-action="Index" asp-controller="Ideia" class="block font-semibold text-gray-900">
+										Painel de Ideias
+										<span class="absolute inset-0"></span>
+									</a>
+									<p class="mt-1 text-gray-600">Verifique aqui sua ideia e veja como podemos torná-la realidade!</p>
+								</div>
+							</div>
 
-                            <div class="group hidden relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                                </div>
-                                <div class="flex-auto">
-                                    <a asp-action="Ranking" asp-controller="Ideia" class="block font-semibold text-gray-900">
-                                        Ranking de Ideias
-                                        <span class="absolute inset-0"></span>
-                                    </a>
-                                    <p class="mt-1 text-gray-600">Confira agora a tabela de liderança das ideias em destaque aqui!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @if (User.IsInRole("FSPAdmin"))
-                {
-                    <div class="relative">
-                        <button id="toggleMenuFSP" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFSP',this.id)">
-                            Controle de FSP
-                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
+							<div class="group hidden relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+								<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+									<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+								</div>
+								<div class="flex-auto">
+									<a asp-action="Ranking" asp-controller="Ideia" class="block font-semibold text-gray-900">
+										Ranking de Ideias
+										<span class="absolute inset-0"></span>
+									</a>
+									<p class="mt-1 text-gray-600">Confira agora a tabela de liderança das ideias em destaque aqui!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				@if (User.IsInRole("FSPAdmin"))
+				{
+					<div class="relative">
+						<button id="toggleMenuFSP" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFSP',this.id)">
+							Controle de FSP
+							<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+								<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+							</svg>
+						</button>
 
-                        <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuFSP">
-                            <div class="p-4">
-                                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
-                                    </div>
-                                    <div class="flex-auto">
-                                        <a asp-action="Create" asp-controller="FSP" class="block font-semibold text-gray-900">
-                                            Abrir FSP
-                                            <span class="absolute inset-0"></span>
-                                        </a>
-                                        <p class="mt-1 text-gray-600">Acesse para abrir uma nova FSP!</p>
-                                    </div>
-                                </div>
+						<div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuFSP">
+							<div class="p-4">
+								<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+									<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+									</div>
+									<div class="flex-auto">
+										<a asp-action="Create" asp-controller="FSP" class="block font-semibold text-gray-900">
+											Abrir FSP
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-600">Acesse para abrir uma nova FSP!</p>
+									</div>
+								</div>
 
-                                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                                    </div>
-                                    <div class="flex-auto">
-                                        <a asp-action="Index" asp-controller="FSP" class="block font-semibold text-gray-900">
-                                            Tabela de FSP
-                                            <span class="absolute inset-0"></span>
-                                        </a>
-                                        <p class="mt-1 text-gray-600">Verifique aqui as FSP abertas e veja como está o processo!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-                @if (User.IsInRole("PlanoControleAdmin"))
-                {
-                    <div class="relative">
-                        <button id="toggleMenuPlanoControle" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPlanoControle',this.id)">
-                            Planos de Controle
-                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
+								<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+									<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+									</div>
+									<div class="flex-auto">
+										<a asp-action="Index" asp-controller="FSP" class="block font-semibold text-gray-900">
+											Tabela de FSP
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-600">Verifique aqui as FSP abertas e veja como está o processo!</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+				@if (User.IsInRole("PlanoControleAdmin"))
+				{
+					<div class="relative">
+						<button id="toggleMenuPlanoControle" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPlanoControle',this.id)">
+							Planos de Controle
+							<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+								<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+							</svg>
+						</button>
 
-                        <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuPlanoControle">
-                            <div class="p-4">
-                                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
-                                    </div>
-                                    <div class="flex-auto">
-                                        <a asp-action="Create" asp-controller="PlanoControle" class="block font-semibold text-gray-900">
-                                            Criar Plano de Controle
-                                            <span class="absolute inset-0"></span>
-                                        </a>
-                                        <p class="mt-1 text-gray-600">Acesse para abrir uma nova FSP!</p>
-                                    </div>
-                                </div>
+						<div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuPlanoControle">
+							<div class="p-4">
+								<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+									<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+									</div>
+									<div class="flex-auto">
+										<a asp-action="Create" asp-controller="PlanoControle" class="block font-semibold text-gray-900">
+											Criar Plano de Controle
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-600">Acesse para abrir uma nova FSP!</p>
+									</div>
+								</div>
 
-                                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                                    </div>
-                                    <div class="flex-auto">
-                                        <a asp-action="Index" asp-controller="PlanoControle" class="block font-semibold text-gray-900">
-                                            Planos de Controle
-                                            <span class="absolute inset-0"></span>
-                                        </a>
-                                        <p class="mt-1 text-gray-600">Verifique aqui as FSP abertas e veja como está o processo!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+								<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+									<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+									</div>
+									<div class="flex-auto">
+										<a asp-action="Index" asp-controller="PlanoControle" class="block font-semibold text-gray-900">
+											Planos de Controle
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-600">Verifique aqui as FSP abertas e veja como está o processo!</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
 
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <div class="relative">
-                        <button type="button" id="toggleMenuUser" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900 capitalize" onclick="toggleHidden('subMenuUser',this.id)">
-                            Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome.ToLower()!
-                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-
-                                
-                        <div class="absolute -left-8 top-full z-10 mt-3 w-100 max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuUser">
-                            <div class="p-4">
-                                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
-                                        </svg>
+				@if (SignInManager.IsSignedIn(User))
+				{
+					<div class="relative">
+						<button type="button" id="toggleMenuUser" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900 capitalize" onclick="toggleHidden('subMenuUser',this.id)">
+							Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Nome.ToLower()!
+							<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+								<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+							</svg>
+						</button>
 
 
-                                    </div>
-                                    <div class="flex-auto">
-                                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="block font-semibold text-black">Meus Dados<span class="absolute inset-0"></span></a>
-                                    </div>
-                                </div>
-                                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-                                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
+						<div class="absolute -left-8 top-full z-10 mt-3 w-100 max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuUser">
+							<div class="p-4">
+								<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+									<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+										</svg>
 
-                                    </div>
-                                    <div class="flex-auto">
-                                        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                            <button id="logout" type="submit" class="block font-semibold text-red-500">Sair<span class="absolute inset-0"></span></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="relative flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                        </svg>
 
-                        <a asp-area="Identity" asp-page="/Account/Login" class="text-xl font-semibold leading-6 text-gray-900 ml-2">Entrar<span class="absolute inset-0"></span></a>
+									</div>
+									<div class="flex-auto">
+										<a asp-area="Identity" asp-page="/Account/Manage/Index" class="block font-semibold text-black">Meus Dados<span class="absolute inset-0"></span></a>
+									</div>
+								</div>
+								<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+									<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+										</svg>
 
-                    </div>
-                }
-            </div>
-        </nav>
-        <!-- Menu Mobile-->
-        <div class="lg:hidden hidden" role="dialog" aria-modal="true" aria-expanded="false" id="sideBar">
-            <!-- Background backdrop, show/hide based on slide-over state. -->
-            <div class="fixed inset-0 z-10"></div>
-            <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-                <div class="flex items-center justify-between">
-                    <a asp-action="Index" asp-controller="Home" class="-m-1.5 p-1.5">
-                        <span class="sr-only">Your Company</span>
-                        <img class="h-8 w-auto" src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="">
-                    </a>
-                    <button id="toggleSideBarMobile" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" onclick="toggleHidden('sideBar')">
-                        <span class="sr-only">Close menu</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="mt-6 flow-root">
-                    <div class="-my-6 divide-y divide-gray-500/10">
-                        <div class="space-y-2 py-6">
-                            <!-- Sidebar de Ideia -->
-                            <div class="-mx-3">
-                                <button id="toggleMenuMobile" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileIdeia',this.id)">
-                                    Programa de Ideias
-                                    <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                                <!-- 'Ideia' sub-menu -->
-                                <div class="mt-2 space-y-2 hidden" id="subMenuMobileIdeia" aria-expanded="false">
-                                    <a asp-action="Create" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
+									</div>
+									<div class="flex-auto">
+										<form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+											<button id="logout" type="submit" class="block font-semibold text-red-500">Sair<span class="absolute inset-0"></span></button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					@if(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Foto != null)
+					{
+						<img class="object-center object-cover rounded-full h-12 w-12" src="data:image;base64,@(Convert.ToBase64String(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Foto))" alt="imagem">
+					}
+				}
+				else
+				{
+					<div class="relative flex">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+						</svg>
 
-                                    <a asp-action="Index" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Painel de Ideias</a>
+						<a asp-area="Identity" asp-page="/Account/Login" class="text-xl font-semibold leading-6 text-gray-900 ml-2">Entrar<span class="absolute inset-0"></span></a>
 
-                                </div>
-                            </div>
-                            @if (User.IsInRole("FSPAdmin"))
-                            {
-                                <!-- Sidebar de FSP -->
-                                <div class="-mx-3">
-                                    <button id="toggleMenuFSPMobile" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileFSP',this.id)">
-                                        Controle de FSP
-                                        <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                    <!-- 'FSP' sub-menu -->
-                                    <div class="mt-2 space-y-2 hidden" id="subMenuMobileFSP" aria-expanded="false">
-                                        <a asp-action="Create" asp-controller="FSP" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
+					</div>
+				}
+				<div class="relative flex">
+					<a asp-area="Identity" asp-page="/Account/Register" class="text-xl font-semibold leading-6 text-gray-900 ml-2">Registrar<span class="absolute inset-0"></span></a>
+				</div>
+				<!-- Facebook -->
+				<a type="button" href="https://www.facebook.com/schwarzmetalmecanica" target="_blank" rel="noopener noreferrer"
+						data-te-ripple-init
+						data-te-ripple-color="light"
+						class="mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+						style="background-color: #1877f2">
+					<svg xmlns="http://www.w3.org/2000/svg"
+						 class="h-4 w-4"
+						 fill="currentColor"
+						 viewBox="0 0 24 24">
+						<path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+					</svg>
+				</a>
 
-                                        <a asp-action="Index" asp-controller="FSP" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Tabela de FSP</a>
+				<!-- Instagram -->
+				<a type="button" href="https://www.instagram.com/schwarzsa_/" target="_blank" rel="noopener noreferrer"
+						data-te-ripple-init
+						data-te-ripple-color="light"
+						class="mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+						style="background-color: #c13584">
+						<svg xmlns="http://www.w3.org/2000/svg"
+							 class="h-4 w-4"
+							 fill="currentColor"
+							 viewBox="0 0 24 24">
+							<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+						</svg>
+				</a>
+				<!-- Linkedin -->
+				<a type="button" href="https://www.linkedin.com/company/schwarz-sa/mycompany/" target="_blank" rel="noopener noreferrer"
+						data-te-ripple-init
+						data-te-ripple-color="light"
+						class="mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+						style="background-color: #0077b5">
+					<svg xmlns="http://www.w3.org/2000/svg"
+						 class="h-4 w-4"
+						 fill="currentColor"
+						 viewBox="0 0 24 24">
+						<path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+					</svg>
+				</a>
+			</div>
+		</nav>
+		<!-- Menu Mobile-->
+		<div class="lg:hidden hidden" role="dialog" aria-modal="true" aria-expanded="false" id="sideBar">
+			<!-- Background backdrop, show/hide based on slide-over state. -->
+			<div class="fixed inset-0 z-10"></div>
+			<div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+				<div class="flex items-center justify-between">
+					<a asp-action="Index" asp-controller="Home" class="-m-1.5 p-1.5">
+						<span class="sr-only">Your Company</span>
+						<img class="h-8 w-auto" src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="">
+					</a>
+					<button id="toggleSideBarMobile" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" onclick="toggleHidden('sideBar')">
+						<span class="sr-only">Close menu</span>
+						<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</button>
+				</div>
+				<div class="mt-6 flow-root">
+					<div class="-my-6 divide-y divide-gray-500/10">
+						<div class="space-y-2 py-6">
+							<!-- Sidebar de Ideia -->
+							<div class="-mx-3">
+								<button id="toggleMenuMobile" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileIdeia',this.id)">
+									Programa de Ideias
+									<svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+										<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+									</svg>
+								</button>
+								<!-- 'Ideia' sub-menu -->
+								<div class="mt-2 space-y-2 hidden" id="subMenuMobileIdeia" aria-expanded="false">
+									<a asp-action="Create" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
 
-                                    </div>
-                                </div>
-                            }
-                            @if (SignInManager.IsSignedIn(User))
-                            {
-                                <div class="-mx-3">
-                                    <button id="toggleMenuUserMobile" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 capitalize" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileUser',this.id)">
-                                        Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome.ToLower()!
-                                        <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                    <!-- 'Ideia' sub-menu -->
-                                    <div class="mt-2 space-y-2 hidden" id="subMenuMobileUser" aria-expanded="false">
-                                        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                            <button id="logout" type="submit" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-red-500 hover:bg-gray-50">Sair</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="py-6 flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                                    </svg>
-                                    <a asp-area="Identity" asp-page="/Account/Login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Entrar</a>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+									<a asp-action="Index" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Painel de Ideias</a>
 
-    <div>
-        <main>
-            @if (TempData["MensagemErro"] != null)
-            {
-                    <div class="fixed inset-x-0 top-18 z-50 flex justify-center">
-                        <div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            @TempData["MensagemErro"]
-                        </div>
-                    </div>
-            }
-            @if (TempData["MensagemTrocaSenha"] != null)
-            {
-                <a asp-area="Identity" asp-page="/Account/Manage/ChangePassword">
-                    <div class="fixed inset-x-0 top-18 z-50 flex justify-center">
-                        <div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            @TempData["MensagemTrocaSenha"]
-                        </div>
-                    </div>
-                </a>
-            }
-            @RenderBody()
-            @RenderSection("ControlsSection", required: false)
-        </main>
-    </div>
+								</div>
+							</div>
+							@if (User.IsInRole("FSPAdmin"))
+							{
+								<!-- Sidebar de FSP -->
+								<div class="-mx-3">
+									<button id="toggleMenuFSPMobile" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileFSP',this.id)">
+										Controle de FSP
+										<svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+											<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+										</svg>
+									</button>
+									<!-- 'FSP' sub-menu -->
+									<div class="mt-2 space-y-2 hidden" id="subMenuMobileFSP" aria-expanded="false">
+										<a asp-action="Create" asp-controller="FSP" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
 
-    <div class="absolute bottom-0 left-0 right-0 px-4 py-3 text-center text-black bg-white border-t-2 border-black h-8 flex justify-center text-xs items-center">
-        &copy; 2022 - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
-    </div>
-    <script>
-        
-        function toggleHidden(id,idbtn) {
-            var element = document.getElementById(id);
-            var isExpanded = element.getAttribute("aria-expanded") === "true";
-            if (isExpanded) {
-                element.setAttribute("aria-expanded", "false");
-                element.classList.add("hidden");
+										<a asp-action="Index" asp-controller="FSP" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Tabela de FSP</a>
 
-            } else {
-                element.setAttribute("aria-expanded", "true");
-                element.classList.remove("hidden");
-            }
+									</div>
+								</div>
+							}
+							@if (SignInManager.IsSignedIn(User))
+							{
+								<div class="-mx-3">
+									<button id="toggleMenuUserMobile" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 capitalize" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileUser',this.id)">
+										Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Nome.ToLower()!
+										<svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+											<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+										</svg>
+									</button>
+									<!-- 'Ideia' sub-menu -->
+									<div class="mt-2 space-y-2 hidden" id="subMenuMobileUser" aria-expanded="false">
+										<form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+											<button id="logout" type="submit" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-red-500 hover:bg-gray-50">Sair</button>
+										</form>
+									</div>
+								</div>
+							}
+							else
+							{
+								<div class="py-6 flex items-center">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-5">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+									</svg>
+									<a asp-area="Identity" asp-page="/Account/Login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Entrar</a>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 
-            if(idbtn != null){
-            document.addEventListener('click', function (event) {
-                if (!element.contains(event.target) && event.target.id !== idbtn) {
-                    element.setAttribute("aria-expanded", "false");
-                    element.classList.add('hidden');
-                }
-            });
-            }
-        }
-        
+	<div>
+		<main>
+			@if (TempData["MensagemErro"] != null)
+			{
+				<div class="fixed inset-x-0 top-18 z-50 flex justify-center">
+					<div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
+						@TempData["MensagemErro"]
+					</div>
+				</div>
+			}
+			@if (TempData["MensagemTrocaSenha"] != null)
+			{
+				<a asp-area="Identity" asp-page="/Account/Manage/ChangePassword">
+					<div class="fixed inset-x-0 top-18 z-50 flex justify-center">
+						<div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
+							@TempData["MensagemTrocaSenha"]
+						</div>
+					</div>
+				</a>
+			}
+			@RenderBody()
+			@RenderSection("ControlsSection", required: false)
+		</main>
+	</div>
 
-        setTimeout(function () {
-            document.getElementById('notification').classList.add('hidden');
-        }, 7000);
+	<div class="absolute bottom-0 left-0 right-0 px-4 py-3 text-center text-black bg-white border-t-2 border-black h-8 flex justify-center text-xs items-center">
+		&copy; 2022 - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
+	</div>
+	<script>
 
-    </script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-    <script src="//cdn.datatables.net/plug-ins/1.13.4/sorting/datetime-moment.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-    <ejs-scripts></ejs-scripts>
+		function toggleHidden(id, idbtn) {
+			var element = document.getElementById(id);
+			var isExpanded = element.getAttribute("aria-expanded") === "true";
+			if (isExpanded) {
+				element.setAttribute("aria-expanded", "false");
+				element.classList.add("hidden");
+
+			} else {
+				element.setAttribute("aria-expanded", "true");
+				element.classList.remove("hidden");
+			}
+
+			if (idbtn != null) {
+				document.addEventListener('click', function (event) {
+					if (!element.contains(event.target) && event.target.id !== idbtn) {
+						element.setAttribute("aria-expanded", "false");
+						element.classList.add('hidden');
+					}
+				});
+			}
+		}
+
+
+		setTimeout(function () {
+			document.getElementById('notification').classList.add('hidden');
+		}, 7000);
+
+	</script>
+	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+	<script src="//cdn.datatables.net/plug-ins/1.13.4/sorting/datetime-moment.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+	<ejs-scripts></ejs-scripts>
 </body>
 </html>

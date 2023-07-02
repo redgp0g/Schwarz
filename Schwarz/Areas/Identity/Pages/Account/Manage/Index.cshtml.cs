@@ -36,6 +36,22 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Display(Name = "Nome Completo")]
+            public string Nome{ get; set; }
+            [Display(Name = "Matrícula")]
+            public int? Matricula { get; set; }
+            public string? Turno{ get; set; }
+            public string? Setor{ get; set; }
+            public string? Cargo { get; set; }
+            [Display(Name = "Está ativo?")]
+            public bool Ativo { get; set; }
+            public int? Ramal { get; set; }
+            public byte[]? Foto { get; set; }
+            public IFormFile NovaFoto { get; set; }
+            public DateTime? DataNascimento { get; set; }
+            public string? IdAspNetUserLider { get; set; }
+
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -50,6 +66,15 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
+                Nome = user.Nome,
+                Matricula = user.Matricula,
+                Turno = user.Turno,
+                Cargo = user.Cargo,
+                Ativo = user.Ativo,
+                Ramal = user.Ramal,
+                Foto = user.Foto,
+                DataNascimento = user.DataNascimento,
+                IdAspNetUserLider = user.IdAspNetUserLider,
                 PhoneNumber = phoneNumber
             };
         }
@@ -90,7 +115,52 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
-
+            if (Input.Nome != user.Nome)
+            {
+                user.Nome = Input.Nome;
+            }
+            if (Input.Matricula != user.Matricula)
+            {
+                user.Matricula = Input.Matricula;
+            }
+            if (Input.Turno != user.Turno)
+            {
+                user.Turno = Input.Turno;
+            }
+            if (Input.Setor!= user.Setor)
+            {
+                user.Setor = Input.Setor;
+            }
+            if (Input.Cargo != user.Cargo)
+            {
+                user.Cargo = Input.Cargo;
+            }
+            if (Input.Ativo != user.Ativo)
+            {
+                user.Ativo = Input.Ativo;
+            }
+            if (Input.Ramal != user.Ramal)
+            {
+                user.Ramal = Input.Ramal;
+            }
+            if (Input.NovaFoto != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    Input.NovaFoto.CopyTo(memoryStream);
+                    byte[] fileBytes = memoryStream.ToArray();
+                    user.Foto = fileBytes;
+                }
+            }
+            if (Input.DataNascimento != user.DataNascimento)
+            {
+                user.DataNascimento = Input.DataNascimento;
+            }
+            if (Input.IdAspNetUserLider != user.IdAspNetUserLider)
+            {
+                user.IdAspNetUserLider = Input.IdAspNetUserLider;
+            }
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

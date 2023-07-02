@@ -1,4 +1,5 @@
-﻿using Schwarz.Data;
+﻿using Schwarz.Areas.Identity.Data;
+using Schwarz.Data;
 using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,14 +28,14 @@ namespace Schwarz.Models
         public int NFluxo { get; set; }
 		[Display(Name = "Observações")]
 		public string? Observacoes { get; set; }
-		[ForeignKey("FuncionarioElaborador")]
+		[ForeignKey("SchwarzUserElaborador")]
         [Display(Name = "Elaborador")]
-        public int IDFuncionarioElaborador { get; set; }
-		public virtual Funcionario? FuncionarioElaborador { get; set; }
-		[ForeignKey("FuncionarioAprovador")]
+        public string IDSchwarzUserElaborador { get; set; }
+		public virtual SchwarzUser? SchwarzUserElaborador { get; set; }
+		[ForeignKey("SchwarzUserAprovador")]
         [Display(Name = "Aprovador")]
-        public int IDFuncionarioAprovador { get; set; }
-		public virtual Funcionario? FuncionarioAprovador { get; set; }
+        public string IDSchwarzUserAprovador { get; set; }
+		public virtual SchwarzUser? SchwarzUserAprovador { get; set; }
 
 		public PlanoControle()
 		{

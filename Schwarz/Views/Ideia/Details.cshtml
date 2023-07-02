@@ -9,8 +9,6 @@
     ViewData["Title"] = "Detalhes";
 }
 
-<h1 class="fw-bold text-center fs-1 text-black">Detalhes da Ideia</h1>
-
 <div class="container mx-auto">
     <div class="flex justify-center px-6 my-12">
         <div class="w-full xl:w-3/4 lg:w-11/12 flex">
@@ -18,17 +16,24 @@
                 <h3 class="pt-4 text-2xl text-center">Detalhes da Ideia</h3>
                 <div class="px-8 ">
                     <label class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Participantes</label>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach (var participante in Model.EquipeIdeia)
                         {
 
                             <div class="w-full bg-neutral-300 rounded-lg p-12 flex flex-col justify-center items-center">
-                                <div class="mb-8 hidden">
-                                    <img class="object-center object-cover rounded-full h-48 w-36" src="/image/IMG_20230105_185421.jpg" alt="photo">
-                                </div>
+                                @if(participante.SchwarzUser.Foto != null)
+                                {
+                                    <div class="mb-8">
+                                        <img class="object-center object-cover rounded-full h-48 w-36" src="data:image;base64,@(Convert.ToBase64String(participante.SchwarzUser.Foto))" alt="imagem">
+                                    </div>
+                                }
+                                
                                 <div class="text-center">
-                                    <p class="text-xl text-gray-700 font-bold mb-2 capitalize">@participante.Funcionario.Nome.ToLower()</p>
-                                    <p class="text-base text-gray-400 font-normal">@participante.Funcionario.Setor.ToUpper()</p>
+                                    <p class="text-xl text-gray-700 font-bold mb-2 capitalize">@participante.SchwarzUser.Nome.ToLower()</p>
+                                    @if (participante.SchwarzUser.Setor != null)
+                                    {
+                                        <p class="text-base text-gray-400 font-normal">@participante.SchwarzUser.Setor.ToUpper()</p>
+                                    }
                                 </div>
                             </div>
                         }

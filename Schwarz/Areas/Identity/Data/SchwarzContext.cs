@@ -12,29 +12,16 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
         : base(options)
     {
     }
-    public DbSet<Arquivo> Arquivo { get; set; }
-    public DbSet<Boleto> Boleto { get; set; }
-    public DbSet<CadastroOleo> CadastroOleo { get; set; }
-	public DbSet<Cliente> Cliente { get; set; }
 	public DbSet<Cota> Cota{ get; set; }
-	public DbSet<Desenho> Desenho { get; set; }
-	public DbSet<DesenhoBoleto> DesenhoBoleto { get; set; }
+    public DbSet<SchwarzUser> SchwarzUser { get; set; }
 	public DbSet<EquipeFSP> EquipeFSP{ get; set; }
 	public DbSet<EquipeIdeia> EquipeIdeia { get; set; }
     public DbSet<Falha> Falha { get; set; }
-    public DbSet<Fluxo> Fluxo { get; set; }
-	public DbSet<FluxoOperacao> FluxoOperacao { get; set; }
 	public DbSet<FSP> FSP{ get; set; }
-	public DbSet<Funcionario> Funcionario { get; set; }
 	public DbSet<Ideia> Ideia { get; set; }
     public DbSet<IdeiaAnexo> IdeiaAnexo { get; set; }
-    public DbSet<Maquina> Maquina { get; set; }
-	public DbSet<Operacao> Operacao { get; set; }
 	public DbSet<PlanoAcao> PlanoAcao { get; set; }
 	public DbSet<PlanoControle> PlanoControle { get; set; }
-	public DbSet<Processo> Processo { get; set; }
-	public DbSet<ProcessoProduto> ProcessoProduto { get; set; }
-	public DbSet<Produto> Produto { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)

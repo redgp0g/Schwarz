@@ -35,29 +35,6 @@ namespace Schwarz.Repository
             _context.SaveChanges();
         }
 
-		public IEnumerable<Boleto> GetBoletos()
-		{
-			return _context.Boleto.ToList();
-		}
-
-		public IEnumerable<CadastroOleo> GetCadastroOleos()
-		{
-			return _context.CadastroOleo.ToList();
-		}
-
-		public IEnumerable<Cliente> GetClientes()
-		{
-			return _context.Cliente.ToList();
-		}
-
-		public IEnumerable<Desenho> GetDesenhos()
-		{
-			return _context.Desenho.ToList();
-		}
-		public IEnumerable<DesenhoBoleto> GetDesenhosBoletos()
-        {
-            return _context.DesenhoBoleto.ToList();
-        }
 
 		public IEnumerable<EquipeFSP> GetEquipesFSPs()
 		{
@@ -73,47 +50,23 @@ namespace Schwarz.Repository
             return _context.Falha.ToList();
         }
 
-        public IEnumerable<Fluxo> GetFluxos()
-		{
-			return _context.Fluxo.ToList();
-		}
-
-		public IEnumerable<FluxoOperacao> GetFluxoOperacaos()
-		{
-			return _context.FluxoOperacao.ToList();
-		}
 		public IEnumerable<FSP> GetFSPs()
 		{
 			return _context.FSP.ToList();
 		}
 
-		public IEnumerable<Funcionario> GetFuncionarios()
+		public IEnumerable<SchwarzUser> GetSchwarzUsers()
         {
-            return _context.Funcionario.ToList();
+            return _context.SchwarzUser.ToList();
         }
 
-        public IEnumerable<Funcionario> GetFuncionariosAtivos()
+        public IEnumerable<SchwarzUser> GetSchwarzUsersAtivos()
         {
-            return _context.Funcionario.Where(x => x.Ativo == true).ToList().OrderBy(x => x.Nome);
+            return _context.SchwarzUser.Where(x => x.Ativo == true).ToList().OrderBy(x => x.Nome);
         }
         public IEnumerable<Ideia> GetIdeias()
 		{
 			return _context.Ideia.ToList();
-		}
-
-		public IEnumerable<Maquina> GetMaquinas()
-		{
-			return _context.Maquina.ToList();
-		}
-
-		public IEnumerable<Operacao> GetOperacoes()
-		{
-			return _context.Operacao.ToList();
-		}
-
-		public IEnumerable<Processo> GetProcessos()
-		{
-			return _context.Processo.ToList();
 		}
 
 		public IEnumerable<PlanoAcao> GetPlanoAcaos()
@@ -121,15 +74,6 @@ namespace Schwarz.Repository
 			return _context.PlanoAcao.ToList();
 		}
 
-		public IEnumerable<ProcessoProduto> GetProcessoProdutos()
-		{
-			return _context.ProcessoProduto.ToList();
-		}
-
-		public IEnumerable<Produto> GetProdutos()
-        {
-            return _context.Produto.ToList();
-        }
 
     }
 }

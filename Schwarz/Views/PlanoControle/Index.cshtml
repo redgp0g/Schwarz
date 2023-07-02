@@ -49,10 +49,10 @@
                 @Html.DisplayNameFor(model => model.Observacoes)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FuncionarioElaborador)
+                @Html.DisplayNameFor(model => model.SchwarzUserElaborador)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FuncionarioAprovador)
+                @Html.DisplayNameFor(model => model.SchwarzUserAprovador)
             </th>
             <th></th>
         </tr>
@@ -94,10 +94,10 @@
                 @Html.DisplayFor(modelItem => item.Observacoes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FuncionarioElaborador.IDFuncionario)
+                @Html.DisplayFor(modelItem => item.SchwarzUserElaborador.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FuncionarioAprovador.IDFuncionario)
+                @Html.DisplayFor(modelItem => item.SchwarzUserAprovador.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IDPlanoControle">Edit</a> |

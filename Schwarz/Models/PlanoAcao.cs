@@ -15,9 +15,9 @@ namespace Schwarz.Models
 		[Key]
 		public int IDPlanoAcao { get; set; }
 
-		[ForeignKey("Funcionario")]
-		public int IDFuncionario { get; set; }
-		public virtual Funcionario? Funcionario{ get; set; }
+		[ForeignKey("SchwarzUser")]
+		public string IDSchwarzUser { get; set; }
+		public virtual SchwarzUser? SchwarzUser{ get; set; }
 
 		[ForeignKey("FSP")]
 		public int IDFSP { get; set; }

@@ -22,7 +22,7 @@
 					{
 						qtdparticipantes++;
 						<div class="participante my-2">
-							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline capitalize">@participante.Funcionario.Nome.ToLower()</label>
+							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline capitalize">@participante.SchwarzUser.Nome.ToLower()</label>
 							<button class="p-2 text-white bg-gradient-to-r from-red-400 to-orange-700 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-900 hover:cursor-pointer focus:outline-none focus:shadow-outline remover-participante" data-id="@participante.IDEquipeIdeia">
 								Deletar
 							</button>
@@ -30,7 +30,7 @@
 					}
 				</div>
 				<div class="my-3">
-					<select class="form-select select2" id="novoparticipante" asp-items="ViewBag.Funcionarios">
+					<select class="form-select select2" id="novoparticipante" asp-items="ViewBag.SchwarzUsers">
 					</select>
 					<button class="p-2 text-white bg-gradient-to-r from-green-500 to-emerald-700 rounded-lg hover:bg-gradient-to-r hover:from-emerald-500 hover:to-green-800 hover:cursor-pointer focus:outline-none focus:shadow-outline adicionar-participante">
 						Adicionar
@@ -138,13 +138,13 @@
 
 	$(document).on('click', '.adicionar-participante', function () {	
 		var idideia = $('#idideia').val();
-		var idfuncionario = $('#novoparticipante').val();
+		var idSchwarzUser = $('#novoparticipante').val();
 
 
 		$.ajax({
 			url: '/Ideia/AdicionarParticipante',
 			type: 'POST',
-			data: { idfuncionario: idfuncionario, idideia : idideia },
+			data: { idSchwarzUser: idSchwarzUser, idideia : idideia },
 			success: function (response) {
 				var nome = response.nome;
 				var idEquipeideia = response.idEquipe;

@@ -166,7 +166,7 @@ namespace Schwarz.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("IDFuncionario")
+                    b.Property<int?>("IDSchwarzUser")
                         .IsRequired()
                         .HasColumnType("int");
 
@@ -205,7 +205,7 @@ namespace Schwarz.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IDFuncionario")
+                    b.HasIndex("IDSchwarzUser")
                         .IsUnique();
 
                     b.HasIndex("NormalizedEmail")
@@ -306,10 +306,10 @@ namespace Schwarz.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("IDFuncionarioAprovador")
+                    b.Property<int?>("IDSchwarzUserAprovador")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioDesenhador")
+                    b.Property<int?>("IDSchwarzUserDesenhador")
                         .HasColumnType("int");
 
                     b.Property<int?>("IDProcesso")
@@ -326,9 +326,9 @@ namespace Schwarz.Migrations
 
                     b.HasKey("IDDesenho");
 
-                    b.HasIndex("IDFuncionarioAprovador");
+                    b.HasIndex("IDSchwarzUserAprovador");
 
-                    b.HasIndex("IDFuncionarioDesenhador");
+                    b.HasIndex("IDSchwarzUserDesenhador");
 
                     b.HasIndex("IDProcesso");
 
@@ -367,14 +367,14 @@ namespace Schwarz.Migrations
                     b.Property<int>("IDFSP")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDFuncionario")
+                    b.Property<int>("IDSchwarzUser")
                         .HasColumnType("int");
 
                     b.HasKey("IDEquipeFSP");
 
                     b.HasIndex("IDFSP");
 
-                    b.HasIndex("IDFuncionario");
+                    b.HasIndex("IDSchwarzUser");
 
                     b.ToTable("EquipeFSP");
                 });
@@ -385,7 +385,7 @@ namespace Schwarz.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("IDFuncionario")
+                    b.Property<int>("IDSchwarzUser")
                         .HasColumnType("int");
 
                     b.Property<int>("IDIdeia")
@@ -393,7 +393,7 @@ namespace Schwarz.Migrations
 
                     b.HasKey("IDEquipeIdeia");
 
-                    b.HasIndex("IDFuncionario");
+                    b.HasIndex("IDSchwarzUser");
 
                     b.HasIndex("IDIdeia");
 
@@ -446,10 +446,10 @@ namespace Schwarz.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("IDFuncionarioAprovador")
+                    b.Property<int>("IDSchwarzUserAprovador")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDFuncionarioCriador")
+                    b.Property<int>("IDSchwarzUserCriador")
                         .HasColumnType("int");
 
                     b.Property<int>("IDProduto")
@@ -460,9 +460,9 @@ namespace Schwarz.Migrations
 
                     b.HasKey("IDFluxo");
 
-                    b.HasIndex("IDFuncionarioAprovador");
+                    b.HasIndex("IDSchwarzUserAprovador");
 
-                    b.HasIndex("IDFuncionarioCriador");
+                    b.HasIndex("IDSchwarzUserCriador");
 
                     b.HasIndex("IDProduto");
 
@@ -535,28 +535,28 @@ namespace Schwarz.Migrations
                     b.Property<int>("IDFalha")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioAlertaQualidade")
+                    b.Property<int?>("IDSchwarzUserAlertaQualidade")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioFMEA")
+                    b.Property<int?>("IDSchwarzUserFMEA")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioInstrucao")
+                    b.Property<int?>("IDSchwarzUserInstrucao")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioNovaFSP")
+                    b.Property<int?>("IDSchwarzUserNovaFSP")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioPlanoControle")
+                    b.Property<int?>("IDSchwarzUserPlanoControle")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioPokaYoke")
+                    b.Property<int?>("IDSchwarzUserPokaYoke")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioTreinamento")
+                    b.Property<int?>("IDSchwarzUserTreinamento")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IDFuncionarioVerificacao")
+                    b.Property<int?>("IDSchwarzUserVerificacao")
                         .HasColumnType("int");
 
                     b.Property<int?>("IDNovaFSP")
@@ -688,30 +688,30 @@ namespace Schwarz.Migrations
 
                     b.HasIndex("IDFalha");
 
-                    b.HasIndex("IDFuncionarioAlertaQualidade");
+                    b.HasIndex("IDSchwarzUserAlertaQualidade");
 
-                    b.HasIndex("IDFuncionarioFMEA");
+                    b.HasIndex("IDSchwarzUserFMEA");
 
-                    b.HasIndex("IDFuncionarioInstrucao");
+                    b.HasIndex("IDSchwarzUserInstrucao");
 
-                    b.HasIndex("IDFuncionarioNovaFSP");
+                    b.HasIndex("IDSchwarzUserNovaFSP");
 
-                    b.HasIndex("IDFuncionarioPlanoControle");
+                    b.HasIndex("IDSchwarzUserPlanoControle");
 
-                    b.HasIndex("IDFuncionarioPokaYoke");
+                    b.HasIndex("IDSchwarzUserPokaYoke");
 
-                    b.HasIndex("IDFuncionarioTreinamento");
+                    b.HasIndex("IDSchwarzUserTreinamento");
 
-                    b.HasIndex("IDFuncionarioVerificacao");
+                    b.HasIndex("IDSchwarzUserVerificacao");
 
                     b.HasIndex("IDNovaFSP");
 
                     b.ToTable("FSP");
                 });
 
-            modelBuilder.Entity("Schwarz.Models.Funcionario", b =>
+            modelBuilder.Entity("Schwarz.Models.SchwarzUser", b =>
                 {
-                    b.Property<int>("IDFuncionario")
+                    b.Property<int>("IDSchwarzUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -732,9 +732,9 @@ namespace Schwarz.Migrations
                     b.Property<string>("Turno")
                         .HasColumnType("longtext");
 
-                    b.HasKey("IDFuncionario");
+                    b.HasKey("IDSchwarzUser");
 
-                    b.ToTable("Funcionario");
+                    b.ToTable("SchwarzUser");
                 });
 
             modelBuilder.Entity("Schwarz.Models.Ideia", b =>
@@ -831,7 +831,7 @@ namespace Schwarz.Migrations
                     b.Property<int>("IDFSP")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDFuncionario")
+                    b.Property<int>("IDSchwarzUser")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Prazo")
@@ -845,7 +845,7 @@ namespace Schwarz.Migrations
 
                     b.HasIndex("IDFSP");
 
-                    b.HasIndex("IDFuncionario");
+                    b.HasIndex("IDSchwarzUser");
 
                     b.ToTable("PlanoAcao");
                 });
@@ -971,13 +971,13 @@ namespace Schwarz.Migrations
 
             modelBuilder.Entity("Schwarz.Areas.Identity.Data.SchwarzUser", b =>
                 {
-                    b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUser")
                         .WithOne("SchwarzUser")
-                        .HasForeignKey("Schwarz.Areas.Identity.Data.SchwarzUser", "IDFuncionario")
+                        .HasForeignKey("Schwarz.Areas.Identity.Data.SchwarzUser", "IDSchwarzUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Funcionario");
+                    b.Navigation("SchwarzUser");
                 });
 
             modelBuilder.Entity("Schwarz.Models.CadastroOleo", b =>
@@ -1001,13 +1001,13 @@ namespace Schwarz.Migrations
 
             modelBuilder.Entity("Schwarz.Models.Desenho", b =>
                 {
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioAprovador")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserAprovador")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioAprovador");
+                        .HasForeignKey("IDSchwarzUserAprovador");
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioDesenhador")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserDesenhador")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioDesenhador");
+                        .HasForeignKey("IDSchwarzUserDesenhador");
 
                     b.HasOne("Schwarz.Models.Processo", "Processo")
                         .WithMany("Desenhos")
@@ -1017,9 +1017,9 @@ namespace Schwarz.Migrations
                         .WithMany("Desenhos")
                         .HasForeignKey("IDProduto");
 
-                    b.Navigation("FuncionarioAprovador");
+                    b.Navigation("SchwarzUserAprovador");
 
-                    b.Navigation("FuncionarioDesenhador");
+                    b.Navigation("SchwarzUserDesenhador");
 
                     b.Navigation("Processo");
 
@@ -1053,22 +1053,22 @@ namespace Schwarz.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUser")
                         .WithMany()
-                        .HasForeignKey("IDFuncionario")
+                        .HasForeignKey("IDSchwarzUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("FSP");
 
-                    b.Navigation("Funcionario");
+                    b.Navigation("SchwarzUser");
                 });
 
             modelBuilder.Entity("Schwarz.Models.EquipeIdeia", b =>
                 {
-                    b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUser")
                         .WithMany()
-                        .HasForeignKey("IDFuncionario")
+                        .HasForeignKey("IDSchwarzUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1078,22 +1078,22 @@ namespace Schwarz.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Funcionario");
+                    b.Navigation("SchwarzUser");
 
                     b.Navigation("Ideia");
                 });
 
             modelBuilder.Entity("Schwarz.Models.Fluxo", b =>
                 {
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioAprovador")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserAprovador")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioAprovador")
+                        .HasForeignKey("IDSchwarzUserAprovador")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioCriador")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserCriador")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioCriador")
+                        .HasForeignKey("IDSchwarzUserCriador")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1103,9 +1103,9 @@ namespace Schwarz.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FuncionarioAprovador");
+                    b.Navigation("SchwarzUserAprovador");
 
-                    b.Navigation("FuncionarioCriador");
+                    b.Navigation("SchwarzUserCriador");
 
                     b.Navigation("Produto");
                 });
@@ -1137,37 +1137,37 @@ namespace Schwarz.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioAlertaQualidade")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserAlertaQualidade")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioAlertaQualidade");
+                        .HasForeignKey("IDSchwarzUserAlertaQualidade");
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioFMEA")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserFMEA")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioFMEA");
+                        .HasForeignKey("IDSchwarzUserFMEA");
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioInstrucao")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserInstrucao")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioInstrucao");
+                        .HasForeignKey("IDSchwarzUserInstrucao");
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioNovaFSP")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserNovaFSP")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioNovaFSP");
+                        .HasForeignKey("IDSchwarzUserNovaFSP");
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioPlanoControle")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserPlanoControle")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioPlanoControle");
+                        .HasForeignKey("IDSchwarzUserPlanoControle");
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioPokaYoke")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserPokaYoke")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioPokaYoke");
+                        .HasForeignKey("IDSchwarzUserPokaYoke");
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioTreinamento")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserTreinamento")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioTreinamento");
+                        .HasForeignKey("IDSchwarzUserTreinamento");
 
-                    b.HasOne("Schwarz.Models.Funcionario", "FuncionarioVerificacao")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUserVerificacao")
                         .WithMany()
-                        .HasForeignKey("IDFuncionarioVerificacao");
+                        .HasForeignKey("IDSchwarzUserVerificacao");
 
                     b.HasOne("Schwarz.Models.FSP", "NovaFSP")
                         .WithMany()
@@ -1175,21 +1175,21 @@ namespace Schwarz.Migrations
 
                     b.Navigation("Falha");
 
-                    b.Navigation("FuncionarioAlertaQualidade");
+                    b.Navigation("SchwarzUserAlertaQualidade");
 
-                    b.Navigation("FuncionarioFMEA");
+                    b.Navigation("SchwarzUserFMEA");
 
-                    b.Navigation("FuncionarioInstrucao");
+                    b.Navigation("SchwarzUserInstrucao");
 
-                    b.Navigation("FuncionarioNovaFSP");
+                    b.Navigation("SchwarzUserNovaFSP");
 
-                    b.Navigation("FuncionarioPlanoControle");
+                    b.Navigation("SchwarzUserPlanoControle");
 
-                    b.Navigation("FuncionarioPokaYoke");
+                    b.Navigation("SchwarzUserPokaYoke");
 
-                    b.Navigation("FuncionarioTreinamento");
+                    b.Navigation("SchwarzUserTreinamento");
 
-                    b.Navigation("FuncionarioVerificacao");
+                    b.Navigation("SchwarzUserVerificacao");
 
                     b.Navigation("NovaFSP");
                 });
@@ -1213,15 +1213,15 @@ namespace Schwarz.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Schwarz.Models.Funcionario", "Funcionario")
+                    b.HasOne("Schwarz.Models.SchwarzUser", "SchwarzUser")
                         .WithMany()
-                        .HasForeignKey("IDFuncionario")
+                        .HasForeignKey("IDSchwarzUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("FSP");
 
-                    b.Navigation("Funcionario");
+                    b.Navigation("SchwarzUser");
                 });
 
             modelBuilder.Entity("Schwarz.Models.Processo", b =>
@@ -1288,7 +1288,7 @@ namespace Schwarz.Migrations
                     b.Navigation("FluxoOperacoes");
                 });
 
-            modelBuilder.Entity("Schwarz.Models.Funcionario", b =>
+            modelBuilder.Entity("Schwarz.Models.SchwarzUser", b =>
                 {
                     b.Navigation("SchwarzUser")
                         .IsRequired();

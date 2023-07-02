@@ -22,7 +22,7 @@ namespace Schwarz.Controllers
         // GET: PlanoControle
         public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.PlanoControle.Include(p => p.FuncionarioAprovador).Include(p => p.FuncionarioElaborador);
+            var schwarzContext = _context.PlanoControle.Include(p => p.SchwarzUserAprovador).Include(p => p.SchwarzUserElaborador);
             return View(await schwarzContext.ToListAsync());
         }
 
@@ -35,8 +35,8 @@ namespace Schwarz.Controllers
             }
 
             var planoControle = await _context.PlanoControle
-                .Include(p => p.FuncionarioAprovador)
-                .Include(p => p.FuncionarioElaborador)
+                .Include(p => p.SchwarzUserAprovador)
+                .Include(p => p.SchwarzUserElaborador)
                 .FirstOrDefaultAsync(m => m.IDPlanoControle == id);
             if (planoControle == null)
             {
@@ -49,8 +49,8 @@ namespace Schwarz.Controllers
         // GET: PlanoControle/Create
         public IActionResult Create()
         {
-            ViewData["IDFuncionarioAprovador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
-            ViewData["IDFuncionarioElaborador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDSchwarzUserAprovador"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
+            ViewData["IDSchwarzUserElaborador"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace Schwarz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IDPlanoControle,Revisao,DataOrigem,DataAtualizacao,Status,Produto,Cliente,Processo,CodigoInterno,CodigoCliente,NFluxo,Observacoes,IDFuncionarioElaborador,IDFuncionarioAprovador")] PlanoControle planoControle)
+        public async Task<IActionResult> Create([Bind("IDPlanoControle,Revisao,DataOrigem,DataAtualizacao,Status,Produto,Cliente,Processo,CodigoInterno,CodigoCliente,NFluxo,Observacoes,IDSchwarzUserElaborador,IDSchwarzUserAprovador")] PlanoControle planoControle)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace Schwarz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDFuncionarioAprovador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", planoControle.IDFuncionarioAprovador);
-            ViewData["IDFuncionarioElaborador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", planoControle.IDFuncionarioElaborador);
+            ViewData["IDSchwarzUserAprovador"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", planoControle.IDSchwarzUserAprovador);
+            ViewData["IDSchwarzUserElaborador"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", planoControle.IDSchwarzUserElaborador);
             return View(planoControle);
         }
 
@@ -85,8 +85,8 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["IDFuncionarioAprovador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", planoControle.IDFuncionarioAprovador);
-            ViewData["IDFuncionarioElaborador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", planoControle.IDFuncionarioElaborador);
+            ViewData["IDSchwarzUserAprovador"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", planoControle.IDSchwarzUserAprovador);
+            ViewData["IDSchwarzUserElaborador"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", planoControle.IDSchwarzUserElaborador);
             return View(planoControle);
         }
 
@@ -95,7 +95,7 @@ namespace Schwarz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IDPlanoControle,Revisao,DataOrigem,DataAtualizacao,Status,Produto,Cliente,Processo,CodigoInterno,CodigoCliente,NFluxo,Observacoes,IDFuncionarioElaborador,IDFuncionarioAprovador")] PlanoControle planoControle)
+        public async Task<IActionResult> Edit(int id, [Bind("IDPlanoControle,Revisao,DataOrigem,DataAtualizacao,Status,Produto,Cliente,Processo,CodigoInterno,CodigoCliente,NFluxo,Observacoes,IDSchwarzUserElaborador,IDSchwarzUserAprovador")] PlanoControle planoControle)
         {
             if (id != planoControle.IDPlanoControle)
             {
@@ -122,8 +122,8 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDFuncionarioAprovador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", planoControle.IDFuncionarioAprovador);
-            ViewData["IDFuncionarioElaborador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", planoControle.IDFuncionarioElaborador);
+            ViewData["IDSchwarzUserAprovador"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", planoControle.IDSchwarzUserAprovador);
+            ViewData["IDSchwarzUserElaborador"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", planoControle.IDSchwarzUserElaborador);
             return View(planoControle);
         }
 
@@ -136,8 +136,8 @@ namespace Schwarz.Controllers
             }
 
             var planoControle = await _context.PlanoControle
-                .Include(p => p.FuncionarioAprovador)
-                .Include(p => p.FuncionarioElaborador)
+                .Include(p => p.SchwarzUserAprovador)
+                .Include(p => p.SchwarzUserElaborador)
                 .FirstOrDefaultAsync(m => m.IDPlanoControle == id);
             if (planoControle == null)
             {

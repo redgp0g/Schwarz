@@ -7,18 +7,75 @@
 
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
-<div class="container mx-auto">
+<div class="container mx-auto text-black">
     <div class="flex justify-center px-6 my-12">
         <div class="w-full lg:w-7/12 bg-white p-2 rounded-lg">
             <div class="row">
                 <div class="col-md-6">
-                    <form id="profile-form" method="post">
+                    <form id="profile-form" method="post" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="mb-4">
-                            <input asp-for="Username" class="form-control" disabled />
-                            <label asp-for="Username" class="form-label"></label>
+                        <div class="form-floating">
+                            <label asp-for="Username" class="block mb-2 text-xl font-bold text-gray-700l flex items-center">Usuário</label>
+                            <input asp-for="Username" class="w-full px-3 py-3 text-xl leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
                         </div>
-                        <button id="update-profile-button" type="submit" class="hide w-100 btn btn-lg btn-primary">Salvar</button>
+                        <div class="form-floating">
+                            <input asp-for="Input.PhoneNumber" class="form-control"/>
+                            <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.Nome" class="form-control" />
+                            <label asp-for="Input.Nome" class="form-label"></label>
+                            <span asp-validation-for="Input.Nome" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.Matricula" class="form-control" />
+                            <label asp-for="Input.Matricula" class="form-label"></label>
+                            <span asp-validation-for="Input.Matricula" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.Turno" class="form-control" />
+                            <label asp-for="Input.Turno" class="form-label"></label>
+                            <span asp-validation-for="Input.Turno" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.Cargo" class="form-control" />
+                            <label asp-for="Input.Cargo" class="form-label"></label>
+                            <span asp-validation-for="Input.Cargo" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.Ativo" class="form-control" />
+                            <label asp-for="Input.Ativo" class="form-label"></label>
+                            <span asp-validation-for="Input.Ativo" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.Ramal" class="form-control" />
+                            <label asp-for="Input.Ramal" class="form-label"></label>
+                            <span asp-validation-for="Input.Ramal" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            @if (Model.Input.Foto != null)
+                            {
+                                <div class="mb-8">
+                                    <img class="object-center object-cover rounded-full h-48 w-36" src="data:image;base64,@(Convert.ToBase64String(Model.Input.Foto))" alt="Imagem do usuário">
+                                </div>
+                            }
+                            <input asp-for="Input.NovaFoto" class="form-control" type="file" accept="image/*" />
+                            <label asp-for="Input.Foto" class="form-label"></label>
+                            <span asp-validation-for="Input.Foto" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.DataNascimento" class="form-control" />
+                            <label asp-for="Input.DataNascimento" class="form-label"></label>
+                            <span asp-validation-for="Input.DataNascimento" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.Nome" class="form-control" />
+                            <label asp-for="Input.Nome" class="form-label"></label>
+                            <span asp-validation-for="Input.Nome" class="text-danger"></span>
+                        </div>
+
+                        <button id="update-profile-button" type="submit" class="text-xl w-content px-2 py-2 font-bold text-white bg-gradient-to-r from-green-300 to-teal-500 rounded-full hover:bg-gradient-to-r hover:from-teal-300 hover:to-green-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline">Salvar</button>
                     </form>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Schwarz.Areas.Identity.Data;
 using Schwarz.Models;
 
 namespace Schwarz.Repository.Interfaces
@@ -8,25 +9,13 @@ namespace Schwarz.Repository.Interfaces
         public void Add<T>(T entity) where T : class;
         public void Update<T>(T entity) where T : class;
         public void Delete<T>(T entity) where T : class;
-		IEnumerable<Boleto> GetBoletos();
-		IEnumerable<CadastroOleo> GetCadastroOleos();
-		IEnumerable<Cliente> GetClientes();
-		IEnumerable<Desenho> GetDesenhos();
-		IEnumerable<DesenhoBoleto> GetDesenhosBoletos();
 		IEnumerable<EquipeFSP> GetEquipesFSPs();
 		IEnumerable<EquipeIdeia> GetEquipeIdeias();
         IEnumerable<Falha> GetFalhas();
-        IEnumerable<Fluxo> GetFluxos();
-		IEnumerable<FluxoOperacao> GetFluxoOperacaos();
 		IEnumerable<FSP> GetFSPs();
-		IEnumerable<Funcionario> GetFuncionarios();
-        IEnumerable<Funcionario> GetFuncionariosAtivos();
+		IEnumerable<SchwarzUser> GetSchwarzUsers();
+        IEnumerable<SchwarzUser> GetSchwarzUsersAtivos();
         IEnumerable<Ideia> GetIdeias();
-		IEnumerable<Maquina> GetMaquinas();
-		IEnumerable<Operacao> GetOperacoes();
 		IEnumerable<PlanoAcao> GetPlanoAcaos();
-		IEnumerable<Processo> GetProcessos();
-		IEnumerable<ProcessoProduto> GetProcessoProdutos();
-		IEnumerable<Produto> GetProdutos();
     }
 }

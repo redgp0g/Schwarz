@@ -28,9 +28,8 @@ namespace Schwarz.Controllers
 		{
 			if (_signInManager.IsSignedIn(User))
 			{
-				string senhausuariosemhash = Regex.Replace(_userManager.Users.First(x => x.Id == _userManager.GetUserId(User)).Funcionario.DataNascimento.ToShortDateString(), "/", string.Empty);
 				string senhabanco = _userManager.Users.First(x => x.Id == _userManager.GetUserId(User)).PasswordHash;
-				var resultado = _userManager.PasswordHasher.VerifyHashedPassword(_userManager.Users.First(x => x.Id == _userManager.GetUserId(User)), senhabanco, senhausuariosemhash);
+				var resultado = _userManager.PasswordHasher.VerifyHashedPassword(_userManager.Users.First(x => x.Id == _userManager.GetUserId(User)), senhabanco, "a123*");
                 if (resultado != PasswordVerificationResult.Failed)
                 {
                     TempData["MensagemTrocaSenha"] = "Por questão de segurança troque sua senha, para isso clique aqui";

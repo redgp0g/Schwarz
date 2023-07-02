@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Schwarz.Areas.Identity.Data;
@@ -60,6 +61,10 @@ namespace Schwarz.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [EmailAddress]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
+
             [Required(ErrorMessage = "O usuário é obrigatório")]
             [Display(Name = "Usuário")]
             public string Usuario { get; set; }
@@ -75,17 +80,46 @@ namespace Schwarz.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não são iguas.")]
             public string ConfirmPassword { get; set; }
 
-            [Required(ErrorMessage = "Selecione o funcionário")]
-            [Display(Name = "Funcionário")]
-            public int IDFuncionario { get; set; }
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Nome Completo")]
+            public string Nome { get; set; }
 
-        }
+            [Display(Name = "Matrícula")]
+            public int? Matricula { get; set; }
+
+            public string? Turno { get; set; }
+
+            public string? Setor { get; set; }
+
+            public string? Cargo { get; set; }
+
+            [Required]
+            [Display(Name = "Está ativo?")]
+            public bool Ativo { get; set; }
+
+            public int? Ramal { get; set; }
+
+            public IFormFile? Foto{ get; set; }
+
+            [Display(Name = "Data de Nascimento")]
+            [DataType(DataType.Date)]
+            public DateTime? DataNascimento { get; set; }
+
+            [Display(Name = "Líder/Gerente")]
+            public string? IdAspNetUserLider { get; set; }
+            [Required(ErrorMessage = "É obrigatório informar!")]
+			[Display(Name = "É funcionário interno Schwarz?")]
+			public bool Interno{ get; set; }
+
+		}
 
 
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ViewData["SchwarzUsers"] = new SelectList(_context.SchwarzUser.Where(x => x.Ativo), "Id", "Nome");
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -95,10 +129,28 @@ namespace Schwarz.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-                user.IDFuncionario = Input.IDFuncionario;
-                user.EmailConfirmed = true;
+				// Leia o conteúdo do arquivo em um array de bytes
+				using (var memoryStream = new MemoryStream())
+				{
+					Input.Foto.CopyTo(memoryStream);
+					byte[] fileBytes = memoryStream.ToArray();
+					user.Foto = fileBytes;
+				}
+				user.EmailConfirmed = true;
+                user.Nome = Input.Nome;
+                user.Matricula = Input.Matricula;
+                user.Turno = Input.Turno;
+                user.Setor = Input.Setor;
+                user.Cargo = Input.Cargo;
+                user.Ativo = Input.Ativo;
+                user.Ramal = Input.Ramal;
+                user.DataNascimento = Input.DataNascimento;
+                user.IdAspNetUserLider = Input.IdAspNetUserLider;
+				user.Interno = Input.Interno;
 
-                await _userStore.SetUserNameAsync(user, Input.Usuario, CancellationToken.None);
+
+				await _userStore.SetUserNameAsync(user, Input.Usuario, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -150,9 +202,5 @@ namespace Schwarz.Areas.Identity.Pages.Account
             return (IUserEmailStore<SchwarzUser>)_userStore;
         }
 
-        public List<Funcionario> GetFuncionariosAtivos()
-        {
-            return _context.Funcionario.Where(x => x.Ativo == true).ToList();
-        }
     }
 }
