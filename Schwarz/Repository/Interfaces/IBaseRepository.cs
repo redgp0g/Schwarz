@@ -13,8 +13,8 @@ namespace Schwarz.Repository.Interfaces
 		IEnumerable<EquipeIdeia> GetEquipeIdeias();
         IEnumerable<Falha> GetFalhas();
 		IEnumerable<FSP> GetFSPs();
-		IEnumerable<SchwarzUser> GetSchwarzUsers();
-        IEnumerable<SchwarzUser> GetSchwarzUsersAtivos();
+		IEnumerable<Funcionario> GetFuncionarios();
+        IEnumerable<Funcionario> GetFuncionariosAtivos();
         IEnumerable<Ideia> GetIdeias();
 		IEnumerable<PlanoAcao> GetPlanoAcaos();
     }

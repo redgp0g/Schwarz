@@ -8,7 +8,7 @@
     {
 
         <li>
-        <a class="text-capitalize fs-5" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Nome.ToLower()!</a>
+        <a class="text-capitalize fs-5" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome.ToLower()!</a>
         </li>
         <li>
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

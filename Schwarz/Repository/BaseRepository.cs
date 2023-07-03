@@ -55,14 +55,14 @@ namespace Schwarz.Repository
 			return _context.FSP.ToList();
 		}
 
-		public IEnumerable<SchwarzUser> GetSchwarzUsers()
+		public IEnumerable<Funcionario> GetFuncionarios()
         {
-            return _context.SchwarzUser.ToList();
+            return _context.Funcionario.ToList();
         }
 
-        public IEnumerable<SchwarzUser> GetSchwarzUsersAtivos()
+        public IEnumerable<Funcionario> GetFuncionariosAtivos()
         {
-            return _context.SchwarzUser.Where(x => x.Ativo == true).ToList().OrderBy(x => x.Nome);
+            return _context.Funcionario.Where(x => x.Ativo == true).ToList().OrderBy(x => x.Nome);
         }
         public IEnumerable<Ideia> GetIdeias()
 		{

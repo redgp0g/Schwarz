@@ -20,6 +20,7 @@ builder.Services.AddScoped<IBaseRepository, BaseRepository>();
 builder.Services.AddScoped<IEquipeFSPRepository, EquipeFSPRepository>();
 builder.Services.AddScoped<IEquipeIdeiaRepository, EquipeIdeiaRepository>();
 builder.Services.AddScoped<IFalhaRepository, FalhaRepository>();
+builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<IFSPRepository, FSPRepository>();
 builder.Services.AddScoped<IIdeiaRepository, IdeiaRepository>();
 builder.Services.AddScoped<IPlanoAcaoRepository, PlanoAcaoRepository>();

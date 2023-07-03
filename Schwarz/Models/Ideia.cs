@@ -38,7 +38,7 @@ namespace Schwarz.Models
         public virtual ICollection<IdeiaAnexo> IdeiaAnexo { get; set; }
         [NotMapped]
 		[Required(ErrorMessage = "Selecione pelo menos um funcionário")]
-		public List<string>? Participantesids { get; set; }
+		public List<int>? Participantesids { get; set; }
 
         [NotMapped]
 		public string DataFormatada => Data.ToString("dd/MM/yyyy");

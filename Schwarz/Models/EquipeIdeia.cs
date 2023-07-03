@@ -13,9 +13,9 @@ namespace Schwarz.Models
 
 		[Key]
 		public int IDEquipeIdeia { get; set; }
-		[ForeignKey("SchwarzUser")]
-		public string IDAspNetUser { get; set; }
-		public virtual SchwarzUser? SchwarzUser { get; set; }
+		[ForeignKey("Funcionario")]
+		public int IDFuncionario { get; set; }
+		public virtual Funcionario? Funcionario{ get; set; }
 
 		[ForeignKey("Ideia")]
 		public int IDIdeia { get; set; }
@@ -30,9 +30,9 @@ namespace Schwarz.Models
 		{
 			_context = contexto;
 		}
-		public EquipeIdeia(string iDAspNetUser, int iDIdeia)
+		public EquipeIdeia(int iDFuncionario, int iDIdeia)
 		{
-			IDAspNetUser = iDAspNetUser;
+			IDFuncionario = iDFuncionario;
 			IDIdeia = iDIdeia;
 		}
 	}

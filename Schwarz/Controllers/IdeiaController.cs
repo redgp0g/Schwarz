@@ -67,7 +67,7 @@ namespace ProgramaIdeias.Controllers
 		[Authorize(Roles = "IdeiaAdmin")]
 		public IActionResult Edit(int id)
 		{
-			ViewData["SchwarzUsers"] = new SelectList(_context.SchwarzUser.Where(x => x.Ativo), "Id", "Nome");
+			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
 			var ideia = _context.Ideia.Find(id);
 			if (ideia == null)
 			{
@@ -96,7 +96,7 @@ namespace ProgramaIdeias.Controllers
 		[HttpGet]
 		public IActionResult Create()
 		{
-			ViewData["SchwarzUsers"] = new SelectList(_context.SchwarzUser.Where(x => x.Ativo), "Id", "Nome");
+			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
 			return View();
 		}
 
@@ -151,7 +151,7 @@ namespace ProgramaIdeias.Controllers
 				{
 					transaction.Rollback();
 					TempData["MensagemErro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
-					ViewData["SchwarzUsers"] = new SelectList(_context.SchwarzUser.Where(x => x.Ativo), "Id", "Nome");
+					ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
 					return View(ideia);
 				}
 			}
@@ -244,9 +244,9 @@ namespace ProgramaIdeias.Controllers
 			return View(players.OrderByDescending(x => x.Points));
 		}
 
-		public List<string> GetSchwarzUsersNomes()
+		public List<string> GetFuncionariosNomes()
 		{
-			var funcs = _context.SchwarzUser.Where(x => x.Ativo == true).OrderBy(x => x.Nome).ToList();
+			var funcs = _context.Funcionario.Where(x => x.Ativo == true).OrderBy(x => x.Nome).ToList();
 			List<string> nomes = new();
 			foreach (var func in funcs)
 			{
@@ -269,18 +269,18 @@ namespace ProgramaIdeias.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult AdicionarParticipante(string idSchwarzUser, int idideia)
+		public IActionResult AdicionarParticipante(int idFuncionario, int idideia)
 		{
-			var func = _context.SchwarzUser.Find(idSchwarzUser);
+			var func = _context.Funcionario.Find(idFuncionario);
 			if (func != null)
 			{
-				bool equipeIdeiaExistente = _context.EquipeIdeia.Any(ei => ei.IDAspNetUser == func.Id && ei.IDIdeia == idideia);
+				bool equipeIdeiaExistente = _context.EquipeIdeia.Any(ei => ei.IDFuncionario == func.IDFuncionario && ei.IDIdeia == idideia);
 				if (equipeIdeiaExistente)
 				{
 					return Conflict("Já existe esse participante na equipe!");
 				}
 
-				EquipeIdeia equipeIdeia = new(func.Id, idideia);
+				EquipeIdeia equipeIdeia = new(func.IDFuncionario, idideia);
 				_context.EquipeIdeia.Add(equipeIdeia);
 				_context.SaveChanges();
 

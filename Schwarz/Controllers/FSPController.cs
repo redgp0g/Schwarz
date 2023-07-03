@@ -24,7 +24,7 @@ namespace Schwarz.Controllers
         [Authorize(Roles = "FSPAdmin")]
         public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.FSP.Include(f => f.Falha).Include(f => f.SchwarzUserAlertaQualidade).Include(f => f.SchwarzUserFMEA).Include(f => f.SchwarzUserInstrucao).Include(f => f.SchwarzUserNovaFSP).Include(f => f.SchwarzUserPlanoControle).Include(f => f.SchwarzUserPokaYoke).Include(f => f.SchwarzUserTreinamento).Include(f => f.SchwarzUserVerificacao).Include(f => f.NovaFSP);
+            var schwarzContext = _context.FSP.Include(f => f.Falha).Include(f => f.FuncionarioAlertaQualidade).Include(f => f.FuncionarioFMEA).Include(f => f.FuncionarioInstrucao).Include(f => f.FuncionarioNovaFSP).Include(f => f.FuncionarioPlanoControle).Include(f => f.FuncionarioPokaYoke).Include(f => f.FuncionarioTreinamento).Include(f => f.FuncionarioVerificacao).Include(f => f.NovaFSP);
             return View(await schwarzContext.ToListAsync());
         }
 
@@ -39,14 +39,14 @@ namespace Schwarz.Controllers
 
             var fSP = await _context.FSP
                 .Include(f => f.Falha)
-                .Include(f => f.SchwarzUserAlertaQualidade)
-                .Include(f => f.SchwarzUserFMEA)
-                .Include(f => f.SchwarzUserInstrucao)
-                .Include(f => f.SchwarzUserNovaFSP)
-                .Include(f => f.SchwarzUserPlanoControle)
-                .Include(f => f.SchwarzUserPokaYoke)
-                .Include(f => f.SchwarzUserTreinamento)
-                .Include(f => f.SchwarzUserVerificacao)
+                .Include(f => f.FuncionarioAlertaQualidade)
+                .Include(f => f.FuncionarioFMEA)
+                .Include(f => f.FuncionarioInstrucao)
+                .Include(f => f.FuncionarioNovaFSP)
+                .Include(f => f.FuncionarioPlanoControle)
+                .Include(f => f.FuncionarioPokaYoke)
+                .Include(f => f.FuncionarioTreinamento)
+                .Include(f => f.FuncionarioVerificacao)
                 .Include(f => f.NovaFSP)
                 .FirstOrDefaultAsync(m => m.IDFSP == id);
             if (fSP == null)
@@ -72,14 +72,14 @@ namespace Schwarz.Controllers
                 });
             }
             ViewData["Falhas"] = falhaList;
-            ViewData["IDSchwarzUserAlertaQualidade"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
-            ViewData["IDSchwarzUserFMEA"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
-            ViewData["IDSchwarzUserInstrucao"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
-            ViewData["IDSchwarzUserNovaFSP"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
-            ViewData["IDSchwarzUserPlanoControle"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
-            ViewData["IDSchwarzUserPokaYoke"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
-            ViewData["IDSchwarzUserTreinamento"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
-            ViewData["IDSchwarzUserVerificacao"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome");
+            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
             ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Origem");
             return View();
         }
@@ -90,7 +90,7 @@ namespace Schwarz.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "FSPAdmin")]
-        public async Task<IActionResult> Create([Bind("IDFSP,Numero,DataAbertura,DataFechamento,Produto,Codigo,Origem,IDFalha,MaodeObra,Maquina,Medicao,Material,MeioAmbiente,Metodo,PorqueFalhou1,PorqueFalhou2,PorqueFalhou3,PorqueFalhou4,PorqueFalhou5,CausaRaizFalha,PorquePassou1,PorquePassou2,PorquePassou3,PorquePassou4,PorquePassou5,CausaRaizPassou,AtualizarFMEA,QualFMEA,IDSchwarzUserFMEA,PrazoFMEA,RealizadoFMEA,AtualizarInstrucao,QualInstrucao,IDSchwarzUserInstrucao,PrazoInstrucao,RealizadoInstrucao,AtualizarPlanoControle,QualPlanoControle,IDSchwarzUserPlanoControle,PrazoPlanoControle,RealizadoPlanoControle,UtilizarPokaYoke,QualPokaYoke,IDSchwarzUserPokaYoke,PrazoPokaYoke,RealizadoPokaYoke,AplicarTreinamento,QualTreinamento,IDSchwarzUserTreinamento,PrazoTreinamento,RealizadoTreinamento,EmitirAlertaQualidade,QualAlertaQualidade,IDSchwarzUserAlertaQualidade,PrazoAlertaQualidade,RealizadoAlertaQualidade,IDSchwarzUserVerificacao,DataVerificacao,IndicadorVerificacao,EficazVerificacao,MetodologiaVerificacao,IDNovaFSP,IDSchwarzUserNovaFSP")] FSP fSP)
+        public async Task<IActionResult> Create([Bind("IDFSP,Numero,DataAbertura,DataFechamento,Produto,Codigo,Origem,IDFalha,MaodeObra,Maquina,Medicao,Material,MeioAmbiente,Metodo,PorqueFalhou1,PorqueFalhou2,PorqueFalhou3,PorqueFalhou4,PorqueFalhou5,CausaRaizFalha,PorquePassou1,PorquePassou2,PorquePassou3,PorquePassou4,PorquePassou5,CausaRaizPassou,AtualizarFMEA,QualFMEA,IDFuncionarioFMEA,PrazoFMEA,RealizadoFMEA,AtualizarInstrucao,QualInstrucao,IDFuncionarioInstrucao,PrazoInstrucao,RealizadoInstrucao,AtualizarPlanoControle,QualPlanoControle,IDFuncionarioPlanoControle,PrazoPlanoControle,RealizadoPlanoControle,UtilizarPokaYoke,QualPokaYoke,IDFuncionarioPokaYoke,PrazoPokaYoke,RealizadoPokaYoke,AplicarTreinamento,QualTreinamento,IDFuncionarioTreinamento,PrazoTreinamento,RealizadoTreinamento,EmitirAlertaQualidade,QualAlertaQualidade,IDFuncionarioAlertaQualidade,PrazoAlertaQualidade,RealizadoAlertaQualidade,IDFuncionarioVerificacao,DataVerificacao,IndicadorVerificacao,EficazVerificacao,MetodologiaVerificacao,IDNovaFSP,IDFuncionarioNovaFSP")] FSP fSP)
         {
             if (ModelState.IsValid)
             {
@@ -99,14 +99,14 @@ namespace Schwarz.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", fSP.IDFalha);
-            ViewData["IDSchwarzUserAlertaQualidade"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserAlertaQualidade);
-            ViewData["IDSchwarzUserFMEA"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserFMEA);
-            ViewData["IDSchwarzUserInstrucao"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserInstrucao);
-            ViewData["IDSchwarzUserNovaFSP"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserNovaFSP);
-            ViewData["IDSchwarzUserPlanoControle"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserPlanoControle);
-            ViewData["IDSchwarzUserPokaYoke"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserPokaYoke);
-            ViewData["IDSchwarzUserTreinamento"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserTreinamento);
-            ViewData["IDSchwarzUserVerificacao"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserVerificacao);
+            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioAlertaQualidade);
+            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioFMEA);
+            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioInstrucao);
+            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioNovaFSP);
+            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPlanoControle);
+            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPokaYoke);
+            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioTreinamento);
+            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioVerificacao);
             ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Numero", fSP.IDNovaFSP);
             return View(fSP);
         }
@@ -126,14 +126,14 @@ namespace Schwarz.Controllers
                 return NotFound();
             }
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", fSP.IDFalha);
-            ViewData["IDSchwarzUserAlertaQualidade"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserAlertaQualidade);
-            ViewData["IDSchwarzUserFMEA"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserFMEA);
-            ViewData["IDSchwarzUserInstrucao"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserInstrucao);
-            ViewData["IDSchwarzUserNovaFSP"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserNovaFSP);
-            ViewData["IDSchwarzUserPlanoControle"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserPlanoControle);
-            ViewData["IDSchwarzUserPokaYoke"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserPokaYoke);
-            ViewData["IDSchwarzUserTreinamento"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserTreinamento);
-            ViewData["IDSchwarzUserVerificacao"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "Nome", fSP.IDSchwarzUserVerificacao);
+            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioAlertaQualidade);
+            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioFMEA);
+            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioInstrucao);
+            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioNovaFSP);
+            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPlanoControle);
+            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPokaYoke);
+            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioTreinamento);
+            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioVerificacao);
             ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Numero", fSP.IDNovaFSP);
             return View(fSP);
         }
@@ -144,7 +144,7 @@ namespace Schwarz.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "FSPAdmin")]
-        public async Task<IActionResult> Edit(int id, [Bind("IDFSP,Numero,DataAbertura,DataFechamento,Produto,Codigo,Origem,IDFalha,MaodeObra,Maquina,Medicao,Material,MeioAmbiente,Metodo,PorqueFalhou1,PorqueFalhou2,PorqueFalhou3,PorqueFalhou4,PorqueFalhou5,CausaRaizFalha,PorquePassou1,PorquePassou2,PorquePassou3,PorquePassou4,PorquePassou5,CausaRaizPassou,AtualizarFMEA,QualFMEA,IDSchwarzUserFMEA,PrazoFMEA,RealizadoFMEA,AtualizarInstrucao,QualInstrucao,IDSchwarzUserInstrucao,PrazoInstrucao,RealizadoInstrucao,AtualizarPlanoControle,QualPlanoControle,IDSchwarzUserPlanoControle,PrazoPlanoControle,RealizadoPlanoControle,UtilizarPokaYoke,QualPokaYoke,IDSchwarzUserPokaYoke,PrazoPokaYoke,RealizadoPokaYoke,AplicarTreinamento,QualTreinamento,IDSchwarzUserTreinamento,PrazoTreinamento,RealizadoTreinamento,EmitirAlertaQualidade,QualAlertaQualidade,IDSchwarzUserAlertaQualidade,PrazoAlertaQualidade,RealizadoAlertaQualidade,IDSchwarzUserVerificacao,DataVerificacao,IndicadorVerificacao,EficazVerificacao,MetodologiaVerificacao,IDNovaFSP,IDSchwarzUserNovaFSP")] FSP fSP)
+        public async Task<IActionResult> Edit(int id, [Bind("IDFSP,Numero,DataAbertura,DataFechamento,Produto,Codigo,Origem,IDFalha,MaodeObra,Maquina,Medicao,Material,MeioAmbiente,Metodo,PorqueFalhou1,PorqueFalhou2,PorqueFalhou3,PorqueFalhou4,PorqueFalhou5,CausaRaizFalha,PorquePassou1,PorquePassou2,PorquePassou3,PorquePassou4,PorquePassou5,CausaRaizPassou,AtualizarFMEA,QualFMEA,IDFuncionarioFMEA,PrazoFMEA,RealizadoFMEA,AtualizarInstrucao,QualInstrucao,IDFuncionarioInstrucao,PrazoInstrucao,RealizadoInstrucao,AtualizarPlanoControle,QualPlanoControle,IDFuncionarioPlanoControle,PrazoPlanoControle,RealizadoPlanoControle,UtilizarPokaYoke,QualPokaYoke,IDFuncionarioPokaYoke,PrazoPokaYoke,RealizadoPokaYoke,AplicarTreinamento,QualTreinamento,IDFuncionarioTreinamento,PrazoTreinamento,RealizadoTreinamento,EmitirAlertaQualidade,QualAlertaQualidade,IDFuncionarioAlertaQualidade,PrazoAlertaQualidade,RealizadoAlertaQualidade,IDFuncionarioVerificacao,DataVerificacao,IndicadorVerificacao,EficazVerificacao,MetodologiaVerificacao,IDNovaFSP,IDFuncionarioNovaFSP")] FSP fSP)
         {
             if (id != fSP.IDFSP)
             {
@@ -172,14 +172,14 @@ namespace Schwarz.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", fSP.IDFalha);
-            ViewData["IDSchwarzUserAlertaQualidade"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "IDSchwarzUser", fSP.IDSchwarzUserAlertaQualidade);
-            ViewData["IDSchwarzUserFMEA"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "IDSchwarzUser", fSP.IDSchwarzUserFMEA);
-            ViewData["IDSchwarzUserInstrucao"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "IDSchwarzUser", fSP.IDSchwarzUserInstrucao);
-            ViewData["IDSchwarzUserNovaFSP"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "IDSchwarzUser", fSP.IDSchwarzUserNovaFSP);
-            ViewData["IDSchwarzUserPlanoControle"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "IDSchwarzUser", fSP.IDSchwarzUserPlanoControle);
-            ViewData["IDSchwarzUserPokaYoke"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "IDSchwarzUser", fSP.IDSchwarzUserPokaYoke);
-            ViewData["IDSchwarzUserTreinamento"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "IDSchwarzUser", fSP.IDSchwarzUserTreinamento);
-            ViewData["IDSchwarzUserVerificacao"] = new SelectList(_context.SchwarzUser, "IDSchwarzUser", "IDSchwarzUser", fSP.IDSchwarzUserVerificacao);
+            ViewData["IDFuncionarioAlertaQualidade"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioAlertaQualidade);
+            ViewData["IDFuncionarioFMEA"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioFMEA);
+            ViewData["IDFuncionarioInstrucao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioInstrucao);
+            ViewData["IDFuncionarioNovaFSP"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioNovaFSP);
+            ViewData["IDFuncionarioPlanoControle"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPlanoControle);
+            ViewData["IDFuncionarioPokaYoke"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioPokaYoke);
+            ViewData["IDFuncionarioTreinamento"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioTreinamento);
+            ViewData["IDFuncionarioVerificacao"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", fSP.IDFuncionarioVerificacao);
             ViewData["IDNovaFSP"] = new SelectList(_context.FSP, "IDFSP", "Origem", fSP.IDNovaFSP);
             return View(fSP);
         }
@@ -194,14 +194,14 @@ namespace Schwarz.Controllers
 
             var fSP = await _context.FSP
                 .Include(f => f.Falha)
-                .Include(f => f.SchwarzUserAlertaQualidade)
-                .Include(f => f.SchwarzUserFMEA)
-                .Include(f => f.SchwarzUserInstrucao)
-                .Include(f => f.SchwarzUserNovaFSP)
-                .Include(f => f.SchwarzUserPlanoControle)
-                .Include(f => f.SchwarzUserPokaYoke)
-                .Include(f => f.SchwarzUserTreinamento)
-                .Include(f => f.SchwarzUserVerificacao)
+                .Include(f => f.FuncionarioAlertaQualidade)
+                .Include(f => f.FuncionarioFMEA)
+                .Include(f => f.FuncionarioInstrucao)
+                .Include(f => f.FuncionarioNovaFSP)
+                .Include(f => f.FuncionarioPlanoControle)
+                .Include(f => f.FuncionarioPokaYoke)
+                .Include(f => f.FuncionarioTreinamento)
+                .Include(f => f.FuncionarioVerificacao)
                 .Include(f => f.NovaFSP)
                 .FirstOrDefaultAsync(m => m.IDFSP == id);
             if (fSP == null)

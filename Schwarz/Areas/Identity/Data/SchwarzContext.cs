@@ -18,6 +18,7 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
 	public DbSet<EquipeIdeia> EquipeIdeia { get; set; }
     public DbSet<Falha> Falha { get; set; }
 	public DbSet<FSP> FSP{ get; set; }
+	public DbSet<Funcionario> Funcionario { get; set; }
 	public DbSet<Ideia> Ideia { get; set; }
     public DbSet<IdeiaAnexo> IdeiaAnexo { get; set; }
 	public DbSet<PlanoAcao> PlanoAcao { get; set; }

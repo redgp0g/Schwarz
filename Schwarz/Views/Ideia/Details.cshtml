@@ -21,18 +21,18 @@
                         {
 
                             <div class="w-full bg-neutral-300 rounded-lg p-12 flex flex-col justify-center items-center">
-                                @if(participante.SchwarzUser.Foto != null)
+                                @if (participante.Funcionario.Foto != null)
                                 {
                                     <div class="mb-8">
-                                        <img class="object-center object-cover rounded-full h-48 w-36" src="data:image;base64,@(Convert.ToBase64String(participante.SchwarzUser.Foto))" alt="imagem">
+                                        <img class="object-center object-cover rounded-full h-48 w-36" src="data:image;base64,@(Convert.ToBase64String(participante.Funcionario.Foto))" alt="imagem">
                                     </div>
                                 }
                                 
                                 <div class="text-center">
-                                    <p class="text-xl text-gray-700 font-bold mb-2 capitalize">@participante.SchwarzUser.Nome.ToLower()</p>
-                                    @if (participante.SchwarzUser.Setor != null)
+                                    <p class="text-xl text-gray-700 font-bold mb-2 capitalize">@participante.Funcionario.Nome.ToLower()</p>
+                                    @if (participante.Funcionario.Setor != null)
                                     {
-                                        <p class="text-base text-gray-400 font-normal">@participante.SchwarzUser.Setor.ToUpper()</p>
+                                        <p class="text-base text-gray-400 font-normal">@participante.Funcionario.Setor.ToUpper()</p>
                                     }
                                 </div>
                             </div>

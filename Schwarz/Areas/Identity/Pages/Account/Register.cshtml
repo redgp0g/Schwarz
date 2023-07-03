@@ -29,70 +29,11 @@
 				<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 			</div>
 			<div class="form-floating">
-				<input asp-for="Input.Email" class="form-control" />
-				<label asp-for="Input.Email"></label>
-				<span asp-validation-for="Input.Email" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.Nome" class="form-control" required />
-				<label asp-for="Input.Nome"></label>
-				<span asp-validation-for="Input.Nome" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.Matricula" class="form-control" />
-				<label asp-for="Input.Matricula"></label>
-				<span asp-validation-for="Input.Matricula" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<select asp-for="Input.Turno" class="form-select">
-					<option value="">Selecione um Turno</option>
-					<option value="1° Turno">1° Turno</option>
-					<option value="2° Turno">2° Turno</option>
-					<option value="3° Turno">3° Turno</option>
-					<option value="ADM">ADM</option>
+				<select asp-for="Input.IDFuncionario" asp-items="ViewBag.Funcionarios" class="form-control" autocomplete="username" aria-required="true">
+					<option value="" disabled selected>Selecione o funcionário</option>
 				</select>
-				<label asp-for="Input.Turno"></label>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.Setor" class="form-control" />
-				<label asp-for="Input.Setor"></label>
-				<span asp-validation-for="Input.Setor" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.Cargo" class="form-control" />
-				<label asp-for="Input.Cargo"></label>
-				<span asp-validation-for="Input.Cargo" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<label asp-for="Input.Ativo"></label>
-				<input asp-for="Input.Ativo" type="radio" id="sim" value="true">
-				<label for="sim">Sim</label>
-				<input asp-for="Input.Ativo" type="radio" id="nao" value="false">
-				<label for="nao">Não</label>
-				<span asp-validation-for="Input.Ativo" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.Ramal" class="form-control" />
-				<label asp-for="Input.Ramal"></label>
-				<span asp-validation-for="Input.Ramal" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.Foto" class="form-control" type="file" accept="image/*"/>
-				<label asp-for="Input.Foto"></label>
-			</div>
-			<div class="form-floating">
-				<select asp-for="Input.IdAspNetUserLider" class="form-select" asp-items="ViewBag.SchwarzUsers">
-					<option value="" selected>Selecione um Líder/Gerente</option>
-				</select>
-				<label asp-for="Input.IdAspNetUserLider"></label>
-			</div>
-			<div class="form-floating">
-				<label asp-for="Input.Interno"></label>
-				<input asp-for="Input.Interno" type="radio" id="sim" value="true">
-				<label for="sim">Sim</label>
-				<input asp-for="Input.Interno" type="radio" id="nao" value="false">
-				<label for="nao">Não</label>
-				<span asp-validation-for="Input.Interno" class="text-danger"></span>
+				<label asp-for="Input.IDFuncionario">Funcionário da conta</label>
+				<span asp-validation-for="Input.IDFuncionario" class="text-danger"></span>
 			</div>
 
 
