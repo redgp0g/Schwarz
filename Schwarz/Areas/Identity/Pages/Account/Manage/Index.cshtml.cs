@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Schwarz.Areas.Identity.Data;
+using Schwarz.Data;
+using Syncfusion.EJ2.Charts;
 
 namespace Schwarz.Areas.Identity.Pages.Account.Manage
 {
@@ -17,13 +20,15 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<SchwarzUser> _userManager;
         private readonly SignInManager<SchwarzUser> _signInManager;
+        private readonly SchwarzContext _context;
 
         public IndexModel(
             UserManager<SchwarzUser> userManager,
-            SignInManager<SchwarzUser> signInManager)
+            SignInManager<SchwarzUser> signInManager, SchwarzContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
         [Display(Name = "Usuário")]
         public string Username { get; set; }
@@ -84,6 +89,7 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
 				IDFuncionarioLider = user.Funcionario.IDLider,
 				Cargo = user.Funcionario.Cargo,
 				Ramal = user.Funcionario.Ramal,
+				Telefone = user.Funcionario.Telefone,
 				Foto = user.Funcionario.Foto
             };
         }
@@ -95,8 +101,8 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
-            await LoadAsync(user);
+            ViewData["Setores"] = new SelectList(_context.Funcionario.ToList().DistinctBy(x => x.Setor).OrderBy(x => x.Setor), "Setor", "Setor");
+			await LoadAsync(user);
             return Page();
         }
 
@@ -113,7 +119,14 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
-
+			if (Input.Telefone != user.Funcionario.Telefone)
+			{
+                user.Funcionario.Telefone = Input.Telefone.Substring(4).Replace("-", string.Empty);
+			}
+			if (Input.Ramal != user.Funcionario.Ramal)
+			{
+				user.Funcionario.Ramal = Input.Ramal;
+			}
 			if (Input.NovaFoto != null)
 			{
 				using (var memoryStream = new MemoryStream())

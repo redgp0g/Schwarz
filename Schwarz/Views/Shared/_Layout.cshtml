@@ -45,7 +45,7 @@
 				</button>
 			</div>
 			<!--Menu de Ideia-->
-			<div class="hidden lg:flex lg:gap-x-12 flex-1">
+			<div class="items-center hidden lg:flex lg:gap-x-12 flex-1">
 				<div class="relative">
 					<button type="button" id="toggleMenuIdeia" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias',this.id)">
 						Programa de Ideias
@@ -184,6 +184,10 @@
 				{
 					<div class="relative">
 						<button type="button" id="toggleMenuUser" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900 capitalize" onclick="toggleHidden('subMenuUser',this.id)">
+							@if (UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Foto != null)
+							{
+								<img class="object-center object-cover rounded-full h-12 w-12" src="data:image;base64,@(Convert.ToBase64String(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Foto))" alt="imagem">
+							}
 							Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome.ToLower()!
 							<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 								<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
@@ -221,10 +225,7 @@
 							</div>
 						</div>
 					</div>
-					@if(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Foto != null)
-					{
-						<img class="object-center object-cover rounded-full h-12 w-12" src="data:image;base64,@(Convert.ToBase64String(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Foto))" alt="imagem">
-					}
+					
 				}
 				else
 				{
@@ -237,7 +238,7 @@
 
 					</div>
 				}
-				<div class="relative flex">
+				<div class="relative flex hidden">
 					<a asp-area="Identity" asp-page="/Account/Register" class="text-xl font-semibold leading-6 text-gray-900 ml-2">Registrar<span class="absolute inset-0"></span></a>
 				</div>
 			</div>
