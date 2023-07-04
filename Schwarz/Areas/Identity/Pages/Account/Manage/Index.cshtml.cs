@@ -67,7 +67,6 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
 			public string? Ramal { get; set; }
 			public byte[]? Foto { get; set; }
 			public IFormFile? NovaFoto { get; set; }
-            [Phone]
 			public string? Telefone { get; set; }
 		}
 
@@ -113,20 +112,6 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
-            if (!ModelState.IsValid)
-            {
-                await LoadAsync(user);
-                return Page();
-            }
-			if (Input.Telefone != user.Funcionario.Telefone)
-			{
-                user.Funcionario.Telefone = Input.Telefone.Substring(4).Replace("-", string.Empty);
-			}
-			if (Input.Ramal != user.Funcionario.Ramal)
-			{
-				user.Funcionario.Ramal = Input.Ramal;
-			}
 			if (Input.NovaFoto != null)
 			{
 				using (var memoryStream = new MemoryStream())

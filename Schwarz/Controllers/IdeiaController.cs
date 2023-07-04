@@ -33,18 +33,28 @@ namespace ProgramaIdeias.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Index()
+		public IActionResult Index(int? idfuncionario)
 		{
-			var ideia = _context.Ideia.Include(x => x.EquipeIdeia).ToList().OrderByDescending(x => x.Data);
-			return View(ideia);
+			return View(idfuncionario);
 		}
 
-		public PartialViewResult BuscarIdeias()
+		public PartialViewResult BuscarIdeias(int? idfuncionario)
 		{
 
-			IEnumerable<Ideia> model = _ideiaRepository.GetIdeias().OrderByDescending(x => x.Data);
-			return PartialView("_GridViewIdeias", model);
-
+			if (idfuncionario != null)
+			{
+				IEnumerable<Ideia> model = _context.Ideia
+			.Include(x => x.EquipeIdeia)
+			.Where(x => x.EquipeIdeia.Any(e => e.IDFuncionario == idfuncionario))
+			.OrderByDescending(x => x.Data)
+			.ToList();
+				return PartialView("_GridViewIdeias", model);
+			}
+			else
+			{
+				IEnumerable<Ideia> model = _ideiaRepository.GetIdeias().OrderByDescending(x => x.Data);
+				return PartialView("_GridViewIdeias", model);
+			}
 		}
 
 		[HttpGet]
