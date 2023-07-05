@@ -28,16 +28,24 @@ namespace Schwarz.Models
         public int NFluxo { get; set; }
 		[Display(Name = "Observações")]
 		public string? Observacoes { get; set; }
-		[ForeignKey("SchwarzUserElaborador")]
-        [Display(Name = "Elaborador")]
-        public string IDSchwarzUserElaborador { get; set; }
-		public virtual SchwarzUser? SchwarzUserElaborador { get; set; }
-		[ForeignKey("SchwarzUserAprovador")]
-        [Display(Name = "Aprovador")]
-        public string IDSchwarzUserAprovador { get; set; }
-		public virtual SchwarzUser? SchwarzUserAprovador { get; set; }
 
-		public PlanoControle()
+        [Required(ErrorMessage = "Selecione o funcionário")]
+        [ForeignKey("FuncionarioElaborador")]
+        [Display(Name = "Elaborador")]
+        public int IDFuncionarioElaborador { get; set; }
+		public virtual Funcionario? FuncionarioElaborador { get; set; }
+
+		[Required(ErrorMessage = "Selecione o funcionário")]
+		[ForeignKey("FuncionarioAprovador")]
+        [Display(Name = "Aprovador")]
+        public int IDFuncionarioAprovador { get; set; }
+		public virtual Funcionario? FuncionarioAprovador { get; set; }
+		public virtual IEnumerable<Cota>? Cotas { get; set; }
+        [NotMapped]
+        [Required(ErrorMessage = "Selecione pelo menos um funcionário")]
+        public List<int>? EquipeIds { get; set; }
+
+        public PlanoControle()
 		{
 
 		}

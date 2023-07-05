@@ -9,7 +9,7 @@
 
 <h4>PlanoControle</h4>
 <hr />
-<div class="row">
+<div class="row bg-white">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -69,12 +69,20 @@
                 <span asp-validation-for="Observacoes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IDSchwarzUserElaborador" class="control-label"></label>
-                <select asp-for="IDSchwarzUserElaborador" class ="form-control" asp-items="ViewBag.IDSchwarzUserElaborador"></select>
+                <label asp-for="IDFuncionarioElaborador" class="control-label"></label>
+                <select asp-for="IDFuncionarioElaborador" class="form-select select2 w-full" asp-items="ViewBag.Funcionarios"></select>
+                <span asp-validation-for="IDFuncionarioElaborador" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IDSchwarzUserAprovador" class="control-label"></label>
-                <select asp-for="IDSchwarzUserAprovador" class ="form-control" asp-items="ViewBag.IDSchwarzUserAprovador"></select>
+                <label asp-for="IDFuncionarioAprovador" class="control-label"></label>
+                <select asp-for="IDFuncionarioAprovador" class="form-select select2 w-full" asp-items="ViewBag.Funcionarios"></select>
+                <span asp-validation-for="IDFuncionarioAprovador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><span class="text-red-500 text-2xl">*</span>Equipe</label>
+                <select asp-for="EquipeIds" class="form-select select2 w-full" required multiple asp-items="ViewBag.Funcionarios">
+                </select>
+                @Html.ValidationMessageFor(x => x.EquipeIds)
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -87,6 +95,20 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $('.select2').select2({
+            placeholder: "Selecione o funcionário",
+            width: '100%',
+            language: {
+                noResults: function () {
+                    return "Nenhum resultado encontrado";
+                }
+            }
+        });
+
+    });
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
         await Html.RenderPartialAsync("_Bootstrap");
