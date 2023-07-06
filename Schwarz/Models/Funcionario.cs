@@ -27,6 +27,30 @@ namespace Schwarz.Models
 		public byte[]? Foto { get; set; }
 		public string? Telefone { get; set; }
 
+		[NotMapped]
+		public int QuantidadeIdeias2023
+		{
+			get
+			{
+				// Obtém a quantidade de ideias do funcionário no ano de 2023
+				return _context.EquipeIdeia
+					.Count(e => e.IDFuncionario == IDFuncionario &&
+								e.Ideia.Data.Year == 2023);
+			}
+		}
+
+		[NotMapped]
+		public int QuantidadeIdeiasImplementadas2023
+		{
+			get
+			{
+				// Obtém a quantidade de ideias do funcionário no ano de 2023
+				return _context.EquipeIdeia
+					.Count(e => e.IDFuncionario == IDFuncionario &&(
+					e.Ideia.Status == "Aplicada" &&				
+					e.Ideia.Data.Year == 2023));
+			}
+		}
 
 		public Funcionario()
         {

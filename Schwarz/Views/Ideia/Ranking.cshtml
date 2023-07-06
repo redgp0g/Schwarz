@@ -1,10 +1,11 @@
 ﻿@using static ProgramaIdeias.Controllers.IdeiaController;
-@model IEnumerable<Player>
+@model IEnumerable<Funcionario>
 @{
 	var posicao = 1;
 }
 
-<div class="container mx-auto my-12 rounded-2xl bg-zinc-500" style="font-family: 'Comfortaa', cursive;">
+
+<div class="container mx-auto my-12 rounded-2xl bg-no-repeat bg-cover" style="font-family: 'Comfortaa', cursive; background-image: url(/image/formula1background.jpg);">
 	<div class="bg-zinc-800 px-0 rounded-t-2xl py-5 flex justify-center">
 		<h1 class="text-6xl text-white text-center font-black">Ranking de Ideias</h1>
 		<img src="~/image/Logo.png" class="w-14 h-14" />
@@ -12,30 +13,16 @@
 
 	<div class="-mx-4 sm:-mx-8py-4 overflow-x-auto my-4">
 		<div  class="inline-block min-w-full rounded-lg overflow-hidden p-5">
-			<table class="table border-separate w-full border-spacing-x-0 border-spacing-y-2 px-4 sm:px-8 ">
-				<thead class="text-white text-3xl">
-					<tr>
-						<th class=""></th>
-						<th class="">Posição</th>
-						<th class="">Nome</th>
-						<th class="">Pontuação</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach (var p in Model)
-					{
-						<tr class="text-white text-center text-2xl bg-red-500 rounded">
-							<td class="after:content-[''] after:bg-blue-500 after:w-24 after:h-10 after:inline-block after:z-0 after:absolute"><img src="~/image/formula-1.png" width="80px" height="40px" class="inline-block z-10 relative" /></td>
-							<td class="italic">@posicao°</td>
-							<td class="text-left -skew-y-12"><span class="skew-y-12">@p.Nome</span></td>
-							<td class="">@p.Points pts</td>
-						</tr>
-
-						posicao++;
-					}
-
-				</tbody>
-			</table>
+			<div class="column-3">
+				@foreach(var funcionario in Model)
+				{
+					<div>
+						<label>@funcionario.Nome</label>
+						<label>@funcionario.QuantidadeIdeias2023</label>
+					</div>
+				}
+				
+			</div>
 		</div>
 	</div>
 </div>

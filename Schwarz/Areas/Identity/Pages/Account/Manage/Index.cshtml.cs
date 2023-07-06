@@ -112,6 +112,11 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
+            if(Input.Ramal != user.Funcionario.Ramal)
+            {
+                user.Funcionario.Ramal = Input.Ramal;
+            }
+
 			if (Input.NovaFoto != null)
 			{
 				using (var memoryStream = new MemoryStream())

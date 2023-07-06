@@ -228,30 +228,9 @@ namespace ProgramaIdeias.Controllers
 			}
 
 		}
-
-		public class Player
-		{
-			public string Nome { get; set; }
-			public int Points { get; set; }
-			public Player(string nome, int points)
-			{
-				Nome = nome;
-				Points = points;
-
-			}
-		}
-		IEnumerable<Player> players = new List<Player>{
-		   new Player ("Guilherme", new Random().Next(0,100)),
-		   new Player ("Andre", new Random().Next(0,100)),
-		   new Player ("Rafa", new Random().Next(0,100)),
-		   new Player ("Gilvania", new Random().Next(0,100)),
-		   new Player ("Jhonatan", new Random().Next(0,100)),
-		   new Player ("Camile", new Random().Next(0,100)),
-		   new Player ("Wesley", new Random().Next(0,100))
-		};
 		public IActionResult Ranking()
 		{
-			return View(players.OrderByDescending(x => x.Points));
+			return View(_context.Funcionario.Where(x => x.Ativo).ToList().OrderByDescending(x => x.QuantidadeIdeias2023));
 		}
 
 		public List<string> GetFuncionariosNomes()
