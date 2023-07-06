@@ -20,7 +20,7 @@ namespace Schwarz.Controllers
         }
 
         // GET: PlanoControle
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? idplano)
         {
             var schwarzContext = _context.PlanoControle.Include(p => p.FuncionarioAprovador).Include(p => p.FuncionarioElaborador);
             return View(await schwarzContext.ToListAsync());
@@ -49,7 +49,7 @@ namespace Schwarz.Controllers
         // GET: PlanoControle/Create
         public IActionResult Create()
         {
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
             return View();
         }
 
@@ -72,8 +72,8 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
-            return View(planoControle);
+			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
+			return View(planoControle);
         }
 
         // GET: PlanoControle/Edit/5
@@ -89,8 +89,8 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
-            return View(planoControle);
+			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
+			return View(planoControle);
         }
 
         // POST: PlanoControle/Edit/5
@@ -98,7 +98,7 @@ namespace Schwarz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IDPlanoControle,Revisao,DataOrigem,DataAtualizacao,Status,Produto,Cliente,Processo,CodigoInterno,CodigoCliente,NFluxo,Observacoes,IDFuncionarioElaborador,IDFuncionarioAprovador")] PlanoControle planoControle)
+        public async Task<IActionResult> Edit(int id, PlanoControle planoControle)
         {
             if (id != planoControle.IDPlanoControle)
             {
@@ -125,8 +125,8 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
-            return View(planoControle);
+			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
+			return View(planoControle);
         }
 
         // GET: PlanoControle/Delete/5

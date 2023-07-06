@@ -1,111 +1,111 @@
 ﻿@model IEnumerable<Schwarz.Models.PlanoControle>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "_Layout";
+	ViewData["Title"] = "Index";
+	Layout = "_Layout";
 }
 @Html.Partial("_Bootstrap")
 
 <div class="bg-white">
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Revisao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataOrigem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataAtualizacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Produto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Processo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodigoInterno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodigoCliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NFluxo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observacoes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuncionarioElaborador)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuncionarioAprovador)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Revisao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataOrigem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataAtualizacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Produto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Processo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoInterno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NFluxo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observacoes)
-            </td>
-            <td>
-                        @Html.DisplayFor(modelItem => item.FuncionarioElaborador.IDFuncionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuncionarioAprovador.IDFuncionario)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IDPlanoControle">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IDPlanoControle">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IDPlanoControle">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+	<p>
+		<a asp-action="Create">Cadastrar Novo</a>
+	</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Revisao)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.DataOrigem)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.DataAtualizacao)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Status)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Produto)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Cliente)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Processo)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.CodigoInterno)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.CodigoCliente)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.NFluxo)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Observacoes)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IDFuncionarioElaborador)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IDFuncionarioAprovador)
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Revisao)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DataOrigemFormatada)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DataAtualizacaoFormatada)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Status)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Produto)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Cliente)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Processo)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CodigoInterno)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CodigoCliente)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.NFluxo)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Observacoes)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.FuncionarioElaborador.Nome)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.FuncionarioAprovador.Nome)
+					</td>
+					<td>
+						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDPlanoControle">Detalhes</a>
+						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.IDPlanoControle">Editar</a>
+						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDPlanoControle">Deletar</a>
+						<a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-controller="Cota" asp-action="Index" asp-route-idplano="@item.IDPlanoControle">Cotas</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 </div>

@@ -13,7 +13,6 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     {
     }
 	public DbSet<Cota> Cota{ get; set; }
-    public DbSet<SchwarzUser> SchwarzUser { get; set; }
 	public DbSet<EquipeFSP> EquipeFSP{ get; set; }
 	public DbSet<EquipeIdeia> EquipeIdeia { get; set; }
     public DbSet<Falha> Falha { get; set; }
@@ -24,6 +23,7 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
 	public DbSet<PlanoAcao> PlanoAcao { get; set; }
 	public DbSet<PlanoControle> PlanoControle { get; set; }
     public DbSet<PlanoControleEquipe> PlanoControleEquipe { get; set; }
+    public DbSet<PlanoControleAnexo> PlanoControleAnexo { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)

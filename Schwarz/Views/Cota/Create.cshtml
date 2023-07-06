@@ -4,18 +4,20 @@
     ViewData["Title"] = "Create";
     Layout = "_Layout";
 }
+@Html.Partial("_Bootstrap")
 
 <h1>Create</h1>
 
 <h4>Cota</h4>
 <hr />
-<div class="row">
+
+<div class="row bg-white">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IDPlanoControle" class="control-label"></label>
-                <select asp-for="IDPlanoControle" class ="form-control" asp-items="ViewBag.IDPlanoControle"></select>
+                <select asp-for="IDPlanoControle" class ="form-control select2" asp-items="ViewBag.PlanosControle"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Item" class="control-label"></label>
@@ -23,9 +25,19 @@
                 <span asp-validation-for="Item" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Ordem" class="control-label"></label>
+                <input asp-for="Ordem" class="form-control" />
+                <span asp-validation-for="Ordem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CaracteristicaEspecial" class="control-label"></label>
-                <input asp-for="CaracteristicaEspecial" class="form-control" />
-                <span asp-validation-for="CaracteristicaEspecial" class="text-danger"></span>
+                <select asp-for="IDPlanoControle" class="form-control">
+                    <option value="">Nenhuma</option>
+                    <option value="Produto">☐ Produto</option>
+                    <option value="Processo">■ Processo</option>
+                    <option value="Segurança">● Segurança</option>
+                    <option value="Cliente">♦ Cliente</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Localizacao" class="control-label"></label>
@@ -46,6 +58,11 @@
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nominal" class="control-label"></label>
+                <input asp-for="Nominal" class="form-control" />
+                <span asp-validation-for="Nominal" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ToleranciaSuperior" class="control-label"></label>
@@ -109,7 +126,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="MetodoIP" class="control-label"></label>
-                <input asp-for="MetodoIP" class="form-control" />
+                <select asp-for="MetodoIP" class="form-control">
+                    <option value="MT">Monitoramento</option>
+                    <option value="RI">Registro de Inspeção</option>
+                    <option value="CEP">Controle Estatístico do Produto</option>
+                    <option value="N/A">Não Aplicável</option>
+                </select>
                 <span asp-validation-for="MetodoIP" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -159,7 +181,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="MetodoIA" class="control-label"></label>
-                <input asp-for="MetodoIA" class="form-control" />
+                <select asp-for="MetodoIA" class="form-control">
+                    <option value="MT">Monitoramento</option>
+                    <option value="RI">Registro de Inspeção</option>
+                    <option value="CEP">Controle Estatístico do Produto</option>
+                    <option value="N/A">Não Aplicável</option>
+                </select>
                 <span asp-validation-for="MetodoIA" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -172,6 +199,21 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.select2').select2({
+            placeholder: "Selecione o funcionário",
+            width: '100%',
+            language: {
+                noResults: function () {
+                    return "Nenhum resultado encontrado";
+                }
+            }
+        });
+
+    });
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");

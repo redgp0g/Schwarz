@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,14 +21,23 @@ namespace Schwarz.Controllers
         }
 
         // GET: Cota
-        public async Task<IActionResult> Index()
-        {
-            var schwarzContext = _context.Cota.Include(c => c.PlanoControle);
-            return View(await schwarzContext.ToListAsync());
-        }
+		public async Task<IActionResult> Index(int? idplano)
+		{
+			if (idplano != null)
+			{
+				var schwarzContext = _context.Cota.Where(x => x.IDPlanoControle == idplano).Include(p => p.PlanoControle);
+				return View(await schwarzContext.ToListAsync());
+			}
+			else
+			{
+				var schwarzContext = _context.Cota.Include(p => p.PlanoControle);
+				return View(await schwarzContext.ToListAsync());
+			}
 
-        // GET: Cota/Details/5
-        public async Task<IActionResult> Details(int? id)
+		}
+
+		// GET: Cota/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Cota == null)
             {
@@ -48,8 +58,10 @@ namespace Schwarz.Controllers
         // GET: Cota/Create
         public IActionResult Create()
         {
-            ViewData["IDPlanoControle"] = new SelectList(_context.PlanoControle, "IDPlanoControle", "IDPlanoControle");
-            return View();
+				ViewData["PlanosControle"] = new SelectList(_context.PlanoControle, "IDPlanoControle", "CodigoInterno");
+				return View();
+
+            
         }
 
         // POST: Cota/Create
@@ -57,7 +69,7 @@ namespace Schwarz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IDCota,IDPlanoControle,Item,CaracteristicaEspecial,Localizacao,CaracteristicaProduto,CaracteristicaProcesso,Descricao,ToleranciaSuperior,ToleranciaInferior,InstrumentoPrincipal,CodigoIP,FrequenciaMinimaDiaIP,FrequenciaMinimaTurnoIP,FrequenciaMinimaSetUpIP,FrequenciaMinimaParadaIP,FrequenciaMinimaFinalIP,FrequenciaMinimaAjusteIP,FrequenciaMinimaHoraIP,AmostragemIP,MetodoIP,InstrumentoAlternativo,FrequenciaMinimaDiaIA,FrequenciaMinimaTurnoIA,FrequenciaMinimaSetUpIA,FrequenciaMinimaParadaIA,FrequenciaMinimaFinalIA,FrequenciaMinimaAjusteIA,FrequenciaMinimaHoraIA,AmostragemIA,MetodoIA")] Cota cota)
+        public async Task<IActionResult> Create(Cota cota)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +77,7 @@ namespace Schwarz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDPlanoControle"] = new SelectList(_context.PlanoControle, "IDPlanoControle", "IDPlanoControle", cota.IDPlanoControle);
+            ViewData["PlanosControle"] = new SelectList(_context.PlanoControle, "IDPlanoControle", "CodigoInterno", cota.IDPlanoControle);
             return View(cota);
         }
 
@@ -82,7 +94,7 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["IDPlanoControle"] = new SelectList(_context.PlanoControle, "IDPlanoControle", "IDPlanoControle", cota.IDPlanoControle);
+            ViewData["PlanosControle"] = new SelectList(_context.PlanoControle, "IDPlanoControle", "CodigoInterno", cota.IDPlanoControle);
             return View(cota);
         }
 
@@ -91,7 +103,7 @@ namespace Schwarz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IDCota,IDPlanoControle,Item,CaracteristicaEspecial,Localizacao,CaracteristicaProduto,CaracteristicaProcesso,Descricao,ToleranciaSuperior,ToleranciaInferior,InstrumentoPrincipal,CodigoIP,FrequenciaMinimaDiaIP,FrequenciaMinimaTurnoIP,FrequenciaMinimaSetUpIP,FrequenciaMinimaParadaIP,FrequenciaMinimaFinalIP,FrequenciaMinimaAjusteIP,FrequenciaMinimaHoraIP,AmostragemIP,MetodoIP,InstrumentoAlternativo,FrequenciaMinimaDiaIA,FrequenciaMinimaTurnoIA,FrequenciaMinimaSetUpIA,FrequenciaMinimaParadaIA,FrequenciaMinimaFinalIA,FrequenciaMinimaAjusteIA,FrequenciaMinimaHoraIA,AmostragemIA,MetodoIA")] Cota cota)
+        public async Task<IActionResult> Edit(int id, Cota cota)
         {
             if (id != cota.IDCota)
             {
@@ -118,7 +130,7 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDPlanoControle"] = new SelectList(_context.PlanoControle, "IDPlanoControle", "IDPlanoControle", cota.IDPlanoControle);
+            ViewData["PlanosControle"] = new SelectList(_context.PlanoControle, "IDPlanoControle", "IDPlanoControle", cota.IDPlanoControle);
             return View(cota);
         }
 
