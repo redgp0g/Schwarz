@@ -52,7 +52,20 @@ namespace Schwarz.Models
 			}
 		}
 
-		public Funcionario()
+        [NotMapped]
+        public string? PrimeiroUltimoNome
+        {
+            get
+            {
+                string[] nomes = Nome.Split(' ');
+                if (nomes.Length < 2)
+                    return Nome;
+
+                return nomes[0] + " " + nomes[nomes.Length - 1];
+            }
+        }
+
+        public Funcionario()
         {
 
         }

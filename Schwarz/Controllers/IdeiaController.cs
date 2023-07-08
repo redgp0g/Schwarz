@@ -230,7 +230,11 @@ namespace ProgramaIdeias.Controllers
 		}
 		public IActionResult Ranking()
 		{
-			return View(_context.Funcionario.Where(x => x.Ativo).ToList().OrderByDescending(x => x.QuantidadeIdeias2023));
+			return View(_context.Funcionario
+				.Where(x => x.Ativo && x.Setor != "Schwarz")
+				.ToList()
+				.Where(x => x.QuantidadeIdeiasImplementadas2023 > 0 || x.QuantidadeIdeias2023 > 0)
+				.OrderBy(x => x.Nome));
 		}
 
 		public List<string> GetFuncionariosNomes()
