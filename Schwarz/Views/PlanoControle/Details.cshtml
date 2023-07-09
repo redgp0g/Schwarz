@@ -1,100 +1,132 @@
 ﻿@model Schwarz.Models.PlanoControle
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "_Layout";
+	ViewData["Title"] = "Details";
+	Layout = "_Layout";
 }
 @Html.Partial("_Bootstrap")
 
 <div class="bg-white">
-<h1>Details</h1>
 
-<div>
-    <h4>PlanoControle</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Revisao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Revisao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataOrigem)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataOrigem)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataAtualizacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataAtualizacao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Produto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Produto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cliente)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Processo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Processo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CodigoInterno)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CodigoInterno)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CodigoCliente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CodigoCliente)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NFluxo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NFluxo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Observacoes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Observacoes)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FuncionarioElaborador)
-        </dt>
-        <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.FuncionarioElaborador.IDFuncionario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FuncionarioAprovador)
-        </dt>
-        <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.FuncionarioAprovador.IDFuncionario)
-        </dd>
-    </dl>
+	<div>
+		<h4>PlanoControle</h4>
+		<dl class="grid grid-column-10">
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Revisao)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Revisao)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.DataOrigem)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.DataOrigem)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.DataAtualizacao)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.DataAtualizacao)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Status)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Status)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Produto)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Produto)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Cliente)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Cliente)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Processo)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Processo)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.CodigoInterno)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.CodigoInterno)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.CodigoCliente)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.CodigoCliente)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.NFluxo)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.NFluxo)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Observacoes)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Observacoes)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.FuncionarioElaborador)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.FuncionarioElaborador.Nome)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.FuncionarioAprovador)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.FuncionarioAprovador.Nome)
+			</dd>
+		</dl>
+	</div>
+
+
+	@foreach (var cota in Model.Cotas)
+	{
+		@(await Html.PartialAsync("_DetailsCotaPartialView", cota))
+	}
+	<div id="detailsCotaContainer">
+	</div>
+	@(await Html.PartialAsync("_CreateCotaPartialView", new Cota(Model.IDPlanoControle)))
+	<div>
+		<a asp-action="Index">Voltar para Lista</a>
+	</div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IDPlanoControle">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-</div>
+
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	<script>
+		$(document).ready(function () {
+			$('#createCotaForm').submit(function (event) {
+				event.preventDefault();
+
+				$.ajax({
+					url: '@Url.Action("CreateCota", "PlanoControle")',
+					type: 'POST',
+					data: $(this).serialize(),
+					success: function (data) {
+						$('#detailsCotaContainer').html(data);
+					},
+					error: function (xhr, status, error) {
+					}
+				});
+			});
+		});
+	</script>
+}

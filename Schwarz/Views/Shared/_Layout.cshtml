@@ -141,7 +141,6 @@
 					</div>
 				}
 
-				@if (User.IsInRole("PlanoControleAdmin")){
 				<div class="relative">
 					<button id="toggleMenuPlanoControle" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPlanoControle',this.id)">
 						Planos de Controle
@@ -193,7 +192,6 @@
 						</div>
 					</div>
 				</div>
-				}
 				@if (SignInManager.IsSignedIn(User))
 				{
 					<div class="relative">

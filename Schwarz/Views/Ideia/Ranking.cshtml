@@ -1,22 +1,19 @@
 ﻿@using static ProgramaIdeias.Controllers.IdeiaController;
 @model IEnumerable<Funcionario>
-@{
-    var posicao = 1;
-}
 
 
-<div class="container mx-auto my-4 rounded-2xl" style="font-family: 'Comfortaa', cursive; background-image: url(/image/formula1background.jpg);">
-    <div class="bg-zinc-800 px-0 rounded-t-2xl py-1 flex justify-center">
-        <h1 class="text-3xl text-white text-center font-black">Ranking de Ideias</h1>
-        <img src="~/image/Logo.png" class="w-14 h-14" />
+<div class="container mx-auto my-4 rounded-2xl" style="background-image: url(/image/formula1background.jpg);">
+    <div class="bg-zinc-800 px-0 rounded-t-2xl py-1 flex justify-center items-center">
+        <h1 class="text-6xl text-red-600 text-center font-black">SCHWARZ 1</h1>
+        <img src="~/image/Logo.png" class="ml-5 w-18 h-20" />
     </div>
 
     <div class=" overflow-y-auto" style="max-height: 70vh">
-        <div class="inline-block min-w-full rounded-lg overflow-hidden p-5">
+        <div class="inline-block min-w-full rounded-lg overflow-hidden p-8" style="font-family: 'Comfortaa', cursive;">
             <div class="grid grid-cols-8 gap-6">
                 @foreach (var funcionario in Model)
                 {
-                    <div class="row text-black text-center inline-grid justify-center bg-zinc-100/50 rounded">
+                    <div class="row text-black text-center inline-grid justify-center bg-zinc-100/50 rounded hover:bg-red-400 hover:scale-125">
                         @if (funcionario.Foto == null)
                         {
                             <div class="justify-center flex">

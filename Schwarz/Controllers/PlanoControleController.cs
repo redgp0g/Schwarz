@@ -172,5 +172,21 @@ namespace Schwarz.Controllers
         {
           return (_context.PlanoControle?.Any(e => e.IDPlanoControle == id)).GetValueOrDefault();
         }
+
+        [HttpPost]
+        public IActionResult CreateCota(Cota cota)
+        {
+            if (ModelState.IsValid)
+            {
+				_context.Add(cota);
+				_context.SaveChanges();
+				return PartialView("_DetailsCotaPartialView", cota);
+			}
+            else
+            {
+                return NotFound();
+            }
+            
+        }
     }
 }
