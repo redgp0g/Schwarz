@@ -92,13 +92,108 @@
 		</dl>
 	</div>
 
-
+	<table class="table-auto ">
+		<thead>
+			<tr>
+				<th>
+					It
+				</th>
+				<th>
+					CE
+				</th>
+				<th>
+					L
+				</th>
+				<th>
+					Característica Produto
+				</th>
+				<th>
+					Característica Process
+				</th>
+				<th>
+					Descrição
+				</th>
+				<th>
+					Nominal
+				</th>
+				<th>
+					Máx
+				</th>
+				<th>
+					Min
+				</th>
+				<th>
+					Instrumento Principal
+				</th>
+				<th>
+					Cód. instrum
+				</th>
+				<th>
+					/D
+				</th>
+				<th>
+					/T
+				</th>
+				<th>
+					/S
+				</th>
+				<th>
+					/P
+				</th>
+				<th>
+					/F
+				</th>
+				<th>
+					/A
+				</th>
+				<th>
+					/H
+				</th>
+				<th>
+					Amost
+				</th>
+				<th>
+					Mét
+				</th>
+				<th>
+					Instrumento Alternativo
+				</th>
+				<th>
+					/D
+				</th>
+				<th>
+					/T
+				</th>
+				<th>
+					/S
+				</th>
+				<th>
+					/P
+				</th>
+				<th>
+					/F
+				</th>
+				<th>
+					/A
+				</th>
+				<th>
+					/H
+				</th>
+				<th>
+					Amost
+				</th>
+				<th>
+					Mét
+				</th>
+			</tr>
+		</thead>
+		<tbody>
 	@foreach (var cota in Model.Cotas)
 	{
 		@(await Html.PartialAsync("_DetailsCotaPartialView", cota))
 	}
-	<div id="detailsCotaContainer">
-	</div>
+	</tbody>
+	</table>
 	@(await Html.PartialAsync("_CreateCotaPartialView", new Cota(Model.IDPlanoControle)))
 	<div>
 		<a asp-action="Index">Voltar para Lista</a>

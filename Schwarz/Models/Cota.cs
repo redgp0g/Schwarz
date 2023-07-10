@@ -15,10 +15,10 @@ namespace Schwarz.Models
 		public string Item { get; set; }
         public int Ordem { get; set; }
 
-        [Display(Name = "Característica Especial")]
+        [Display(Name = "CE")]
         public string? CaracteristicaEspecial { get; set; }
 
-        [Display(Name = "Localização")]
+        [Display(Name = "L")]
         public string? Localizacao { get; set; }
 
         [Display(Name = "Característica Produto")]
@@ -31,41 +31,72 @@ namespace Schwarz.Models
         public string? Descricao { get; set; }
         public decimal? Nominal { get; set; }
 
-        [Display(Name = "Tolerância Superior")]
+        [Display(Name = "Máx")]
         public decimal? ToleranciaSuperior { get; set; }
 
-        [Display(Name = "Tolerância Inferior")]
+        [Display(Name = "Min")]
         public decimal? ToleranciaInferior { get; set; }
 
-		[Display(Name = "Instrumento Principal")]
+		[Display(Name = "IP")]
 		public string InstrumentoPrincipal { get; set; }
 
         [Display(Name = "Código Instrumento")]
         public string? CodigoIP { get; set; }
+
+		[Display(Name = "/D")]
 		public int FrequenciaMinimaDiaIP{ get; set; }
+
+		[Display(Name = "/T")]
 		public int FrequenciaMinimaTurnoIP { get; set; }
+
+		[Display(Name = "/S")]
 		public int FrequenciaMinimaSetUpIP { get; set; }
+
+		[Display(Name = "/P")]
 		public int FrequenciaMinimaParadaIP { get; set; }
+
+		[Display(Name = "/F")]
 		public int FrequenciaMinimaFinalIP { get; set; }
+
+		[Display(Name = "/A")]
 		public int FrequenciaMinimaAjusteIP { get; set; }
+
+		[Display(Name = "/H")]
 		public int FrequenciaMinimaHoraIP { get; set; }
+
+		[Display(Name = "Amostragem")]
 		public int? AmostragemIP { get; set; }
 
-        [Display(Name = "Método Instrumento Principal")]
+        [Display(Name = "Método")]
         public string MetodoIP { get; set; }
 
-        [Display(Name = "Instrumento Alternativo")]
+        [Display(Name = "IA")]
         public string InstrumentoAlternativo { get; set; }
-		public int FrequenciaMinimaDiaIA { get; set; }
-		public int FrequenciaMinimaTurnoIA { get; set; }
-		public int FrequenciaMinimaSetUpIA { get; set; }
-		public int FrequenciaMinimaParadaIA { get; set; }
-		public int FrequenciaMinimaFinalIA { get; set; }
-		public int FrequenciaMinimaAjusteIA { get; set; }
-		public int FrequenciaMinimaHoraIA { get; set; }
-		public int? AmostragemIA { get; set; }
 
-        [Display(Name = "Método Instrumento Alternativo")]
+		[Display(Name = "/D")]
+		public int FrequenciaMinimaDiaIA { get; set; }
+
+		[Display(Name = "/T")]
+		public int FrequenciaMinimaTurnoIA { get; set; }
+
+		[Display(Name = "/S")]
+		public int FrequenciaMinimaSetUpIA { get; set; }
+
+		[Display(Name = "/P")]
+		public int FrequenciaMinimaParadaIA { get; set; }
+
+		[Display(Name = "/F")]
+		public int FrequenciaMinimaFinalIA { get; set; }
+
+		[Display(Name = "/A")]
+		public int FrequenciaMinimaAjusteIA { get; set; }
+
+		[Display(Name = "/H")]
+		public int FrequenciaMinimaHoraIA { get; set; }
+
+		[Display(Name = "Amost")]
+		public int? AmostragemIA { get; set; }
+        [Display(Name = "Método")]
         public string MetodoIA { get; set; }
 
 
