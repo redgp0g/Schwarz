@@ -138,13 +138,13 @@
 
 	$(document).on('click', '.adicionar-participante', function () {	
 		var idideia = $('#idideia').val();
-		var idSchwarzUser = $('#novoparticipante').val();
+		var idFuncionario = $('#novoparticipante').val();
 
 
 		$.ajax({
 			url: '/Ideia/AdicionarParticipante',
 			type: 'POST',
-			data: { idSchwarzUser: idSchwarzUser, idideia : idideia },
+			data: { idFuncionario: idFuncionario, idideia: idideia },
 			success: function (response) {
 				var nome = response.nome;
 				var idEquipeideia = response.idEquipe;
