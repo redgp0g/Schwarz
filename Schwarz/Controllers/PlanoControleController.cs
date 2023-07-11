@@ -20,10 +20,10 @@ namespace Schwarz.Controllers
         }
 
         // GET: PlanoControle
-        public async Task<IActionResult> Index(int? idplano)
+        public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.PlanoControle.Include(p => p.FuncionarioAprovador).Include(p => p.FuncionarioElaborador);
-            return View(await schwarzContext.ToListAsync());
+            var planoControles = _context.PlanoControle.Include(p => p.FuncionarioAprovador).Include(p => p.FuncionarioElaborador);
+            return View(await planoControles.ToListAsync());
         }
 
         // GET: PlanoControle/Details/5
@@ -180,7 +180,7 @@ namespace Schwarz.Controllers
             {
 				_context.Add(cota);
 				_context.SaveChanges();
-				return PartialView("_DetailsCotaPartialView", cota);
+                return Ok();
 			}
             else
             {

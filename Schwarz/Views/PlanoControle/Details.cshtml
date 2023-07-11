@@ -1,15 +1,15 @@
 ﻿@model Schwarz.Models.PlanoControle
 
 @{
-	ViewData["Title"] = "Details";
+	ViewData["Title"] = "Detalhes";
 	Layout = "_Layout";
 }
 @Html.Partial("_Bootstrap")
 
-<div class="bg-white">
+<div class="bg-white overflow-none">
 
 	<div>
-		<h4>PlanoControle</h4>
+		<h1>Plano de Controle</h1>
 		<dl class="grid grid-column-10">
 			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Revisao)
@@ -21,13 +21,13 @@
 				@Html.DisplayNameFor(model => model.DataOrigem)
 			</dt>
 			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.DataOrigem)
+				@Html.DisplayFor(model => model.DataOrigemFormatada)
 			</dd>
 			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.DataAtualizacao)
 			</dt>
 			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.DataAtualizacao)
+				@Html.DisplayFor(model => model.DataAtualizacaoFormatada)
 			</dd>
 			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Status)
@@ -92,110 +92,117 @@
 		</dl>
 	</div>
 
-	<table class="table-auto ">
-		<thead>
-			<tr>
-				<th>
-					It
-				</th>
-				<th>
-					CE
-				</th>
-				<th>
-					L
-				</th>
-				<th>
-					Característica Produto
-				</th>
-				<th>
-					Característica Process
-				</th>
-				<th>
-					Descrição
-				</th>
-				<th>
-					Nominal
-				</th>
-				<th>
-					Máx
-				</th>
-				<th>
-					Min
-				</th>
-				<th>
-					Instrumento Principal
-				</th>
-				<th>
-					Cód. instrum
-				</th>
-				<th>
-					/D
-				</th>
-				<th>
-					/T
-				</th>
-				<th>
-					/S
-				</th>
-				<th>
-					/P
-				</th>
-				<th>
-					/F
-				</th>
-				<th>
-					/A
-				</th>
-				<th>
-					/H
-				</th>
-				<th>
-					Amost
-				</th>
-				<th>
-					Mét
-				</th>
-				<th>
-					Instrumento Alternativo
-				</th>
-				<th>
-					/D
-				</th>
-				<th>
-					/T
-				</th>
-				<th>
-					/S
-				</th>
-				<th>
-					/P
-				</th>
-				<th>
-					/F
-				</th>
-				<th>
-					/A
-				</th>
-				<th>
-					/H
-				</th>
-				<th>
-					Amost
-				</th>
-				<th>
-					Mét
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-	@foreach (var cota in Model.Cotas)
-	{
-		@(await Html.PartialAsync("_DetailsCotaPartialView", cota))
-	}
-	</tbody>
-	</table>
-	@(await Html.PartialAsync("_CreateCotaPartialView", new Cota(Model.IDPlanoControle)))
-	<div>
+	<h1>Cotas do Plano de Controle</h1>
+	<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">
+		<table class="table-auto ">
+			<thead>
+				<tr>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						#
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Item
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Característica Especial
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Localização
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Característica Produto
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Característica Processo
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Descrição
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Nominal
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Tolerância Superior
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Tolerância Superior
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Instrumento Principal
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Código Instrumento
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/D
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/T
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/S
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/P
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/F
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/A
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/H
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Amostragem
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Método IP
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Instrumento Alternativo
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/D
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/T
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/S
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/P
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/F
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/A
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Frequência/H
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Amostragem IA
+					</th>
+					<th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+						Método IA
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var cota in Model.Cotas.OrderBy(x => x.Ordem))
+				{
+					@(await Html.PartialAsync("_DetailsCotaPartialView", cota))
+				}
+			</tbody>
+		</table>
+	</div>
+	<h1>Adicionar Cota</h1>
+	@(await Html.PartialAsync("_CreateCotaPartialView", new Cota(Model.IDPlanoControle, Model._context)))
+	<div class="mb-12">
 		<a asp-action="Index">Voltar para Lista</a>
 	</div>
 </div>
@@ -216,7 +223,7 @@
 					type: 'POST',
 					data: $(this).serialize(),
 					success: function (data) {
-						$('#detailsCotaContainer').html(data);
+						location.reload();
 					},
 					error: function (xhr, status, error) {
 					}

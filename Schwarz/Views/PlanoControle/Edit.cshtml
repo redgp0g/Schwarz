@@ -73,12 +73,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioElaborador" class="control-label"></label>
-                <select asp-for="IDFuncionarioElaborador" class="form-control" asp-items="ViewBag.IDFuncionarioElaborador"></select>
+                    <select asp-for="IDFuncionarioElaborador" class="form-control" asp-items="ViewBag.Funcionarios"></select>
                 <span asp-validation-for="IDFuncionarioElaborador" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IDFuncionarioAprovador" class="control-label"></label>
-                <select asp-for="IDFuncionarioAprovador" class="form-control" asp-items="ViewBag.IDFuncionarioAprovador"></select>
+                    <select asp-for="IDFuncionarioAprovador" class="form-control" asp-items="ViewBag.Funcionarios"></select>
                 <span asp-validation-for="IDFuncionarioAprovador" class="text-danger"></span>
             </div>
             <div class="form-group">

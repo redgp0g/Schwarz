@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <select asp-for="IDFuncionarioElaborador" class="form-select select2 w-full">
+                <select asp-for="Status" class="form-select select2 w-full">
                     <option value="">Selecione o Status</option>
                     <option value="Protótipo">Protótipo</option>
                     <option value="Pré-Lançamento">Pré-Lançamento</option>
@@ -84,7 +84,7 @@
                 <span asp-validation-for="IDFuncionarioAprovador" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><span class="text-red-500 text-2xl">*</span>Equipe</label>
+                <label class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Equipe</label>
                 <select asp-for="EquipeIds" class="form-select select2 w-full" required multiple asp-items="ViewBag.Funcionarios">
                 </select>
                 @Html.ValidationMessageFor(x => x.EquipeIds)
