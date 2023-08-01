@@ -228,7 +228,7 @@ namespace ProgramaIdeias.Controllers
 			}
 
 		}
-		public IActionResult Ranking()
+		public IActionResult Painel()
 		{
 			return View(_context.Funcionario
 				.Where(x => x.Ativo && x.Setor != "Schwarz")
@@ -295,7 +295,6 @@ namespace ProgramaIdeias.Controllers
 			{
 				foreach (var file in files)
 				{
-					// Leia o conteúdo do arquivo em um array de bytes
 					using (var memoryStream = new MemoryStream())
 					{
 						file.CopyTo(memoryStream);

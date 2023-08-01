@@ -19,14 +19,12 @@ namespace Schwarz.Controllers
             _context = context;
         }
 
-        // GET: PlanoControle
         public async Task<IActionResult> Index()
         {
             var planoControles = _context.PlanoControle.Include(p => p.FuncionarioAprovador).Include(p => p.FuncionarioElaborador);
             return View(await planoControles.ToListAsync());
         }
 
-        // GET: PlanoControle/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.PlanoControle == null)
@@ -46,16 +44,12 @@ namespace Schwarz.Controllers
             return View(planoControle);
         }
 
-        // GET: PlanoControle/Create
         public IActionResult Create()
         {
             ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
             return View();
         }
 
-        // POST: PlanoControle/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PlanoControle planoControle)
@@ -76,7 +70,6 @@ namespace Schwarz.Controllers
 			return View(planoControle);
         }
 
-        // GET: PlanoControle/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.PlanoControle == null)
@@ -93,9 +86,6 @@ namespace Schwarz.Controllers
 			return View(planoControle);
         }
 
-        // POST: PlanoControle/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, PlanoControle planoControle)
@@ -129,7 +119,6 @@ namespace Schwarz.Controllers
 			return View(planoControle);
         }
 
-        // GET: PlanoControle/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.PlanoControle == null)
@@ -149,7 +138,6 @@ namespace Schwarz.Controllers
             return View(planoControle);
         }
 
-        // POST: PlanoControle/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
