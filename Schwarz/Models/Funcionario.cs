@@ -48,7 +48,7 @@ namespace Schwarz.Models
 				return _context.EquipeIdeia
 					.Count(e => e.IDFuncionario == IDFuncionario &&(
 					e.Ideia.Status == "Aplicada" &&				
-					e.Ideia.Data.Year == 2023));
+					(e.Ideia.Data.Year == 2023 || e.Ideia.DataImplantacao.Value.Year == 2023)));
 			}
 		}
 
