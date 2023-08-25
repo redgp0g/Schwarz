@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
-using Syncfusion.EJ2.Charts;
 
 namespace Schwarz.Areas.Identity.Pages.Account.Manage
 {

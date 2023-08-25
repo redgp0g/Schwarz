@@ -21,9 +21,8 @@ namespace Schwarz.Models
         public int Quantidade { get; set; }
         public bool Entregue { get; set; }
 
-
         private readonly SchwarzContext _context;
-
+			
 		public Estoque()
 		{
 

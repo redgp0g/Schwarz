@@ -15,17 +15,18 @@
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/21.1.35/material.css" />
 	<script src="https://kit.fontawesome.com/5d8b80ea21.js" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
 	<link rel="stylesheet" href="~/css/base.css" asp-append-version="true" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-	<script src="https://cdn.syncfusion.com/ej2/21.1.35/dist/ej2.min.js"></script>
+	<link rel="stylesheet" href="~/lib/DataTables/datatables.min.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+	<script src="~/lib/justgage-1.2.2/justgage.js"></script>
+	<script src="~/lib/justgage-1.2.2/raphael-2.1.4.min.js"></script>
 </head>
 <body class="bg-no-repeat bg-cover" style="background-image: url(/image/fundo.jpg);">
 	<header class="bg-white">
@@ -74,7 +75,7 @@
 								</div>
 								<div class="flex-auto">
 									<a asp-action="Index" asp-controller="Ideia" class="block font-semibold text-gray-900">
-										Tabela de Ideias
+										Ideias Cadastradas
 										<span class="absolute inset-0"></span>
 									</a>
 									<p class="mt-1 text-gray-600">Verifique aqui sua ideia e veja como podemos torná-la realidade!</p>
@@ -142,7 +143,7 @@
 					</div>
 				}
 
-				<div class="relative">
+				<div class="relative hidden">
 					<button id="toggleMenuPlanoControle" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPlanoControle',this.id)">
 						Planos de Controle
 						<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -180,45 +181,47 @@
 						</div>
 					</div>
 				</div>
+				@if (SignInManager.IsSignedIn(User))
+				{
+					<div class="relative">
+						<button id="toggleMenuControleEstoque" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuControleEstoque',this.id)">
+							Controle de Estoque
+							<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+								<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+							</svg>
+						</button>
 
-				<div class="relative">
-					<button id="toggleMenuControleEstoque" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuControleEstoque',this.id)">
-						Controle de Estoque
-						<svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-						</svg>
-					</button>
+						<div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuControleEstoque">
+							<div class="p-4">
+								<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+									<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+									</div>
+									<div class="flex-auto">
+										<a asp-action="Create" asp-controller="Estoque" class="block font-semibold text-gray-900">
+											Solicitar Caixas
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-600">Acesse para solicitar estoque!</p>
+									</div>
+								</div>
 
-					<div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuControleEstoque">
-						<div class="p-4">
-							<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-								<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-									<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
-								</div>
-								<div class="flex-auto">
-									<a asp-action="Create" asp-controller="Estoque" class="block font-semibold text-gray-900">
-										Solicitar Caixas
-										<span class="absolute inset-0"></span>
-									</a>
-									<p class="mt-1 text-gray-600">Acesse para solicitar estoque!</p>
-								</div>
-							</div>
-
-							<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
-								<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-									<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-								</div>
-								<div class="flex-auto">
-									<a asp-action="Index" asp-controller="Estoque" class="block font-semibold text-gray-900">
-										Estoque Solicitados
-										<span class="absolute inset-0"></span>
-									</a>
-									<p class="mt-1 text-gray-600">Visualizar os estoques solicitados!</p>
+								<div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+									<div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+										<image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+									</div>
+									<div class="flex-auto">
+										<a asp-action="Index" asp-controller="Estoque" class="block font-semibold text-gray-900">
+											Estoque Solicitados
+											<span class="absolute inset-0"></span>
+										</a>
+										<p class="mt-1 text-gray-600">Visualizar os estoques solicitados!</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				}
 				@if (SignInManager.IsSignedIn(User))
 				{
 					<div class="relative">
@@ -357,8 +360,7 @@
 									</button>
 									<!-- 'Ideia' sub-menu -->
 									<div class="mt-2 space-y-2 hidden" id="subMenuMobileUser" aria-expanded="false">
-										<form id="
-Form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+										<form id="Form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 											<button id="logout" type="submit" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-red-500 hover:bg-gray-50">Sair</button>
 										</form>
 									</div>
@@ -438,11 +440,11 @@ Form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.A
 		}, 7000);
 
 	</script>
-	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
+	<script src="~/lib/DataTables/datatables.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
 	<script src="//cdn.datatables.net/plug-ins/1.13.4/sorting/datetime-moment.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
-	<ejs-scripts></ejs-scripts>
 </body>
 </html>

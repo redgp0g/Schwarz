@@ -2,31 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
 using Schwarz.Models;
 
 namespace Schwarz.Controllers
 {
+    [Authorize]
     public class EstoqueController : Controller
     {
         private readonly SchwarzContext _context;
+        private readonly UserManager<SchwarzUser> _userManager;
 
-        public EstoqueController(SchwarzContext context)
+        public EstoqueController(SchwarzContext context,UserManager<SchwarzUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        // GET: Estoque
         public async Task<IActionResult> Index()
         {
             var schwarzContext = _context.Estoque.Include(e => e.SchwarzUser);
             return View(await schwarzContext.ToListAsync());
         }
 
-        // GET: Estoque/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Estoque == null)
@@ -45,27 +49,25 @@ namespace Schwarz.Controllers
             return View(estoque);
         }
 
-        // GET: Estoque/Create
         public IActionResult Create()
         {
-            ViewData["IdAspNetUser"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+			var distinctSetores = _context.Funcionario.Select(f => f.Setor).Distinct().ToList();
+			ViewData["Setores"] = new SelectList(distinctSetores);
+			return View();
         }
 
-        // POST: Estoque/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IDEstoque,IdAspNetUser,Setor,Urgencia,Data,Peca,Quantidade,Entregue")] Estoque estoque)
+        public async Task<IActionResult> Create(Estoque estoque)
         {
+            estoque.Data = DateTime.Now;
+            estoque.IdAspNetUser = _userManager.GetUserId(User);
             if (ModelState.IsValid)
             {
                 _context.Add(estoque);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdAspNetUser"] = new SelectList(_context.Users, "Id", "Id", estoque.IdAspNetUser);
             return View(estoque);
         }
 
@@ -82,7 +84,7 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdAspNetUser"] = new SelectList(_context.Users, "Id", "Id", estoque.IdAspNetUser);
+            ViewData["IdAspNetUser"] = new SelectList(_context.Users.Include(x => x.Funcionario).Where(x => x.Funcionario.Ativo), "Id", "Funcionario.Nome");
             return View(estoque);
         }
 
@@ -91,7 +93,7 @@ namespace Schwarz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IDEstoque,IdAspNetUser,Setor,Urgencia,Data,Peca,Quantidade,Entregue")] Estoque estoque)
+        public async Task<IActionResult> Edit(int id, Estoque estoque)
         {
             if (id != estoque.IDEstoque)
             {
@@ -118,7 +120,7 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdAspNetUser"] = new SelectList(_context.Users, "Id", "Id", estoque.IdAspNetUser);
+            ViewData["IdAspNetUser"] = new SelectList(_context.Users.Include(x => x.Funcionario).Where(x => x.Funcionario.Ativo), "Id", "Funcionario.Nome");
             return View(estoque);
         }
 
