@@ -38,6 +38,37 @@ namespace ProgramaIdeias.Controllers
 			return View(idfuncionario);
 		}
 
+		[HttpGet]
+		public IActionResult Dashboard()
+		{
+			var anoAtual = DateTime.Now.Year;
+			ViewBag.QuantidadesPorMes =  _ideiaRepository.GetIdeias()
+		.Where(x => x.Data.Year == anoAtual)
+		.GroupBy(x => x.Data.Month)
+		.Select(group => new { Mes = group.Key, Quantidade = group.Count() })
+		.OrderBy(x => x.Mes)
+		.ToList();
+
+            ViewBag.Meses = new string[]
+			{
+		"Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+		"Jul", "Ago", "Set", "Out", "Nov", "Dez"
+			};
+			
+			//calculo de quanto em porcentagem aumentou a quantidade de ideias desse ano comparado com o ano anterior
+			var totalIdeiasAnoAnterior = _ideiaRepository.GetIdeias().Where(x => x.Data.Year == anoAtual-1).Count();
+			var totalIdeiasAnoAtual = _ideiaRepository.GetIdeias().Where(x => x.Data.Year == anoAtual).Count();
+			
+			//calculo de quanto em porcentagem aumentou a quantidade de ideias implantadas desse ano comparado com o ano anterior
+			var totalIdeiasImplantadasAnoAnterior = _ideiaRepository.GetIdeias().Where(x => x.Status == "Aplicada" && x.Data.Year == anoAtual-1).Count();
+			var totalIdeiasImplantadasAnoAtual = _ideiaRepository.GetIdeias().Where(x => x.Status == "Aplicada" && (x.Data.Year == anoAtual || (x.DataImplantacao.HasValue && x.Data.Year == anoAtual))).Count();
+            ViewBag.PorcentagemIdeiasAno = Math.Round((decimal)(totalIdeiasAnoAtual - totalIdeiasAnoAnterior) / totalIdeiasAnoAnterior * 100, 2);
+            ViewBag.PorcentagemIdeiasImplantadasAno = Math.Round((decimal)(totalIdeiasImplantadasAnoAtual - totalIdeiasImplantadasAnoAnterior) / totalIdeiasImplantadasAnoAnterior * 100, 2);
+            ViewBag.TotalIdeiasAno = totalIdeiasAnoAtual;
+			ViewBag.TotalIdeiasImplantadasAno = totalIdeiasImplantadasAnoAtual;
+            return View();
+		}
+
 		public PartialViewResult BuscarIdeias(int? idfuncionario)
 		{
 

@@ -15,7 +15,8 @@ namespace Schwarz.Models
 		public int? Matricula { get; set; }
 		public string Nome { get; set; }
         public string? Setor { get; set; }
-		public DateTime? DataNascimento { get; set; }
+        public string CentroCusto { get; set; }
+        public DateTime? DataNascimento { get; set; }
 		public bool Ativo { get; set; }
 		public string? Turno { get; set; }
 		public string? Email { get; set; }
@@ -26,13 +27,13 @@ namespace Schwarz.Models
 		public string? Ramal { get; set; }
 		public byte[]? Foto { get; set; }
 		public string? Telefone { get; set; }
+        public DateTime? DataAdmissao { get; set; }
 
-		[NotMapped]
+        [NotMapped]
 		public int QuantidadeIdeias2023
 		{
 			get
 			{
-				// Obtém a quantidade de ideias do funcionário no ano de 2023
 				return _context.EquipeIdeia
 					.Count(e => e.IDFuncionario == IDFuncionario &&
 								e.Ideia.Data.Year == 2023);
@@ -44,7 +45,6 @@ namespace Schwarz.Models
 		{
 			get
 			{
-				// Obtém a quantidade de ideias do funcionário no ano de 2023
 				return _context.EquipeIdeia
 					.Count(e => e.IDFuncionario == IDFuncionario &&(
 					e.Ideia.Status == "Aplicada" &&				

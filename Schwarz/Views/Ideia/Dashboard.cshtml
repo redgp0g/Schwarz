@@ -1,0 +1,119 @@
+﻿<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var meses = @Html.Raw(Json.Serialize(ViewBag.Meses));
+        var quantidadesPorMes = @Html.Raw(Json.Serialize(ViewBag.QuantidadesPorMes));
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Mês');
+        data.addColumn('number', '');
+
+        for (var i = 0; i < quantidadesPorMes.length; i++) {
+            data.addRow([meses[i], quantidadesPorMes[i].quantidade]);
+        }
+
+        var options = {
+            title: 'Quantidade de Ideias por Mês',
+            legend: { position: 'none' }
+        };
+        
+
+        var chart = new google.charts.Bar(document.getElementById('curve_chart'));
+
+        function resizeChart() {
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+        window.addEventListener('resize', resizeChart);
+
+        resizeChart();
+    }
+</script>
+<div>
+    <div class="pt-6 px-4">
+        <div class="mb-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4">
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">@ViewBag.TotalIdeiasAno</span>
+                        <h3 class="text-base font-normal text-gray-500">Total de Ideias do Ano</h3>
+                    </div>
+                    <div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+                        @ViewBag.PorcentagemIdeiasAno%
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">@ViewBag.TotalIdeiasImplantadasAno</span>
+                        <h3 class="text-base font-normal text-gray-500">Ideias Implantadas do Ano</h3>
+                    </div>
+                    <div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+                        @ViewBag.PorcentagemIdeiasImplantadasAno%
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full grid grid-cols-1 xl:grid-cols-1 gap-4">
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex-shrink-0">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ideias por Mês</h3>
+                    </div>
+                </div>
+                <div id="curve_chart" style="width:80vw;height:auto"></div>
+            </div>
+            <div class="mb-12 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ideias por Centro de Custo</h3>
+                        <span class="text-base font-normal text-gray-500">Essa é uma lista do total de ideias por centro de custo</span>
+                    </div>
+                </div>
+                <div class="flex flex-col mt-8">
+                    <div class="overflow-x-auto rounded-lg">
+                        <div class="align-middle inline-block min-w-full">
+                            <div class="shadow overflow-hidden sm:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Centro de Custo
+                                            </th>
+                                            <th scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Quantidade de Ideias
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        <tr>
+                                            <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
+                                                Forjaria
+                                            </td>
+                                            <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                               26
+                                            </td>
+                                        </tr>
+                                        <!--continuar a lista conforme a viewbag de ideiasCentroCusto-->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+</div>
