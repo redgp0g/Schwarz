@@ -61,7 +61,7 @@ namespace ProgramaIdeias.Controllers
 			
 			//calculo de quanto em porcentagem aumentou a quantidade de ideias implantadas desse ano comparado com o ano anterior
 			var totalIdeiasImplantadasAnoAnterior = _ideiaRepository.GetIdeias().Where(x => x.Status == "Aplicada" && x.Data.Year == anoAtual-1).Count();
-			var totalIdeiasImplantadasAnoAtual = _ideiaRepository.GetIdeias().Where(x => x.Status == "Aplicada" && (x.Data.Year == anoAtual || (x.DataImplantacao.HasValue && x.Data.Year == anoAtual))).Count();
+			var totalIdeiasImplantadasAnoAtual = _ideiaRepository.GetIdeias().Where(x => x.Status == "Aplicada" && (x.Data.Year == anoAtual || (x.DataImplantacao.HasValue && x.DataImplantacao.Value.Year == anoAtual))).Count();
             ViewBag.PorcentagemIdeiasAno = Math.Round((decimal)(totalIdeiasAnoAtual - totalIdeiasAnoAnterior) / totalIdeiasAnoAnterior * 100, 2);
             ViewBag.PorcentagemIdeiasImplantadasAno = Math.Round((decimal)(totalIdeiasImplantadasAnoAtual - totalIdeiasImplantadasAnoAnterior) / totalIdeiasImplantadasAnoAnterior * 100, 2);
             ViewBag.TotalIdeiasAno = totalIdeiasAnoAtual;
