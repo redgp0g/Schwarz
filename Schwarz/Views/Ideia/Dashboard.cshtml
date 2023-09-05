@@ -1,6 +1,6 @@
 ﻿<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
@@ -9,22 +9,32 @@
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Mês');
-        data.addColumn('number', '');
+        data.addColumn('number', 'Quantidade de Ideias');
 
         for (var i = 0; i < quantidadesPorMes.length; i++) {
             data.addRow([meses[i], quantidadesPorMes[i].quantidade]);
         }
 
+var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            {
+                calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation"
+            }
+        ]);
+
         var options = {
             title: 'Quantidade de Ideias por Mês',
+            bar: { groupWidth: "65%" },
             legend: { position: 'none' }
         };
         
-
-        var chart = new google.charts.Bar(document.getElementById('curve_chart'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart'));
 
         function resizeChart() {
-            chart.draw(data, google.charts.Bar.convertOptions(options));
+            chart.draw(view,options);
         }
         window.addEventListener('resize', resizeChart);
 
@@ -70,9 +80,9 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Ideias por Mês</h3>
                     </div>
                 </div>
-                <div id="curve_chart" style="width:80vw;height:auto"></div>
+                <div id="curve_chart"></div>
             </div>
-            <div class="mb-12 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+            <div class="mb-12 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 hidden">
                 <div class="mb-4 flex items-center justify-between">
                     <div>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Ideias por Centro de Custo</h3>

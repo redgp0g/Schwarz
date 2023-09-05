@@ -15,7 +15,7 @@ namespace Schwarz.Models
 		public int? Matricula { get; set; }
 		public string Nome { get; set; }
         public string? Setor { get; set; }
-        public string CentroCusto { get; set; }
+        public string? CentroCusto { get; set; }
         public DateTime? DataNascimento { get; set; }
 		public bool Ativo { get; set; }
 		public string? Turno { get; set; }
@@ -28,6 +28,8 @@ namespace Schwarz.Models
 		public byte[]? Foto { get; set; }
 		public string? Telefone { get; set; }
         public DateTime? DataAdmissao { get; set; }
+        public int? NumeroCentroCusto { get; set; }
+        public virtual SchwarzUser? User { get; set; }
 
         [NotMapped]
 		public int QuantidadeIdeias2023

@@ -8,7 +8,6 @@ using Schwarz.Repository.Interfaces;
 using Schwarz.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-string connectionString = builder.Configuration.GetConnectionString("SchwarzConnection") ?? throw new InvalidOperationException("Connection string 'SchwarzContextConnection' not found.");
 
 
 builder.Services.AddControllersWithViews();
@@ -29,7 +28,7 @@ builder.Services.AddScoped<IPlanoControleRepository, PlanoControleRepository>();
 
 builder.Services.AddDbContext<SchwarzContext>
 (options => options.UseLazyLoadingProxies()
-                   .UseSqlServer(connectionString)
+                   .UseSqlServer()
 );
 
 builder.Services.AddIdentity<SchwarzUser, IdentityRole>(options =>

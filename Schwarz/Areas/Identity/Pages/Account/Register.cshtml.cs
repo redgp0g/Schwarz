@@ -87,7 +87,7 @@ namespace Schwarz.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo && x.User == null), "IDFuncionario", "Nome");
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -125,7 +125,6 @@ namespace Schwarz.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
 

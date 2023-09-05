@@ -19,14 +19,13 @@ namespace Schwarz.Controllers
             _context = context;
         }
 
-        // GET: Funcionario
         public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.Funcionario.Include(f => f.FuncionarioLider);
+            var funcs = _context.Funcionario.ToList();
+            var schwarzContext = _context.Funcionario.Include(x => x.FuncionarioLider);
             return View(await schwarzContext.ToListAsync());
         }
 
-        // GET: Funcionario/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Funcionario == null)
@@ -45,19 +44,15 @@ namespace Schwarz.Controllers
             return View(funcionario);
         }
 
-        // GET: Funcionario/Create
         public IActionResult Create()
         {
-            ViewData["IDLider"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario");
+            ViewData["IDLider"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
             return View();
         }
 
-        // POST: Funcionario/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IDFuncionario,Matricula,Nome,Setor,CentroCusto,DataNascimento,Ativo,Turno,Email,IDLider,Cargo,Ramal,Foto,Telefone,DataAdmissao")] Funcionario funcionario)
+        public async Task<IActionResult> Create(Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +60,10 @@ namespace Schwarz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDLider"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", funcionario.IDLider);
+            ViewData["IDLider"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", funcionario.IDLider);
             return View(funcionario);
         }
 
-        // GET: Funcionario/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Funcionario == null)
@@ -82,16 +76,13 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["IDLider"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", funcionario.IDLider);
+            ViewData["IDLider"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", funcionario.IDLider);
             return View(funcionario);
         }
 
-        // POST: Funcionario/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IDFuncionario,Matricula,Nome,Setor,CentroCusto,DataNascimento,Ativo,Turno,Email,IDLider,Cargo,Ramal,Foto,Telefone,DataAdmissao")] Funcionario funcionario)
+        public async Task<IActionResult> Edit(int id, Funcionario funcionario)
         {
             if (id != funcionario.IDFuncionario)
             {
@@ -118,11 +109,10 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDLider"] = new SelectList(_context.Funcionario, "IDFuncionario", "IDFuncionario", funcionario.IDLider);
+            ViewData["IDLider"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", funcionario.IDLider);
             return View(funcionario);
         }
 
-        // GET: Funcionario/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Funcionario == null)
@@ -141,7 +131,6 @@ namespace Schwarz.Controllers
             return View(funcionario);
         }
 
-        // POST: Funcionario/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

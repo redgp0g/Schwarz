@@ -15,7 +15,6 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
 	public DbSet<Cota> Cota{ get; set; }
 	public DbSet<EquipeFSP> EquipeFSP{ get; set; }
 	public DbSet<EquipeIdeia> EquipeIdeia { get; set; }
-    public DbSet<Estoque> Estoque { get; set; }
     public DbSet<Falha> Falha { get; set; }
 	public DbSet<FSP> FSP{ get; set; }
 	public DbSet<Funcionario> Funcionario { get; set; }
@@ -30,8 +29,5 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        // Customize the ASP.NET Identity model and override the defaults if needed.
-        // For example, you can rename the ASP.NET Identity table names and more.
-        // Add your customizations after calling base.OnModelCreating(builder);
     }
 }
