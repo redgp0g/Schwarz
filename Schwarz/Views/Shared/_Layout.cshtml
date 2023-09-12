@@ -33,7 +33,7 @@
         <nav class="mx-auto flex items-center justify-between p-6 lg:px-8 border-b-2 border-black" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a asp-action="Index" asp-controller="Home" class="-m-1.5 p-1.5">
-                    <img class="h-8 w-auto" src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png" alt="">
+                    <img class="h-8 w-auto" src="https://www.schwarz.com.br/wp-content/themes/schwarz/images/logotipo.png">
                 </a>
             </div>
             <div class="flex lg:hidden">
@@ -110,7 +110,7 @@
                                     <p class="mt-1 text-gray-600">Veja os dados estatísticos do Programa de Ideias!</p>
                                 </div>
                             </div>
-                            @if (User.IsInRole("Lider"))
+                            @if (User.IsInRole("Lider") || User.IsInRole("Admin"))
                             {
                                 <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
                                     <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-                @if (User.IsInRole("FSPAdmin"))
+                @if (User.IsInRole("FSPAdmin") || User.IsInRole("Admin"))
                 {
                     <div class="relative">
                         <button id="toggleMenuFSP" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFSP',this.id)">
@@ -171,7 +171,7 @@
                         </div>
                     </div>
                 }
-                @if (User.IsInRole("FuncionarioAdmin"))
+                @if (User.IsInRole("FuncionarioAdmin") || User.IsInRole("Admin"))
                 {
                     <div class="relative">
                         <button id="toggleMenuFuncionario" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFuncionario',this.id)">
@@ -205,9 +205,9 @@
                         </div>
                     </div>
                 }
-                @if (User.IsInRole("PlanoControleAdmin"))
+                @if (User.IsInRole("PlanoControleAdmin") || User.IsInRole("Admin"))
                 {
-                    <div class="relative hidden">
+                    <div class="relative">
                         <button id="toggleMenuPlanoControle" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPlanoControle',this.id)">
                             Planos de Controle
                             <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -350,7 +350,7 @@
 
                                 </div>
                             </div>
-                            @if (User.IsInRole("FSPAdmin"))
+                            @if (User.IsInRole("FSPAdmin") || User.IsInRole("Admin"))
                             {
                                 <!-- Sidebar de FSP -->
                                 <div class="-mx-3">

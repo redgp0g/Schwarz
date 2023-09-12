@@ -70,7 +70,7 @@ namespace ProgramaIdeias.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Lider")]
+        [Authorize(Roles = "Lider, Admin")]
         [HttpGet]
         public IActionResult RelatorioGerencial()
         {
@@ -218,6 +218,16 @@ namespace ProgramaIdeias.Controllers
             }
         }
 
+        public PartialViewResult BuscarIdeiasLider(int idlider)
+        {
+               IEnumerable<Ideia> model = _context.Ideia
+                .Include(x => x.EquipeIdeia)
+                .Where(x => x.EquipeIdeia.Any(e => e.Funcionario.IDLider == idlider))
+                .OrderByDescending(x => x.Data)
+                .ToList();
+                return PartialView("_GridViewIdeias", model);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
@@ -235,7 +245,7 @@ namespace ProgramaIdeias.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "IdeiaAdmin")]
+        [Authorize(Roles = "IdeiaAdmin, Admin")]
         public IActionResult Edit(int id)
         {
             ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo), "IDFuncionario", "Nome");
@@ -249,7 +259,7 @@ namespace ProgramaIdeias.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "IdeiaAdmin")]
+        [Authorize(Roles = "IdeiaAdmin, Admin")]
         public async Task<IActionResult> Edit(Ideia ideia)
         {
             try
@@ -290,15 +300,12 @@ namespace ProgramaIdeias.Controllers
                         _context.Add(equipeIdeia);
                         _context.SaveChanges();
                     }
-                    // Verifique se existem arquivos
                     if (files != null && files.Count > 0)
                     {
                         foreach (var file in files)
                         {
-                            // Verifique o tamanho do arquivo (opcional)
                             if (file.Length > 0)
                             {
-                                // Leia o conteúdo do arquivo em um array de bytes
                                 using (var memoryStream = new MemoryStream())
                                 {
                                     file.CopyTo(memoryStream);
@@ -310,7 +317,6 @@ namespace ProgramaIdeias.Controllers
                                     IdeiaAnexo ideiaAnexo = new(fileName, fileBytes, tipoMime, ideia.IDIdeia);
                                     _context.Add(ideiaAnexo);
                                     _context.SaveChanges();
-                                    // Atribua o conteúdo do arquivo à propriedade Anexo
                                 }
                             }
                         }
@@ -353,7 +359,7 @@ namespace ProgramaIdeias.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "IdeiaAdmin")]
+        [Authorize(Roles = "IdeiaAdmin, Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Ideia == null)
