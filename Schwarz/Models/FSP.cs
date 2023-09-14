@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
@@ -10,7 +9,7 @@ using Schwarz.Areas.Identity.Data;
 namespace Schwarz.Models
 {
 	[Index(nameof(Numero),IsUnique = true)]//Not Working
-	public class FSP : FSPRepository
+	public class FSP
 	{
 		[Key]
 		public int IDFSP { get; set; }
@@ -239,12 +238,13 @@ namespace Schwarz.Models
         public int? IDFuncionarioNovaFSP { get; set; }
         public virtual Funcionario? FuncionarioNovaFSP { get; set; }
 
+        private readonly SchwarzContext _context;
 
         public FSP()
 		{
 
 		}
-		public FSP(SchwarzContext contexto) : base(contexto)
+		public FSP(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}

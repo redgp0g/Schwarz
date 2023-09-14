@@ -2,13 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-    public class Funcionario : FuncionarioRepository
+    public class Funcionario
     {
         [Key]
         public int IDFuncionario { get; set; }
@@ -20,6 +19,7 @@ namespace Schwarz.Models
 		public bool Ativo { get; set; }
 		public string? Turno { get; set; }
 		public string? Email { get; set; }
+
         [ForeignKey("FuncionarioLider")]
         public int? IDLider { get; set; }
         public virtual Funcionario? FuncionarioLider { get; set; }
@@ -30,16 +30,17 @@ namespace Schwarz.Models
         public DateTime? DataAdmissao { get; set; }
         public int? NumeroCentroCusto { get; set; }
         public virtual SchwarzUser? User { get; set; }
+        private readonly SchwarzContext _context;
+        public virtual ICollection<EquipeIdeia>? EquipeIdeia { get; set; }
+
 
         [NotMapped]
 		public int QuantidadeIdeias2023
 		{
 			get
 			{
-				return _context.EquipeIdeia
-					.Count(e => e.IDFuncionario == IDFuncionario &&
-								e.Ideia.Data.Year == 2023);
-			}
+                return EquipeIdeia != null ? EquipeIdeia.Count(e => e.Ideia.Data.Year == 2023) : 0;
+            }
 		}
 
 		[NotMapped]
@@ -47,15 +48,12 @@ namespace Schwarz.Models
 		{
 			get
 			{
-				return _context.EquipeIdeia
-					.Count(e => e.IDFuncionario == IDFuncionario &&(
-					e.Ideia.Status == "Aplicada" &&				
-					(e.Ideia.Data.Year == 2023 || e.Ideia.DataImplantacao.Value.Year == 2023)));
-			}
+                return EquipeIdeia != null ? EquipeIdeia.Count(e => e.Ideia.Status == "Implementada" && (e.Ideia.Data.Year == 2023 || (e.Ideia.DataImplantacao.HasValue && e.Ideia.DataImplantacao.Value.Year == 2023))) : 0;
+            }
 		}
 
         [NotMapped]
-        public string? PrimeiroUltimoNome
+        public string PrimeiroUltimoNome
         {
             get
             {
@@ -71,7 +69,7 @@ namespace Schwarz.Models
         {
 
         }
-        public Funcionario(SchwarzContext contexto) : base(contexto)
+        public Funcionario(SchwarzContext contexto)
         {
             _context = contexto;
         }

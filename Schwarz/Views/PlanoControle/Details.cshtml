@@ -201,7 +201,7 @@
 		</table>
 	</div>
 	<h1>Adicionar Cota</h1>
-	@(await Html.PartialAsync("_CreateCotaPartialView", new Cota(Model.IDPlanoControle, Model._context)))
+	@(await Html.PartialAsync("_CreateCotaPartialView", new Cota(Model.IDPlanoControle)))
 	<div class="mb-12">
 		<a asp-action="Index">Voltar para Lista</a>
 	</div>

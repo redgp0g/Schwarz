@@ -96,7 +96,7 @@
 				</div>
 				<div class="mb-4">
 					<label class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Anexos</label>
-					@if (Model.IdeiaAnexo.Count > 0)
+					@if (Model.IdeiaAnexo.Count() > 0)
 					{
 						@foreach (var anexo in Model.IdeiaAnexo)
 						{

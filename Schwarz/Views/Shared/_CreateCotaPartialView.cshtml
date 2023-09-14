@@ -1,14 +1,4 @@
 ﻿@model Schwarz.Models.Cota
-@{
-	var ordem = 1;
-	var ultimacota = Model._context.Cota.Where(x => x.IDPlanoControle == Model.IDPlanoControle).OrderByDescending(x => x.IDCota).FirstOrDefault();
-	if (ultimacota != null)
-	{
-		ordem = ultimacota.Ordem + 1;
-	}
-	
-
-}
 <div class="row bg-white">
 	<div class="col-md-4 my-6">
 		<form id="createCotaForm" asp-action="Create">
@@ -22,7 +12,7 @@
 				</div>
 				<div class="form-group">
 					<label asp-for="Ordem" class="control-label"></label>
-					<input asp-for="Ordem" class="form-control" value="@ordem"/>
+					<input asp-for="Ordem" class="form-control" value=""/>
 					<span asp-validation-for="Ordem" class="text-danger"></span>
 				</div>
 				<div class="form-group">

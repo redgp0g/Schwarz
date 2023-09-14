@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
@@ -7,7 +6,7 @@ using Schwarz.Data;
 
 namespace Schwarz.Models
 {
-	public class Falha : FalhaRepository
+	public class Falha
 	{
 		[Key]
 		public int IDFalha { get; set; }
@@ -15,12 +14,13 @@ namespace Schwarz.Models
 		public int Codigo { get; set; }
 		public string Descricao { get; set; }
 
+        private readonly SchwarzContext _context;
 
-		public Falha()
+        public Falha()
 		{
 
 		}
-		public Falha(SchwarzContext contexto) : base(contexto)
+		public Falha(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}

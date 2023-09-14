@@ -1,11 +1,10 @@
 ﻿using Schwarz.Data;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-	public class Cota : CotaRepository
+	public class Cota
 	{
 		[Key]
 		public int IDCota { get; set; }
@@ -99,12 +98,13 @@ namespace Schwarz.Models
         [Display(Name = "Método IA")]
         public string MetodoIA { get; set; }
 
+        private readonly SchwarzContext _context;
 
-		public Cota()
+        public Cota()
 		{
 
 		}
-		public Cota(SchwarzContext contexto) : base(contexto)
+		public Cota(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}

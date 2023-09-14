@@ -1,15 +1,12 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-	public class PlanoAcao : PlanoAcaoRepository
+	public class PlanoAcao
 	{
 
 		[Key]
@@ -26,11 +23,12 @@ namespace Schwarz.Models
 		public DateTime Prazo { get; set; }
 		public string Status { get; set; }
 
-		public PlanoAcao()
+        private readonly SchwarzContext _context;
+        public PlanoAcao()
 		{
 
 		}
-		public PlanoAcao(SchwarzContext contexto) : base(contexto)
+		public PlanoAcao(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}

@@ -1,12 +1,11 @@
 ﻿using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-    public class Ideia : IdeiaRepository
+    public class Ideia
     {
 		[Key]
 		public int IDIdeia { get; set; }
@@ -34,24 +33,38 @@ namespace Schwarz.Models
 		[Display(Name = "Ganho Realizado")]
 		public decimal? GanhoRealizado { get; set; }
 
-		public virtual ICollection<EquipeIdeia> EquipeIdeia { get; set; }
+		public virtual ICollection <EquipeIdeia> EquipeIdeia { get; set; }
         public virtual ICollection<IdeiaAnexo> IdeiaAnexo { get; set; }
         [NotMapped]
 		[Required(ErrorMessage = "Selecione pelo menos um funcionário")]
 		public List<int>? Participantesids { get; set; }
 
-
-
         [NotMapped]
 		public string DataFormatada => Data.ToString("dd/MM/yyyy");
+
+		private readonly SchwarzContext _context;
 
 		public Ideia()
 		{
 
 		}
-		public Ideia(SchwarzContext contexto) : base(contexto)
+		public Ideia(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}
+	}
+}
+namespace Schwarz.Models
+{
+	public class IdeiaDTO
+	{
+		public int IDIdeia { get; set; }
+		public DateTime Data { get; set; }
+		public string Descricao { get; set; }
+		public string Status { get; set; }
+		public IEnumerable<string> NomesEquipe { get; set; }
+		[NotMapped]
+		public string DataFormatada => Data.ToString("dd/MM/yyyy");
+
 	}
 }

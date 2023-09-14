@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using Schwarz.Areas.Identity.Data;
-@model IEnumerable<Ideia>
+@model IEnumerable<IdeiaDTO>
 @{
     List<string> equipe = new();
 }
@@ -66,9 +66,9 @@
                 @foreach (var item in Model)
                 {
                     equipe.Clear();
-                    foreach (var func in item.EquipeIdeia)
+                    foreach (var func in item.NomesEquipe)
                     {
-                        equipe.Add(func.Funcionario.Nome.ToString().ToLower());
+                        equipe.Add(func);
                     }
                     <tr>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm capitalize" data-label="Equipe:">

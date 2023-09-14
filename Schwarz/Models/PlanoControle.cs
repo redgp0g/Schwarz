@@ -1,12 +1,11 @@
 ﻿using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-	public class PlanoControle : PlanoControleRepository
+	public class PlanoControle
 	{
 		[Key]
 		public int IDPlanoControle { get; set; }
@@ -73,11 +72,12 @@ namespace Schwarz.Models
         [NotMapped]
         public string DataOrigemFormatada => DataOrigem.ToString("dd/MM/yyyy");
 
+        private readonly SchwarzContext _context;
         public PlanoControle()
 		{
 
 		}
-		public PlanoControle(SchwarzContext contexto) : base(contexto)
+		public PlanoControle(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}

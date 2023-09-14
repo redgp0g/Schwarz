@@ -1,14 +1,12 @@
-﻿
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-	public class EquipeFSP : EquipeFSPRepository
+	public class EquipeFSP
 	{
 
 		[Key]
@@ -21,11 +19,12 @@ namespace Schwarz.Models
 		public int IDFSP { get; set; }
 		public virtual FSP? FSP{ get; set; }
 
-		public EquipeFSP()
+        private readonly SchwarzContext _context;
+        public EquipeFSP()
 		{
 
 		}
-		public EquipeFSP(SchwarzContext contexto) : base(contexto)
+		public EquipeFSP(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}

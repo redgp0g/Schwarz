@@ -1,14 +1,12 @@
-﻿
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
-using Schwarz.Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-	public class EquipeIdeia : EquipeIdeiaRepository
+	public class EquipeIdeia
 	{
 
 		[Key]
@@ -22,11 +20,12 @@ namespace Schwarz.Models
 		public virtual Ideia Ideia { get; set; }
 		public decimal? Reconhecimento { get; set; }
 
-		public EquipeIdeia()
+        private readonly SchwarzContext _context;
+        public EquipeIdeia()
 		{
 
 		}
-		public EquipeIdeia(SchwarzContext contexto) : base(contexto)
+		public EquipeIdeia(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}
