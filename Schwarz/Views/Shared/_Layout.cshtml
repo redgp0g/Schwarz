@@ -426,12 +426,19 @@
             @RenderBody()
             @RenderSection("ControlsSection", required: false)
         </main>
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAa__adyPZBUOTcxNlBHQzBBOE1IOFFFOUlPNTFHTVRBMC4u">
+        <div class="chat flex items-center">
+            <span class="mx-4">Fale com o RH</span><img src="~/image/Logo PNG Preta.png" width="80" alt="Fale com o Meu RH" title="Fale com o Meu RH" />
+        </div>
+        </a>
     </div>
 
+    
     <div class="absolute bottom-0 left-0 right-0 px-4 py-3 text-center text-black bg-white border-t-2 border-black h-8 flex justify-center text-xs items-center">
-        &copy; 2022 - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
+        &copy; <span id="ano"></span> - Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
     </div>
     <script>
+        document.getElementById("ano").textContent = new Date().getFullYear();
 
         function toggleHidden(id, idbtn) {
             var element = document.getElementById(id);
@@ -459,7 +466,6 @@
         setTimeout(function () {
             document.getElementById('notification').classList.add('hidden');
         }, 7000);
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
     <script src="~/lib/DataTables/datatables.min.js"></script>

@@ -22,8 +22,6 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     public DbSet<IdeiaAnexo> IdeiaAnexo { get; set; }
 	public DbSet<PlanoAcao> PlanoAcao { get; set; }
 	public DbSet<PlanoControle> PlanoControle { get; set; }
-    public DbSet<PlanoControleEquipe> PlanoControleEquipe { get; set; }
-    public DbSet<PlanoControleAnexo> PlanoControleAnexo { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)

@@ -20,15 +20,9 @@
 			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.DataOrigem)
 			</dt>
-			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.DataOrigemFormatada)
-			</dd>
 			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.DataAtualizacao)
 			</dt>
-			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.DataAtualizacaoFormatada)
-			</dd>
 			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Status)
 			</dt>
@@ -201,7 +195,6 @@
 		</table>
 	</div>
 	<h1>Adicionar Cota</h1>
-	@(await Html.PartialAsync("_CreateCotaPartialView", new Cota(Model.IDPlanoControle)))
 	<div class="mb-12">
 		<a asp-action="Index">Voltar para Lista</a>
 	</div>

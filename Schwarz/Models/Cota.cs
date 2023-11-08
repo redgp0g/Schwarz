@@ -38,11 +38,9 @@ namespace Schwarz.Models
 
 		[Display(Name = "Instrumento Principal")]
 		public string InstrumentoPrincipal { get; set; }
+        public int AmostragemIP { get; set; }
 
-        [Display(Name = "Código Instrumento")]
-        public string? CodigoIP { get; set; }
-
-		[Display(Name = "Frequência/D")]
+        [Display(Name = "Frequência/D")]
 		public int FrequenciaMinimaDiaIP{ get; set; }
 
 		[Display(Name = "Frequência/T")]
@@ -62,17 +60,15 @@ namespace Schwarz.Models
 
 		[Display(Name = "Frequência/H")]
 		public int FrequenciaMinimaHoraIP { get; set; }
-
-		[Display(Name = "Amostragem")]
-		public int? AmostragemIP { get; set; }
-
-        [Display(Name = "Método IP")]
-        public string MetodoIP { get; set; }
+        public bool MonitoramentoIP{ get; set; }
+        public bool RegistroInspecaoIP{ get; set; }
+        public bool ControleEstatisticoProcessoIP{ get; set; }
 
         [Display(Name = "Istrumento Alternativo")]
         public string InstrumentoAlternativo { get; set; }
+        public int? AmostragemIA { get; set; }
 
-		[Display(Name = "Frequência/D")]
+        [Display(Name = "Frequência/D")]
 		public int FrequenciaMinimaDiaIA { get; set; }
 
 		[Display(Name = "Frequência/T")]
@@ -92,11 +88,11 @@ namespace Schwarz.Models
 
 		[Display(Name = "Frequência/H")]
 		public int FrequenciaMinimaHoraIA { get; set; }
-
-		[Display(Name = "Amost")]
-		public int? AmostragemIA { get; set; }
-        [Display(Name = "Método IA")]
-        public string MetodoIA { get; set; }
+        public bool MonitoramentoIA { get; set; }
+        public bool RegistroInspecaoIA { get; set; }
+        public bool ControleEstatisticoProcessoIA { get; set; }
+        public string Situacao { get; set; }
+		public bool Visual {  get; set; }
 
         private readonly SchwarzContext _context;
 
@@ -107,17 +103,6 @@ namespace Schwarz.Models
 		public Cota(SchwarzContext contexto)
 		{
 			_context = contexto;
-		}
-
-		public Cota(int iDPlanoControle)
-		{
-			IDPlanoControle = iDPlanoControle;
-		}
-
-		public Cota(int iDPlanoControle, SchwarzContext context)
-		{
-			IDPlanoControle = iDPlanoControle;
-			_context = context;
 		}
 	}
 }

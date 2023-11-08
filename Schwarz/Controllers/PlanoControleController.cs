@@ -58,12 +58,6 @@ namespace Schwarz.Controllers
             {
                 _context.Add(planoControle);
                 await _context.SaveChangesAsync();
-                foreach (var participante in planoControle.EquipeIds)
-                {
-                    PlanoControleEquipe equipePlanocontrole = new(participante, planoControle.IDPlanoControle);
-                    _context.Add(equipePlanocontrole);
-                    _context.SaveChanges();
-                }
                 return RedirectToAction(nameof(Index));
             }
 			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");

@@ -61,16 +61,8 @@ namespace Schwarz.Models
         [Display(Name = "Aprovador")]
         public int IDFuncionarioAprovador { get; set; }
 		public virtual Funcionario? FuncionarioAprovador { get; set; }
-		public virtual IEnumerable<Cota>? Cotas { get; set; }
-        [NotMapped]
-        [Required(ErrorMessage = "Selecione pelo menos um funcionário")]
-        public List<int>? EquipeIds { get; set; }
+		public virtual ICollection<Cota>? Cotas { get; set; }
 
-        [NotMapped]
-        public string DataAtualizacaoFormatada => DataAtualizacao.ToString("dd/MM/yyyy");
-
-        [NotMapped]
-        public string DataOrigemFormatada => DataOrigem.ToString("dd/MM/yyyy");
 
         private readonly SchwarzContext _context;
         public PlanoControle()
