@@ -1,4 +1,17 @@
-﻿function ShowLoading() {
+﻿var preview = document.getElementById('preview');
+var fotoOriginal = preview.src;
+function previewImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview.src = fotoOriginal;
+    }
+}
+function ShowLoading() {
     const divloading = document.createElement("div");
     const divbox = document.createElement("div");
     const label = document.createElement("label");

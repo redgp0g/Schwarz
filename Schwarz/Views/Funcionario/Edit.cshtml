@@ -9,85 +9,88 @@
 
 <h4>Funcionario</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IDFuncionario" />
-            <div class="form-group">
-                <label asp-for="Matricula" class="control-label"></label>
-                <input asp-for="Matricula" class="form-control" />
-                <span asp-validation-for="Matricula" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Setor" class="control-label"></label>
-                <input asp-for="Setor" class="form-control" />
-                <span asp-validation-for="Setor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CentroCusto" class="control-label"></label>
-                <input asp-for="CentroCusto" class="form-control" />
-                <span asp-validation-for="CentroCusto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label"></label>
-                <input asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Turno" class="control-label"></label>
-                <input asp-for="Turno" class="form-control" />
-                <span asp-validation-for="Turno" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IDLider" class="control-label"></label>
-                <select asp-for="IDLider" class="form-control" asp-items="ViewBag.IDLider"></select>
-                <span asp-validation-for="IDLider" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cargo" class="control-label"></label>
-                <input asp-for="Cargo" class="form-control" />
-                <span asp-validation-for="Cargo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ramal" class="control-label"></label>
-                <input asp-for="Ramal" class="form-control" />
-                <span asp-validation-for="Ramal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
-                <span asp-validation-for="Telefone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataAdmissao" class="control-label"></label>
-                <input asp-for="DataAdmissao" class="form-control" />
-                <span asp-validation-for="DataAdmissao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container mx-auto">
+    <div class="flex justify-center px-6 my-12">
+        <div class="w-full lg:w-7/12 bg-white p-2 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">Formulário de Edição</h3>
+            <form asp-action="Edit" method="post" class="px-8">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IDFuncionario" />
+                <div class="mb-4">
+                    <label asp-for="Matricula" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Matricula" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Matricula" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Nome" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Nome" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Setor" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Setor" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Setor" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="CentroCusto" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="CentroCusto" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="CentroCusto" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="DataNascimento" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="DataNascimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Turno" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Turno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Turno" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Email" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Email" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="IDLider" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <select asp-for="IDLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" asp-items="ViewBag.IDLider"></select>
+                    <span asp-validation-for="IDLider" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Cargo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Cargo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Cargo" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Ramal" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Ramal" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Ramal" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Foto" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Foto" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Foto" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Telefone" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="Telefone" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="DataAdmissao" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <input asp-for="DataAdmissao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    <span asp-validation-for="DataAdmissao" class="text-danger"></span>
+                </div>
+                <div class="mb-4">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -96,5 +99,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
