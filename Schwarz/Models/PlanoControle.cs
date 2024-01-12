@@ -14,6 +14,13 @@ namespace Schwarz.Models
         [Display(Name = "Revisão")]
 		public int Revisao { get; set; }
 
+        [Display(Name = "Descrição da Revisão")]
+        public string? DescricaoRevisao { get; set; }
+
+        [Required(ErrorMessage = "O Código do Documento é obrigatório")]
+        [Display(Name = "Código")]
+        public string CodigoDocumento { get; set; }
+
         [Required(ErrorMessage = "A Data de Origem é obrigatória")]
         [Display(Name = "Data de Origem")]
         public DateTime DataOrigem { get; set; }
@@ -44,8 +51,7 @@ namespace Schwarz.Models
 
         [Required(ErrorMessage = "O Número do Fluxo é obrigatório")]
         [Display(Name = "N° do Fluxo")]
-        public int NFluxo { get; set; }
-
+        public int NumeroFluxo { get; set; }
 
 		[Display(Name = "Observações")]
 		public string? Observacoes { get; set; }

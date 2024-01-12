@@ -8,11 +8,21 @@ namespace Schwarz.Models
 	{
 		[Key]
 		public int IDCota { get; set; }
-		[ForeignKey("PlanoControle")]
+
+        [Display(Name = "Plano de Controle")]
+        [ForeignKey("PlanoControle")]
 		public int IDPlanoControle { get; set; }
-		public virtual PlanoControle? PlanoControle { get; set; }
-		public string Item { get; set; }
+
+        [Display(Name = "Plano de Controle")]
+        public virtual PlanoControle? PlanoControle { get; set; }
         public int Ordem { get; set; }
+        public string Item { get; set; }
+
+        [Display(Name = "Característica")]
+        public string Caracteristica{ get; set; }
+
+        [Display(Name = "Tipo da Característica")]
+        public string TipoCaracteristica { get; set; }
 
         [Display(Name = "Característica Especial")]
         public string? CaracteristicaEspecial { get; set; }
@@ -20,77 +30,92 @@ namespace Schwarz.Models
         [Display(Name = "Localização")]
         public string? Localizacao { get; set; }
 
-        [Display(Name = "Característica Produto")]
-        public string? CaracteristicaProduto { get; set; }
-
-        [Display(Name = "Característica Processo")]
-        public string? CaracteristicaProcesso { get; set; }
-
         [Display(Name = "Descrição")]
-        public string? Descricao { get; set; }
+        public string? Descricao { get; set; } 
         public decimal? Nominal { get; set; }
 
-        [Display(Name = "Tolerância Superior")]
-        public decimal? ToleranciaSuperior { get; set; }
+        [Display(Name = "Tolerância Mínima")]
+        public decimal? ToleranciaMinima { get; set; }
 
-        [Display(Name = "Tolerância Inferior")]
-        public decimal? ToleranciaInferior { get; set; }
+        [Display(Name = "Tolerância Máxima")]
+        public decimal? ToleranciaMaxima { get; set; }
+
+        [Display(Name = "Unidade de Medida")]
+        public string? UnidadeMedida { get; set; }
 
 		[Display(Name = "Instrumento Principal")]
 		public string InstrumentoPrincipal { get; set; }
-        public int AmostragemIP { get; set; }
+
+        [Display(Name = "100%")]
+        public bool AmostragemIP { get; set; }
 
         [Display(Name = "Frequência/D")]
-		public int FrequenciaMinimaDiaIP{ get; set; }
+		public int FrequenciaDiaIP{ get; set; }
 
 		[Display(Name = "Frequência/T")]
-		public int FrequenciaMinimaTurnoIP { get; set; }
+		public int FrequenciaTurnoIP { get; set; }
 
 		[Display(Name = "Frequência/S")]
-		public int FrequenciaMinimaSetUpIP { get; set; }
+		public int FrequenciaSetUpIP { get; set; }
 
 		[Display(Name = "Frequência/P")]
-		public int FrequenciaMinimaParadaIP { get; set; }
+		public int FrequenciaParadaIP { get; set; }
 
 		[Display(Name = "Frequência/F")]
-		public int FrequenciaMinimaFinalIP { get; set; }
+		public int FrequenciaFinalIP { get; set; }
 
 		[Display(Name = "Frequência/A")]
-		public int FrequenciaMinimaAjusteIP { get; set; }
+		public int FrequenciaAjusteIP { get; set; }
 
 		[Display(Name = "Frequência/H")]
-		public int FrequenciaMinimaHoraIP { get; set; }
+		public int FrequenciaHoraIP { get; set; }
+
+        [Display(Name = "MT")]
         public bool MonitoramentoIP{ get; set; }
+
+        [Display(Name = "RI")]
         public bool RegistroInspecaoIP{ get; set; }
+
+        [Display(Name = "CPE")]
         public bool ControleEstatisticoProcessoIP{ get; set; }
 
-        [Display(Name = "Istrumento Alternativo")]
-        public string InstrumentoAlternativo { get; set; }
-        public int? AmostragemIA { get; set; }
+        [Display(Name = "Istrumento Secundário")]
+        public string InstrumentoSecundario { get; set; }
+
+        [Display(Name = "100%")]
+        public bool AmostragemIS { get; set; }
 
         [Display(Name = "Frequência/D")]
-		public int FrequenciaMinimaDiaIA { get; set; }
+		public int FrequenciaDiaIS { get; set; }
 
 		[Display(Name = "Frequência/T")]
-		public int FrequenciaMinimaTurnoIA { get; set; }
+		public int FrequenciaTurnoIS { get; set; }
 
 		[Display(Name = "Frequência/S")]
-		public int FrequenciaMinimaSetUpIA { get; set; }
+		public int FrequenciaSetUpIS { get; set; }
 
 		[Display(Name = "Frequência/P")]
-		public int FrequenciaMinimaParadaIA { get; set; }
+		public int FrequenciaParadaIS { get; set; }
 
 		[Display(Name = "Frequência/F")]
-		public int FrequenciaMinimaFinalIA { get; set; }
+		public int FrequenciaFinalIS { get; set; }
 
 		[Display(Name = "Frequência/A")]
-		public int FrequenciaMinimaAjusteIA { get; set; }
+		public int FrequenciaAjusteIS { get; set; }
 
 		[Display(Name = "Frequência/H")]
-		public int FrequenciaMinimaHoraIA { get; set; }
-        public bool MonitoramentoIA { get; set; }
-        public bool RegistroInspecaoIA { get; set; }
-        public bool ControleEstatisticoProcessoIA { get; set; }
+		public int FrequenciaHoraIS { get; set; }
+
+        [Display(Name = "MT")]
+        public bool MonitoramentoIS { get; set; }
+
+        [Display(Name = "RI")]
+        public bool RegistroInspecaoIS { get; set; }
+
+        [Display(Name = "CPE")]
+        public bool ControleEstatisticoProcessoIS { get; set; }
+
+        [Display(Name = "Situação")]
         public string Situacao { get; set; }
 		public bool Visual {  get; set; }
 

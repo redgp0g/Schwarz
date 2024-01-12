@@ -46,7 +46,7 @@ namespace Schwarz.Controllers
 
         public IActionResult Create()
         {
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace Schwarz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
 			return View(planoControle);
         }
 
@@ -76,7 +76,7 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
+			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
 			return View(planoControle);
         }
 
@@ -109,7 +109,7 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome), "IDFuncionario", "Nome");
+			ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).OrderBy(x => x.Nome).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
 			return View(planoControle);
         }
 

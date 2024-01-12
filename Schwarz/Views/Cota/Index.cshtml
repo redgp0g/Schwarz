@@ -4,9 +4,6 @@
     ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
-@Html.Partial("_Bootstrap")
-
-<div class="bg-white">
 <h1>Index</h1>
 
 <p>
@@ -22,79 +19,61 @@
                 @Html.DisplayNameFor(model => model.Item)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Caracteristica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoCaracteristica)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CaracteristicaEspecial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Localizacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CaracteristicaProduto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CaracteristicaProcesso)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ToleranciaSuperior)
+                @Html.DisplayNameFor(model => model.Nominal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ToleranciaInferior)
+                @Html.DisplayNameFor(model => model.ToleranciaMinima)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToleranciaMaxima)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadeMedida)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.InstrumentoPrincipal)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaDiaIP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaTurnoIP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaSetUpIP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaParadaIP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaFinalIP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaAjusteIP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaHoraIP)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.AmostragemIP)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InstrumentoAlternativo)
+                @Html.DisplayNameFor(model => model.MonitoramentoIP)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaDiaIA)
+                @Html.DisplayNameFor(model => model.RegistroInspecaoIP)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaTurnoIA)
+                @Html.DisplayNameFor(model => model.ControleEstatisticoProcessoIP)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaSetUpIA)
+                @Html.DisplayNameFor(model => model.InstrumentoSecundario)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaParadaIA)
+                @Html.DisplayNameFor(model => model.AmostragemIS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaFinalIA)
+                @Html.DisplayNameFor(model => model.MonitoramentoIS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaAjusteIA)
+                @Html.DisplayNameFor(model => model.RegistroInspecaoIS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FrequenciaMinimaHoraIA)
+                @Html.DisplayNameFor(model => model.ControleEstatisticoProcessoIS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AmostragemIA)
+                @Html.DisplayNameFor(model => model.Situacao)
             </th>
             <th></th>
         </tr>
@@ -103,85 +82,67 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.PlanoControle.CodigoInterno)
+                @Html.DisplayFor(modelItem => item.PlanoControle.CodigoDocumento)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Item)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Caracteristica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoCaracteristica)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CaracteristicaEspecial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Localizacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CaracteristicaProduto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CaracteristicaProcesso)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ToleranciaSuperior)
+                @Html.DisplayFor(modelItem => item.Nominal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ToleranciaInferior)
+                @Html.DisplayFor(modelItem => item.ToleranciaMinima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToleranciaMaxima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnidadeMedida)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InstrumentoPrincipal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaDiaIP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaTurnoIP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaSetUpIP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaParadaIP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaFinalIP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaAjusteIP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaHoraIP)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.AmostragemIP)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.InstrumentoAlternativo)
+                @Html.DisplayFor(modelItem => item.MonitoramentoIP)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaDiaIA)
+                @Html.DisplayFor(modelItem => item.RegistroInspecaoIP)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaTurnoIA)
+                @Html.DisplayFor(modelItem => item.ControleEstatisticoProcessoIP)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaSetUpIA)
+                @Html.DisplayFor(modelItem => item.InstrumentoSecundario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaParadaIA)
+                @Html.DisplayFor(modelItem => item.AmostragemIS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaFinalIA)
+                @Html.DisplayFor(modelItem => item.MonitoramentoIS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaAjusteIA)
+                @Html.DisplayFor(modelItem => item.RegistroInspecaoIS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrequenciaMinimaHoraIA)
+                @Html.DisplayFor(modelItem => item.ControleEstatisticoProcessoIS)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AmostragemIA)
+                @Html.DisplayFor(modelItem => item.Situacao)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IDCota">Edit</a> |
@@ -192,4 +153,3 @@
 }
     </tbody>
 </table>
-</div>
