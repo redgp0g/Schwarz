@@ -74,4 +74,17 @@ namespace Schwarz.Models
             _context = contexto;
         }
     }
+
+    public class FuncionarioViewModel
+    {
+        public int? Matricula { get; set; }
+        public string Nome { get; set; }
+        public int IDFuncionario { get; set; }
+        public string Setor { get; set; }
+        public string Turno { get; set; }
+        public string Email { get; set; }
+        public string Cargo { get; set; }
+        public bool Ativo{ get; set; }
+    }
+
 }

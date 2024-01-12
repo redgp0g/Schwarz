@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Schwarz.Models.Funcionario>
+﻿@model IEnumerable<Schwarz.Models.FuncionarioViewModel>
 
 @{
     ViewData["Title"] = "Funcionarios";
@@ -30,9 +30,6 @@
                             @Html.DisplayNameFor(model => model.Setor)
                         </th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            @Html.DisplayNameFor(model => model.Ativo)
-                        </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             @Html.DisplayNameFor(model => model.Turno)
                         </th>
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -41,13 +38,7 @@
                         <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             @Html.DisplayNameFor(model => model.Cargo)
                         </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            @Html.DisplayNameFor(model => model.Telefone)
-                        </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            @Html.DisplayNameFor(model => model.DataAdmissao)
-                        </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"></th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,9 +55,6 @@
                                 @Html.DisplayFor(modelItem => item.Setor)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Ativo)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.Turno)
                             </td>
                             <td>
@@ -76,13 +64,7 @@
                                 @Html.DisplayFor(modelItem => item.Cargo)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Telefone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DataAdmissao)
-                            </td>
-                            <td>
-                                <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-edit" asp-action="Edit" asp-route-id="@item.IDFuncionario">Editar</a>
+                                <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-edit" data-employee-id="@item.IDFuncionario">Editar</a>
                                 <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDFuncionario">Detalhes</a>
                                 <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDFuncionario">Deletar</a>
                             </td>
@@ -93,10 +75,176 @@
         </div>
     </div>
 </div>
+<dialog class="m-auto" id="dialog-editar">
+    <h3 class="pt-4 text-2xl text-center">Formulário de Edição</h3>
+    <div class="flex justify-center px-6 my-12">
+        <form id="formEditarFuncionario" method="post" class="px-8" enctype="multipart/form-data">
+            <input type="hidden" name="IDFuncionario" id="IDFuncionario" />
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Matricula</label>
+                <input type="number" name="Matricula" id="Matricula" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Nome</label>
+                <input name="Nome" id="Nome" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Setor</label>
+                <input name="Setor" id="Setor" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Centro de Custo</label>
+                <input name="CentroCusto" id="CentroCusto" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Número do Centro de Custo</label>
+                <input name="NumeroCentroCusto" id="NumeroCentroCusto" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Data de Nascimento</label>
+                <input type="date" name="DataNascimento" id="DataNascimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="form-group">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Ativo</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="Ativo" id="AtivoTrue" value="true" />
+                    <label class="form-check-label" for="AtivoTrue">Sim</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="Ativo" id="AtivoFalse" value="false" />
+                    <label class="form-check-label" for="AtivoFalse">Não</label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Turno</label>
+                <input name="Turno" id="Turno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Email</label>
+                <input type="email" name="Email" id="Email" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Líder</label>
+                <select name="IDLider" id="IDLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" asp-items="ViewBag.Lideres"></select>
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Cargo</label>
+                <input name="Cargo" id="Cargo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Ramal</label>
+                <input type="number" name="Ramal" id="Ramal" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Foto</label>
+                <div class="mb-8">
+                    <img id="preview" class="object-center object-cover rounded-full h-48 w-36" alt="Foto">
+                </div>
+                <input type="file" name="NovaFoto" id="NovaFoto" class="form-control" accept="image/*" onchange="previewImage(this)" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Telefone</label>
+                <input name="Telefone" id="Telefone" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Data de Admissão</label>
+                <input type="date" name="DataAdmissao" id="DataAdmissao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <input type="submit" value="Editar" class="text-xl w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-emerald-300 to-green-500 rounded-full hover:bg-gradient-to-r hover:from-emerald-300 hover:to-green-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+            </div>
+        </form>
+    </div>
+</dialog>
+
+<dialog class="m-auto" id="dialog-cadastrar">
+    <h3 class="pt-4 text-2xl text-center">Formulário de Edição</h3>
+    <div class="flex justify-center px-6 my-12">
+        <form id="formCadastrarFuncionario" method="post" class="px-8" enctype="multipart/form-data">
+            <input type="hidden" name="IDFuncionario" id="IDFuncionario" />
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Matricula</label>
+                <input type="number" name="Matricula" id="Matricula" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Nome</label>
+                <input name="Nome" id="Nome" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Setor</label>
+                <input name="Setor" id="Setor" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Centro de Custo</label>
+                <input name="CentroCusto" id="CentroCusto" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Número do Centro de Custo</label>
+                <input name="NumeroCentroCusto" id="NumeroCentroCusto" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Data de Nascimento</label>
+                <input type="date" name="DataNascimento" id="DataNascimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="form-group">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Ativo</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="Ativo" id="AtivoTrue" value="true" />
+                    <label class="form-check-label" for="AtivoTrue">Sim</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="Ativo" id="AtivoFalse" value="false" />
+                    <label class="form-check-label" for="AtivoFalse">Não</label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Turno</label>
+                <input name="Turno" id="Turno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Email</label>
+                <input type="email" name="Email" id="Email" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Líder</label>
+                <select name="IDLider" id="IDLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" asp-items="ViewBag.Lideres"></select>
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Cargo</label>
+                <input name="Cargo" id="Cargo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Ramal</label>
+                <input type="number" name="Ramal" id="Ramal" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Foto</label>
+                <div class="mb-8">
+                    <img id="preview" class="object-center object-cover rounded-full h-48 w-36" alt="Foto">
+                </div>
+                <input type="file" name="NovaFoto" id="NovaFoto" class="form-control" accept="image/*" onchange="previewImage(this)" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Telefone</label>
+                <input name="Telefone" id="Telefone" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700l">Data de Admissão</label>
+                <input type="date" name="DataAdmissao" id="DataAdmissao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <input type="submit" value="Editar" class="text-xl w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-emerald-300 to-green-500 rounded-full hover:bg-gradient-to-r hover:from-emerald-300 hover:to-green-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+            </div>
+        </form>
+    </div>
+</dialog>
 
 <script>
     $(document).ready(function () {
-        // inicializa o DataTables
+        var dialog = document.getElementById('dialog-editar');
+
         var table = $('#table').DataTable({
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
@@ -110,5 +258,69 @@
             "autoWidth": true,
             "responsive": true
         });
+
+        $('.btn-edit').click(function () {
+            var employeeId = $(this).data('employee-id');
+
+            $.ajax({
+                url: '/Funcionario/BuscarDadosFuncionario',
+                method: 'GET',
+                data: { id: employeeId },
+                success: function (data) {
+                    $('#dialog-editar input[name="IDFuncionario"]').val(data.idFuncionario);
+                    $('#dialog-editar input[name="Matricula"]').val(data.matricula);
+                    $('#dialog-editar input[name="Nome"]').val(data.nome);
+                    $('#dialog-editar input[name="Setor"]').val(data.setor);
+                    $('#dialog-editar input[name="NumeroCentroCusto"]').val(data.numeroCentroCusto);
+                    $('#dialog-editar input[name="CentroCusto"]').val(data.centroCusto);
+                    $('#dialog-editar input[name="DataNascimento"]').val(data.dataNascimento);
+                    $('#dialog-editar input[name="Ativo"]').filter('[value="' + data.ativo.toString() + '"]').prop('checked', true);
+                    $('#dialog-editar input[name="Turno"]').val(data.turno);
+                    $('#dialog-editar input[name="Email"]').val(data.email);
+                    $('#dialog-editar select[name="IDLider"]').val(data.idLider);
+                    $('#dialog-editar input[name="Cargo"]').val(data.cargo);
+                    $('#dialog-editar input[name="Ramal"]').val(data.ramal);
+                    $('#dialog-editar input[name="Telefone"]').val(data.telefone);
+                    $('#dialog-editar input[name="DataAdmissao"]').val(data.dataAdmissao);
+                    $('#dialog-editar input[name="NovaFoto"]').val('');
+
+                    // Tratar a imagem
+                    if (data.foto) {
+                        var preview = document.getElementById('preview');
+                        preview.src = 'data:image;base64,' + data.foto;
+                    } else {
+                        // Se não houver foto, deixar o preview em branco
+                        var preview = document.getElementById('preview');
+                        preview.src = '';
+                    }
+                    dialog.showModal();
+                },
+                error: function (error) {
+                    alert('Erro ao buscar os dados do funcionário: ' + error.responseText);
+                }
+            });
+        });
+
+        $('#formEditarFuncionario').submit(function (e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            // Enviar os dados usando Ajax
+            $.ajax({
+                url: '/Funcionario/Edit',
+                method: 'POST',
+                data: formData,
+                processData: false, // Impedir que o jQuery processe os dados
+                contentType: false, // Impedir que o jQuery defina o cabeçalho Content-Type
+                success: function (data) {
+                    dialog.close();
+                },
+                error: function (error) {
+                    alert('Erro ao editar o funcionário: ' + error.responseText);
+                }
+            });
+        });
+
     });
 </script>
