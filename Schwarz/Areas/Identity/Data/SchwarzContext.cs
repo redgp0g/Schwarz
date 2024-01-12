@@ -22,7 +22,9 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     public DbSet<IdeiaAnexo> IdeiaAnexo { get; set; }
 	public DbSet<PlanoAcao> PlanoAcao { get; set; }
 	public DbSet<PlanoControle> PlanoControle { get; set; }
-
+    public DbSet<Registro> Registro { get; set; }
+    public DbSet<RegistroCotas> RegistroCotas { get; set; }
+    public DbSet<AlertaCota> AlertaCota { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
