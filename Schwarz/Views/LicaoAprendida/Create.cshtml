@@ -1,0 +1,74 @@
+﻿@model Schwarz.Models.LicaoAprendida
+@using Microsoft.AspNetCore.Identity
+@using Schwarz.Areas.Identity.Data
+
+
+@inject SignInManager<SchwarzUser> SignInManager
+@inject UserManager<SchwarzUser> UserManager
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+<div class="container mx-auto">
+    <div class="flex justify-center px-6 my-12">
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+            <div class="w-full bg-white p-2 rounded-lg lg:rounded-l-none">
+                <h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
+                <form asp-action="Create" method="post" class="px-8 bg-white rounded">
+                    <div class="mb-4">
+                        <label asp-for="IDFalha" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
+                        <select asp-for="IDFalha" class="form-select select2 w-full" required asp-items="ViewBag.IDFalha">
+                        </select>
+                        @Html.ValidationMessageFor(x => x.IDFalha)
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Processo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o processo" />
+                        @Html.ValidationMessageFor(x => x.Processo)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="CodigoInterno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o código da peça"/>
+                        @Html.ValidationMessageFor(x => x.CodigoInterno)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Motivo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="Motivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o motivo" />
+                        @Html.ValidationMessageFor(x => x.Motivo)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Descricao" class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Descrição da Lição</label>
+                        <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a lição aprendida" required></textarea>
+                        @Html.ValidationMessageFor(x => x.Descricao)
+                    </div>
+
+                    <div class="mb-6 text-center">
+                        <input type="hidden" asp-for="IDFuncionario" value="@UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.IDFuncionario" />
+                        <input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.select2').select2({
+            placeholder: "Selecione os participantes",
+            width: '100%',
+            maximumSelectionLength: 4,
+            language: {
+                maximumSelected: function () {
+                    return "O máximo de participantes é 4";
+                },
+                noResults: function () {
+                    return "Nenhum resultado encontrado";
+                }
+            }
+        });
+    });
+</script>
