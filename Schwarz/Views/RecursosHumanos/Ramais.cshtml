@@ -1,0 +1,93 @@
+﻿@model List<Funcionario>
+
+@{
+    ViewData["Title"] = "Ramais";
+    Layout = "_Layout";
+}
+<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">
+    <div class="bg-white inline-block min-w-full shadow rounded-lg overflow-hidden p-5">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Nome
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Setor
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Ramal
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Data:">
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Falha:">
+                            @Html.DisplayFor(modelItem => item.Setor)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Processo:">
+                            @Html.DisplayFor(modelItem => item.Ramal)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $.fn.dataTable.moment('DD/MM/YYYY');
+
+        var table = $('#table').DataTable({
+            "order": [],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
+            },
+            "dom": 'lBfrtip',
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            "scrollY": "60vh",
+            "scrollCollapse": true,
+            "autoWidth": true,
+            "responsive": true,
+            "paging": true,
+            "buttons": [
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fa fa-file-excel"></i> Excel',
+                    exportOptions: {
+                        columns: [0, 1, 2]
+                    }
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i> Imprimir',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: [0, 1, 2]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fa fa-file-pdf"></i> PDF',
+                    className: 'btn btn-danger',
+                    exportOptions: {
+                        columns: [0, 1, 2]
+                    }
+                }
+            ]
+        });
+
+        table.on('init.dt', function () {
+            HideLoading();
+        });
+
+    });
+
+</script>
