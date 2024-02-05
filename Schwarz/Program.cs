@@ -3,8 +3,15 @@ using Schwarz.Models;
 using Microsoft.AspNetCore.Identity;
 using Schwarz.Data;
 using Schwarz.Areas.Identity.Data;
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("pt-BR");
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();

@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using Schwarz.Areas.Identity.Data;
-@model IEnumerable<IdeiaDTO>
+@model IEnumerable<Ideia>
 @{
     List<string> equipe = new();
 }
@@ -8,9 +8,7 @@
 @inject UserManager<SchwarzUser> UserManager
 
 <div class="my-2 flex sm:flex-row flex-col">
-
     <div class="flex flex-row mb-1 sm:mb-0">
-
         <div class="mr-12">
             <label for="filtrostatus" class="block font-medium text-white">Filtrar Status por:</label>
             <select id="filtrostatus" class="max-w-xs px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"><option value="">Todos</option></select>

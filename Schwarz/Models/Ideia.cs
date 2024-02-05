@@ -35,14 +35,17 @@ namespace Schwarz.Models
 
 		public virtual ICollection <EquipeIdeia> EquipeIdeia { get; set; }
         public virtual ICollection<IdeiaAnexo> IdeiaAnexo { get; set; }
+
         [NotMapped]
-		[Required(ErrorMessage = "Selecione pelo menos um funcionário")]
+        [Required(ErrorMessage = "Selecione pelo menos um funcionário")]
 		public List<int>? Participantesids { get; set; }
-
         [NotMapped]
-		public string DataFormatada => Data.ToString("dd/MM/yyyy");
+        public IEnumerable<string> NomesEquipe { get; set; }
+        [NotMapped]
+        public string DataFormatada => Data.ToString("dd/MM/yyyy");
 
-		private readonly SchwarzContext _context;
+
+        private readonly SchwarzContext _context;
 
 		public Ideia()
 		{
@@ -52,19 +55,5 @@ namespace Schwarz.Models
 		{
 			_context = contexto;
 		}
-	}
-}
-namespace Schwarz.Models
-{
-	public class IdeiaDTO
-	{
-		public int IDIdeia { get; set; }
-		public DateTime Data { get; set; }
-		public string Descricao { get; set; }
-		public string Status { get; set; }
-		public IEnumerable<string> NomesEquipe { get; set; }
-		[NotMapped]
-		public string DataFormatada => Data.ToString("dd/MM/yyyy");
-
 	}
 }

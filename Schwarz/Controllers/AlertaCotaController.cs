@@ -13,7 +13,7 @@ using Schwarz.Models;
 
 namespace Schwarz.Controllers
 {
-    [Authorize(Roles = "Admin, Lider, Metrologia")]
+    [Authorize(Roles = "Admin, Lider, Metrologia, Especialista")]
     public class AlertaCotaController : Controller
     {
         private readonly SchwarzContext _context;
@@ -26,18 +26,18 @@ namespace Schwarz.Controllers
             _userManager = userManager;
         }
 
-        [Authorize(Roles = "Admin, Lider")]
+        [Authorize(Roles = "Admin, Lider, Especialista")]
         public async Task<IActionResult> IndexProducao()
         {
             SchwarzUser user = await _userManager.GetUserAsync(User);
-            var schwarzContext = _context.AlertaCota.Include(c => c.FuncionarioLider).Include(c => c.RegistroCotas).Include(c => c.RegistroCotas.Registro).Where(x => x.IDFuncionarioLider == user.IDFuncionario && x.AcaoContencao == null && x.AcaoCorretiva == null);
+            var schwarzContext = _context.AlertaCota.Include(c => c.FuncionarioLider).Include(c => c.RegistroCotas).Include(c => c.RegistroCotas.Registro).Where(x => (x.IDFuncionarioLider == user.IDFuncionario || x.IDFuncionarioEspecialista == user.IDFuncionario) && x.AcaoContencao == null && x.AcaoCorretiva == null);
             return View(await schwarzContext.ToListAsync());
         }
 
         [Authorize(Roles = "Admin, Metrologia")]
         public async Task<IActionResult> IndexMetrologia()
         {
-            var schwarzContext = _context.AlertaCota.Include(c => c.FuncionarioLider).Include(c => c.RegistroCotas).Include(c => c.RegistroCotas.Registro).Where(x => x.AcaoCorretiva != null && x.AcaoContencao != null && x.ConfirmacaoMetrologia == null).OrderBy(x => x.RegistroCotas.Registro.DataAbertura) ;
+            var schwarzContext = _context.AlertaCota.Include(c => c.FuncionarioLider).Include(c => c.RegistroCotas).Include(c => c.RegistroCotas.Registro).OrderBy(x => x.RegistroCotas.Registro.DataAbertura) ;
             return View(await schwarzContext.ToListAsync());
         }
 
@@ -184,7 +184,7 @@ namespace Schwarz.Controllers
             alertaCota.PrazoAcaoContencao = prazoAcaoContencao;
             alertaCota.AcaoCorretiva = acaoCorretiva;
             alertaCota.PrazoAcaoCorretiva = prazoAcaoCorretiva;
-            alertaCota.DataConfirmacaoLider = DateTime.Now;
+            alertaCota.DataConfirmacaoProducao = DateTime.Now;
 
             _context.SaveChanges();
             return Ok();

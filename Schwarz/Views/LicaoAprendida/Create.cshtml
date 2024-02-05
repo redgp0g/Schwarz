@@ -17,16 +17,20 @@
                 <h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
                 <form asp-action="Create" method="post" class="px-8 bg-white rounded">
                     <div class="mb-4">
-                        <label asp-for="IDFalha" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
-                        <select asp-for="IDFalha" class="form-select select2 w-full" required asp-items="ViewBag.IDFalha">
-                        </select>
-                        @Html.ValidationMessageFor(x => x.IDFalha)
+                        <label asp-for="Evento" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
+                        <input asp-for="Evento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o evento" />
+                        @Html.ValidationMessageFor(x => x.Evento)
                     </div>
 
                     <div class="mb-4">
                         <label asp-for="Processo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
                         <input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o processo" />
                         @Html.ValidationMessageFor(x => x.Processo)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="NomePeca" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="NomePeca" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o nome da peça" />
+                        @Html.ValidationMessageFor(x => x.NomePeca)
                     </div>
                     <div class="mb-4">
                         <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold text-gray-700l"></label>
@@ -43,6 +47,15 @@
                         <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a lição aprendida" required></textarea>
                         @Html.ValidationMessageFor(x => x.Descricao)
                     </div>
+                    <div class="mb-4">
+                        <label asp-for="Positivo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <select asp-for="Positivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
+                            <option value="" selected disabled>Selecione</option>
+                            <option value="@true">Positivo</option>
+                            <option value="@false">Negativo</option>
+                        </select>
+                        @Html.ValidationMessageFor(x => x.Positivo)
+                    </div>
 
                     <div class="mb-6 text-center">
                         <input type="hidden" asp-for="IDFuncionario" value="@UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.IDFuncionario" />
@@ -54,21 +67,3 @@
     </div>
 
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('.select2').select2({
-            placeholder: "Selecione os participantes",
-            width: '100%',
-            maximumSelectionLength: 4,
-            language: {
-                maximumSelected: function () {
-                    return "O máximo de participantes é 4";
-                },
-                noResults: function () {
-                    return "Nenhum resultado encontrado";
-                }
-            }
-        });
-    });
-</script>

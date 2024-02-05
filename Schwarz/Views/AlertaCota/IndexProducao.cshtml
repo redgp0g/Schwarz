@@ -41,6 +41,9 @@
                         N° Peça
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Valor Encontrado
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Ações
                     </th>
                 </tr>
@@ -78,6 +81,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RegistroCotas.NumeroPeca)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RegistroCotas.ValorEncontrado)
                         </td>
                         <td>
                             <button style="padding: 7px 10px;margin-top: 0;" class="rounded-lg mt-2 p-6 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDAlertaCota">Responder</button>

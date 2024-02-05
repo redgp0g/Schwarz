@@ -19,6 +19,9 @@
                         Data de Abertura
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Responsável
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Código Interno
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -26,12 +29,6 @@
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Máquina
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Situação
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Turno
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Analista
@@ -46,6 +43,21 @@
                         N° Peça
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Valor Encontrado
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Ação Contenção
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Prazo Ação Contenção
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Ação Corretiva
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Prazo Ação Corretiva
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Ações
                     </th>
                 </tr>
@@ -53,9 +65,25 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    var cor = "";
+                    if (item.AcaoContencao != null && item.AcaoCorretiva != null && item.ConfirmacaoMetrologia !=null)
+                    {
+                        cor = "green";
+                    }
+                    else if (item.AcaoContencao != null && item.AcaoCorretiva != null && item.ConfirmacaoMetrologia == null)
+                    {
+                        cor = "red";
+                    }
+                    else
+                    {
+                        cor = "orange";
+                    }
+                    <tr style="color:@cor">
                         <td>
                             @Html.DisplayFor(modelItem => item.RegistroCotas.Registro.DataAbertura)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FuncionarioLider.PrimeiroUltimoNome)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RegistroCotas.Registro.CodigoInterno)
@@ -65,12 +93,6 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RegistroCotas.Registro.Maquina)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RegistroCotas.Registro.Situacao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RegistroCotas.Registro.Turno)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RegistroCotas.Registro.Analista)
@@ -85,8 +107,26 @@
                             @Html.DisplayFor(modelItem => item.RegistroCotas.NumeroPeca)
                         </td>
                         <td>
-                            <button id="btnAlertaOk" style="padding: 7px 10px;margin-top: 0;" class="rounded-lg mt-2 p-6 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDAlertaCota">Ok</button>
-                            <button id="btnAlertaNaoOk" style="padding: 7px 10px;margin-top: 0;" class="rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDAlertaCota">Não Ok</button>
+                            @Html.DisplayFor(modelItem => item.RegistroCotas.ValorEncontrado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AcaoContencao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrazoAcaoContencao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AcaoCorretiva)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrazoAcaoCorretiva)
+                        </td>
+                        <td>
+                            @if (item.AcaoContencao != null && item.AcaoCorretiva != null && item.ConfirmacaoMetrologia == null)
+                            {
+                                <button id="btnAlertaOk" style="padding: 7px 10px;margin-top: 0; color:black" class="rounded-lg mt-2 p-6 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDAlertaCota">Ok</button>
+                                <button id="btnAlertaNaoOk" style="padding: 7px 10px;margin-top: 0; color:black" class="rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDAlertaCota">Não Ok</button>
+                            }
                         </td>
                     </tr>
                 }
@@ -123,7 +163,7 @@
 </dialog>
 
 <script>
-    
+
 
     $(document).ready(function () {
         var dialog = document.getElementById('dialog');

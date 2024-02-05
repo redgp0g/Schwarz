@@ -200,10 +200,10 @@ namespace ProgramaIdeias.Controllers
 
             if (idfuncionario != null)
             {
-                IEnumerable<IdeiaDTO> model = _context.Ideia
+                IEnumerable<Ideia> model = _context.Ideia
                 .Where(x => x.EquipeIdeia.Any(e => e.IDFuncionario == idfuncionario))
                 .OrderByDescending(x => x.Data)
-                .Select(i => new IdeiaDTO()
+                .Select(i => new Ideia
                 {
                     Data = i.Data,
                     Descricao = i.Descricao,
@@ -215,8 +215,8 @@ namespace ProgramaIdeias.Controllers
             }
             else
             {
-                IEnumerable<IdeiaDTO> model = (from i in _context.Ideia
-                                               select new IdeiaDTO() { Data = i.Data, Descricao = i.Descricao, IDIdeia = i.IDIdeia, Status = i.Status, NomesEquipe = i.EquipeIdeia.Select(x => x.Funcionario.Nome.ToLower()) })
+                IEnumerable<Ideia> model = (from i in _context.Ideia
+                                               select new Ideia { Data = i.Data, Descricao = i.Descricao, IDIdeia = i.IDIdeia, Status = i.Status, NomesEquipe = i.EquipeIdeia.Select(x => x.Funcionario.Nome.ToLower()) })
                                               .OrderByDescending(x => x.Data);
                 return PartialView("_GridViewIdeias", model);
             }
@@ -242,9 +242,7 @@ namespace ProgramaIdeias.Controllers
         [Authorize(Roles = "IdeiaAdmin, Admin")]
         public IActionResult Edit(int id)
         {
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario
-                                .Where(x => x.Ativo)
-       .Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
+            
             var ideia = _context.Ideia.Find(id);
             if (ideia == null)
             {
