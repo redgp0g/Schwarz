@@ -9,11 +9,8 @@ namespace Schwarz.Models
         [Key]
         public int IDLicaoAprendida { get; set; }
 
-        [Display(Name = "Evento")]
         [Required(ErrorMessage = "O Evento é obrigatório!")]
-        [ForeignKey("Falha")]
-        public int IDFalha { get; set; }
-        public virtual Falha? Falha { get; set; }
+        public string Evento { get; set; }
 
         [ForeignKey("Funcionario")]
         public int IDFuncionario { get; set; }
@@ -24,6 +21,10 @@ namespace Schwarz.Models
         [Required(ErrorMessage = "O Processo é obrigatório!")]
         public string Processo { get; set; }
 
+        [Display(Name = "Nome da Peça")]
+        [Required(ErrorMessage = "O nome da peça é obrigatória!")]
+        public string NomePeca { get; set; }
+
         [Display(Name = "Código Interno")]
         [Required(ErrorMessage = "O Codigo Interno é obrigatório!")]
         public int CodigoInterno { get; set; }
@@ -31,9 +32,12 @@ namespace Schwarz.Models
         [Required(ErrorMessage = "O Motivo é obrigatório!")]
         public string Motivo { get; set; }
 
-        [Display(Name = "Descrição")]
+        [Display(Name = "Lição Aprendida")]
         [Required(ErrorMessage = "A Lição Aprendida é obrigatória!")]
         public string Descricao { get; set; }
+
+        [Display(Name = "Positivo/Negativo")]
+        public bool Positivo { get; set; }
 
         public LicaoAprendida() { }
     }

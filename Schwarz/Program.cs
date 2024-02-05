@@ -13,8 +13,6 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("pt-BR");
 });
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddDbContext<SchwarzContext>
 (options => options.UseLazyLoadingProxies()

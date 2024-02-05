@@ -21,7 +21,7 @@ namespace Schwarz.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.LicaoAprendida.Include(l => l.Falha);
+            var schwarzContext = _context.LicaoAprendida;
             return View(await schwarzContext.ToListAsync());
         }
 
@@ -33,7 +33,6 @@ namespace Schwarz.Controllers
             }
 
             var licaoAprendida = await _context.LicaoAprendida
-                .Include(l => l.Falha)
                 .FirstOrDefaultAsync(m => m.IDLicaoAprendida == id);
             if (licaoAprendida == null)
             {
@@ -45,7 +44,6 @@ namespace Schwarz.Controllers
 
         public IActionResult Create()
         {
-            ViewData["IDFalha"] = new SelectList(_context.Falha.OrderBy(x => x.Descricao), "IDFalha", "Descricao");
             return View();
         }
 
@@ -60,7 +58,6 @@ namespace Schwarz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "Descricao");
             return View(licaoAprendida);
         }
 
@@ -76,7 +73,6 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", licaoAprendida.IDFalha);
             return View(licaoAprendida);
         }
 
@@ -109,7 +105,6 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", licaoAprendida.IDFalha);
             return View(licaoAprendida);
         }
 
@@ -121,7 +116,6 @@ namespace Schwarz.Controllers
             }
 
             var licaoAprendida = await _context.LicaoAprendida
-                .Include(l => l.Falha)
                 .FirstOrDefaultAsync(m => m.IDLicaoAprendida == id);
             if (licaoAprendida == null)
             {
