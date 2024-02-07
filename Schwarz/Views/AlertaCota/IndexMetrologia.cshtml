@@ -4,7 +4,7 @@
 
 @inject UserManager<SchwarzUser> UserManager
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Alertas Cotas";
     Layout = "_Layout";
     var userId = UserManager.GetUserId(User);
     var user = await UserManager.FindByIdAsync(userId);
@@ -66,7 +66,7 @@
                 @foreach (var item in Model)
                 {
                     var cor = "";
-                    if (item.AcaoContencao != null && item.AcaoCorretiva != null && item.ConfirmacaoMetrologia !=null)
+                    if (item.AcaoContencao != null && item.AcaoCorretiva != null && item.ConfirmacaoMetrologia != null)
                     {
                         cor = "green";
                     }
@@ -171,14 +171,37 @@
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
             },
-            "dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
-                '<"row"<"col-sm-12"tr>>' +
-                '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "dom": 'lBfrtip',
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
             "scrollY": "60vh",
             "scrollCollapse": true,
             "autoWidth": true,
-            "responsive": true
+            "responsive": true,
+            "buttons": [
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fa fa-file-excel"></i> Excel',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+                    }
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i> Imprimir',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fa fa-file-pdf"></i> PDF',
+                    className: 'btn btn-danger',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+                    }
+                }
+            ]
         });
 
         table.on('click', '#btnAlertaOk', function () {

@@ -41,6 +41,26 @@ namespace Schwarz.Controllers
             return View(await schwarzContext.ToListAsync());
         }
 
+        [HttpGet]
+        public IActionResult Dashboard()
+        {
+            var alertasPorLider = _context.AlertaCota
+            .Include(x => x.FuncionarioLider)
+            .GroupBy(x => x.FuncionarioLider.Nome)
+            .Select(x => new { Lider = x.Key, 
+             AlertaProducao = x.Count(x => x.DataConfirmacaoProducao == null),
+             AlertaMetrologia = x.Count(x => x.DataConfirmacaoProducao != null && x.DataConfirmacaoMetrologia == null)
+            })
+            .ToList();
+
+            ViewBag.AlertasporLider = alertasPorLider;
+
+            ViewBag.TotalAlertaProducao= _context.AlertaCota.Where(x => x.DataConfirmacaoProducao == null).Count();
+            ViewBag.TotalAlertaMetrologia = _context.AlertaCota.Where(x => x.DataConfirmacaoProducao != null && x.DataConfirmacaoMetrologia == null).Count();
+            ViewBag.TotalAlertaArquivados = _context.AlertaCota.Where(x => x.DataConfirmacaoProducao != null && x.DataConfirmacaoMetrologia != null).Count();
+            return View();
+        }
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
