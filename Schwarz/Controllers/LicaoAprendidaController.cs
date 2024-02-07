@@ -21,7 +21,7 @@ namespace Schwarz.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.LicaoAprendida;
+            var schwarzContext = _context.LicaoAprendida.Include(x => x.LicaoAprendidaArquivos);
             return View(await schwarzContext.ToListAsync());
         }
 
@@ -49,14 +49,50 @@ namespace Schwarz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LicaoAprendida licaoAprendida)
+        public async Task<IActionResult> Create(LicaoAprendida licaoAprendida, List<IFormFile> files)
         {
             if (ModelState.IsValid)
             {
-                licaoAprendida.Data = DateTime.Now;
-                _context.Add(licaoAprendida);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    licaoAprendida.Data = DateTime.Now;
+                    using var transaction = _context.Database.BeginTransaction();
+
+                    _context.Add(licaoAprendida);
+                    await _context.SaveChangesAsync();
+
+                    if (files != null && files.Count > 0)
+                    {
+                        foreach (var file in files)
+                        {
+                            if (file.Length > 0)
+                            {
+                                using (var memoryStream = new MemoryStream())
+                                {
+                                    file.CopyTo(memoryStream);
+                                    byte[] fileBytes = memoryStream.ToArray();
+
+                                    string tipoMime = file.ContentType;
+                                    string fileName = file.FileName;
+
+                                    Arquivo arquivo = new(fileName, fileBytes, tipoMime, DateTime.Now);
+                                    _context.Add(arquivo);
+                                    _context.SaveChanges();
+                                    LicaoAprendidaArquivo licaoAprendidaArquivo = new(licaoAprendida.IDLicaoAprendida, arquivo.IDArquivo);
+                                    _context.Add(licaoAprendidaArquivo);
+                                    _context.SaveChanges();
+                                }
+                            }
+                        }
+                    }
+                    transaction.Commit();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    TempData["MensagemErro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
+                    return RedirectToAction("Create");
+                }
             }
             return View(licaoAprendida);
         }

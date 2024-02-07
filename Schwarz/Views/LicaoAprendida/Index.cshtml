@@ -45,6 +45,9 @@
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         @Html.DisplayNameFor(model => model.Positivo)
                     </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Anexos
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -82,6 +85,20 @@
                             else
                             {
                                 <text>Negativo</text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.LicaoAprendidaArquivos != null)
+                            {
+                                foreach (var arquivo in item.LicaoAprendidaArquivos)
+                                {
+                                    <a href="data:@arquivo.Arquivo.TipoMIME;base64,@Convert.ToBase64String(arquivo.Arquivo.Conteudo)" download="@arquivo.Arquivo.Nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@arquivo.Arquivo.Nome</a>
+                                }
+
+                            }
+                            else
+                            {
+                                <text>Sem Arquivos</text>
                             }
                         </td>
                     </tr>

@@ -12,7 +12,8 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
         : base(options)
     {
     }
-	public DbSet<Cota> Cota{ get; set; }
+    public DbSet<Arquivo> Arquivo{ get; set; }
+    public DbSet<Cota> Cota{ get; set; }
 	public DbSet<EquipeFSP> EquipeFSP{ get; set; }
 	public DbSet<EquipeIdeia> EquipeIdeia { get; set; }
     public DbSet<Falha> Falha { get; set; }
@@ -26,6 +27,7 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     public DbSet<RegistroCotas> RegistroCotas { get; set; }
     public DbSet<AlertaCota> AlertaCota { get; set; }
     public DbSet<LicaoAprendida> LicaoAprendida { get; set; }
+    public DbSet<LicaoAprendidaArquivo> LicaoAprendidaArquivo { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
