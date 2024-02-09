@@ -14,14 +14,11 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     }
     public DbSet<Arquivo> Arquivo{ get; set; }
     public DbSet<Cota> Cota{ get; set; }
-	public DbSet<EquipeFSP> EquipeFSP{ get; set; }
 	public DbSet<EquipeIdeia> EquipeIdeia { get; set; }
     public DbSet<Falha> Falha { get; set; }
-	public DbSet<FSP> FSP{ get; set; }
 	public DbSet<Funcionario> Funcionario { get; set; }
 	public DbSet<Ideia> Ideia { get; set; }
     public DbSet<IdeiaAnexo> IdeiaAnexo { get; set; }
-	public DbSet<PlanoAcao> PlanoAcao { get; set; }
 	public DbSet<PlanoControle> PlanoControle { get; set; }
     public DbSet<Registro> Registro { get; set; }
     public DbSet<RegistroCotas> RegistroCotas { get; set; }
