@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -53,7 +54,17 @@ namespace Schwarz.Controllers
             })
             .ToList();
 
+            var alertasArquivados = _context.AlertaCota
+            .Include(x => x.RegistroCotas)
+            .GroupBy(x => x.RegistroCotas.Registro.DataFechamento.Value.Month)
+            .Select(x => new {
+                Mes = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key)),
+                AlertaArquivados = x.Count(x => x.DataConfirmacaoMetrologia != null)
+            })
+            .ToList();
+
             ViewBag.AlertasporLider = alertasPorLider;
+            ViewBag.AlertasArquivados = alertasArquivados;
 
             ViewBag.TotalAlertaProducao= _context.AlertaCota.Where(x => x.DataConfirmacaoProducao == null).Count();
             ViewBag.TotalAlertaMetrologia = _context.AlertaCota.Where(x => x.DataConfirmacaoProducao != null && x.DataConfirmacaoMetrologia == null).Count();

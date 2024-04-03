@@ -1,30 +1,70 @@
 ﻿<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawGraficoAlertasLider);
+    google.charts.setOnLoadCallback(drawGraficoAlertasArquivados);
 
-    function drawChart() {
+    function drawGraficoAlertasLider() {
         var alertaPorLider = @Html.Raw(Json.Serialize(ViewBag.AlertasporLider));
         
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Líder');
         data.addColumn('number', 'Alertas Reatividade Produção');
+        data.addColumn({ role: 'annotation' }, 'string');
         data.addColumn('number', 'Alertas Validação Metrologia');
+        data.addColumn({ role: 'annotation' }, 'string');
 
         for (var i = 0; i < alertaPorLider.length; i++) {
+            var annotationProducao = alertaPorLider[i].alertaProducao.toString();
+            var annotationMetrologia = alertaPorLider[i].alertaMetrologia.toString();
             data.addRow([
                 alertaPorLider[i].lider,
                 alertaPorLider[i].alertaProducao,
-                alertaPorLider[i].alertaMetrologia
+                annotationProducao,
+                alertaPorLider[i].alertaMetrologia,
+                annotationMetrologia
             ]);
         }
 
         var options = {
-            bar: { groupWidth: "65%" },
-            colors: ['red', 'yellow']
+            bar: { groupWidth: "20%" },
+            legend: { position: 'top', alignment: 'center' },
+            colors: ['red', 'yellow'],
+            isStacked: true,
+            annotations: {
+                textStyle: {
+                    color: 'black'
+                }
+            }
         };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('graficoAlertasLider'));
+
+        chart.draw(data, options);
+    }
+    function drawGraficoAlertasArquivados() {
+        var alertasArquivadosMes = @Html.Raw(Json.Serialize(ViewBag.AlertasArquivados));
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Mês');
+        data.addColumn('number', 'Alertas Arquivados');
+        data.addColumn({ role: 'annotation' }, 'string');
+
+        for (var i = 0; i < alertasArquivadosMes.length; i++) {
+            var annotation = alertasArquivadosMes[i].alertaArquivados.toString();
+            data.addRow([
+                alertasArquivadosMes[i].mes,
+                alertasArquivadosMes[i].alertaArquivados,
+                annotation
+            ]);
+        }
+
+        var options = {
+            bar: { groupWidth: "20%" },
+            legend: { position: 'top', alignment: 'center' },
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('graficoAlertasArquivados'));
 
         chart.draw(data, options);
     }
@@ -58,14 +98,22 @@
                 </div>
             </div>
         </div>
-        <div class="w-full grid grid-cols-1 xl:grid-cols-1 gap-4">
+        <div class="w-full grid grid-cols-1 xl:grid-cols-2 gap-4">
             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex-shrink-0">
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Alertas por Líder</h3>
                     </div>
                 </div>
-                <div id="curve_chart"></div>
+                <div id="graficoAlertasLider"></div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex-shrink-0">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Alertas Arquivados por Mês</h3>
+                    </div>
+                </div>
+                <div id="graficoAlertasArquivados"></div>
             </div>
         </div>
 
