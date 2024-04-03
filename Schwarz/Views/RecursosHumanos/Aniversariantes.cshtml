@@ -1,87 +1,56 @@
-﻿@model List<Funcionario>
-
-@{
+﻿@{
     ViewData["Title"] = "Aniversariantes";
     Layout = "_Layout";
 }
-<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">
-    <div class="bg-white inline-block min-w-full shadow rounded-lg overflow-hidden p-5">
-        <table id="table">
-            <thead>
-                <tr>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Nome
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Data de Nascimento
-                    </th>
+<div class="flex flex-col justify-center h-full mb-10 mt-2">
+    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200" >
+        @if (ViewBag.AniversariantesDia.Count > 0)
+        {
+            <header class="text-xl px-5 py-4 border-b-2 border-black">
+                <h2 class="font-bold text-black">ANIVERSARIANTES <span class="text-green-500">DO DIA<span></h2>
+            </header>
 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
+            <div class="font-sans leading-normal tracking-normal" style="background: url(https://img.freepik.com/vetores-gratis/vetor-de-design-de-moldura-de-baloes-brancos_53876-175062.jpg?w=360&t=st=1707743286~exp=1707743886~hmac=fd1b952b70318a115bb45568a02388a5c7a1e49f2afd6f782ffaff82593da3b1);background-size:cover">
+                @foreach (var item in ViewBag.AniversariantesDia)
                 {
-                    <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Nome:">
-                            @Html.DisplayFor(modelItem => item.Nome)
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Setor:">
-                            @Html.DisplayFor(modelItem => item.DataNascimento)
-                        </td>
-                    </tr>
+                    <div class="flex justify-center mb-6">
+                        <img src="data:image;base64,@(Convert.ToBase64String(item.Foto))" width="100" height="100" alt="Profile" class="rounded-full p-1">
+                    </div>
+                    <div class="text-center mb-4">
+                        <h2 class="text-xl font-semibold">@item.Nome</h2>
+                    </div>
                 }
-            </tbody>
-        </table>
+            </div>
+        }
+
+        <header class="text-xl px-5 py-4 border-b border-gray-100">
+            <h2 class="font-bold text-black">ANIVERSARIANTES <span class="text-green-500">DE @DateTime.Now.ToString("MMMM").ToUpper()</span></h2>
+        </header>
+        <div class="p-3 border-t-2 border-black" style="background: url(https://img.freepik.com/vetores-gratis/vetor-de-design-de-moldura-de-baloes-brancos_53876-175062.jpg?w=360&t=st=1707743286~exp=1707743886~hmac=fd1b952b70318a115bb45568a02388a5c7a1e49f2afd6f782ffaff82593da3b1);background-size:cover">
+                <table class="table-auto w-full">
+                    <tbody class="text-sm grid grid-cols-2">
+                        @foreach (var item in ViewBag.AniversariantesMes)
+                        {
+                            <tr>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-18 h-18 flex-shrink-0 mr-2 sm:mr-3">
+                                            @if (item.Foto != null)
+                                            {
+                                                <img class="rounded-full" src="data:image;base64,@(Convert.ToBase64String(item.Foto))" width="60" height="60" alt="Foto">
+                                            }
+                                            else
+                                            {
+                                                <img class="rounded-full" src="\image\user.png" width="60" height="60" alt="Foto">
+                                            }
+                                        </div>
+                                        <div class="font-medium text-gray-800">@item.Nome: <span class="text-green-500">@item.DataNascimento.ToString("dd/MM")</span></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
     </div>
 </div>
-</div>
-<script>
-    $(document).ready(function () {
-        $.fn.dataTable.moment('DD/MM/YYYY');
-
-        var table = $('#table').DataTable({
-            "order": [],
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
-            },
-            "dom": 'lBfrtip',
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-            "scrollY": "60vh",
-            "scrollCollapse": true,
-            "autoWidth": true,
-            "responsive": true,
-            "paging": true,
-            "buttons": [
-                {
-                    extend: 'excelHtml5',
-                    text: '<i class="fa fa-file-excel"></i> Excel',
-                    exportOptions: {
-                        columns: [0, 1, 2]
-                    }
-                },
-                {
-                    extend: 'print',
-                    text: '<i class="fa fa-print"></i> Imprimir',
-                    className: 'btn btn-primary',
-                    exportOptions: {
-                        columns: [0, 1, 2]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
-                    text: '<i class="fa fa-file-pdf"></i> PDF',
-                    className: 'btn btn-danger',
-                    exportOptions: {
-                        columns: [0, 1, 2]
-                    }
-                }
-            ]
-        });
-
-        table.on('init.dt', function () {
-            HideLoading();
-        });
-
-    });
-
-</script>

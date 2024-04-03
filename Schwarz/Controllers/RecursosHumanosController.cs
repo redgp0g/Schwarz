@@ -26,8 +26,18 @@ namespace Schwarz.Controllers
 
         public IActionResult Aniversariantes()
         {
-            List<Funcionario> ramais = _context.Funcionario.Where(x => x.Ativo).Select(x => new Funcionario { Nome = x.Nome, DataNascimento = x.DataNascimento }).ToList();
-            return View(ramais);
+            ViewBag.AniversariantesMes =  _context.Funcionario
+                .Where(x => x.Ativo && x.DataNascimento.Value.Month == DateTime.Now.Month)
+                .Select(x => new { Nome = x.PrimeiroUltimoNome, DataNascimento = x.DataNascimento, Foto = x.Foto })
+                .OrderBy(x => x.DataNascimento.Value.Day)
+                .ToList();
+
+            ViewBag.AniversariantesDia = _context.Funcionario
+                .Where(x => x.Ativo && x.DataNascimento.Value.Month == DateTime.Now.Month && x.DataNascimento.Value.Day == DateTime.Now.Day)
+                .Select(x => new { Nome = x.PrimeiroUltimoNome, DataNascimento = x.DataNascimento, Foto = x.Foto })
+                .OrderBy(x => x.DataNascimento.Value.Day)
+                .ToList();
+            return View();
         }
     }
 }
