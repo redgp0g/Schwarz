@@ -206,11 +206,6 @@ namespace ProgramaIdeias.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.FSP == null)
-            {
-                return NotFound();
-            }
-
             var ideia = await _context.Ideia
                 .FirstOrDefaultAsync(m => m.IDIdeia == id);
             if (ideia == null)
