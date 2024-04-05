@@ -17,11 +17,20 @@
                 <h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
                 <form asp-action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
                     <div class="mb-4">
-                        <label asp-for="Evento" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
-                        <input asp-for="Evento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o evento" />
-                        @Html.ValidationMessageFor(x => x.Evento)
+                        <label asp-for="Motivo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="Motivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o nome da peça" />
+                        @Html.ValidationMessageFor(x => x.Motivo)
                     </div>
-
+                    <div class="mb-4">
+                        <label asp-for="Planejado" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
+                        <input asp-for="Planejado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o evento" />
+                        @Html.ValidationMessageFor(x => x.Planejado)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Realizado" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="Realizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o motivo" />
+                        @Html.ValidationMessageFor(x => x.Realizado)
+                    </div>
                     <div class="mb-4">
                         <label asp-for="Processo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
                         <input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o processo" />
@@ -36,11 +45,6 @@
                         <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold text-gray-700l"></label>
                         <input asp-for="CodigoInterno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o código da peça"/>
                         @Html.ValidationMessageFor(x => x.CodigoInterno)
-                    </div>
-                    <div class="mb-4">
-                        <label asp-for="Motivo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
-                        <input asp-for="Motivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o motivo" />
-                        @Html.ValidationMessageFor(x => x.Motivo)
                     </div>
                     <div class="mb-4">
                         <label asp-for="Descricao" class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Descrição da Lição</label>
@@ -58,7 +62,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold text-gray-700">Anexos:</label>
-                        <input type="file" name="files" multiple>
+                        <input asp-for="Arquivos" multiple>
                     </div>
                     <div class="mb-6 text-center">
                         <input type="hidden" asp-for="IDFuncionario" value="@UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.IDFuncionario" />
