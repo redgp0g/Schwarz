@@ -13,10 +13,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("pt-BR");
 });
 
-
+var connectionString = Environment.GetEnvironmentVariable("SCHWARZ_DATABASE_STRING_CONNECTION");
 builder.Services.AddDbContext<SchwarzContext>
 (options => options.UseLazyLoadingProxies()
-.UseSqlServer()
+.UseSqlServer(connectionString)
 );
 
 builder.Services.AddIdentity<SchwarzUser, IdentityRole>(options =>
