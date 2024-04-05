@@ -43,7 +43,7 @@ namespace Schwarz.Models
         [Display(Name = "Positivo/Negativo")]
         public bool Positivo { get; set; }
 
-        public virtual ICollection<LicaoAprendidaArquivo>? LicaoAprendidaArquivos { get; set; }
+        public virtual ICollection<ArquivoLicaoAprendida>? LicaoAprendidaArquivos { get; set; }
 
         [NotMapped]
         public List<IFormFile>? Arquivos { get; set; }

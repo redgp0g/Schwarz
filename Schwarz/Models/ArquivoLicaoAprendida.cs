@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Schwarz.Models
 {
     [PrimaryKey(nameof(IDLicaoAprendida), nameof(IDArquivo))]
-    public class LicaoAprendidaArquivo
+    public class ArquivoLicaoAprendida
     {
         [ForeignKey("LicaoAprendida")]
         public int IDLicaoAprendida { get; set; }
@@ -16,11 +16,11 @@ namespace Schwarz.Models
         public int IDArquivo { get; set; }
         public virtual Arquivo Arquivo { get; set; }
 
-        public LicaoAprendidaArquivo()
+        public ArquivoLicaoAprendida()
         {
         }
 
-        public LicaoAprendidaArquivo(int iDLicaoAprendida, int iDArquivo)
+        public ArquivoLicaoAprendida(int iDLicaoAprendida, int iDArquivo)
         {
             IDLicaoAprendida = iDLicaoAprendida;
             IDArquivo = iDArquivo;

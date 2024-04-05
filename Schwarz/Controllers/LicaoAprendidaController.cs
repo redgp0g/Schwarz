@@ -51,7 +51,7 @@ namespace Schwarz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LicaoAprendida licaoAprendida, List<IFormFile> files)
+        public async Task<IActionResult> Create(LicaoAprendida licaoAprendida)
         {
             if (ModelState.IsValid)
             {
@@ -63,9 +63,9 @@ namespace Schwarz.Controllers
                     _context.Add(licaoAprendida);
                     await _context.SaveChangesAsync();
 
-                    if (files != null && files.Count > 0)
+                    if (licaoAprendida.Arquivos != null && licaoAprendida.Arquivos.Count > 0)
                     {
-                        foreach (var file in files)
+                        foreach (var file in licaoAprendida.Arquivos)
                         {
                             if (file.Length > 0)
                             {
@@ -80,7 +80,7 @@ namespace Schwarz.Controllers
                                     Arquivo arquivo = new(fileName, fileBytes, tipoMime, DateTime.Now);
                                     _context.Add(arquivo);
                                     _context.SaveChanges();
-                                    LicaoAprendidaArquivo licaoAprendidaArquivo = new(licaoAprendida.IDLicaoAprendida, arquivo.IDArquivo);
+                                    ArquivoLicaoAprendida licaoAprendidaArquivo = new(licaoAprendida.IDLicaoAprendida, arquivo.IDArquivo);
                                     _context.Add(licaoAprendidaArquivo);
                                     _context.SaveChanges();
                                 }
@@ -146,35 +146,25 @@ namespace Schwarz.Controllers
             return View(licaoAprendida);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var licaoAprendida = await _context.LicaoAprendida
-                .FirstOrDefaultAsync(m => m.IDLicaoAprendida == id);
+            var licaoAprendida = await _context.LicaoAprendida.FindAsync(id);
             if (licaoAprendida == null)
             {
                 return NotFound();
             }
-
-            return View(licaoAprendida);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var licaoAprendida = await _context.LicaoAprendida.FindAsync(id);
-            if (licaoAprendida != null)
+            if (licaoAprendida.LicaoAprendidaArquivos != null)
             {
-                _context.LicaoAprendida.Remove(licaoAprendida);
+                foreach (var licaoAprendidaArquivo in licaoAprendida.LicaoAprendidaArquivos)
+                {
+                    _context.Arquivo.Remove(licaoAprendidaArquivo.Arquivo);
+                    _context.ArquivoLicaoAprendida.Remove(licaoAprendidaArquivo);
+                }
             }
 
+            _context.LicaoAprendida.Remove(licaoAprendida);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
         private bool LicaoAprendidaExists(int id)
