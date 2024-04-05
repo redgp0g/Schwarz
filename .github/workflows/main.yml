@@ -1,0 +1,32 @@
+name: My .NET Action
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Set and Use Environment Variable
+      run: |
+        setx SCHWARZ_DATABASE_STRING_CONNECTION "${{ secrets.DATABASE_STRING_CONNECTION }}" /M
+        dotnet test --no-build --verbosity normal
+    - name: Stop Website
+      run: C:\Windows\System32\inetsrv\appcmd stop site "Schwarz"
+    - name: Publish Release
+      run: |
+       del /S /Q "C:\Sites\Schwarz\*.*"
+       dotnet publish -c Release -o "C:\Sites\Schwarz"
+    - name: Start Website
+      run: C:\Windows\System32\inetsrv\appcmd start site "Schwarz"
