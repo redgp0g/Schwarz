@@ -58,17 +58,9 @@ namespace ProgramaIdeias.Controllers
         "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
         "Jul", "Ago", "Set", "Out", "Nov", "Dez"
             };
-
-            //calculo de quanto em porcentagem aumentou a quantidade de ideias desse ano comparado com o ano anterior
-            var totalIdeiasAnoAnterior = _context.Ideia.Where(x => x.Data.Year == anoAtual - 1).Count();
             var totalIdeiasAnoAtual = _context.Ideia.Where(x => x.Data.Year == anoAtual).Count();
             var totalIdeiasImplantadasAnoAtual = _context.Ideia.Where(x =>x.DataImplantacao.HasValue && x.DataImplantacao.Value.Year == anoAtual).Count();
 
-            //calculo de quanto em porcentagem aumentou a quantidade de ideias implantadas desse ano comparado com o ano anterior
-            var totalIdeiasImplantadasAnoAnterior = _context.Ideia.Where(x => x.Status == "Aplicada" && x.Data.Year == anoAtual - 1).Count();
-            var totalIdeiasImplantadasAnoAtual = _context.Ideia.Where(x => x.Status == "Aplicada" && (x.Data.Year == anoAtual || (x.DataImplantacao.HasValue && x.DataImplantacao.Value.Year == anoAtual))).Count();
-            ViewBag.PorcentagemIdeiasAno = Math.Round((decimal)(totalIdeiasAnoAtual - totalIdeiasAnoAnterior) / totalIdeiasAnoAnterior * 100, 2);
-            ViewBag.PorcentagemIdeiasImplantadasAno = Math.Round((decimal)(totalIdeiasImplantadasAnoAtual - totalIdeiasImplantadasAnoAnterior) / totalIdeiasImplantadasAnoAnterior * 100, 2);
             ViewBag.TotalIdeiasAno = totalIdeiasAnoAtual;
             ViewBag.TotalIdeiasImplantadasAno = totalIdeiasImplantadasAnoAtual;
             return View();
