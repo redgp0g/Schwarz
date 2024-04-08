@@ -5,39 +5,43 @@
 
     function drawChart() {
         var meses = @Html.Raw(Json.Serialize(ViewBag.Meses));
-        var quantidadesPorMes = @Html.Raw(Json.Serialize(ViewBag.QuantidadesPorMes));
+        var ideiasDadasPorMes = @Html.Raw(Json.Serialize(ViewBag.IdeiasDadasPorMes));
+        var ideiasImplantadasPorMes = @Html.Raw(Json.Serialize(ViewBag.IdeiasImplantadasPorMes));
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Mês');
-        data.addColumn('number', 'Quantidade de Ideias');
+        data.addColumn('number', 'Ideias Dadas');
+        data.addColumn({ role: 'annotation' }, 'string');
+        data.addColumn('number', 'Ideias Implantadas');
+        data.addColumn({ role: 'annotation' }, 'string');
 
-        for (var i = 0; i < quantidadesPorMes.length; i++) {
-            data.addRow([meses[i], quantidadesPorMes[i].quantidade]);
+        for (var i = 0; i < ideiasDadasPorMes.length; i++) {
+            var annotationDada = ideiasDadasPorMes[i].quantidade.toString();
+            var quantidadeImplantada = i < ideiasImplantadasPorMes.length ? ideiasImplantadasPorMes[i].quantidade : 0;
+            var annotationImplantada = quantidadeImplantada.toString();
+            data.addRow([
+                meses[i], 
+                ideiasDadasPorMes[i].quantidade,
+                annotationDada,
+                quantidadeImplantada,
+                annotationImplantada
+            ]);
         }
-
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-            {
-                calc: "stringify",
-                sourceColumn: 1,
-                type: "string",
-                role: "annotation"
-            }
-        ]);
 
         var options = {
             bar: { groupWidth: "20%" },
-            legend: { position: 'none' }
+            legend: { position: 'top', alignment: 'center' },
+            colors: ['blue', 'green'],
+            annotations: {
+                textStyle: {
+                    color: 'black'
+                }
+            },
         };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('ideias_chart'));
 
-        function resizeChart() {
-            chart.draw(view, options);
-        }
-        window.addEventListener('resize', resizeChart);
-
-        resizeChart();
+        chart.draw(data, options);
     }
 </script>
 <div>
@@ -79,7 +83,7 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Ideias por Mês</h3>
                     </div>
                 </div>
-                <div id="curve_chart"></div>
+                <div id="ideias_chart"></div>
             </div>
         </div>
 

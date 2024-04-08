@@ -39,9 +39,16 @@ namespace ProgramaIdeias.Controllers
         public IActionResult Dashboard()
         {
             var anoAtual = DateTime.Now.Year;
-            ViewBag.QuantidadesPorMes = _context.Ideia
+            ViewBag.IdeiasDadasPorMes = _context.Ideia
             .Where(x => x.Data.Year == anoAtual)
             .GroupBy(x => x.Data.Month)
+            .Select(group => new { Mes = group.Key, Quantidade = group.Count() })
+            .OrderBy(x => x.Mes)
+            .ToList();
+
+            ViewBag.IdeiasImplantadasPorMes = _context.Ideia
+            .Where(x => x.DataImplantacao.HasValue && x.DataImplantacao.Value.Year == anoAtual)
+            .GroupBy(x => x.DataImplantacao.Value.Month)
             .Select(group => new { Mes = group.Key, Quantidade = group.Count() })
             .OrderBy(x => x.Mes)
             .ToList();
@@ -55,6 +62,7 @@ namespace ProgramaIdeias.Controllers
             //calculo de quanto em porcentagem aumentou a quantidade de ideias desse ano comparado com o ano anterior
             var totalIdeiasAnoAnterior = _context.Ideia.Where(x => x.Data.Year == anoAtual - 1).Count();
             var totalIdeiasAnoAtual = _context.Ideia.Where(x => x.Data.Year == anoAtual).Count();
+            var totalIdeiasImplantadasAnoAtual = _context.Ideia.Where(x =>x.DataImplantacao.HasValue && x.DataImplantacao.Value.Year == anoAtual).Count();
 
             //calculo de quanto em porcentagem aumentou a quantidade de ideias implantadas desse ano comparado com o ano anterior
             var totalIdeiasImplantadasAnoAnterior = _context.Ideia.Where(x => x.Status == "Aplicada" && x.Data.Year == anoAtual - 1).Count();
