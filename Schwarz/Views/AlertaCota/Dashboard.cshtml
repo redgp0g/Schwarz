@@ -1,8 +1,10 @@
 ﻿<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawGraficoAlertasLider);
-    google.charts.setOnLoadCallback(drawGraficoAlertasArquivados);
+    google.charts.setOnLoadCallback(function() {
+    drawGraficoAlertasArquivados()
+    drawGraficoAlertasLider() 
+    });
 
     function drawGraficoAlertasLider() {
         var alertaPorLider = @Html.Raw(Json.Serialize(ViewBag.AlertasporLider));
