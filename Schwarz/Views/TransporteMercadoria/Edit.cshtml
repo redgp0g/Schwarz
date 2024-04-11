@@ -1,0 +1,110 @@
+﻿@model Schwarz.Models.TransporteMercadoria
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1>Edit</h1>
+
+<h4>TransporteMercadoria</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IDTransporteMercadoria" />
+            <div class="form-group">
+                <label asp-for="IDCliente" class="control-label"></label>
+                <select asp-for="IDCliente" class="form-control" asp-items="ViewBag.IDCliente"></select>
+                <span asp-validation-for="IDCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDFuncionario" class="control-label"></label>
+                <select asp-for="IDFuncionario" class="form-control" asp-items="ViewBag.IDFuncionario"></select>
+                <span asp-validation-for="IDFuncionario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NotaFiscal" class="control-label"></label>
+                <input asp-for="NotaFiscal" class="form-control" />
+                <span asp-validation-for="NotaFiscal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Volume" class="control-label"></label>
+                <input asp-for="Volume" class="form-control" />
+                <span asp-validation-for="Volume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoVolume" class="control-label"></label>
+                <input asp-for="TipoVolume" class="form-control" />
+                <span asp-validation-for="TipoVolume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transportadora" class="control-label"></label>
+                <input asp-for="Transportadora" class="form-control" />
+                <span asp-validation-for="Transportadora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Placa" class="control-label"></label>
+                <input asp-for="Placa" class="form-control" />
+                <span asp-validation-for="Placa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoPlaca" class="control-label"></label>
+                <input asp-for="FotoPlaca" class="form-control" />
+                <span asp-validation-for="FotoPlaca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoLacre" class="control-label"></label>
+                <input asp-for="FotoLacre" class="form-control" />
+                <span asp-validation-for="FotoLacre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoAntesCarregamento1" class="control-label"></label>
+                <input asp-for="FotoAntesCarregamento1" class="form-control" />
+                <span asp-validation-for="FotoAntesCarregamento1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoAntesCarregamento2" class="control-label"></label>
+                <input asp-for="FotoAntesCarregamento2" class="form-control" />
+                <span asp-validation-for="FotoAntesCarregamento2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoAntesCarregamento3" class="control-label"></label>
+                <input asp-for="FotoAntesCarregamento3" class="form-control" />
+                <span asp-validation-for="FotoAntesCarregamento3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoDepoisCarregamento1" class="control-label"></label>
+                <input asp-for="FotoDepoisCarregamento1" class="form-control" />
+                <span asp-validation-for="FotoDepoisCarregamento1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoDepoisCarregamento2" class="control-label"></label>
+                <input asp-for="FotoDepoisCarregamento2" class="form-control" />
+                <span asp-validation-for="FotoDepoisCarregamento2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FotoDepoisCarregamento3" class="control-label"></label>
+                <input asp-for="FotoDepoisCarregamento3" class="form-control" />
+                <span asp-validation-for="FotoDepoisCarregamento3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
