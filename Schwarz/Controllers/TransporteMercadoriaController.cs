@@ -47,10 +47,9 @@ namespace Schwarz.Controllers
             return View(transporteMercadoria);
         }
 
-        // GET: TransporteMercadoria/Create
         public IActionResult Create()
         {
-            ViewData["Clientes"] = new SelectList(_context.Set<Cliente>(), "IDCliente", "Nome");
+            ViewData["Clientes"] = new SelectList(_context.Cliente, "IDCliente", "Nome");
             return View();
         }
 
@@ -149,7 +148,7 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["IDCliente"] = new SelectList(_context.Set<Cliente>(), "IDCliente", "Nome", transporteMercadoria.IDCliente);
+            ViewData["IDCliente"] = new SelectList(_context.Cliente, "IDCliente", "Nome", transporteMercadoria.IDCliente);
             ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", transporteMercadoria.IDFuncionario);
             return View(transporteMercadoria);
         }
@@ -183,7 +182,7 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDCliente"] = new SelectList(_context.Set<Cliente>(), "IDCliente", "Nome", transporteMercadoria.IDCliente);
+            ViewData["IDCliente"] = new SelectList(_context.Cliente, "IDCliente", "Nome", transporteMercadoria.IDCliente);
             ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", transporteMercadoria.IDFuncionario);
             return View(transporteMercadoria);
         }
