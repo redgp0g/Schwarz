@@ -18,14 +18,12 @@ namespace ProgramaIdeias.Controllers
         private readonly UserManager<SchwarzUser> _userManager;
         private readonly SignInManager<SchwarzUser> _signInManager;
         private readonly SchwarzContext _context;
-        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public IdeiaController(SchwarzContext contexto, SignInManager<SchwarzUser> signInManager, UserManager<SchwarzUser> userManager, IWebHostEnvironment hostingEnvironment)
+        public IdeiaController(SchwarzContext contexto, SignInManager<SchwarzUser> signInManager, UserManager<SchwarzUser> userManager)
         {
             _context = contexto;
             _signInManager = signInManager;
             _userManager = userManager;
-            _hostingEnvironment = hostingEnvironment;
 
         }
 
@@ -87,7 +85,7 @@ namespace ProgramaIdeias.Controllers
         [Authorize(Roles = "IdeiaAdmin, Admin")]
         public IActionResult Edit(int id)
         {
-            
+
             var ideia = _context.Ideia.Find(id);
             if (ideia == null)
             {
@@ -196,10 +194,6 @@ namespace ProgramaIdeias.Controllers
         [Authorize(Roles = "IdeiaAdmin, Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Ideia == null)
-            {
-                return Problem("Entity set 'SchwarzContext.FSP'  is null.");
-            }
             var ideia = await _context.Ideia.FindAsync(id);
             using var transaction = _context.Database.BeginTransaction();
             try
@@ -228,15 +222,6 @@ namespace ProgramaIdeias.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-        }
-
-        public List<string> GetFuncionariosNomes()
-        {
-            List<string> nomes = _context.Funcionario
-                .Where(x => x.Ativo)
-                .Select(x => x.Nome)
-                .ToList();
-            return nomes;
         }
 
         [HttpPost]
