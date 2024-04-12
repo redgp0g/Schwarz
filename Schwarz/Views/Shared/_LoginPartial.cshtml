@@ -6,27 +6,56 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    <div class="relative">
+        <button type="button" id="toggleMenuUser" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900 capitalize" onclick="toggleHidden('subMenuUser',this.id)">
+            @if (UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Foto != null)
+            {
+                <img class="object-center object-cover rounded-full h-12 w-12" src="data:image;base64,@(Convert.ToBase64String(UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Foto))" alt="imagem">
+            }
+            Olá, @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.PrimeiroUltimoNome.ToLower()!
+            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+        </button>
 
-    <li>
-        <a class="text-capitalize fs-5" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @UserManager.Users.First(x => x.Id == UserManager.GetUserId(User)).Funcionario.Nome.ToLower()!</a>
-    </li>
-    <li>
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark bg-danger w-100 h-100 rounded-0">Sair</button>
-        </form>
-    </li>
-    @if (User.IsInRole("Admin"))
-    {
-        <li>
-            <a class="fs-4" id="register" asp-area="Identity" asp-page="/Account/Register">Registrar</a>
-        </li>
-    }
+
+        <div class="absolute -left-8 top-full z-10 mt-3 w-100 max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuUser">
+            <div class="p-4">
+                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
+                        </svg>
+
+                    </div>
+                    <div class="flex-auto">
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="block font-semibold text-black">Meus Dados<span class="absolute inset-0"></span></a>
+                    </div>
+                </div>
+                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+
+                    </div>
+                    <div class="flex-auto">
+                        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button id="logout" type="submit" class="block font-semibold text-red-500">Sair<span class="absolute inset-0"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 }
 else
 {
-
-    <li>
-        <a class="fs-4" id="login" asp-area="Identity" asp-page="/Account/Login">Entrar</a>
-    </li>
+    <div class="relative flex">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+        <a asp-area="Identity" asp-page="/Account/Login" class="text-xl font-semibold leading-6 text-gray-900 ml-2">Entrar<span class="absolute inset-0"></span></a>
+    </div>
 }
