@@ -25,6 +25,7 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     public DbSet<AlertaCota> AlertaCota { get; set; }
     public DbSet<LicaoAprendida> LicaoAprendida { get; set; }
     public DbSet<ArquivoLicaoAprendida> ArquivoLicaoAprendida { get; set; }
+    public DbSet<Cliente> Cliente { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

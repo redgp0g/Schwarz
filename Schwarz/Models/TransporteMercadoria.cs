@@ -25,7 +25,7 @@ namespace Schwarz.Models
 
         [DisplayName("Nota Fiscal")]
         [Required(ErrorMessage = "A Nota Fiscal é obrigatória!")]
-        public string NotaFiscal { get; set; }
+        public int NotaFiscal { get; set; }
 
         [Required(ErrorMessage = "O Volume é obrigatório!")]
         public int Volume { get; set; }
@@ -40,7 +40,7 @@ namespace Schwarz.Models
         public string Placa { get; set; }
 
         [NotMapped]
-        [DisplayName("Foto do Lacre")]
+        [DisplayName("Foto da Placa")]
         [Required(ErrorMessage = "A foto da placa é obrigatório!")]
         public IFormFile fileFotoPlaca { get; set; }
         public string FotoPlaca { get; set; }
