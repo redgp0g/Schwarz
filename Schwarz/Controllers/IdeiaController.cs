@@ -30,9 +30,19 @@ namespace ProgramaIdeias.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int? idfuncionario)
+        public IActionResult Index()
         {
-            return View(idfuncionario);
+            IEnumerable<Ideia> model = (from i in _context.Ideia 
+            select new Ideia 
+            { Data = i.Data,
+                Descricao = i.Descricao,
+                IDIdeia = i.IDIdeia,
+                Status = i.Status,
+                NomesEquipe = i.EquipeIdeia.Select(x => x.Funcionario.Nome.ToLower())
+            })
+            .OrderByDescending(x => x.Data);
+
+            return View(model);
         }
 
         [HttpGet]
@@ -59,47 +69,11 @@ namespace ProgramaIdeias.Controllers
         "Jul", "Ago", "Set", "Out", "Nov", "Dez"
             };
             var totalIdeiasAnoAtual = _context.Ideia.Where(x => x.Data.Year == anoAtual).Count();
-            var totalIdeiasImplantadasAnoAtual = _context.Ideia.Where(x =>x.DataImplantacao.HasValue && x.DataImplantacao.Value.Year == anoAtual).Count();
+            var totalIdeiasImplantadasAnoAtual = _context.Ideia.Where(x => x.DataImplantacao.HasValue && x.DataImplantacao.Value.Year == anoAtual).Count();
 
             ViewBag.TotalIdeiasAno = totalIdeiasAnoAtual;
             ViewBag.TotalIdeiasImplantadasAno = totalIdeiasImplantadasAnoAtual;
             return View();
-        }
-
-        public PartialViewResult BuscarIdeias(int? idfuncionario)
-        {
-
-            if (idfuncionario != null)
-            {
-                IEnumerable<Ideia> model = _context.Ideia
-                .Where(x => x.EquipeIdeia.Any(e => e.IDFuncionario == idfuncionario))
-                .OrderByDescending(x => x.Data)
-                .Select(i => new Ideia
-                {
-                    Data = i.Data,
-                    Descricao = i.Descricao,
-                    IDIdeia = i.IDIdeia,
-                    Status = i.Status,
-                    NomesEquipe = i.EquipeIdeia.Select(e => e.Funcionario.Nome)
-                });
-                return PartialView("_GridViewIdeias", model);
-            }
-            else
-            {
-                IEnumerable<Ideia> model = (from i in _context.Ideia
-                                               select new Ideia { Data = i.Data, Descricao = i.Descricao, IDIdeia = i.IDIdeia, Status = i.Status, NomesEquipe = i.EquipeIdeia.Select(x => x.Funcionario.Nome.ToLower()) })
-                                              .OrderByDescending(x => x.Data);
-                return PartialView("_GridViewIdeias", model);
-            }
-        }
-
-        public PartialViewResult BuscarIdeiasLider(int idlider)
-        {
-            IEnumerable<Ideia> model = _context.Ideia
-             .Where(x => x.EquipeIdeia.Any(e => e.Funcionario.IDLider == idlider))
-             .OrderByDescending(x => x.Data)
-             .ToList();
-            return PartialView("_GridViewIdeias", model);
         }
 
         [HttpGet]
@@ -138,6 +112,7 @@ namespace ProgramaIdeias.Controllers
             }
 
         }
+
         [HttpGet]
         public IActionResult Create()
         {
