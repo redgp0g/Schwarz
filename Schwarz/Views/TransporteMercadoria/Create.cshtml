@@ -82,6 +82,22 @@
     </div>
 </div>
 
+<script>
+    document.getElementById('formTransporteMercadoria').addEventListener('submit', function (event) {
+        var inputFotosDepois = document.getElementById('filesFotosDepois');
+        var inputFotosAntes = document.getElementById('filesFotosAntes');
+
+        if (inputFotosDepois.files.length < 3) {
+            alert('Selecione pelo menos 3 imagens depois do carregamento.');
+            event.preventDefault();
+        }
+        if (inputFotosAntes.files.length < 3) {
+            alert('Selecione pelo menos 3 imagens antes do carregamento.');
+            event.preventDefault();
+        }
+    });
+</script>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
