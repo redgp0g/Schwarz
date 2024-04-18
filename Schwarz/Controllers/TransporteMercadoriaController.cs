@@ -57,82 +57,83 @@ namespace Schwarz.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(TransporteMercadoria transporteMercadoria)
         {
+
+            transporteMercadoria.IDFuncionario = _userManager.Users.First(x => x.Id == _userManager.GetUserId(User)).Funcionario.IDFuncionario;
+            using var transaction = _context.Database.BeginTransaction();
+
             try
             {
-                transporteMercadoria.Data = DateTime.Now;
-                string uploadsDirectory = Path.Combine("\\teste", "fotosRTM");
-                if (!Directory.Exists(uploadsDirectory))
-                {
-                    Directory.CreateDirectory(uploadsDirectory);
-                }
-                string nomeUnicoArquivo = Guid.NewGuid().ToString() + "_" + transporteMercadoria.fileFotoLacre.FileName;
-                string filePath = Path.Combine(uploadsDirectory, nomeUnicoArquivo);
-
-                // Save the file to the file system
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    transporteMercadoria.fileFotoLacre.CopyTo(fileStream);
-                }
-
-                transporteMercadoria.FotoLacre = filePath;
-
-                nomeUnicoArquivo = Guid.NewGuid().ToString() + "_" + transporteMercadoria.fileFotoLacre.FileName;
-                filePath = Path.Combine(uploadsDirectory, nomeUnicoArquivo);
-
-                // Save the file to the file system
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    transporteMercadoria.fileFotoPlaca.CopyTo(fileStream);
-                }
-
-                transporteMercadoria.FotoPlaca = filePath;
-
-                List<string> caminhosFotosAntes = new List<string>();
-                for (var i = 0; i < 3; i++)
-                {
-                    nomeUnicoArquivo = Guid.NewGuid().ToString() + "_" + transporteMercadoria.filesFotosAntes[i].FileName;
-                    filePath = Path.Combine(uploadsDirectory, nomeUnicoArquivo);
-
-                    // Save the file to the file system
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        transporteMercadoria.filesFotosAntes[i].CopyTo(fileStream);
-                    }
-                    caminhosFotosAntes.Add(filePath);
-                }
-                transporteMercadoria.FotoAntesCarregamento1 = caminhosFotosAntes[0];
-                transporteMercadoria.FotoAntesCarregamento2 = caminhosFotosAntes[1];
-                transporteMercadoria.FotoAntesCarregamento3 = caminhosFotosAntes[2];
-
-
-                List<string> caminhosFotosDepois = new List<string>();
-                for (var i = 0; i < 3; i++)
-                {
-                    nomeUnicoArquivo = Guid.NewGuid().ToString() + "_" + transporteMercadoria.filesFotosDepois[i].FileName;
-                    filePath = Path.Combine(uploadsDirectory, nomeUnicoArquivo);
-
-                    // Save the file to the file system
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        transporteMercadoria.filesFotosDepois[i].CopyTo(fileStream);
-                    }
-                    caminhosFotosDepois.Add(filePath);
-                }
-                transporteMercadoria.FotoDepoisCarregamento1 = caminhosFotosDepois[0];
-                transporteMercadoria.FotoDepoisCarregamento2 = caminhosFotosDepois[1];
-                transporteMercadoria.FotoDepoisCarregamento3 = caminhosFotosDepois[2];
-                transporteMercadoria.IDFuncionario = _userManager.Users.First(x => x.Id == _userManager.GetUserId(User)).Funcionario.IDFuncionario;
                 _context.Add(transporteMercadoria);
                 _context.SaveChanges();
+                if (transporteMercadoria.filesFotosDepois != null)
+                {
+                    for (int i = 0; i < transporteMercadoria.filesFotosDepois.Count; i++)
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            transporteMercadoria.filesFotosDepois[i].CopyTo(memoryStream);
+                            byte[] fileBytes = memoryStream.ToArray();
 
-                return RedirectToAction("Index");
+                            string fileName = "Foto Depois do Carregamento " + (i + 1);
+
+                            TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes);
+                            _context.Add(transporteMercadoriaFoto);
+                            _context.SaveChanges();
+                        }
+                    }
+                }
+
+                if (transporteMercadoria.filesFotosAntes!= null)
+                {
+                    for (int i = 0; i < transporteMercadoria.filesFotosAntes.Count; i++)
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            transporteMercadoria.filesFotosAntes[i].CopyTo(memoryStream);
+                            byte[] fileBytes = memoryStream.ToArray();
+
+                            string fileName = "Foto Antes do Carregamento " + (i + 1);
+
+                            TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes);
+                            _context.Add(transporteMercadoriaFoto);
+                            _context.SaveChanges();
+                        }
+                    }
+                }
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    transporteMercadoria.fileFotoLacre.CopyTo(memoryStream);
+                    byte[] fileBytes = memoryStream.ToArray();
+
+                    string fileName = "Foto do Lacre";
+
+                    TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes);
+                    _context.Add(transporteMercadoriaFoto);
+                    _context.SaveChanges();
+                }
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    transporteMercadoria.fileFotoPlaca.CopyTo(memoryStream);
+                    byte[] fileBytes = memoryStream.ToArray();
+
+                    string fileName = "Foto do Placa";
+
+                    TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes);
+                    _context.Add(transporteMercadoriaFoto);
+                    _context.SaveChanges();
+                }
+
+                transaction.Commit();
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
+                transaction.Rollback();
                 TempData["MensagemErro"] = "Houve um erro, por favor tente novamente, detalhe do erro:" + ex.Message;
                 return RedirectToAction("Create");
             }
-
         }
 
         // GET: TransporteMercadoria/Edit/5
