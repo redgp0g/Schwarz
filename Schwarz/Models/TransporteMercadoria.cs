@@ -9,6 +9,7 @@ namespace Schwarz.Models
     {
 
         [Key]
+        [DisplayName("ID")]
         public int IDTransporteMercadoria { get; set; }
 
         [Required]
