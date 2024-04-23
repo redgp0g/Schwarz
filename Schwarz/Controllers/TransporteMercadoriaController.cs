@@ -121,7 +121,7 @@ namespace Schwarz.Controllers
                     transporteMercadoria.fileFotoPlaca.CopyTo(memoryStream);
                     byte[] fileBytes = memoryStream.ToArray();
 
-                    string fileName = "Foto do Placa";
+                    string fileName = "Foto da Placa";
                     string fileMime = transporteMercadoria.fileFotoPlaca.ContentType;
 
                     TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
