@@ -16,19 +16,21 @@ namespace Schwarz.Models
 
         [Column(TypeName = "varbinary(max)")]
         public byte[] Conteudo{ get; set; }
+        public string TipoMIME { get; set; }
 
-		private readonly SchwarzContext _context;
+        private readonly SchwarzContext _context;
 	
         public TransporteMercadoriaFoto()
 		{
 
 		}
 
-        public TransporteMercadoriaFoto(int iDTransporteMercadoria, string nome, byte[] conteudo)
+        public TransporteMercadoriaFoto(int iDTransporteMercadoria, string nome, byte[] conteudo, string tipoMIME)
         {
             IDTransporteMercadoria = iDTransporteMercadoria;
             Nome = nome;
             Conteudo = conteudo;
+            TipoMIME = tipoMIME;
         }
     }
 }

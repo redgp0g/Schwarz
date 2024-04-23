@@ -75,8 +75,9 @@ namespace Schwarz.Controllers
                             byte[] fileBytes = memoryStream.ToArray();
 
                             string fileName = "Foto Depois do Carregamento " + (i + 1);
+                            string fileMime = transporteMercadoria.filesFotosDepois[i].ContentType;
 
-                            TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes);
+                            TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
                             _context.Add(transporteMercadoriaFoto);
                             _context.SaveChanges();
                         }
@@ -93,8 +94,9 @@ namespace Schwarz.Controllers
                             byte[] fileBytes = memoryStream.ToArray();
 
                             string fileName = "Foto Antes do Carregamento " + (i + 1);
+                            string fileMime = transporteMercadoria.filesFotosAntes[i].ContentType;
 
-                            TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes);
+                            TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
                             _context.Add(transporteMercadoriaFoto);
                             _context.SaveChanges();
                         }
@@ -107,8 +109,9 @@ namespace Schwarz.Controllers
                     byte[] fileBytes = memoryStream.ToArray();
 
                     string fileName = "Foto do Lacre";
+                    string fileMime = transporteMercadoria.fileFotoLacre.ContentType;
 
-                    TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes);
+                    TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
                     _context.Add(transporteMercadoriaFoto);
                     _context.SaveChanges();
                 }
@@ -119,8 +122,9 @@ namespace Schwarz.Controllers
                     byte[] fileBytes = memoryStream.ToArray();
 
                     string fileName = "Foto do Placa";
+                    string fileMime = transporteMercadoria.fileFotoPlaca.ContentType;
 
-                    TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes);
+                    TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
                     _context.Add(transporteMercadoriaFoto);
                     _context.SaveChanges();
                 }
