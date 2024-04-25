@@ -167,5 +167,51 @@ namespace Schwarz.Controllers
         {
             return _context.LicaoAprendida.Any(e => e.IDLicaoAprendida == id);
         }
+
+        [HttpPost]
+        public IActionResult AdicionarAnexo(IFormFileCollection files, int idLicaoAprendida)
+        {
+            try
+            {
+                foreach (var file in files)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        file.CopyTo(memoryStream);
+                        byte[] fileBytes = memoryStream.ToArray();
+
+                        string tipoMime = file.ContentType;
+                        string fileName = file.FileName;
+
+                        LicaoAprendidaAnexo licaoAprendidaAnexo= new(idLicaoAprendida, fileName, fileBytes, tipoMime);
+                        _context.Add(licaoAprendidaAnexo);
+                        _context.SaveChanges();
+                    }
+                }
+                return Ok();
+            }
+
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    error = "Ocorreu um erro ao adicionar o anexo: " + ex.Message
+                });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult RemoverAnexo(int id)
+        {
+            var anexo = _context.LicaoAprendidaAnexo.Find(id);
+            if (anexo != null)
+            {
+                _context.LicaoAprendidaAnexo.Remove(anexo);
+                _context.SaveChanges();
+                return Ok();
+            }
+            return NotFound();
+        }
+
     }
 }
