@@ -97,11 +97,11 @@
                             }
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Arquivos:">
-                            @if (item.LicaoAprendidaArquivos != null)
+                            @if (item.LicaoAprendidaAnexos != null)
                             {
-                                foreach (var arquivo in item.LicaoAprendidaArquivos)
+                                foreach (var arquivo in item.LicaoAprendidaAnexos)
                                 {
-                                    <a href="data:@arquivo.Arquivo.TipoMIME;base64,@Convert.ToBase64String(arquivo.Arquivo.Conteudo)" download="@arquivo.Arquivo.Nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@arquivo.Arquivo.Nome</a>
+                                    <a href="data:@arquivo.TipoMIME;base64,@Convert.ToBase64String(arquivo.Conteudo)" download="@arquivo.Nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@arquivo.Nome</a>
                                 }
                             }
                             else
@@ -110,6 +110,7 @@
                             }
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Código Interno:">
+                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDLicaoAprendida">Editar</a>
                             <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-licao-id="@item.IDLicaoAprendida">Deletar</button>
                         </td>
                     </tr>

@@ -9,6 +9,7 @@ namespace Schwarz.Models
     {
 
         [Key]
+        [DisplayName("ID")]
         public int IDTransporteMercadoria { get; set; }
 
         [Required]
@@ -43,29 +44,23 @@ namespace Schwarz.Models
         [DisplayName("Foto da Placa")]
         [Required(ErrorMessage = "A foto da placa é obrigatório!")]
         public IFormFile fileFotoPlaca { get; set; }
-        public string FotoPlaca { get; set; }
 
         [NotMapped]
         [DisplayName("Foto do Lacre")]
         [Required(ErrorMessage = "A foto do lacre é obrigatório!")]
         public IFormFile fileFotoLacre { get; set; }
-        public string FotoLacre { get; set; }
 
         [NotMapped]
         [DisplayName("Fotos antes do carregamento")]
         [Required(ErrorMessage = "As fotos são obrigatórias!")]
         public List<IFormFile> filesFotosAntes { get; set; }
-        public string FotoAntesCarregamento1 { get; set; }
-        public string FotoAntesCarregamento2 { get; set; }
-        public string FotoAntesCarregamento3 { get; set; }
 
         [NotMapped]
         [DisplayName("Fotos depois do carregamento")]
         [Required(ErrorMessage = "As fotos são obrigatórias!")]
         public List<IFormFile> filesFotosDepois { get; set; }
-        public string FotoDepoisCarregamento1 { get; set; }
-        public string FotoDepoisCarregamento2 { get; set; }
-        public string FotoDepoisCarregamento3 { get; set; }
+
+        public virtual ICollection<TransporteMercadoriaFoto> Fotos { get; set; }
 
         public TransporteMercadoria()
         {
