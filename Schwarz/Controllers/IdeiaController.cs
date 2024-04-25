@@ -87,10 +87,7 @@ namespace ProgramaIdeias.Controllers
         {
 
             var ideia = _context.Ideia.Find(id);
-            if (ideia == null)
-            {
-                return NotFound();
-            }
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
             return View(ideia);
         }
 
