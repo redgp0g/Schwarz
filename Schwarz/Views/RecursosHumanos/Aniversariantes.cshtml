@@ -3,18 +3,25 @@
     Layout = "_Layout";
 }
 <div class="flex flex-col justify-center h-full mb-10 mt-2">
-    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200" >
+    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
         @if (ViewBag.AniversariantesDia.Count > 0)
         {
             <header class="text-xl px-5 py-4 border-b-2 border-black">
-                <h2 class="font-bold text-black">ANIVERSARIANTES <span class="text-green-500">DO DIA<span></h2>
+                <h2 class="font-bold text-black">ANIVERSARIANTES <span class="text-green-500">DO DIA</span></h2>
             </header>
 
             <div class="font-sans leading-normal tracking-normal" style="background: url(https://img.freepik.com/vetores-gratis/vetor-de-design-de-moldura-de-baloes-brancos_53876-175062.jpg?w=360&t=st=1707743286~exp=1707743886~hmac=fd1b952b70318a115bb45568a02388a5c7a1e49f2afd6f782ffaff82593da3b1);background-size:cover">
                 @foreach (var item in ViewBag.AniversariantesDia)
                 {
                     <div class="flex justify-center mb-6">
-                        <img src="data:image;base64,@(Convert.ToBase64String(item.Foto))" width="100" height="100" alt="Profile" class="rounded-full p-1">
+                        @if (item.Foto != null)
+                        {
+                            <img class="rounded-full" src="data:image;base64,@(Convert.ToBase64String(item.Foto))" width="60" height="60" alt="Foto">
+                        }
+                        else
+                        {
+                            <img class="rounded-full" src="\image\user.png" width="60" height="60" alt="Foto">
+                        }
                     </div>
                     <div class="text-center mb-4">
                         <h2 class="text-xl font-semibold">@item.Nome</h2>
@@ -27,30 +34,30 @@
             <h2 class="font-bold text-black">ANIVERSARIANTES <span class="text-green-500">DE @DateTime.Now.ToString("MMMM").ToUpper()</span></h2>
         </header>
         <div class="p-3 border-t-2 border-black" style="background: url(https://img.freepik.com/vetores-gratis/vetor-de-design-de-moldura-de-baloes-brancos_53876-175062.jpg?w=360&t=st=1707743286~exp=1707743886~hmac=fd1b952b70318a115bb45568a02388a5c7a1e49f2afd6f782ffaff82593da3b1);background-size:cover">
-                <table class="table-auto w-full">
-                    <tbody class="text-sm grid grid-cols-2">
-                        @foreach (var item in ViewBag.AniversariantesMes)
-                        {
-                            <tr>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="w-18 h-18 flex-shrink-0 mr-2 sm:mr-3">
-                                            @if (item.Foto != null)
-                                            {
-                                                <img class="rounded-full" src="data:image;base64,@(Convert.ToBase64String(item.Foto))" width="60" height="60" alt="Foto">
-                                            }
-                                            else
-                                            {
-                                                <img class="rounded-full" src="\image\user.png" width="60" height="60" alt="Foto">
-                                            }
-                                        </div>
-                                        <div class="font-medium text-gray-800">@item.Nome: <span class="text-green-500">@item.DataNascimento.ToString("dd/MM")</span></div>
+            <table class="table-auto w-full">
+                <tbody class="text-sm grid grid-cols-2">
+                    @foreach (var item in ViewBag.AniversariantesMes)
+                    {
+                        <tr>
+                            <td class="p-2 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="w-18 h-18 flex-shrink-0 mr-2 sm:mr-3">
+                                        @if (item.Foto != null)
+                                        {
+                                            <img class="rounded-full" src="data:image;base64,@(Convert.ToBase64String(item.Foto))" width="60" height="60" alt="Foto">
+                                        }
+                                        else
+                                        {
+                                            <img class="rounded-full" src="\image\user.png" width="60" height="60" alt="Foto">
+                                        }
                                     </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                    <div class="font-medium text-gray-800">@item.Nome: <span class="text-green-500">@item.DataNascimento.ToString("dd/MM")</span></div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
