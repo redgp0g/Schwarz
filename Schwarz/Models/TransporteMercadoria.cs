@@ -12,9 +12,9 @@ namespace Schwarz.Models
         [DisplayName("ID")]
         public int IDTransporteMercadoria { get; set; }
 
-        [Required]
         [ForeignKey("Cliente")]
         [DisplayName("Cliente")]
+        [Required(ErrorMessage = "O Cliente é obrigatório!")]
         public int IDCliente { get; set; }
         public virtual Cliente? Cliente { get; set; }
 
@@ -31,33 +31,33 @@ namespace Schwarz.Models
         [Required(ErrorMessage = "O Volume é obrigatório!")]
         public int Volume { get; set; }
 
-        [Required(ErrorMessage = "O tipo de volume é obrigatório!")]
+        [Required(ErrorMessage = "O Tipo de Volume é obrigatório!")]
         public string TipoVolume { get; set; }
 
-        [Required(ErrorMessage = "A transportadora é obrigatória!")]
+        [Required(ErrorMessage = "A Transportadora é obrigatória!")]
         public string Transportadora { get; set; }
 
-        [Required(ErrorMessage = "A placa é obrigatória!")]
+        [Required(ErrorMessage = "A Placa é obrigatória!")]
         public string Placa { get; set; }
 
         [NotMapped]
         [DisplayName("Foto da Placa")]
-        [Required(ErrorMessage = "A foto da placa é obrigatório!")]
+        [Required(ErrorMessage = "A Foto da Placa é obrigatório!")]
         public IFormFile fileFotoPlaca { get; set; }
 
         [NotMapped]
         [DisplayName("Foto do Lacre")]
-        [Required(ErrorMessage = "A foto do lacre é obrigatório!")]
+        [Required(ErrorMessage = "A Foto do Lacre é obrigatório!")]
         public IFormFile fileFotoLacre { get; set; }
 
         [NotMapped]
         [DisplayName("Fotos antes do carregamento")]
-        [Required(ErrorMessage = "As fotos são obrigatórias!")]
+        [Required(ErrorMessage = "As Fotos são obrigatórias!")]
         public List<IFormFile> filesFotosAntes { get; set; }
 
         [NotMapped]
         [DisplayName("Fotos depois do carregamento")]
-        [Required(ErrorMessage = "As fotos são obrigatórias!")]
+        [Required(ErrorMessage = "As Fotos são obrigatórias!")]
         public List<IFormFile> filesFotosDepois { get; set; }
 
         public virtual ICollection<TransporteMercadoriaFoto> Fotos { get; set; }
