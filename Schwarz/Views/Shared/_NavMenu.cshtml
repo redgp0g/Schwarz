@@ -392,11 +392,11 @@
                             </svg>
                         </button>
                         <div class="mt-2 space-y-2 hidden" id="subMenuMobileIdeia" aria-expanded="false">
-                            <a asp-action="Create" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
+                            <a asp-action="Create" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
 
-                            <a asp-action="Index" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Ideias Cadastradas</a>
+                            <a asp-action="Index" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Ideias Cadastradas</a>
 
-                            <a asp-action="Dashboard" asp-controller="Ideia" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Dashboard</a>
+                            <a asp-action="Dashboard" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Dashboard</a>
 
                         </div>
                     </div>
@@ -426,10 +426,10 @@
                                     <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                                 </svg>
                             </button>
-                            <!-- 'Ideia' sub-menu -->
                             <div class="mt-2 space-y-2 hidden" id="subMenuMobileUser" aria-expanded="false">
+                                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-black hover:bg-gray-50">Meus Dados</a>
                                 <form id="Form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button id="logout" type="submit" class="block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-red-500 hover:bg-gray-50">Sair</button>
+                                    <button id="logout" type="submit" class="w-full text-left block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-red-500 hover:bg-gray-50">Sair</button>
                                 </form>
                             </div>
                         </div>
