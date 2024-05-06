@@ -86,6 +86,39 @@
     </div>
 </div>
 
+<script>
+    function verificarFotos() {
+        var fotosAntes = document.querySelectorAll('input[name="filesFotosAntes"]');
+        var fotosDepois = document.querySelectorAll('input[name="filesFotosDepois"]');
+
+        var todasFotosAntes = Array.from(fotosAntes).every(function (input) {
+            return input.files.length > 0;
+        });
+
+        var todasFotosDepois = Array.from(fotosDepois).every(function (input) {
+            return input.files.length > 0;
+        });
+
+        if (!todasFotosAntes) {
+            alert("Por favor, insira 3 fotos antes do carregamento.");
+            return false;
+        }
+
+        if (!todasFotosDepois) {
+            alert("Por favor, insira 3 fotos depois do carregamento.");
+            return false;
+        }
+
+        return true;
+    }
+
+    document.getElementById('formTransporteMercadoria').addEventListener('submit', function (event) {
+        if (!verificarFotos()) {
+            event.preventDefault();
+        }
+    });
+</script>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
