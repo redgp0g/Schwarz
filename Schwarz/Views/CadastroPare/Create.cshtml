@@ -1,0 +1,275 @@
+﻿@model CadastroPare
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Cadastrar";
+}
+
+<h1 class="titulo">Formulário de Cadastro</h1>
+<div class="container">
+	<form method="post" id="cadastroform">
+		<div class="my-3">
+			<label class="control-label">Selecione o Risco:</label>
+			<div class="radio">
+				<input type="radio" asp-for="Risco" class="radio__input" id="radioqualidade" value="Qualidade do Produto" />
+				<label class="radio__label" for="radioqualidade">Qualidade do Produto</label>
+				<input type="radio" asp-for="Risco" class="radio__input" id="radiomeioambiente" value="Meio Ambiente" />
+				<label class="radio__label" for="radiomeioambiente">Meio Ambiente</label>
+				<input type="radio" asp-for="Risco" class="radio__input" id="radioseguranca" value="Segurança do Colaborador" />
+				<label class="radio__label" for="radioseguranca">Segurança do Colaborador</label>
+			</div>
+		</div>
+
+		<div class="falha-details hide">
+			<div class="textfield">
+				<label asp-for="IDFuncionario" class="control-label"></label>
+				<select id="selectFuncionario" onchange="AtualizarDados()" asp-for="IDFuncionario" asp-items="ViewBag.Funcionarios" class="select2">
+					@if (ViewBag.id != null)
+					{
+						<option selected value="@ViewBag.id">@ViewBag.nome</option>
+					}
+					else
+					{
+						<option selected value="">Selecione o funcionário</option>
+					}
+				</select>
+				@Html.ValidationMessageFor(x => x.IDFuncionario)
+			</div>
+			@if (ViewBag.Setor == "Qualidade" || ViewBag.Setor == "Segurança do Trabalho")
+			{
+				<div class="textfield">
+					<label asp-for="Data" class="control-label"></label>
+					<input type="datetime-local" asp-for="Data" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" class="form-control" autocomplete="off" onchange="this.setAttribute('value', this.value);" />
+				</div>
+			}
+			<div class="textfield">
+				<div class="hide">
+					<label asp-for="Turno" class="control-label"></label>
+					<select asp-for="Turno" class="form-select" id="selectTurno" aria-label="Default select example">
+						<option value="" disabled selected hidden>Selecione o Turno</option>
+						<option value="1° Turno">1° Turno</option>
+						<option value="2° Turno">2° Turno</option>
+						<option value="3° Turno">3° Turno</option>
+						<option value="ADM">ADM</option>
+					</select>
+					@Html.ValidationMessageFor(x => x.Turno)
+				</div>
+				<div>
+					<label asp-for="Turno" class="control-label"></label>
+					<input asp-for="Turno" readonly="readonly" class="form-control" id="turno" aria-label="Default select example">
+				</div>
+				<input class="check__input" type="checkbox" id="outroturno" onclick="LiberarTurno()" />
+				<label class="check__label" for="outroturno">Trocar Turno</label>
+			</div>
+			<div class="textfield">
+				<div class="hide">
+					<label asp-for="Setor" class="control-label"></label>
+					<select asp-for="Setor" class="form-select" id="selectSetor" asp-items="ViewBag.ListaSetores" aria-label="Default select example">
+						<option value="" selected disabled hidden>Selecione o Setor onde ocorreu a Falha</option>
+					</select>
+					@Html.ValidationMessageFor(x => x.Setor)
+				</div>
+
+				<div>
+					<label asp-for="Setor" class="control-label"></label>
+					<input asp-for="Setor" class="form-control" readonly="readonly" id="setor" aria-label="Default select example">
+				</div>
+
+				<input class="check__input" type="checkbox" id="outrosetor" name="OutroSetor" onclick="LiberarSetor()" />
+				<label class="check__label" for="outrosetor">Trocar Setor</label>
+			</div>
+
+			<div class="textfield">
+				<label asp-for="CodigoItem" class="control-label"></label>
+				<input asp-for="CodigoItem" class="form-control" id="codigoitem" autocomplete="off" placeholder="Digite o código do item" />
+			</div>
+			<div class="textfield textfield-qualidade">
+				<label asp-for="QuantidadeBloqueada" class="control-label"></label>
+				<input asp-for="QuantidadeBloqueada" id="qtdbloq" class="form-control" autocomplete="off" placeholder="Digite a quantidade de peças bloqueadas" />
+			</div>
+			<div class="textfield textfield-qualidade textfield-selectfalha">
+				<label class="control-label">Falha</label>
+				<select asp-for="IDFalha" class="select2" id="selectfalha" asp-items="ViewBag.Falhas">
+					<option selected value="">Selecione a Falha</option>
+				</select>
+				<span id="select-falha-error" class="field-validation-error hide">Selecione a falha</span>
+			</div>
+			<div class="textfield textfield-seguranca">
+				<label asp-for="DescricaoFalha" class="control-label"></label>
+				<textarea asp-for="DescricaoFalha" class="form-control" id="descricaofalha" autocomplete="off" placeholder="Descreva a Falha"></textarea>
+				<span id="textarea-falha-error" class="field-validation-error hide">Descreva a Falha</span>
+			</div>
+			<div class="textfield textfield-qualidade">
+				<input class="check__input" type="checkbox" id="outrafalha" value="OutraFalha" onclick="LiberarOutraFalha()" />
+				<label class="check__label" for="outrafalha">Descrever a Falha</label>
+			</div>
+		</div>
+		<div class="mb-3">
+			<input type="submit" value="Cadastrar" class="btn btn-primary hide w-100 bg-white" />
+		</div>
+	</form>
+</div>
+
+<script>
+
+	const riscoRadios = document.querySelectorAll('.radio__input'),
+		textfieldqualidade = document.querySelectorAll('.textfield-qualidade'),
+		textfieldseguranca = document.querySelector('.textfield-seguranca'),
+		textfieldSelectFalha = document.querySelector('.textfield-selectfalha'),
+		falha_detail = document.querySelector('.falha-details'),
+		cadastroButton = document.querySelector('.btn-primary'),
+		cadastroForm = document.getElementById('cadastroform'),
+		selectFalha = document.getElementById('selectfalha'),
+		descricaoFalha = document.getElementById('descricaofalha'),
+		selectfalhaError = document.getElementById('select-falha-error'),
+		textareafalhaError = document.getElementById('textarea-falha-error'),
+		quantidadebloq = document.getElementById('qtdbloq'),
+		outrafalhaCheck = document.getElementById('outrafalha'),
+		outroturnoCheck = document.getElementById('outroturno'),
+		outrosetorCheck = document.getElementById('outrosetor'),
+		selectFuncionario = document.getElementById('selectFuncionario'),
+		selectTurno = document.getElementById('selectTurno'),
+		turno = document.getElementById('turno'),
+		selectSetor = document.getElementById('selectSetor'),
+		setor = document.getElementById('setor');
+
+
+	function AtualizarDados() {
+		carregarFuncionarioTurno();
+		carregarFuncionarioSetor();
+	}
+
+	function carregarFuncionarioTurno() {
+		$.ajax({
+			url: '@Url.Action("PesquisarTurno", "Cadastro")',
+			datatype: 'html',
+			method: 'GET',
+			data: { id: $('#selectFuncionario').val() },
+			success: function (res) {
+				$('#turno').val(res);
+			},
+			error: function (err) {
+				console.log(err);
+			}
+		})
+	}
+
+	function carregarFuncionarioSetor() {
+		$.ajax({
+			url: '@Url.Action("PesquisarSetor", "Cadastro")',
+			datatype: 'html',
+			method: 'GET',
+			data: { id: $('#selectFuncionario').val() },
+			success: function (res) {
+				$('#setor').val(res);
+			},
+			error: function (err) {
+				console.log(err);
+			}
+		})
+	}
+
+	riscoRadios.forEach((radio) => {
+		if (radio.value === 'Qualidade do Produto') {
+			radio.addEventListener('change', () => {
+				descricaoFalha.value = '';
+				textfieldqualidade.forEach((t) => {
+					t.classList.remove('hide');
+				});
+
+				falha_detail.classList.remove('hide');
+				cadastroButton.classList.remove('hide');
+
+				textfieldseguranca.classList.add('hide');
+			});
+		}
+		else {
+			radio.addEventListener('change', () => {
+				selectFalha.selectedIndex = 0;
+				document.getElementById('select2-selectfalha-container').innerText = 'Selecione a Falha';
+				quantidadebloq.value = '';
+				outrafalhaCheck.checked = false;
+
+				textfieldseguranca.classList.remove('hide');
+
+				falha_detail.classList.remove('hide');
+				cadastroButton.classList.remove('hide');
+
+				textfieldqualidade.forEach((t) => {
+					t.classList.add('hide');
+				});
+			});
+		};
+	})
+
+	cadastroForm.addEventListener('submit', (e) => {
+		if (descricaoFalha.value === '' && selectFalha.value === '') {
+			selectfalhaError.classList.remove('hide');
+			textareafalhaError.classList.remove('hide');
+			e.preventDefault();
+		}
+	});
+
+	descricaoFalha.addEventListener('input', (desc) => {
+		if (desc.value != "") {
+			textareafalhaError.classList.add('hide');
+		}
+		else {
+			textareafalhaError.classList.remove('hide');
+		}
+	});
+
+	function LiberarOutraFalha() {
+		if (outrafalhaCheck.checked) {
+			selectFalha.selectedIndex = 0;
+			document.getElementById('select2-selectfalha-container').innerText = 'Selecione a Falha';
+			textfieldseguranca.classList.remove('hide');
+			textfieldSelectFalha.classList.add('hide');
+		}
+		else {
+			descricaoFalha.value = '';
+			textfieldseguranca.classList.add('hide');
+			textfieldSelectFalha.classList.remove('hide');
+		}
+
+	}
+
+	function LiberarTurno() {
+		if (outroturnoCheck.checked) {
+			selectTurno.parentElement.classList.remove('hide');
+			turno.parentElement.classList.add('hide');
+			turno.value = '';
+		}
+		else {
+			selectTurno.parentElement.classList.add('hide');
+			turno.parentElement.classList.remove('hide');
+			selectTurno.value = '';
+			carregarFuncionarioTurno();
+		}
+
+	}
+
+	function LiberarSetor() {
+		if (outrosetorCheck.checked) {
+			selectSetor.parentElement.classList.remove('hide');
+			setor.parentElement.classList.add('hide');
+			setor.value = '';
+		}
+		else {
+			selectSetor.parentElement.classList.add('hide');
+			setor.parentElement.classList.remove('hide');
+			selectSetor.value = '';
+			carregarFuncionarioSetor();
+		}
+
+	}
+
+	cadastroForm.addEventListener('submit', () => {
+
+	});
+
+	$(document).ready(function () {
+		$('.select2').select2({
+			width: '100%',
+		});
+	});
+</script>
