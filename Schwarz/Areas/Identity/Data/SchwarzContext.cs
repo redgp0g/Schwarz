@@ -30,5 +30,5 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
         base.OnModelCreating(builder);
     }
 
-public DbSet<Schwarz.Models.TransporteMercadoria> TransporteMercadoria { get; set; } = default!;
+public DbSet<TransporteMercadoria> TransporteMercadoria { get; set; }
 }
