@@ -31,4 +31,6 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     }
 
 public DbSet<TransporteMercadoria> TransporteMercadoria { get; set; }
+
+public DbSet<CadastroPare> CadastroPare { get; set; }
 }
