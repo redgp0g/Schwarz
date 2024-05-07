@@ -57,6 +57,7 @@ namespace Schwarz.Controllers
             var alertasArquivados = _context.AlertaCota
             .Include(x => x.RegistroCotas)
             .GroupBy(x => x.RegistroCotas.Registro.DataFechamento.Value.Month)
+            .OrderBy(x => x.Key)
             .Select(x => new {
                 Mes = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key)),
                 AlertaArquivados = x.Count(x => x.DataConfirmacaoMetrologia != null)
