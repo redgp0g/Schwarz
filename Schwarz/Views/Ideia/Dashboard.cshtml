@@ -24,7 +24,7 @@
             var quantidadeImplantada = i < ideiasImplantadasPorMes.length ? ideiasImplantadasPorMes[i].quantidade : 0;
             var annotationImplantada = quantidadeImplantada.toString();
             data.addRow([
-                meses[i], 
+                meses[i],
                 ideiasDadasPorMes[i].quantidade,
                 annotationDada,
                 quantidadeImplantada,
@@ -48,38 +48,35 @@
         chart.draw(data, options);
     }
 </script>
-<div>
-    <div class="pt-6 px-4">
-        <div class="mb-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4">
-            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">@ViewBag.TotalIdeiasAno</span>
-                        <h3 class="text-base font-normal text-gray-500">Total de Ideias do Ano</h3>
-                    </div>
-                    </div>
-                </div>
-            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">@ViewBag.TotalIdeiasImplantadasAno</span>
-                        <h3 class="text-base font-normal text-gray-500">Ideias Implantadas do Ano</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="w-full grid grid-cols-1 xl:grid-cols-1 gap-4">
-            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex-shrink-0">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ideias por Mês</h3>
-                    </div>
-                </div>
-                <div id="ideias_chart"></div>
-            </div>
-        </div>
 
+<div class="pt-6 px-4">
+    <div class="mb-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4">
+        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">@ViewBag.TotalIdeiasAno</span>
+                    <h3 class="text-base font-normal text-gray-500">Total de Ideias do Ano</h3>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">@ViewBag.TotalIdeiasImplantadasAno</span>
+                    <h3 class="text-base font-normal text-gray-500">Ideias Implantadas do Ano</h3>
+                </div>
+            </div>
+        </div>
     </div>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+    <div class="w-full grid grid-cols-1 xl:grid-cols-1 gap-4">
+        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex-shrink-0">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Ideias por Mês</h3>
+                </div>
+            </div>
+            <div id="ideias_chart"></div>
+        </div>
+    </div>
+
 </div>
