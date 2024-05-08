@@ -30,29 +30,31 @@
         <partial name="~/Views/Shared/_NavMenu.cshtml" />
     </header>
 
-            @if (TempData["MensagemErro"] != null)
-            {
-                <div class="fixed inset-x-0 top-18 z-50 flex justify-center">
-                    <div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
-                        @TempData["MensagemErro"]
-                    </div>
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="fixed inset-x-0 top-18 z-50 flex justify-center">
+            <div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
+                @TempData["MensagemErro"]
+            </div>
+        </div>
+    }
+    @if (TempData["MensagemTrocaSenha"] != null)
+    {
+        <a asp-area="Identity" asp-page="/Account/Manage/ChangePassword">
+            <div class="fixed inset-x-0 top-18 z-50 flex justify-center">
+                <div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
+                    @TempData["MensagemTrocaSenha"]
                 </div>
-            }
-            @if (TempData["MensagemTrocaSenha"] != null)
-            {
-                <a asp-area="Identity" asp-page="/Account/Manage/ChangePassword">
-                    <div class="fixed inset-x-0 top-18 z-50 flex justify-center">
-                        <div id="notification" class="bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            @TempData["MensagemTrocaSenha"]
-                        </div>
-                    </div>
-                </a>
-            }
-            @RenderBody()
-            @RenderSection("ControlsSection", required: false)
+            </div>
+        </a>
+    }
+    <div style="min-height:85vh">
+        @RenderBody()
+    </div>
+    @RenderSection("ControlsSection", required: false)
 
 
-    <div class="absolute bottom-0 left-0 right-0 px-4 py-3 text-center text-black bg-white border-t-2 border-black h-8 flex justify-center text-xs items-center">
+    <div class="relative py-1 text-center text-black bg-white border-t-2 border-black flex justify-center text-xs items-center" style="height:5vh">
         &copy; <span id="ano"></span>- Criado por Guilherme Gordiano - Inovação e Melhoria Contínua
     </div>
     <script>
@@ -63,7 +65,7 @@
         }, 7000);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
-    
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
