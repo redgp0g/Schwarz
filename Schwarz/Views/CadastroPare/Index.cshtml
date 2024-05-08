@@ -20,10 +20,7 @@
                 @Html.DisplayNameFor(model => model.Data)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Turno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Setor)
+                @Html.DisplayNameFor(model => model.Local)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CodigoItem)
@@ -62,59 +59,57 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
                     @Html.DisplayFor(modelItem => item.Funcionario.IDFuncionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Turno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Setor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuantidadeBloqueada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Risco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescricaoFalha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Falha.IDFalha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroFSP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuncionarioFacilitador.IDFuncionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pontuacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ValidaPontuacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observacoes)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IDCadastroPare">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IDCadastroPare">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IDCadastroPare">Delete</a>
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Local)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoItem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantidadeBloqueada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Risco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescricaoFalha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Falha.IDFalha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroFSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FuncionarioFacilitador.IDFuncionario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pontuacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValidaPontuacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observacoes)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IDCadastroPare">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IDCadastroPare">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IDCadastroPare">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
