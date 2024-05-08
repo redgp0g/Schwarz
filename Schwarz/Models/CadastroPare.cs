@@ -12,19 +12,16 @@ namespace Schwarz.Models
 
         [Display(Name = "Funcionário")]
         [ForeignKey("Funcionario")]
-        [Required(ErrorMessage = "Selecione o Funcionário")]
+        [Required(ErrorMessage = "Selecione o Funcionário!")]
         public int IDFuncionario { get; set; }
         public virtual Funcionario Funcionario { get; set; }
         public DateTime Data { get; set; }
 
-        [Required(ErrorMessage = "Selecione um Turno")]
-        public string Turno { get; set; }
-
-        [Required(ErrorMessage = "Selecione o Setor onde ocorreu a Falha")]
-        public string Setor { get; set; }
+        [Required(ErrorMessage = "Descreva onde ocorreu o problema!")]
+        public string Local { get; set; }
 
         [Display(Name = "Código do Item")]
-        [Range(99999999, 999999999, ErrorMessage = "O código deve ter 9 caracteres")]
+        [MinLength(9, ErrorMessage = "O código deve ter 9 digítos!")]
         public string? CodigoItem { get; set; }
 
         [Display(Name = "Quantidade Bloqueada")]
@@ -34,8 +31,8 @@ namespace Schwarz.Models
         public string Risco { get; set; }
         public string Status { get; set; }
 
-        [Display(Name = "Descrição da Falha")]
-        public string? DescricaoFalha { get; set; }
+        [Display(Name = "Desvio")]
+        public string? Desvio { get; set; }
 
         [ForeignKey("Falha")]
         [Display(Name = "Falha")]
