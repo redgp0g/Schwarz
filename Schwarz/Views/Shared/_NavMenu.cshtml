@@ -5,13 +5,13 @@
 @inject SignInManager<SchwarzUser> SignInManager
 @inject UserManager<SchwarzUser> UserManager
 
-<nav class="mx-auto flex items-center justify-between p-6 lg:px-8 border-b-2 border-black" aria-label="Global">
-    <div class="flex lg:flex-1">
-        <a class="-m-1.5 p-1.5" href="/">
-            <img b-i2l1w8dhfo="" class="h-12 w-auto" src="\image\Logo PNG Preta.png">
+<nav class="mx-auto flex items-center justify-between p-3 lg:px-8 border-b-2 border-black" aria-label="Global" style="height:10vh">
+    <div class="flex xl:flex-1">
+        <a class="-m-1.5 px-6" href="/">
+            <img b-i2l1w8dhfo="" class="h-8 w-auto" src="\image\Logo PNG Preta.png">
         </a>
     </div>
-    <div class="flex lg:hidden">
+    <div class="flex xl:hidden">
         <button id="toggleSideBar" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onclick="toggleHidden('sideBar')">
             <span class="sr-only">Abrir Menu</span>
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -20,18 +20,15 @@
         </button>
     </div>
 
-    <div class="items-center hidden lg:flex lg:gap-x-12 flex-1">
+    <div class="items-center hidden xl:flex lg:gap-x-12 flex-1 justify-end">
         <div class="relative">
-            <button id="toggleMenuIdeias" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias',this.id)">
-                Programa de Ideias
-                <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                </svg>
+            <button id="toggleMenuIdeias" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias',this.id)">
+                Ideias
             </button>
 
-            <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuIdeias">
+            <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuIdeias">
                 <div class="p-4">
-                    <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                         <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                             <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
                         </div>
@@ -40,24 +37,22 @@
                                 Cadastrar
                                 <span class="absolute inset-0"></span>
                             </a>
-                            <p class="mt-1 text-gray-600">Não deixe sua criatividade ficar apenas na mente! Cadastre agora sua ideia!</p>
                         </div>
                     </div>
 
-                    <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                         <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                             <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                         </div>
                         <div class="flex-auto">
                             <a asp-action="Index" asp-controller="Ideia" class="block font-semibold text-gray-900">
-                                Ideias Cadastradas
+                                Cadastradas
                                 <span class="absolute inset-0"></span>
                             </a>
-                            <p class="mt-1 text-gray-600">Verifique aqui sua ideia e veja como podemos torná-la realidade!</p>
                         </div>
                     </div>
 
-                    <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                         <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
@@ -68,7 +63,6 @@
                                 Dashboard
                                 <span class="absolute inset-0"></span>
                             </a>
-                            <p class="mt-1 text-gray-600">Veja os dados estatísticos do Programa de Ideias!</p>
                         </div>
                     </div>
                 </div>
@@ -77,31 +71,32 @@
         @if (User.IsInRole("FuncionarioAdmin") || User.IsInRole("Admin"))
         {
             <div class="relative">
-                <button id="toggleMenuFuncionario" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFuncionario',this.id)">
+                <button id="toggleMenuFuncionario" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFuncionario',this.id)">
                     Funcionários
-                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
                 </button>
 
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuFuncionario">
+                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuFuncionario">
                     <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
                             <div class="flex-auto">
                                 <a asp-action="Index" asp-controller="Funcionario" class="block font-semibold text-gray-900">
-                                    Tabela de Funcionários
+                                    Funcionários
+                                    <span class="absolute inset-0"></span>
                                 </a>
                             </div>
                         </div>
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
                             <div class="flex-auto">
-                                <a asp-area="Identity" asp-page="/Account/Register" class="text-xl font-semibold leading-6 text-gray-900 ml-2">Registrar Conta Funcionário<span class="absolute inset-0"></span></a>
+                                <a asp-area="Identity" asp-page="/Account/Register" class="block font-semibold text-gray-900">
+                                    Registrar Conta
+                                    <span class="absolute inset-0"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -111,57 +106,37 @@
         @if (User.IsInRole("PlanoControleAdmin") || User.IsInRole("Admin"))
         {
             <div class="relative">
-                <button id="toggleMenuPlanoControle" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPlanoControle',this.id)">
+                <button id="toggleMenuPlanoControle" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPlanoControle',this.id)">
                     Planos de Controle
-                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
                 </button>
 
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuPlanoControle">
+                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuPlanoControle">
                     <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
                             </div>
                             <div class="flex-auto">
                                 <a asp-action="Create" asp-controller="PlanoControle" class="block font-semibold text-gray-900">
-                                    Criar Plano de Controle
+                                    Cadastrar Plano
                                     <span class="absolute inset-0"></span>
                                 </a>
-                                <p class="mt-1 text-gray-600">Acesse para cadastrar um plano de controle!</p>
                             </div>
                         </div>
 
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
                             <div class="flex-auto">
                                 <a asp-action="Index" asp-controller="PlanoControle" class="block font-semibold text-gray-900">
-                                    Planos de Controle
+                                    Planos
                                     <span class="absolute inset-0"></span>
                                 </a>
-                                <p class="mt-1 text-gray-600">Visualizar os planos de controle cadastrados!</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (User.IsInRole("Admin"))
-        {
-            <div class="relative">
-                <button id="toggleMenuCota" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuCota',this.id)">
-                    Cotas
-                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
-                </button>
 
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuCota">
-                    <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
                             </div>
@@ -173,7 +148,7 @@
                             </div>
                         </div>
 
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
@@ -191,18 +166,15 @@
         @if (User.IsInRole("Admin") || User.IsInRole("Metrologia") || User.IsInRole("Lider") || User.IsInRole("Especialista"))
         {
             <div class="relative">
-                <button id="toggleMenuAlertaCota" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuAlertaCota',this.id)">
+                <button id="toggleMenuAlertaCota" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuAlertaCota',this.id)">
                     Alertas Cotas
-                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
                 </button>
 
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuAlertaCota">
-                    @if (User.IsInRole("Lider") || User.IsInRole("Admin") || User.IsInRole("Especialista"))
-                    {
-                        <div class="p-4">
-                            <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuAlertaCota">
+                    <div class="p-4">
+                        @if (User.IsInRole("Lider") || User.IsInRole("Admin") || User.IsInRole("Especialista"))
+                        {
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                                 <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                     <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                                 </div>
@@ -213,12 +185,11 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                    }
-                    @if (User.IsInRole("Metrologia") || User.IsInRole("Admin"))
-                    {
-                        <div class="p-4">
-                            <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+
+                        }
+                        @if (User.IsInRole("Metrologia") || User.IsInRole("Admin"))
+                        {
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                                 <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                     <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                                 </div>
@@ -229,10 +200,8 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                    }
-                    <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        }
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
@@ -250,16 +219,13 @@
         @if (User.IsInRole("Admin") || User.IsInRole("LicaoAprendida"))
         {
             <div class="relative">
-                <button id="toggleMenuLicoesAprendidas" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuLicoesAprendidas',this.id)">
+                <button id="toggleMenuLicoesAprendidas" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuLicoesAprendidas',this.id)">
                     Lições Aprendidas
-                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
                 </button>
 
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuLicoesAprendidas">
+                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuLicoesAprendidas">
                     <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
                             </div>
@@ -271,7 +237,7 @@
                             </div>
                         </div>
 
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
@@ -289,16 +255,13 @@
         @if (User.IsInRole("Admin") || User.IsInRole("TransporteMercadoria"))
         {
             <div class="relative">
-                <button id="toggleMenuTransporteMercadorias" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuTransporteMercadorias',this.id)">
+                <button id="toggleMenuTransporteMercadorias" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuTransporteMercadorias',this.id)">
                     Transporte de Mercadorias
-                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                    </svg>
                 </button>
 
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuTransporteMercadorias">
+                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuTransporteMercadorias">
                     <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
                             </div>
@@ -310,7 +273,7 @@
                             </div>
                         </div>
 
-                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
@@ -325,17 +288,58 @@
                 </div>
             </div>
         }
-        <div class="relative">
-            <button id="toggleMenuRecursosHumanos" type="button" class="flex items-center gap-x-1 text-xl font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuRecursosHumanos',this.id)">
-                Recursos Humanos
-                <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                </svg>
+        <div class="relative hidden">
+            <button id="toggleMenuPARE" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPARE',this.id)">
+                PARE
             </button>
 
-            <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuRecursosHumanos">
+            <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuPARE">
                 <div class="p-4">
-                    <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+                        </div>
+                        <div class="flex-auto">
+                            <a asp-action="Create" asp-controller="CadastroPare" class="block font-semibold text-gray-900">
+                                Cadastrar
+                                <span class="absolute inset-0"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+                        </div>
+                        <div class="flex-auto">
+                            <a asp-action="Index" asp-controller="CadastroPare" class="block font-semibold text-gray-900">
+                                Cadastros
+                                <span class="absolute inset-0"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                            <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+                        </div>
+                        <div class="flex-auto">
+                            <a asp-action="Leaderboard" asp-controller="CadastroPare" class="block font-semibold text-gray-900">
+                                Competidores
+                                <span class="absolute inset-0"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="relative">
+            <button id="toggleMenuRecursosHumanos" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuRecursosHumanos',this.id)">
+                Recursos Humanos
+            </button>
+
+            <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuRecursosHumanos">
+                <div class="p-4">
+                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                         <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                             <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
                         </div>
@@ -347,7 +351,7 @@
                         </div>
                     </div>
 
-                    <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-xl leading-6 hover:bg-gray-50">
+                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                         <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                             <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                         </div>
@@ -364,9 +368,8 @@
         <partial name="~/Views/Shared/_LoginPartial.cshtml" />
     </div>
 </nav>
-<!-- Menu Mobile-->
-<div class="lg:hidden hidden" role="dialog" aria-modal="true" aria-expanded="false" id="sideBar">
-    <!-- Background backdrop, show/hide based on slide-over state. -->
+<!-- NavBar Menu Mobile-->
+<div class="xl:hidden hidden" role="dialog" aria-modal="true" aria-expanded="false" id="sideBar">
     <div class="fixed inset-0 z-10"></div>
     <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div class="flex items-center justify-between">
@@ -386,18 +389,33 @@
                     <!-- Sidebar de Ideia -->
                     <div class="-mx-3">
                         <button id="toggleMenuMobile" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileIdeia',this.id)">
-                            Programa de Ideias
+                            Ideias
                             <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                             </svg>
                         </button>
                         <div class="mt-2 space-y-2 hidden" id="subMenuMobileIdeia" aria-expanded="false">
-                            <a asp-action="Create" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
+                            <a asp-action="Create" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
 
-                            <a asp-action="Index" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Ideias Cadastradas</a>
+                            <a asp-action="Index" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastradas</a>
 
-                            <a asp-action="Dashboard" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Dashboard</a>
+                            <a asp-action="Dashboard" asp-controller="Ideia" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Dashboard</a>
 
+                        </div>
+                    </div>
+                    <div class="-mx-3 hidden">
+                        <button id="toggleMenuMobile" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobilePARE',this.id)">
+                            PARE
+                            <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="mt-2 space-y-2 hidden" id="subMenuMobilePARE" aria-expanded="false">
+                            <a asp-action="Create" asp-controller="CadastroPare" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
+
+                            <a asp-action="Index" asp-controller="CadastroPare" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Falhas Cadastradas</a>
+
+                            <a asp-action="Leaderboard" asp-controller="CadastroPare" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Competidores</a>
                         </div>
                     </div>
                     @if (User.IsInRole("TransporteMercadoria") || User.IsInRole("Admin"))
@@ -410,9 +428,9 @@
                                 </svg>
                             </button>
                             <div class="mt-2 space-y-2 hidden" id="subMenuMobileTransporteMercadoria" aria-expanded="false">
-                                <a asp-action="Create" asp-controller="TransporteMercadoria" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Registrar</a>
+                                <a asp-action="Create" asp-controller="TransporteMercadoria" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastrar</a>
 
-                                <a asp-action="Index" asp-controller="TransporteMercadoria" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-gray-900 hover:bg-gray-50">Registro</a>
+                                <a asp-action="Index" asp-controller="TransporteMercadoria" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Cadastros</a>
 
                             </div>
                         </div>
@@ -427,9 +445,9 @@
                                 </svg>
                             </button>
                             <div class="mt-2 space-y-2 hidden" id="subMenuMobileUser" aria-expanded="false">
-                                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-black hover:bg-gray-50">Meus Dados</a>
+                                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-black hover:bg-gray-50">Meus Dados</a>
                                 <form id="Form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button id="logout" type="submit" class="w-full text-left block rounded-lg py-2 pl-6 pr-3 text-xl font-semibold leading-7 text-red-500 hover:bg-gray-50">Sair</button>
+                                    <button id="logout" type="submit" class="w-full text-left block rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-red-500 hover:bg-gray-50">Sair</button>
                                 </form>
                             </div>
                         </div>
