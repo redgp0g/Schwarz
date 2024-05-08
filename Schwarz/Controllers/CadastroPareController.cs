@@ -48,8 +48,7 @@ namespace Schwarz.Controllers
         public IActionResult Create()
         {
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha");
-            ViewData["IDFuncionarioFacilitador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
-            ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome");
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
             return View();
         }
 
@@ -66,9 +65,8 @@ namespace Schwarz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", cadastroPare.IDFalha);
-            ViewData["IDFuncionarioFacilitador"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", cadastroPare.IDFuncionarioFacilitador);
-            ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", cadastroPare.IDFuncionario);
+            ViewData["Falha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", cadastroPare.IDFalha);
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
             return View(cadastroPare);
         }
 
