@@ -1,0 +1,110 @@
+﻿@model CadastroPare
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Cadastrar";
+}
+
+<div class="container mx-auto">
+    <div class="flex justify-center px-6 my-12">
+        <div class="w-full lg:w-7/12 bg-white p-4 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center mb-3">Formulário de Cadastro</h3>
+            <form method="post" id="cadastroform">
+                <div class="my-3">
+                    <ul class="grid w-full gap-6 md:grid-cols-3">
+                        <li>
+                            <input asp-for="Risco" type="radio" id="radioQualidade" value="Qualidade do Produto" class="hidden peer" required />
+                            <label for="radioQualidade" class="h-full inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-red-500 peer-checked:border-red-600 peer-checked:text-red-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <div class="block">
+                                    <div class="w-full text-lg font-semibold">Qualidade do Produto</div>
+                                </div>
+                                <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13c-.889.086-1.416.543-2.156 1.057a22.322 22.322 0 0 0-3.958 5.084 1.6 1.6 0 0 1-.582.628 1.549 1.549 0 0 1-1.466.087 1.587 1.587 0 0 1-.537-.406 1.666 1.666 0 0 1-.384-1.279l1.389-4.114M17 13h3V6.5A1.5 1.5 0 0 0 18.5 5v0A1.5 1.5 0 0 0 17 6.5V13Zm-6.5 1H5.585c-.286 0-.372-.014-.626-.15a1.797 1.797 0 0 1-.637-.572 1.873 1.873 0 0 1-.215-1.673l2.098-6.4C6.462 4.48 6.632 4 7.88 4c2.302 0 4.79.943 6.67 1.475" />
+                                </svg>
+
+                            </label>
+                        </li>
+                        <li>
+                            <input asp-for="Risco" type="radio" id="meioAmbienteRadio" value="Meio Ambiente" class="hidden peer">
+                            <label for="meioAmbienteRadio" class="h-full inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-green-500 peer-checked:border-green-600 peer-checked:text-green-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <div class="block">
+                                    <div class="w-full text-lg font-semibold">Meio Ambiente</div>
+                                </div>
+                                <svg class="w-7 h-7 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4.37 7.657c2.063.528 2.396 2.806 3.202 3.87 1.07 1.413 2.075 1.228 3.192 2.644 1.805 2.289 1.312 5.705 1.312 6.705M20 15h-1a4 4 0 0 0-4 4v1M8.587 3.992c0 .822.112 1.886 1.515 2.58 1.402.693 2.918.351 2.918 2.334 0 .276 0 2.008 1.972 2.008 2.026.031 2.026-1.678 2.026-2.008 0-.65.527-.9 1.177-.9H20M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+
+
+                            </label>
+                        </li>
+                        <li>
+                            <input asp-for="Risco" type="radio" id="segurancaRadio" value="Segurança do Colaborador" class="hidden peer">
+                            <label for="segurancaRadio" class="h-full inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-green-500 peer-checked:border-green-600 peer-checked:text-green-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <div class="block">
+                                    <div class="w-full text-lg font-semibold">Segurança do Colaborador</div>
+                                </div>
+                                <svg class="w-7 h-7" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg>
+
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="mb-3">
+                        <label asp-for="IDFuncionario" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <select asp-for="IDFuncionario" asp-items="ViewBag.Funcionarios" class="select2">
+                            <option selected disabled value="">Selecione o funcionário</option>
+                        </select>
+                        @Html.ValidationMessageFor(x => x.IDFuncionario)
+                    </div>
+                    @if (ViewBag.Setor == "Qualidade" || ViewBag.Setor == "Segurança do Trabalho")
+                    {
+                        <div class="mb-3">
+                            <label asp-for="Data" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                            <input type="datetime-local" asp-for="Data" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" onchange="this.setAttribute('value', this.value);" />
+                        </div>
+                    }
+                    <div class="mb-3">
+                        <label asp-for="Local" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="Local" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Local onde ocorreu o problema">
+                        @Html.ValidationMessageFor(x => x.Local)
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CodigoItem" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="CodigoItem" type="number" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Código do item" />
+                        @Html.ValidationMessageFor(x => x.CodigoItem)
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="QuantidadeBloqueada" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <input asp-for="QuantidadeBloqueada" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Quantidade de peças bloqueadas" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="block mb-2 text-sm font-bold text-gray-700l">Falha</label>
+                        <select asp-for="IDFalha" class="select2" asp-items="ViewBag.Falhas">
+                            <option selected value="">Selecione a Falha</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="DescricaoFalha" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <textarea asp-for="DescricaoFalha" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a Falha"></textarea>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.select2').select2({
+            width: '100%',
+        });
+    });
+</script>
