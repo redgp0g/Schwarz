@@ -175,3 +175,6 @@ input[type="number"]::-webkit-outer-spin-button {
     .chat:hover {
         background-color: #3c3a3a;
     }
+a{
+    text-decoration: none
+}
