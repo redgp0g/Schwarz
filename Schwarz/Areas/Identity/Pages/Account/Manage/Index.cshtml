@@ -57,7 +57,15 @@
                     </div>
                     <div class="form-floating">
                         <div class="mb-8">
-                            <img id="preview" class="object-center object-cover rounded-full h-48 w-36" src="data:image;base64,@(Convert.ToBase64String(Model.Input.Foto))" alt="Foto">
+                            @if(Model.Input.Foto != null){
+                                <img id="preview" class="object-center object-cover rounded-full h-48 w-36" src="data:image;base64,@(Convert.ToBase64String(Model.Input.Foto))" alt="Foto">
+                            }
+
+                            else
+                            {
+                                <img id="preview" class="object-center object-cover rounded-full h-48 w-36" src="~/image/user.png" alt="Foto">
+                            }
+
                         </div>
                         <input asp-for="Input.NovaFoto" class="form-control" type="file" accept="image/*" onchange="previewImage(this)" />
                         <label asp-for="Input.Foto" class="form-label"></label>
