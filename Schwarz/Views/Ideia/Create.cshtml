@@ -19,12 +19,10 @@
                 </div>
                 <form action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
                     <div class="mb-4">
-                        <div class="mb-4">
-                            <label class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><span class="text-red-500 text-2xl">*</span>Participantes</label>
-                            <select asp-for="Participantesids" class="form-select select2 w-full" required multiple asp-items="ViewBag.Funcionarios">
-                            </select>
-                            @Html.ValidationMessageFor(x => x.Participantesids)
-                        </div>
+                        <label class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><span class="text-red-500 text-2xl">*</span>Participantes</label>
+                        <select asp-for="Participantesids" class="form-select select2 w-full" required multiple asp-items="ViewBag.Funcionarios">
+                        </select>
+                        @Html.ValidationMessageFor(x => x.Participantesids)
                     </div>
 
                     <div class="mb-4">

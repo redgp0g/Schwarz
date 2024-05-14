@@ -9,20 +9,10 @@
     }
 }
 
-<h1 class="text-white text-2xl py-2">Gerenciar sua conta</h1>
+<h1 class="text-white text-2xl py-2 text-center">Gerenciar sua conta</h1>
 
-<div class="text-white">
-    <h2 class="text-white text-xl">Mude as configurações da sua conta</h2>
-    <hr />
-    <div class="grid grid-cols-3">
-        <div class="mx-6">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-span-2">
-            @RenderBody()
-        </div>
-    </div>
-</div>
+@RenderBody()
+
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

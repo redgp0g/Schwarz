@@ -1,7 +1,13 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Schwarz.Areas.Identity.Data
+
+@inject SignInManager<SchwarzUser> SignInManager
+@inject UserManager<SchwarzUser> UserManager
 ﻿@model CadastroPare
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Cadastrar";
+    var funcionario = UserManager.GetUserAsync(User).Result.Funcionario;
 }
 
 <div class="container mx-auto">
@@ -52,6 +58,8 @@
                 </div>
 
                 <div>
+                    @if (!SignInManager.IsSignedIn(User))
+                    {
                     <div class="mb-3">
                         <label asp-for="IDFuncionario" class="block mb-2 text-sm font-bold text-gray-700l"></label>
                         <select asp-for="IDFuncionario" asp-items="ViewBag.Funcionarios" class="select2">
@@ -59,7 +67,12 @@
                         </select>
                         @Html.ValidationMessageFor(x => x.IDFuncionario)
                     </div>
-                    @if (ViewBag.Setor == "Qualidade" || ViewBag.Setor == "Segurança do Trabalho")
+                    }
+                    else
+                    {
+                        <input type="hidden" asp-for="IDFuncionario" value="@funcionario.IDFuncionario" />
+                    }
+                    @if (User.IsInRole("Admin") || User.IsInRole("ProgramaPareAdmin"))
                     {
                         <div class="mb-3">
                             <label asp-for="Data" class="block mb-2 text-sm font-bold text-gray-700l"></label>
@@ -68,7 +81,14 @@
                     }
                     <div class="mb-3">
                         <label asp-for="Local" class="block mb-2 text-sm font-bold text-gray-700l"></label>
-                        <input asp-for="Local" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Local onde ocorreu o problema">
+                        <select asp-for="Local" class="select2" asp-items="ViewBag.Local">
+                            @if (!SignInManager.IsSignedIn(User))
+                            {
+                                <option selected disabled value="">Selecione a Setor</option>
+                            }{
+                            <option selected value="@funcionario.Setor">@funcionario.Setor</option>
+                            }
+                        </select>
                         @Html.ValidationMessageFor(x => x.Local)
                     </div>
 
@@ -82,8 +102,8 @@
                         <input asp-for="QuantidadeBloqueada" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Quantidade de peças bloqueadas" />
                     </div>
                     <div class="mb-3">
-                        <label class="block mb-2 text-sm font-bold text-gray-700l">Falha</label>
-                        <select asp-for="IDFalha" class="select2" asp-items="ViewBag.Falhas">
+                        <label asp-for="IDFalha" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                        <select asp-for="IDFalha" class="select2" asp-items="ViewBag.IDFalha">
                             <option selected value="">Selecione a Falha</option>
                         </select>
                     </div>
