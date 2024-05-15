@@ -39,3 +39,7 @@ function HideLoading() {
         loadings[0].remove();
     }
 }
+
+$('.select2').select2({
+    width: '100%',
+});
