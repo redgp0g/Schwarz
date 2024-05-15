@@ -23,7 +23,7 @@ namespace Schwarz.Models
         public string Desvio { get; set; }
 
         [Display(Name = "Pontuação")]
-        public int Pontuacao { get; set; }
+        public int? Pontuacao { get; set; }
         public bool PontuacaoValida { get; set; } = true;
 
         [Display(Name = "Ordem de Serviço")]
@@ -31,19 +31,19 @@ namespace Schwarz.Models
         public string OrdemServico { get; set; }
 
         [Display(Name = "Aprovação do Líder")]
-        public bool AprovacaoLider { get; set; }
-        public DateTime DataAprovacaoLider { get; set; }
+        public bool? AprovacaoLider { get; set; }
+        public DateTime? DataAprovacaoLider { get; set; }
 
         [Display(Name = "Observações do Líder")]
-        public string ObservacoesLider { get; set; }
+        public string? ObservacoesLider { get; set; }
 
         [Display(Name = "Aprovação da Segurança")]
-        public bool AprovacaoSeguranca { get; set; }
-        public DateTime DataAprovacaoSeguranca { get; set; }
+        public bool? AprovacaoSeguranca { get; set; }
+        public DateTime? DataAprovacaoSeguranca { get; set; }
 
         [Display(Name = "Observações do Segurança")]
-        public string ObservacoesSeguranca { get; set; }
-        public int ClassificacaoGUT { get; set; }
+        public string? ObservacoesSeguranca { get; set; }
+        public int? ClassificacaoGUT { get; set; }
         public virtual ICollection<PareSegurancaFoto>? PareSegurancaFotos { get; set; }
         
         [NotMapped]
