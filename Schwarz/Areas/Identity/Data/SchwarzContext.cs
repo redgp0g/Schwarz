@@ -24,7 +24,10 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     public DbSet<LicaoAprendidaAnexo> LicaoAprendidaAnexo { get; set; }
     public DbSet<Cliente> Cliente { get; set; }
     public DbSet<TransporteMercadoria> TransporteMercadoria { get; set; }
-    public DbSet<CadastroPare> CadastroPare { get; set; }
+    public DbSet<PareQualidade> PareQualidade{ get; set; }
+    public DbSet<PareQualidadeFoto> PareQualidadeFoto{ get; set; }
+    public DbSet<PareSeguranca> PareSeguranca { get; set; }
+    public DbSet<PareSegurancaFoto> PareSegurancaFoto { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
