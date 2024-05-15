@@ -7,8 +7,8 @@ namespace Schwarz.Models
 	{
         [Key]
         public int IDPareSeguranca { get; set; }
-        [ForeignKey("Funcionário")]
-        [Display(Name = "Funcionario")]
+        [ForeignKey("Funcionario")]
+        [Display(Name = "Funcionário")]
         [Required(ErrorMessage = "O Funcionário é obrigatório!")]
         public int IDFuncionario { get; set; }
         public virtual Funcionario? Funcionario { get; set; }
