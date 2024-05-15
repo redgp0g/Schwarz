@@ -11,7 +11,7 @@
         {
             <div class="mb-3">
                 <label asp-for="IDFuncionario" class="block mb-2 text-sm font-bold"></label>
-                <select asp-for="IDFuncionario" asp-items="ViewBag.Funcionarios" class="select2">
+                <select asp-for="IDFuncionario" id="funcionarioSeguranca" asp-items="ViewBag.Funcionarios" class="select2">
                     <option selected disabled value="">Selecione o funcionário</option>
                 </select>
                 @Html.ValidationMessageFor(x => x.IDFuncionario)
