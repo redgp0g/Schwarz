@@ -58,6 +58,7 @@
             </div>
             @await Html.PartialAsync("~/Views/Pare/_PartialCreateQualidade.cshtml")
             @await Html.PartialAsync("~/Views/Pare/_PartialCreateSeguranca.cshtml")
+            @await Html.PartialAsync("~/Views/Pare/_PartialCreateMeioAmbiente.cshtml")
         </div>
     </div>
 </div>
@@ -68,12 +69,18 @@
             if ($(this).val() == 'Qualidade do Produto') {
                 $('#formQualidade').removeClass('hidden');
                 $('#formSeguranca').addClass('hidden');
+                $('#formMeioAmbiente').addClass('hidden');
+
             } else if ($(this).val() == 'Segurança do Colaborador') {
+                $('#formQualidade').addClass('hidden');
                 $('#formSeguranca').removeClass('hidden');
+                $('#formMeioAmbiente').addClass('hidden');
+
+            } else {
                 $('#formQualidade').addClass('hidden');
-            } else{
                 $('#formSeguranca').addClass('hidden');
-                $('#formQualidade').addClass('hidden');
+                $('#formMeioAmbiente').removeClass('hidden');
+
             }
         });
 
