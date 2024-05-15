@@ -24,9 +24,9 @@ namespace Schwarz.Models
 		public string? DescricaoFalha{ get; set; }
 
 		[Required(ErrorMessage = "A Data é obrigatória!")]
-		public DateTime Data { get; set; }
+		public DateTime Data { get; set; } = DateTime.Now;
 
-		[Required(ErrorMessage = "Selecione o Setor onde ocorreu!")]
+        [Required(ErrorMessage = "Selecione o Setor onde ocorreu!")]
 		public string Setor { get; set; }
 
 		[Required(ErrorMessage = "O Código é obrigatório!")]
@@ -50,7 +50,7 @@ namespace Schwarz.Models
 
 		[Display(Name = "Pontuação")]
 		public int? Pontuacao { get; set; }
-		public bool PontuacaoValida { get; set; }
+		public bool PontuacaoValida { get; set; } = true;
 
 		[NotMapped]
 		public string DataFormatada => Data.ToString("dd/MM/yyyy");

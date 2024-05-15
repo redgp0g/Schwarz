@@ -14,7 +14,7 @@ namespace Schwarz.Models
         public virtual Funcionario? Funcionario { get; set; }
 
         [Required(ErrorMessage = "A Data é obrigatória!")]
-        public DateTime Data { get; set; }
+        public DateTime Data { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "O Local é obrigatório!")]
         public string Local { get; set; }
@@ -24,7 +24,7 @@ namespace Schwarz.Models
 
         [Display(Name = "Pontuação")]
         public int Pontuacao { get; set; }
-        public bool PontuacaoValida { get; set; }
+        public bool PontuacaoValida { get; set; } = true;
 
         [Display(Name = "Ordem de Serviço")]
         [Required(ErrorMessage = "A Ordem de Serviço é obrigatória!")]
