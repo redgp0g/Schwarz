@@ -30,6 +30,11 @@
             </div>
         }
         <div class="mb-3">
+            <label asp-for="Desvio" class="block mb-2 text-sm font-bold"></label>
+            <textarea asp-for="Desvio" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Desvio"></textarea>
+            @Html.ValidationMessageFor(x => x.Desvio)
+        </div>
+        <div class="mb-3">
             <label asp-for="Local" class="block mb-2 text-sm font-bold"></label>
             <input asp-for="Local" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Local" />
             @Html.ValidationMessageFor(x => x.Local)
