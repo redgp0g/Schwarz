@@ -28,6 +28,7 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
     public DbSet<PareQualidadeFoto> PareQualidadeFoto{ get; set; }
     public DbSet<PareSeguranca> PareSeguranca { get; set; }
     public DbSet<PareSegurancaFoto> PareSegurancaFoto { get; set; }
+    public DbSet<PareMeioAmbiente> PareMeioAmbiente { get; set; }
     public DbSet<VencedorPare> VencedorPare { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
