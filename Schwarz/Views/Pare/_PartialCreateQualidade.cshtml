@@ -5,7 +5,7 @@
 @inject UserManager<SchwarzUser> UserManager
 @model PareQualidade
 
-<form method="post" id="formQualidade" class="hidden">
+<form asp-action="CreateQualidade" asp-asp-controller="Pare" method="post" id="formQualidade" class="hidden">
     <div>
         @if (!SignInManager.IsSignedIn(User))
         {

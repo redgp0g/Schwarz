@@ -5,7 +5,7 @@
 @inject UserManager<SchwarzUser> UserManager
 @model PareSeguranca
 
-<form method="post" id="formSeguranca" class="hidden" enctype="multipart/form-data">
+<form asp-action="CreateSeguranca" asp-asp-controller="Pare" method="post" id="formSeguranca" class="hidden" enctype="multipart/form-data">
     <div>
         @if (!SignInManager.IsSignedIn(User))
         {

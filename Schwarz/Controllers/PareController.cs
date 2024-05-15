@@ -34,16 +34,41 @@ namespace Schwarz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PareSeguranca cadastroPare)
+        public async Task<IActionResult> CreateQualidade(PareQualidade pareQualidade)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cadastroPare);
+                _context.Add(pareQualidade);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
-            return View(cadastroPare);
+            return RedirectToAction("Create");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateSeguranca(PareSeguranca pareSeguranca)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(pareSeguranca);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction("Create");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMeioAmbiente(PareMeioAmbiente pareMeioAmbiente)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(pareMeioAmbiente);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction("Create");
         }
 
         // GET: CadastroPare/Edit/5
