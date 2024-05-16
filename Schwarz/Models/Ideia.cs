@@ -16,7 +16,7 @@ namespace Schwarz.Models
 		public DateTime Data { get; set; } = DateTime.Now;
 
 		[Display(Name = "Data de Implantação")]
-		public DateTime? DataImplantacao { get; set; }
+		public DateOnly? DataImplantacao { get; set; }
 
 		public string Status { get; set; } = "Recebida";
         public string? Ganho { get; set; }
