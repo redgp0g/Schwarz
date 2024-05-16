@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
 {
-	public class EquipeIdeia
+	public class IdeiaEquipe
 	{
 
 		[Key]
-		public int IDEquipeIdeia { get; set; }
+		public int IDIdeiaEquipe { get; set; }
 		[ForeignKey("Funcionario")]
 		public int IDFuncionario { get; set; }
 		public virtual Funcionario? Funcionario{ get; set; }
@@ -21,15 +21,15 @@ namespace Schwarz.Models
 		public decimal? Reconhecimento { get; set; }
 
         private readonly SchwarzContext _context;
-        public EquipeIdeia()
+        public IdeiaEquipe()
 		{
 
 		}
-		public EquipeIdeia(SchwarzContext contexto)
+		public IdeiaEquipe(SchwarzContext contexto)
 		{
 			_context = contexto;
 		}
-		public EquipeIdeia(int iDFuncionario, int iDIdeia)
+		public IdeiaEquipe(int iDFuncionario, int iDIdeia)
 		{
 			IDFuncionario = iDFuncionario;
 			IDIdeia = iDIdeia;

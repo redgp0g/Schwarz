@@ -18,12 +18,12 @@
 				<div class="mb-4 listaparticipantes">
 					<label class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><span class="text-red-500 text-2xl">*</span>Participantes</label>
 
-					@foreach (var participante in Model.EquipeIdeia)
+					@foreach (var participante in Model.IdeiaEquipe)
 					{
 						qtdparticipantes++;
 						<div class="participante my-2">
 							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline capitalize">@participante.Funcionario.Nome</label>
-							<button class="p-2 text-white bg-gradient-to-r from-red-400 to-orange-700 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-900 hover:cursor-pointer focus:outline-none focus:shadow-outline remover-participante" data-id="@participante.IDEquipeIdeia">
+							<button class="p-2 text-white bg-gradient-to-r from-red-400 to-orange-700 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-900 hover:cursor-pointer focus:outline-none focus:shadow-outline remover-participante" data-id="@participante.IDIdeiaEquipe">
 								Deletar
 							</button>
 						</div>
@@ -147,12 +147,12 @@
 			data: { idFuncionario: idFuncionario, idideia: idideia },
 			success: function (response) {
 				var nome = response.nome;
-				var idEquipeideia = response.idEquipe;
+				var idIdeiaEquipe = response.idEquipe;
 
 				var divParticipanteExistente = $('.participante:first');
 				var divParticipanteClonada = divParticipanteExistente.clone();
 				divParticipanteClonada.find('label').text(nome);
-				divParticipanteClonada.find('button').attr('data-id', idEquipeideia);
+				divParticipanteClonada.find('button').attr('data-id', idIdeiaEquipe);
 
 				$('.listaparticipantes').append(divParticipanteClonada);
 				qtdpartc++;

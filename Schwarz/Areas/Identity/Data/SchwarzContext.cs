@@ -12,11 +12,11 @@ public class SchwarzContext : IdentityDbContext<SchwarzUser>
         : base(options)
     {
     }
-	public DbSet<EquipeIdeia> EquipeIdeia { get; set; }
     public DbSet<Falha> Falha { get; set; }
 	public DbSet<Funcionario> Funcionario { get; set; }
 	public DbSet<Ideia> Ideia { get; set; }
     public DbSet<IdeiaAnexo> IdeiaAnexo { get; set; }
+	public DbSet<IdeiaEquipe> IdeiaEquipe { get; set; }
     public DbSet<Registro> Registro { get; set; }
     public DbSet<RegistroCotas> RegistroCotas { get; set; }
     public DbSet<AlertaCota> AlertaCota { get; set; }

@@ -33,7 +33,7 @@ namespace Schwarz.Models
 		[Display(Name = "Ganho Realizado")]
 		public decimal? GanhoRealizado { get; set; }
 
-		public virtual ICollection <EquipeIdeia> EquipeIdeia { get; set; }
+		public virtual ICollection <IdeiaEquipe> IdeiaEquipe { get; set; }
         public virtual ICollection<IdeiaAnexo> IdeiaAnexo { get; set; }
 
         [NotMapped]

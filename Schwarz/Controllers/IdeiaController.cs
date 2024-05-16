@@ -36,7 +36,7 @@ namespace ProgramaIdeias.Controllers
                 Descricao = i.Descricao,
                 IDIdeia = i.IDIdeia,
                 Status = i.Status,
-                NomesEquipe = i.EquipeIdeia.Select(x => x.Funcionario.Nome.ToLower())
+                NomesEquipe = i.IdeiaEquipe.Select(x => x.Funcionario.Nome.ToLower())
             })
             .OrderByDescending(x => x.Data);
 
@@ -130,8 +130,8 @@ namespace ProgramaIdeias.Controllers
                     _context.SaveChanges();
                     foreach (var participante in ideia.Participantesids)
                     {
-                        EquipeIdeia equipeIdeia = new(participante, ideia.IDIdeia);
-                        _context.Add(equipeIdeia);
+                        IdeiaEquipe ideiaEquipe = new(participante, ideia.IDIdeia);
+                        _context.Add(ideiaEquipe);
                         _context.SaveChanges();
                     }
                     if (files != null && files.Count > 0)
@@ -197,9 +197,9 @@ namespace ProgramaIdeias.Controllers
             {
                 if (ideia != null)
                 {
-                    foreach (var equipe in ideia.EquipeIdeia)
+                    foreach (var equipe in ideia.IdeiaEquipe)
                     {
-                        _context.EquipeIdeia.Remove(equipe);
+                        _context.IdeiaEquipe.Remove(equipe);
                     }
                     foreach (var anexo in ideia.IdeiaAnexo)
                     {
@@ -224,10 +224,10 @@ namespace ProgramaIdeias.Controllers
         [HttpPost]
         public IActionResult DeletarParticipante(int id)
         {
-            var participante = _context.EquipeIdeia.Find(id);
+            var participante = _context.IdeiaEquipe.Find(id);
             if (participante != null)
             {
-                _context.EquipeIdeia.Remove(participante);
+                _context.IdeiaEquipe.Remove(participante);
                 _context.SaveChanges();
                 return Ok();
             }
@@ -240,19 +240,19 @@ namespace ProgramaIdeias.Controllers
             var func = _context.Funcionario.Find(idFuncionario);
             if (func != null)
             {
-                bool equipeIdeiaExistente = _context.EquipeIdeia.Any(ei => ei.IDFuncionario == func.IDFuncionario && ei.IDIdeia == idideia);
-                if (equipeIdeiaExistente)
+                bool ideiaEquipeExistente = _context.IdeiaEquipe.Any(ei => ei.IDFuncionario == func.IDFuncionario && ei.IDIdeia == idideia);
+                if (ideiaEquipeExistente)
                 {
                     return Conflict("Já existe esse participante na equipe!");
                 }
 
-                EquipeIdeia equipeIdeia = new(func.IDFuncionario, idideia);
-                _context.EquipeIdeia.Add(equipeIdeia);
+                IdeiaEquipe ideiaEquipe = new(func.IDFuncionario, idideia);
+                _context.IdeiaEquipe.Add(ideiaEquipe);
                 _context.SaveChanges();
 
                 var result = new
                 {
-                    idEquipe = equipeIdeia.IDEquipeIdeia,
+                    idEquipe = ideiaEquipe.IDIdeiaEquipe,
                     nome = func.Nome
                 };
 
