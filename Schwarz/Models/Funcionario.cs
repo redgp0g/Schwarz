@@ -31,7 +31,7 @@ namespace Schwarz.Models
         public int? NumeroCentroCusto { get; set; }
         public virtual SchwarzUser? User { get; set; }
         private readonly SchwarzContext _context;
-        public virtual ICollection<EquipeIdeia>? EquipeIdeia { get; set; }
+        public virtual ICollection<IdeiaEquipe>? IdeiaEquipe { get; set; }
 
 
         [NotMapped]
@@ -39,7 +39,7 @@ namespace Schwarz.Models
 		{
 			get
 			{
-                return EquipeIdeia != null ? EquipeIdeia.Count(e => e.Ideia.Data.Year == 2023) : 0;
+                return IdeiaEquipe != null ? IdeiaEquipe.Count(e => e.Ideia.Data.Year == 2023) : 0;
             }
 		}
 
@@ -48,7 +48,7 @@ namespace Schwarz.Models
 		{
 			get
 			{
-                return EquipeIdeia != null ? EquipeIdeia.Count(e => e.Ideia.Status == "Implementada" && (e.Ideia.Data.Year == 2023 || (e.Ideia.DataImplantacao.HasValue && e.Ideia.DataImplantacao.Value.Year == 2023))) : 0;
+                return IdeiaEquipe != null ? IdeiaEquipe.Count(e => e.Ideia.Status == "Implementada" && (e.Ideia.Data.Year == 2023 || (e.Ideia.DataImplantacao.HasValue && e.Ideia.DataImplantacao.Value.Year == 2023))) : 0;
             }
 		}
 

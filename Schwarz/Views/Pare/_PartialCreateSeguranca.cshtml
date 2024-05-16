@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Schwarz.Areas.Identity.Data
+
+@inject SignInManager<SchwarzUser> SignInManager
+@inject UserManager<SchwarzUser> UserManager
+@model PareSeguranca
+
+<form asp-action="CreateSeguranca" asp-asp-controller="Pare" method="post" id="formSeguranca" class="hidden" enctype="multipart/form-data">
+    <div>
+        @if (!SignInManager.IsSignedIn(User))
+        {
+            <div class="mb-3">
+                <label asp-for="IDFuncionario" class="block mb-2 text-sm font-bold"></label>
+                <select asp-for="IDFuncionario" id="funcionarioSeguranca" asp-items="ViewBag.Funcionarios" class="select2">
+                    <option selected disabled value="">Selecione o funcionário</option>
+                </select>
+                @Html.ValidationMessageFor(x => x.IDFuncionario)
+            </div>
+        }
+        else
+        {
+            <input type="hidden" asp-for="IDFuncionario" value="@UserManager.GetUserAsync(User).Result.Funcionario.IDFuncionario" />
+        }
+        @if (User.IsInRole("Admin") || User.IsInRole("ProgramaPareAdmin"))
+        {
+            <div class="mb-3">
+                <label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
+                <input type="datetime-local" asp-for="Data" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" onchange="this.setAttribute('value', this.value);" />
+                @Html.ValidationMessageFor(x => x.Data)
+            </div>
+        }
+        <div class="mb-3">
+            <label asp-for="Desvio" class="block mb-2 text-sm font-bold"></label>
+            <textarea asp-for="Desvio" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Desvio"></textarea>
+            @Html.ValidationMessageFor(x => x.Desvio)
+        </div>
+        <div class="mb-3">
+            <label asp-for="Local" class="block mb-2 text-sm font-bold"></label>
+            <input asp-for="Local" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Local" />
+            @Html.ValidationMessageFor(x => x.Local)
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="OrdemServico" class="block mb-2 text-sm font-bold"></label>
+            <input asp-for="OrdemServico" class="ordemServico w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Ordem de Serviço" />
+            @Html.ValidationMessageFor(x => x.OrdemServico)
+        </div>
+        <div class="mb-3">
+            <label asp-for="Fotos" class="block mb-2 text-sm font-bold"></label>
+            <input asp-for="Fotos" accept="image/*" />
+            <div>
+            @Html.ValidationMessageFor(x => x.Fotos)
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-emerald-300 to-green-500 rounded-full hover:bg-gradient-to-r hover:from-emerald-500 hover:to-green-300 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+    </div>
+</form>

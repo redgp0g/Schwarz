@@ -16,14 +16,14 @@
 			</div>
 			<div class="px-8">
 				<div class="mb-4 listaparticipantes">
-					<label class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><span class="text-red-500 text-2xl">*</span>Participantes</label>
+					<label class="block mb-2 text-sm font-bold flex items-center"><span class="text-red-500 text-2xl">*</span>Participantes</label>
 
-					@foreach (var participante in Model.EquipeIdeia)
+					@foreach (var participante in Model.IdeiaEquipe)
 					{
 						qtdparticipantes++;
 						<div class="participante my-2">
 							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline capitalize">@participante.Funcionario.Nome</label>
-							<button class="p-2 text-white bg-gradient-to-r from-red-400 to-orange-700 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-900 hover:cursor-pointer focus:outline-none focus:shadow-outline remover-participante" data-id="@participante.IDEquipeIdeia">
+							<button class="p-2 text-white bg-gradient-to-r from-red-400 to-orange-700 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-900 hover:cursor-pointer focus:outline-none focus:shadow-outline remover-participante" data-id="@participante.IDIdeiaEquipe">
 								Deletar
 							</button>
 						</div>
@@ -39,44 +39,44 @@
 			</div>
 			<form id="form" method="post" class="px-8">
 				<div class="mb-4">
-					<label asp-for="Descricao" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"><div class="text-red-500 text-2xl">*</div>Descrição da Ideia</label>
+					<label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center"><div class="text-red-500 text-2xl">*</div>Descrição da Ideia</label>
 					<textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
 					@Html.ValidationMessageFor(x => x.Descricao)
 				</div>
 				<div class="mb-4 md:flex md:justify-between">
 					<div>
-						<label asp-for="Ganho" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+						<label asp-for="Ganho" class="block mb-2 text-sm font-bold"></label>
 						<input asp-for="Ganho" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o ganho" />
 					</div>
 					<div>
-						<label asp-for="GanhoRealizado" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+						<label asp-for="GanhoRealizado" class="block mb-2 text-sm font-bold"></label>
 						<input type="number" asp-for="GanhoRealizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Ganho realizado" />
 					</div>
 					<div>
-						<label asp-for="Investimento" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+						<label asp-for="Investimento" class="block mb-2 text-sm font-bold"></label>
 						<input asp-for="Investimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Quanto é o investimento?">
 					</div>
 					<div>
-						<label asp-for="Data" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+						<label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
 						<input asp-for="Data" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
 					</div>
 					<div>
-						<label asp-for="DataImplantacao" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+						<label asp-for="DataImplantacao" class="block mb-2 text-sm font-bold"></label>
 						<input asp-for="DataImplantacao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
 					</div>
 				</div>
 
 				<div class="mb-4 md:flex md:justify-between">
 					<div>
-						<label class="block mb-2 text-sm font-bold text-gray-700l">N° da Solicitação de Análise</label>
+						<label asp-for="SolicitacaoAnalise" class="block mb-2 text-sm font-bold"></label>
 						<input asp-for="SolicitacaoAnalise" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Solicitação de Análise">
 					</div>
 					<div>
-						<label class="block mb-2 text-sm font-bold text-gray-700l">N° da OS</label>
-						<input asp-for="OS" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="OS">
+						<label asp-for="OrdemServico" class="block mb-2 text-sm font-bold"></label>
+						<input asp-for="OrdemServico" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="OS">
 					</div>
 					<div>
-						<label asp-for="Status" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+						<label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
 						<select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
 							<option value="Aplicada">Aplicada</option>
 							<option value="Recebida">Recebida</option>
@@ -90,12 +90,12 @@
 				</div>
 				<div class="row">
 					<div>
-						<label asp-for="Feedback" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+						<label asp-for="Feedback" class="block mb-2 text-sm font-bold"></label>
 						<input asp-for="Feedback" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
 					</div>
 				</div>
 				<div class="mb-4">
-					<label class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Anexos</label>
+					<label class="block mb-2 text-sm font-bold flex items-center">Anexos</label>
 					@if (Model.IdeiaAnexo.Count() > 0)
 					{
 						@foreach (var anexo in Model.IdeiaAnexo)
@@ -147,12 +147,12 @@
 			data: { idFuncionario: idFuncionario, idideia: idideia },
 			success: function (response) {
 				var nome = response.nome;
-				var idEquipeideia = response.idEquipe;
+				var idIdeiaEquipe = response.idEquipe;
 
 				var divParticipanteExistente = $('.participante:first');
 				var divParticipanteClonada = divParticipanteExistente.clone();
 				divParticipanteClonada.find('label').text(nome);
-				divParticipanteClonada.find('button').attr('data-id', idEquipeideia);
+				divParticipanteClonada.find('button').attr('data-id', idIdeiaEquipe);
 
 				$('.listaparticipantes').append(divParticipanteClonada);
 				qtdpartc++;
