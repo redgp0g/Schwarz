@@ -120,8 +120,6 @@ namespace ProgramaIdeias.Controllers
         {
             try
             {
-                ideia.Data = DateTime.Now;
-                ideia.Status = "Recebida";
                 using var transaction = _context.Database.BeginTransaction();
 
                 try

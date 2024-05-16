@@ -13,10 +13,12 @@ namespace Schwarz.Models
 		[Display(Name = "Descrição da Ideia")]
 		[Required(ErrorMessage = "Descreva a ideia")]
 		public string Descricao { get; set; }
-		public DateTime Data { get; set; }
+		public DateTime Data { get; set; } = DateTime.Now;
+
 		[Display(Name = "Data de Implantação")]
 		public DateTime? DataImplantacao { get; set; }
-		public string Status { get; set; }
+
+		public string Status { get; set; } = "Recebida";
         public string? Ganho { get; set; }
         public string? Investimento { get; set; }
 		public string? Feedback { get; set; }
