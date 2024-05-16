@@ -24,8 +24,8 @@ namespace Schwarz.Models
 		[Display(Name = "Nome da Equipe")]
         public string? NomeEquipe { get; set; }
 		
-		[Display(Name = "N° da OS")]
-		public int? OS { get; set; }
+		[Display(Name = "Ordem de Serviço")]
+		public string? OrdemServico { get; set; }
 
 		[Display(Name = "N° Solicitação de Análise")]
 		public int? SolicitacaoAnalise { get; set; }
