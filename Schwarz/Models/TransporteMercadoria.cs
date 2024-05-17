@@ -47,7 +47,6 @@ namespace Schwarz.Models
 
         [NotMapped]
         [DisplayName("Foto do Lacre")]
-        [Required(ErrorMessage = "A Foto do Lacre é obrigatório!")]
         public IFormFile fileFotoLacre { get; set; }
 
         [NotMapped]
