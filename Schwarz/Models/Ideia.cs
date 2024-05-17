@@ -18,6 +18,7 @@ namespace Schwarz.Models
 		[Display(Name = "Data de Implantação")]
 		public DateOnly? DataImplantacao { get; set; }
 
+		[Required(ErrorMessage = "Selecione a situação da ideia!")]
 		public string Status { get; set; } = "Recebida";
         public string? Ganho { get; set; }
         public string? Investimento { get; set; }
