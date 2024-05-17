@@ -29,8 +29,8 @@ function HideLoading() {
 $('.ordemServico').on('input', function () {
     var num = $(this).val().replace(/\D/g, '');
 
-    if (num.length > 11) {
-        num = num.substring(0, 11);
+    if (num.length > 9) {
+        num = num.substring(0, 9);
     }
 
     var formattedNum = '';
