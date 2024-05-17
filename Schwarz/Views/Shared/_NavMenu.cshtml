@@ -103,66 +103,6 @@
                 </div>
             </div>
         }
-        @if (User.IsInRole("PlanoControleAdmin") || User.IsInRole("Admin"))
-        {
-            <div class="relative">
-                <button id="toggleMenuPlanoControle" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPlanoControle',this.id)">
-                    Planos de Controle
-                </button>
-
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuPlanoControle">
-                    <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-action="Create" asp-controller="PlanoControle" class="block font-semibold text-gray-900">
-                                    Cadastrar Plano
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-action="Index" asp-controller="PlanoControle" class="block font-semibold text-gray-900">
-                                    Planos
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-action="Create" asp-controller="Cota" class="block font-semibold text-gray-900">
-                                    Criar Cota
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-action="Index" asp-controller="Cota" class="block font-semibold text-gray-900">
-                                    Cotas Cadastradas
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
         @if (User.IsInRole("Admin") || User.IsInRole("Metrologia") || User.IsInRole("Lider") || User.IsInRole("Especialista"))
         {
             <div class="relative">
@@ -302,7 +242,7 @@
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
                             </div>
                             <div class="flex-auto">
-                                <a asp-action="Create" asp-controller="CadastroPare" class="block font-semibold text-gray-900">
+                            <a asp-action="Create" asp-controller="Pare" class="block font-semibold text-gray-900">
                                     Cadastrar
                                     <span class="absolute inset-0"></span>
                                 </a>
@@ -314,7 +254,7 @@
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
                             <div class="flex-auto">
-                                <a asp-action="Index" asp-controller="CadastroPare" class="block font-semibold text-gray-900">
+                            <a asp-action="Index" asp-controller="Pare" class="block font-semibold text-gray-900">
                                     Cadastros
                                     <span class="absolute inset-0"></span>
                                 </a>
@@ -325,7 +265,7 @@
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
                             <div class="flex-auto">
-                                <a asp-action="Leaderboard" asp-controller="CadastroPare" class="block font-semibold text-gray-900">
+                            <a asp-action="Leaderboard" asp-controller="Pare" class="block font-semibold text-gray-900">
                                     Competidores
                                     <span class="absolute inset-0"></span>
                                 </a>

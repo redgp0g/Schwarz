@@ -36,12 +36,12 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Required (ErrorMessage = "A Senha Atual é obrigatória!")]
             [DataType(DataType.Password)]
             [Display(Name = "Senha Atual")]
             public string OldPassword { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "A Nova senha é obrigatória")]
             [StringLength(100, ErrorMessage = "A {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Nova Senha")]

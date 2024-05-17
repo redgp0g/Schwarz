@@ -10,48 +10,48 @@
             <h3 class="pt-4 text-2xl text-center">Formulário de Edição</h3>
             <form id="form" method="post" class="px-8">
                 <div class="mb-4">
-                    <label asp-for="Motivo" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
+                    <label asp-for="Motivo" class="block mb-2 text-sm font-bold flex items-center"></label>
                     <textarea asp-for="Motivo" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
                     @Html.ValidationMessageFor(x => x.Motivo)
                 </div>
 
                 <div class="mb-4">
-                    <label asp-for="Planejado" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <label asp-for="Planejado" class="block mb-2 text-sm font-bold"></label>
                     <input asp-for="Planejado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o ganho" />
                     @Html.ValidationMessageFor(x => x.Planejado)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Realizado" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <label asp-for="Realizado" class="block mb-2 text-sm font-bold"></label>
                     <input asp-for="Realizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Ganho realizado" />
                     @Html.ValidationMessageFor(x => x.Realizado)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Processo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <label asp-for="Processo" class="block mb-2 text-sm font-bold"></label>
                     <input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o processo" />
                     @Html.ValidationMessageFor(x => x.Processo)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="NomePeca" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <label asp-for="NomePeca" class="block mb-2 text-sm font-bold"></label>
                     <input asp-for="NomePeca" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o nome da peça" />
                     @Html.ValidationMessageFor(x => x.NomePeca)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold"></label>
                     <input asp-for="CodigoInterno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o código da peça" />
                     @Html.ValidationMessageFor(x => x.CodigoInterno)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Descricao" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
+                    <label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center"></label>
                     <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a lição aprendida" required></textarea>
                     @Html.ValidationMessageFor(x => x.Descricao)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Data" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
                     <input asp-for="Data" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o código da peça" />
                     @Html.ValidationMessageFor(x => x.Data)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Positivo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
+                    <label asp-for="Positivo" class="block mb-2 text-sm font-bold"></label>
                     <select asp-for="Positivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
                         <option value="@true">Positivo</option>
                         <option value="@false">Negativo</option>
@@ -59,7 +59,7 @@
                     @Html.ValidationMessageFor(x => x.Positivo)
                 </div>
                 <div class="mb-4">
-                    <label class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Anexos</label>
+                    <label class="block mb-2 text-sm font-bold flex items-center">Anexos</label>
                     @if (Model.LicaoAprendidaAnexos.Count() > 0)
                     {
                         @foreach (var anexo in Model.LicaoAprendidaAnexos)

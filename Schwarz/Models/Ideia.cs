@@ -13,10 +13,13 @@ namespace Schwarz.Models
 		[Display(Name = "Descrição da Ideia")]
 		[Required(ErrorMessage = "Descreva a ideia")]
 		public string Descricao { get; set; }
-		public DateTime Data { get; set; }
+		public DateTime Data { get; set; } = DateTime.Now;
+
 		[Display(Name = "Data de Implantação")]
-		public DateTime? DataImplantacao { get; set; }
-		public string Status { get; set; }
+		public DateOnly? DataImplantacao { get; set; }
+
+		[Required(ErrorMessage = "Selecione a situação da ideia!")]
+		public string Status { get; set; } = "Recebida";
         public string? Ganho { get; set; }
         public string? Investimento { get; set; }
 		public string? Feedback { get; set; }
@@ -24,8 +27,8 @@ namespace Schwarz.Models
 		[Display(Name = "Nome da Equipe")]
         public string? NomeEquipe { get; set; }
 		
-		[Display(Name = "N° da OS")]
-		public int? OS { get; set; }
+		[Display(Name = "Ordem de Serviço")]
+		public string? OrdemServico { get; set; }
 
 		[Display(Name = "N° Solicitação de Análise")]
 		public int? SolicitacaoAnalise { get; set; }
@@ -33,7 +36,7 @@ namespace Schwarz.Models
 		[Display(Name = "Ganho Realizado")]
 		public decimal? GanhoRealizado { get; set; }
 
-		public virtual ICollection <EquipeIdeia> EquipeIdeia { get; set; }
+		public virtual ICollection <IdeiaEquipe> IdeiaEquipe { get; set; }
         public virtual ICollection<IdeiaAnexo> IdeiaAnexo { get; set; }
 
         [NotMapped]

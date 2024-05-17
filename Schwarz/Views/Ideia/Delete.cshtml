@@ -10,7 +10,7 @@
 <div class="container container-xxl bd-gutter mt-3 my-md-4 bd-layout bg-white text-light">
 		<div class="p-3 row row-cols-2">
 			<div class="row m-0">
-				@foreach (var participante in Model.EquipeIdeia)
+				@foreach (var participante in Model.IdeiaEquipe)
 				{
 					<div class="col-6 border border-black">
 						<label class="control-label">Participante @numero</label>
@@ -50,8 +50,8 @@
 				<label>@Html.DisplayFor(model => model.NomeEquipe)</label>
 			</div>
 			<div class="col border border-black">
-				<label class="control-label">@Html.DisplayNameFor(model => model.OS)</label>
-				<label>@Html.DisplayFor(model => model.OS)</label>
+			<label class="control-label">@Html.DisplayNameFor(model => model.OrdemServico)</label>
+				<label>@Html.DisplayFor(model => model.OrdemServico)</label>
 			</div>
 			<div class="col border border-black">
 				<label class="control-label">@Html.DisplayNameFor(model => model.SolicitacaoAnalise)</label>

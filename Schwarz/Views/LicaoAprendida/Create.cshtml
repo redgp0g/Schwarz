@@ -17,43 +17,43 @@
                 <h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
                 <form asp-action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
                     <div class="mb-4">
-                        <label asp-for="Processo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
-                        <input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o processo" />
+                        <label asp-for="Processo" class="block mb-2 text-sm font-bold"></label>
+                        <input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Processo" />
                         @Html.ValidationMessageFor(x => x.Processo)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="NomePeca" class="block mb-2 text-sm font-bold text-gray-700l"></label>
-                        <input asp-for="NomePeca" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o nome da peça" />
-                        @Html.ValidationMessageFor(x => x.NomePeca)
-                    </div>
-                    <div class="mb-4">
-                        <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold text-gray-700l"></label>
-                        <input asp-for="CodigoInterno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o código da peça" />
+                        <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold"></label>
+                        <input asp-for="CodigoInterno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o Código da Peça" />
                         @Html.ValidationMessageFor(x => x.CodigoInterno)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="Planejado" class="block mb-2 text-sm font-bold text-gray-700l flex items-center"></label>
-                        <input asp-for="Planejado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o evento" />
+                        <label asp-for="NomePeca" class="block mb-2 text-sm font-bold"></label>
+                        <input asp-for="NomePeca" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o Nome da Peça" />
+                        @Html.ValidationMessageFor(x => x.NomePeca)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Planejado" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <input asp-for="Planejado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Planejado" />
                         @Html.ValidationMessageFor(x => x.Planejado)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="Realizado" class="block mb-2 text-sm font-bold text-gray-700l"></label>
-                        <input asp-for="Realizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o motivo" />
+                        <label asp-for="Realizado" class="block mb-2 text-sm font-bold">Realizado (O que aconteceu?)</label>
+                        <input asp-for="Realizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Realizado" />
                         @Html.ValidationMessageFor(x => x.Realizado)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="Motivo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
-                        <input asp-for="Motivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o nome da peça" />
+                        <label asp-for="Motivo" class="block mb-2 text-sm font-bold"></label>
+                        <input asp-for="Motivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Motivo" />
                         @Html.ValidationMessageFor(x => x.Motivo)
                     </div>                    
                     <div class="mb-4">
-                        <label asp-for="Descricao" class="block mb-2 text-sm font-bold text-gray-700l flex items-center">Descrição da Lição</label>
-                        <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a lição aprendida" required></textarea>
+                        <label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center">Descrição da Lição</label>
+                        <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a Lição Aprendida"></textarea>
                         @Html.ValidationMessageFor(x => x.Descricao)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="Positivo" class="block mb-2 text-sm font-bold text-gray-700l"></label>
-                        <select asp-for="Positivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
+                        <label asp-for="Positivo" class="block mb-2 text-sm font-bold"></label>
+                        <select asp-for="Positivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
                             <option value="" selected disabled>Selecione</option>
                             <option value="@true">Positivo</option>
                             <option value="@false">Negativo</option>
