@@ -18,7 +18,40 @@
                 <form asp-action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
                     <div class="mb-4">
                         <label asp-for="Processo" class="block mb-2 text-sm font-bold"></label>
-                        <input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Processo" />
+                        <select asp-for="Processo" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                            <option value="Comercial">Comercial</option>
+                            <option value="Usinagem pistao">Usinagem pistao</option>
+                            <option value="Solda Pistões">Solda Pistões</option>
+                            <option value="Forja Hollow">Forja Hollow</option>
+                            <option value="Tampinha Hollow">Tampinha Hollow</option>
+                            <option value="Corte">Corte</option>
+                            <option value="Swash Plate">Swash Plate</option>
+                            <option value="Forja Conector">Forja Conector</option>
+                            <option value="Celulas - Usinagem Conectores">Celulas - Usinagem Conectores</option>
+                            <option value="BOSCH">BOSCH</option>
+                            <option value="SCHAEFFLER">SCHAEFFLER</option>
+                            <option value="Torno">Torno</option>
+                            <option value="Rebarbação">Rebarbação</option>
+                            <option value="Jateadora">Jateadora</option>
+                            <option value="Forjado a Frio">Forjado a Frio</option>
+                            <option value="ECM">ECM</option>
+                            <option value="TAMBOREADOR">TAMBOREADOR</option>
+                            <option value="BOSCH P">BOSCH P</option>
+                            <option value="INSPEÇÃO BOSCH">INSPEÇÃO BOSCH</option>
+                            <option value="BOSCH S">BOSCH S</option>
+                            <option value="Forjaria2">Forjaria2</option>
+                            <option value="INSPEÇÃO E RETRABALHO TAURUS">INSPEÇÃO E RETRABALHO TAURUS</option>
+                            <option value="Engenharia de Processos">Engenharia de Processos</option>
+                            <option value="Engenharia de Desenvolvimento">Engenharia de Desenvolvimento</option>
+                            <option value="Qualidade">Qualidade</option>
+                            <option value="Logistica PCP">Logistica PCP</option>
+                            <option value="Administracao da Producao">Administracao da Producao</option>
+                            <option value="Ferramentaria">Ferramentaria</option>
+                            <option value="Manutenção">Manutenção</option>
+                            <option value="Preset">Preset</option>
+                            <option value="Segurança Trabalho">Segurança Trabalho</option>
+                            <option value="Geral Produtivo">Geral Produtivo</option>
+                        </select>
                         @Html.ValidationMessageFor(x => x.Processo)
                     </div>
                     <div class="mb-4">
