@@ -54,8 +54,14 @@
                         @Html.ValidationMessageFor(x => x.IDCliente)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="fileFotoLacre" class="block mb-2 text-sm font-bold flex items-center"></label>
-                        <input asp-for="fileFotoLacre" accept="image/*" />
+                        <label asp-for="filesFotoNotaFiscal" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <input asp-for="filesFotoNotaFiscal" accept="image/*" />
+                        @Html.ValidationMessageFor(x => x.filesFotoNotaFiscal)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="fileFotoRomaneio" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <input asp-for="fileFotoRomaneio" accept="image/*" />
+                        @Html.ValidationMessageFor(x => x.fileFotoRomaneio)
                     </div>
                     <div class="mb-4">
                         <label asp-for="fileFotoPlaca" class="block mb-2 text-sm font-bold flex items-center"></label>
@@ -63,18 +69,18 @@
                         @Html.ValidationMessageFor(x => x.fileFotoPlaca)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="filesFotosAntes" class="block mb-2 text-sm font-bold flex items-center"></label>
-                        <input asp-for="filesFotosAntes" accept="image/*" />
-                        <input asp-for="filesFotosAntes" accept="image/*" />
-                        <input asp-for="filesFotosAntes" accept="image/*" />
-                        @Html.ValidationMessageFor(x => x.filesFotosAntes)
+                        <label asp-for="filesFotoAntes" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <input asp-for="filesFotoAntes" accept="image/*" />
+                        @Html.ValidationMessageFor(x => x.filesFotoAntes)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="filesFotosDepois" class="block mb-2 text-sm font-bold flex items-center"></label>
-                        <input asp-for="filesFotosDepois" accept="image/*" />
-                        <input asp-for="filesFotosDepois" accept="image/*" />
-                        <input asp-for="filesFotosDepois" accept="image/*" />
-                        @Html.ValidationMessageFor(x => x.filesFotosDepois)
+                        <label asp-for="filesFotoDepois" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <input asp-for="filesFotoDepois" accept="image/*" />
+                        @Html.ValidationMessageFor(x => x.filesFotoDepois)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="fileFotoLacre" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <input asp-for="fileFotoLacre" accept="image/*" />
                     </div>
                     <div class="mb-6 text-center">
                         <input type="submit" value="Registrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
@@ -84,39 +90,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    function verificarFotos() {
-        var fotosAntes = document.querySelectorAll('input[name="filesFotosAntes"]');
-        var fotosDepois = document.querySelectorAll('input[name="filesFotosDepois"]');
-
-        var todasFotosAntes = Array.from(fotosAntes).every(function (input) {
-            return input.files.length > 0;
-        });
-
-        var todasFotosDepois = Array.from(fotosDepois).every(function (input) {
-            return input.files.length > 0;
-        });
-
-        if (!todasFotosAntes) {
-            alert("Por favor, insira 3 fotos antes do carregamento.");
-            return false;
-        }
-
-        if (!todasFotosDepois) {
-            alert("Por favor, insira 3 fotos depois do carregamento.");
-            return false;
-        }
-
-        return true;
-    }
-
-    document.getElementById('formTransporteMercadoria').addEventListener('submit', function (event) {
-        if (!verificarFotos()) {
-            event.preventDefault();
-        }
-    });
-</script>
 
 @section Scripts {
     @{
