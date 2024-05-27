@@ -66,10 +66,13 @@
                             @Html.DisplayFor(modelItem => item.Data)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.Motivo)
+                            @Html.DisplayFor(modelItem => item.Processo)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.Processo)
+                            @Html.DisplayFor(modelItem => item.CodigoInterno)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.NomePeca)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Planejado)
@@ -78,13 +81,10 @@
                             @Html.DisplayFor(modelItem => item.Realizado)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.Motivo)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Descricao)
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.NomePeca)
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.CodigoInterno)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @if (item.Positivo)
