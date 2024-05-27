@@ -32,9 +32,8 @@ namespace Schwarz.Models
         public string NomePeca { get; set; }
 
         [Display(Name = "Código Interno")]
-        [Required(ErrorMessage = "O Codigo Interno é obrigatório!")]
-        [Range(100000000,999999999,ErrorMessage = "O Código interno está errado!")]
-        public int CodigoInterno { get; set; }
+        [Required(ErrorMessage = "O Código Interno é obrigatório!")]
+        public string CodigoInterno { get; set; }
 
         [Display(Name = "Lição Aprendida")]
         [Required(ErrorMessage = "A Lição Aprendida é obrigatória!")]
