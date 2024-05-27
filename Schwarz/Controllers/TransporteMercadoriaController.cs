@@ -13,7 +13,7 @@ using Schwarz.Models;
 
 namespace Schwarz.Controllers
 {
-    [Authorize(Roles ="Admin, TransporteMercadoria")]
+    [Authorize(Roles = "Admin, TransporteMercadoria")]
     public class TransporteMercadoriaController : Controller
     {
         private readonly SchwarzContext _context;
@@ -67,55 +67,72 @@ namespace Schwarz.Controllers
             {
                 _context.Add(transporteMercadoria);
                 _context.SaveChanges();
-                if (transporteMercadoria.filesFotosDepois != null)
+
+                for (int i = 0; i < transporteMercadoria.filesFotoDepois.Count; i++)
                 {
-                    for (int i = 0; i < transporteMercadoria.filesFotosDepois.Count; i++)
+                    using (var memoryStream = new MemoryStream())
                     {
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            transporteMercadoria.filesFotosDepois[i].CopyTo(memoryStream);
-                            byte[] fileBytes = memoryStream.ToArray();
+                        transporteMercadoria.filesFotoDepois[i].CopyTo(memoryStream);
+                        byte[] fileBytes = memoryStream.ToArray();
 
-                            string fileName = "Foto Depois do Carregamento " + (i + 1);
-                            string fileMime = transporteMercadoria.filesFotosDepois[i].ContentType;
+                        string fileName = "Foto Depois do Carregamento " + (i + 1);
+                        string fileMime = transporteMercadoria.filesFotoDepois[i].ContentType;
 
-                            TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
-                            _context.Add(transporteMercadoriaFoto);
-                            _context.SaveChanges();
-                        }
+                        TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
+                        _context.Add(transporteMercadoriaFoto);
+                        _context.SaveChanges();
                     }
                 }
 
-                if (transporteMercadoria.filesFotosAntes!= null)
+
+                for (int i = 0; i < transporteMercadoria.filesFotoAntes.Count; i++)
                 {
-                    for (int i = 0; i < transporteMercadoria.filesFotosAntes.Count; i++)
+                    using (var memoryStream = new MemoryStream())
                     {
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            transporteMercadoria.filesFotosAntes[i].CopyTo(memoryStream);
-                            byte[] fileBytes = memoryStream.ToArray();
+                        transporteMercadoria.filesFotoAntes[i].CopyTo(memoryStream);
+                        byte[] fileBytes = memoryStream.ToArray();
 
-                            string fileName = "Foto Antes do Carregamento " + (i + 1);
-                            string fileMime = transporteMercadoria.filesFotosAntes[i].ContentType;
+                        string fileName = "Foto Antes do Carregamento " + (i + 1);
+                        string fileMime = transporteMercadoria.filesFotoAntes[i].ContentType;
 
-                            TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
-                            _context.Add(transporteMercadoriaFoto);
-                            _context.SaveChanges();
-                        }
+                        TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
+                        _context.Add(transporteMercadoriaFoto);
+                        _context.SaveChanges();
                     }
                 }
 
-                using (var memoryStream = new MemoryStream())
+
+                for (int i = 0; i < transporteMercadoria.filesFotoNotaFiscal.Count; i++)
                 {
-                    transporteMercadoria.fileFotoLacre.CopyTo(memoryStream);
-                    byte[] fileBytes = memoryStream.ToArray();
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        transporteMercadoria.filesFotoNotaFiscal[i].CopyTo(memoryStream);
+                        byte[] fileBytes = memoryStream.ToArray();
 
-                    string fileName = "Foto do Lacre";
-                    string fileMime = transporteMercadoria.fileFotoLacre.ContentType;
+                        string fileName = "Foto da Nota Fiscal " + (i + 1);
+                        string fileMime = transporteMercadoria.filesFotoAntes[i].ContentType;
 
-                    TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
-                    _context.Add(transporteMercadoriaFoto);
-                    _context.SaveChanges();
+                        TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
+                        _context.Add(transporteMercadoriaFoto);
+                        _context.SaveChanges();
+                    }
+                }
+
+
+                if (transporteMercadoria.fileFotoLacre != null)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        transporteMercadoria.fileFotoLacre.CopyTo(memoryStream);
+                        byte[] fileBytes = memoryStream.ToArray();
+
+                        string fileName = "Foto do Lacre";
+                        string fileMime = transporteMercadoria.fileFotoLacre.ContentType;
+
+                        TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
+                        _context.Add(transporteMercadoriaFoto);
+                        _context.SaveChanges();
+                    }
                 }
 
                 using (var memoryStream = new MemoryStream())
@@ -125,6 +142,19 @@ namespace Schwarz.Controllers
 
                     string fileName = "Foto da Placa";
                     string fileMime = transporteMercadoria.fileFotoPlaca.ContentType;
+
+                    TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
+                    _context.Add(transporteMercadoriaFoto);
+                    _context.SaveChanges();
+                }
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    transporteMercadoria.fileFotoRomaneio.CopyTo(memoryStream);
+                    byte[] fileBytes = memoryStream.ToArray();
+
+                    string fileName = "Foto do Romaneio";
+                    string fileMime = transporteMercadoria.fileFotoRomaneio.ContentType;
 
                     TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
                     _context.Add(transporteMercadoriaFoto);
@@ -142,7 +172,6 @@ namespace Schwarz.Controllers
             }
         }
 
-        // GET: TransporteMercadoria/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

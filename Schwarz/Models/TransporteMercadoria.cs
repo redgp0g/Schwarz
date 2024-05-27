@@ -26,7 +26,7 @@ namespace Schwarz.Models
 
         [DisplayName("Nota Fiscal")]
         [Required(ErrorMessage = "A Nota Fiscal é obrigatória!")]
-        public int NotaFiscal { get; set; }
+        public string NotaFiscal { get; set; }
 
         [Required(ErrorMessage = "O Volume é obrigatório!")]
         public int Volume { get; set; }
@@ -47,17 +47,27 @@ namespace Schwarz.Models
 
         [NotMapped]
         [DisplayName("Foto do Lacre")]
-        public IFormFile fileFotoLacre { get; set; }
+        public IFormFile? fileFotoLacre { get; set; }
 
         [NotMapped]
         [DisplayName("Fotos antes do carregamento")]
-        [Required(ErrorMessage = "As Fotos são obrigatórias!")]
-        public List<IFormFile> filesFotosAntes { get; set; }
+        [Required(ErrorMessage = "A Foto é obrigatória!")]
+        public List<IFormFile> filesFotoAntes { get; set; }
 
         [NotMapped]
         [DisplayName("Fotos depois do carregamento")]
-        [Required(ErrorMessage = "As Fotos são obrigatórias!")]
-        public List<IFormFile> filesFotosDepois { get; set; }
+        [Required(ErrorMessage = "A Foto é obrigatória!")]
+        public List<IFormFile> filesFotoDepois { get; set; }
+        
+        [NotMapped]
+        [DisplayName("Foto da Nota Fiscal")]
+        [Required(ErrorMessage = "A Foto da Nota Fiscal é obrigatória!")]
+        public List<IFormFile> filesFotoNotaFiscal { get; set; }
+        
+        [NotMapped]
+        [DisplayName("Foto do Romaneio")]
+        [Required(ErrorMessage = "A Foto do Romaneio é obrigatória!")]
+        public IFormFile fileFotoRomaneio{ get; set; }
 
         public virtual ICollection<TransporteMercadoriaFoto> Fotos { get; set; }
 
