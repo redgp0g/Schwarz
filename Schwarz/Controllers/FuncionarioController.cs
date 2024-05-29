@@ -22,7 +22,7 @@ namespace Schwarz.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.Funcionario.Select(f => new FuncionarioViewModel
+            var schwarzContext = _context.Funcionario.Select(f => new Funcionario
             {
                 Matricula = f.Matricula,
                 Nome = f.Nome,
