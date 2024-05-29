@@ -13,7 +13,7 @@ namespace Schwarz.Models
 		[Display(Name = "Funcionário")]
 		[Required(ErrorMessage = "Selecione o Funcionário!")]
 		public int IDFuncionario { get; set; }
-		public virtual Funcionario Funcionario { get; set; }
+		public virtual Funcionario Funcionario { get; set; } = new Funcionario();
 
 		[ForeignKey("Falha")]
 		[Display(Name = "Falha")]
@@ -27,12 +27,13 @@ namespace Schwarz.Models
 		public DateTime Data { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Selecione o Setor onde ocorreu!")]
-		public string Setor { get; set; }
+		public string Setor { get; set; } = string.Empty;
 
 		[Required(ErrorMessage = "O Código é obrigatório!")]
 		[Display(Name = "Código do Item")]
 		[MinLength(9, ErrorMessage = "O código deve ter 9 digítos!")]
 		public string CodigoItem { get; set; }
+		public string CodigoItem { get; set; } = string.Empty;
 
 		[Required(ErrorMessage = "A Quantidade é obrigatória!")]
 		[Display(Name = "Quantidade Bloqueada")]

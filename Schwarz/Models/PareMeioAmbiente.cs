@@ -7,20 +7,21 @@ namespace Schwarz.Models
 	{
         [Key]
         public int IDPareMeioAmbiente{ get; set; }
+
         [ForeignKey("Funcionario")]
         [Display(Name = "Funcionário")]
         [Required(ErrorMessage = "O Funcionário é obrigatório!")]
         public int IDFuncionario { get; set; }
-        public virtual Funcionario? Funcionario { get; set; }
+        public virtual Funcionario Funcionario { get; set; } = new Funcionario();
 
         [Required(ErrorMessage = "A Data é obrigatória!")]
         public DateTime Data { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "O Local é obrigatório!")]
-        public string Local { get; set; }
+        public string Local { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "O Desvio é obrigatório!")]
-        public string Desvio { get; set; }
+        public string Desvio { get; set; } = string.Empty;
 
         [Display(Name = "Pontuação")]
         public int? Pontuacao { get; set; }

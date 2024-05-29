@@ -11,12 +11,12 @@ namespace Schwarz.Models
 
 		[ForeignKey("TransporteMercadoria")]
         public int IDTransporteMercadoria { get; set; }
-        public virtual TransporteMercadoria TransporteMercadoria { get; set; }
-        public string Nome { get; set; }
+        public virtual TransporteMercadoria TransporteMercadoria { get; set; } = new TransporteMercadoria();
+        public string Nome { get; set; } = string.Empty;
 
         [Column(TypeName = "varbinary(max)")]
-        public byte[] Conteudo{ get; set; }
-        public string TipoMIME { get; set; }
+        public byte[] Conteudo{ get; set; } = new byte[0];
+        public string TipoMIME { get; set; } = string.Empty;
 
         private readonly SchwarzContext _context;
 	

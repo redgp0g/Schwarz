@@ -12,7 +12,7 @@ namespace Schwarz.Models
         [Required]
         [ForeignKey("RegistroCotas")]
         public int IDRegistroCotas { get; set; }
-        public virtual RegistroCotas? RegistroCotas { get; set; }
+        public virtual RegistroCotas RegistroCotas { get; set; } = new RegistroCotas();
         public string? AcaoContencao { get; set; }
         public DateTime? PrazoAcaoContencao { get; set; }
         public string? AcaoCorretiva { get; set; }
@@ -21,7 +21,7 @@ namespace Schwarz.Models
         [Required]
         [ForeignKey("FuncionarioLider")]
         public int IDFuncionarioLider { get; set; }
-        public virtual Funcionario? FuncionarioLider { get; set; }
+        public virtual Funcionario FuncionarioLider { get; set; } = new Funcionario();
 
         [ForeignKey("FuncionarioEspecialista")]
         public int? IDFuncionarioEspecialista { get; set; }

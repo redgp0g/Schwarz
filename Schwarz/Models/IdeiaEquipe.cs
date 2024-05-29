@@ -11,13 +11,14 @@ namespace Schwarz.Models
 
 		[Key]
 		public int IDIdeiaEquipe { get; set; }
+
 		[ForeignKey("Funcionario")]
 		public int IDFuncionario { get; set; }
-		public virtual Funcionario? Funcionario{ get; set; }
+		public virtual Funcionario Funcionario { get; set; } = new Funcionario();
 
 		[ForeignKey("Ideia")]
 		public int IDIdeia { get; set; }
-		public virtual Ideia Ideia { get; set; }
+		public virtual Ideia Ideia { get; set; } = new Ideia();
 		public decimal? Reconhecimento { get; set; }
 
         private readonly SchwarzContext _context;

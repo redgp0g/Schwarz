@@ -11,10 +11,10 @@ namespace Schwarz.Models
 		[Required]
 		[ForeignKey("PareSeguranca")]
         public int IDPareSeguranca { get; set; }
-        public virtual PareSeguranca? PareSeguranca { get; set; }
-        public string Nome { get; set; }
-        public byte[] Conteudo { get; set; }
-        public string TipoMIME { get; set; }
+        public virtual PareSeguranca PareSeguranca { get; set; } = new PareSeguranca();
+		public string Nome { get; set; } = string.Empty;
+		public byte[] Conteudo { get; set; } = new byte[0];
+        public string TipoMIME { get; set; } = string.Empty;
 
 		public PareSegurancaFoto()
 		{

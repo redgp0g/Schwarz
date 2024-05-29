@@ -11,16 +11,16 @@ namespace Schwarz.Models
         [Display(Name = "Funcionário")]
         [Required(ErrorMessage = "O Funcionário é obrigatório!")]
         public int IDFuncionario { get; set; }
-        public virtual Funcionario? Funcionario { get; set; }
+        public virtual Funcionario Funcionario { get; set; } = new Funcionario();
 
         [Required(ErrorMessage = "A Data é obrigatória!")]
         public DateTime Data { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "O Local é obrigatório!")]
-        public string Local { get; set; }
+        public string Local { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "O Desvio é obrigatório!")]
-        public string Desvio { get; set; }
+        public string Desvio { get; set; } = string.Empty;
 
         [Display(Name = "Pontuação")]
         public int? Pontuacao { get; set; }
@@ -28,7 +28,7 @@ namespace Schwarz.Models
 
         [Display(Name = "Ordem de Serviço")]
         [Required(ErrorMessage = "A Ordem de Serviço é obrigatória!")]
-        public string OrdemServico { get; set; }
+        public string OrdemServico { get; set; } = string.Empty;
 
         [Display(Name = "Aprovação do Líder")]
         public bool? AprovacaoLider { get; set; }
@@ -44,8 +44,8 @@ namespace Schwarz.Models
         [Display(Name = "Observações do Segurança")]
         public string? ObservacoesSeguranca { get; set; }
         public int? ClassificacaoGUT { get; set; }
-        public virtual ICollection<PareSegurancaFoto>? PareSegurancaFotos { get; set; }
-        
+        public virtual ICollection<PareSegurancaFoto> PareSegurancaFotos { get; set; } = new List<PareSegurancaFoto>();
+
         [NotMapped]
         [Required(ErrorMessage = "É obrigatório pelo menos uma Foto!")]
         [Display(Name = "Fotos do Local")]
