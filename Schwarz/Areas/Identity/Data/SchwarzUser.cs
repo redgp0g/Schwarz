@@ -15,8 +15,8 @@ namespace Schwarz.Areas.Identity.Data;
 public class SchwarzUser : IdentityUser
 {
     [ForeignKey("Funcionario")]
-    public int IDFuncionario{ get; set; }  
-    public virtual Funcionario? Funcionario { get; set; }
+    public int IDFuncionario{ get; set; }
+    public virtual Funcionario Funcionario { get; set; } = new Funcionario();
 
 }
 
