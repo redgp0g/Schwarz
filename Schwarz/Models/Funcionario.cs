@@ -30,7 +30,6 @@ namespace Schwarz.Models
         public DateTime? DataAdmissao { get; set; }
         public int? NumeroCentroCusto { get; set; }
         public virtual SchwarzUser? User { get; set; }
-        private readonly SchwarzContext _context;
         public virtual ICollection<IdeiaEquipe>? IdeiaEquipe { get; set; }
 
 
@@ -63,15 +62,6 @@ namespace Schwarz.Models
 
                 return nomes[0] + " " + nomes[nomes.Length - 1];
             }
-        }
-
-        public Funcionario()
-        {
-
-        }
-        public Funcionario(SchwarzContext contexto)
-        {
-            _context = contexto;
         }
     }
 

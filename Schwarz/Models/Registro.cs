@@ -24,10 +24,5 @@ namespace Schwarz.Models
         public string? AcaoImediata { get; set; }
         public string? Responsavel { get; set; }
 
-        public Registro()
-        {
-
-        }
-
     }
 }

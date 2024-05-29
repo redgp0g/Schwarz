@@ -18,13 +18,6 @@ namespace Schwarz.Models
         public byte[] Conteudo{ get; set; } = new byte[0];
         public string TipoMIME { get; set; } = string.Empty;
 
-        private readonly SchwarzContext _context;
-	
-        public LicaoAprendidaAnexo()
-		{
-
-		}
-
         public LicaoAprendidaAnexo(int iDLicaoAprendida, string nome, byte[] conteudo, string tipoMIME)
         {
             IDLicaoAprendida = iDLicaoAprendida;

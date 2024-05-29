@@ -16,10 +16,6 @@ namespace Schwarz.Models
 		public byte[] Conteudo { get; set; } = new byte[0];
         public string TipoMIME { get; set; } = string.Empty;
 
-		public PareSegurancaFoto()
-		{
-		}
-
 		public PareSegurancaFoto(int iDPareSeguranca, string nome, byte[] conteudo, string tipoMIME)
 		{
 			IDPareSeguranca = iDPareSeguranca;

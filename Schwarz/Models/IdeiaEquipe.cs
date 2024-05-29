@@ -20,16 +20,6 @@ namespace Schwarz.Models
 		public int IDIdeia { get; set; }
 		public virtual Ideia Ideia { get; set; } = new Ideia();
 		public decimal? Reconhecimento { get; set; }
-
-        private readonly SchwarzContext _context;
-        public IdeiaEquipe()
-		{
-
-		}
-		public IdeiaEquipe(SchwarzContext contexto)
-		{
-			_context = contexto;
-		}
 		public IdeiaEquipe(int iDFuncionario, int iDIdeia)
 		{
 			IDFuncionario = iDFuncionario;

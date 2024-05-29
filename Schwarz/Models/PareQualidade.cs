@@ -55,14 +55,5 @@ namespace Schwarz.Models
 
 		[NotMapped]
 		public string DataFormatada => Data.ToString("dd/MM/yyyy");
-
-		private readonly SchwarzContext _context;
-		public PareQualidade(SchwarzContext contexto)
-		{
-			_context = contexto;
-		}
-		public PareQualidade()
-		{
-		}
 	}
 }

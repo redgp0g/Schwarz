@@ -46,17 +46,5 @@ namespace Schwarz.Models
         public IEnumerable<string> NomesEquipe { get; set; } = Enumerable.Empty<string>();
         [NotMapped]
         public string DataFormatada => Data.ToString("dd/MM/yyyy");
-
-
-        private readonly SchwarzContext _context;
-
-		public Ideia()
-		{
-
-		}
-		public Ideia(SchwarzContext contexto)
-		{
-			_context = contexto;
-		}
 	}
 }

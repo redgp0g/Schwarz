@@ -63,17 +63,12 @@ namespace Schwarz.Models
         [DisplayName("Foto da Nota Fiscal")]
         [Required(ErrorMessage = "A Foto da Nota Fiscal é obrigatória!")]
         public List<IFormFile> filesFotoNotaFiscal { get; set; } = new List<IFormFile>();
-        
+
         [NotMapped]
         [DisplayName("Foto do Romaneio")]
         [Required(ErrorMessage = "A Foto do Romaneio é obrigatória!")]
         public IFormFile fileFotoRomaneio { get; set; } = null!;
 
         public virtual ICollection<TransporteMercadoriaFoto> Fotos { get; set; } = new List<TransporteMercadoriaFoto>();
-
-        public TransporteMercadoria()
-        {
-
-        }
     }
 }

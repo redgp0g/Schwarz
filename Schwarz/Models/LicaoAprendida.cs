@@ -46,7 +46,5 @@ namespace Schwarz.Models
 
         [NotMapped]
         public List<IFormFile>? Arquivos { get; set; }
-
-        public LicaoAprendida() { }
     }
 }

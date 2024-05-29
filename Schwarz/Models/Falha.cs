@@ -19,17 +19,5 @@ namespace Schwarz.Models
         public string? Setor1 { get; set; }
         public string? Setor2 { get; set; }
         public string? Setor3 { get; set; }
-
-        private readonly SchwarzContext _context;
-
-        public Falha()
-		{
-
-		}
-		public Falha(SchwarzContext contexto)
-		{
-			_context = contexto;
-		}
-
 	}
 }
