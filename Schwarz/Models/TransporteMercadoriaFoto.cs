@@ -11,7 +11,7 @@ namespace Schwarz.Models
 
 		[ForeignKey("TransporteMercadoria")]
         public int IDTransporteMercadoria { get; set; }
-        public virtual TransporteMercadoria TransporteMercadoria { get; set; } = new TransporteMercadoria();
+        public virtual TransporteMercadoria? TransporteMercadoria { get; set; }
         public string Nome { get; set; } = string.Empty;
 
         [Column(TypeName = "varbinary(max)")]

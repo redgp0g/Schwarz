@@ -36,14 +36,14 @@ namespace Schwarz.Models
 		[Display(Name = "Ganho Realizado")]
 		public decimal? GanhoRealizado { get; set; }
 
-		public virtual ICollection <IdeiaEquipe> IdeiaEquipe { get; set; } = new List<IdeiaEquipe>();
-		public virtual ICollection<IdeiaAnexo> IdeiaAnexo { get; set; } = new List<IdeiaAnexo>();
+		public virtual ICollection<IdeiaEquipe>? IdeiaEquipe { get; set; }
+		public virtual ICollection<IdeiaAnexo>? IdeiaAnexo { get; set; }
 
         [NotMapped]
         [Required(ErrorMessage = "Selecione pelo menos um funcionário")]
 		public List<int>? Participantesids { get; set; }
         [NotMapped]
-        public IEnumerable<string> NomesEquipe { get; set; } = Enumerable.Empty<string>();
+        public IEnumerable<string>? NomesEquipe { get; set; }
         [NotMapped]
         public string DataFormatada => Data.ToString("dd/MM/yyyy");
 	}

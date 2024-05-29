@@ -11,7 +11,7 @@ namespace Schwarz.Models
 
 		[ForeignKey("LicaoAprendida")]
         public int IDLicaoAprendida{ get; set; }
-        public virtual LicaoAprendida LicaoAprendida { get; set; } = new LicaoAprendida();
+        public virtual LicaoAprendida? LicaoAprendida { get; set; }
         public string Nome { get; set; } = string.Empty;
 
         [Column(TypeName = "varbinary(max)")]

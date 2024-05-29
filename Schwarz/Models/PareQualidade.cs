@@ -13,7 +13,7 @@ namespace Schwarz.Models
 		[Display(Name = "Funcionário")]
 		[Required(ErrorMessage = "Selecione o Funcionário!")]
 		public int IDFuncionario { get; set; }
-		public virtual Funcionario Funcionario { get; set; } = new Funcionario();
+		public virtual Funcionario? Funcionario { get; set; }
 
 		[ForeignKey("Falha")]
 		[Display(Name = "Falha")]

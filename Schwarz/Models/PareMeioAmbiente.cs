@@ -12,7 +12,7 @@ namespace Schwarz.Models
         [Display(Name = "Funcionário")]
         [Required(ErrorMessage = "O Funcionário é obrigatório!")]
         public int IDFuncionario { get; set; }
-        public virtual Funcionario Funcionario { get; set; } = new Funcionario();
+        public virtual Funcionario? Funcionario { get; set; }
 
         [Required(ErrorMessage = "A Data é obrigatória!")]
         public DateTime Data { get; set; } = DateTime.Now;

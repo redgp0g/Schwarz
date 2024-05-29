@@ -16,12 +16,12 @@ namespace Schwarz.Models
         [DisplayName("Cliente")]
         [Required(ErrorMessage = "O Cliente é obrigatório!")]
         public int IDCliente { get; set; }
-        public virtual Cliente Cliente { get; set; } = new Cliente();
+        public virtual Cliente? Cliente { get; set; }
 
         [Required]
         [ForeignKey("Funcionario")]
         public int IDFuncionario { get; set; }
-        public virtual Funcionario Funcionario { get; set; } = new Funcionario();
+        public virtual Funcionario? Funcionario { get; set; }
         public DateTime Data { get; set; } = DateTime.Now;
 
         [DisplayName("Nota Fiscal")]
@@ -52,23 +52,23 @@ namespace Schwarz.Models
         [NotMapped]
         [DisplayName("Fotos antes do carregamento")]
         [Required(ErrorMessage = "A Foto é obrigatória!")]
-        public List<IFormFile> filesFotoAntes { get; set; } = new List<IFormFile>();
+        public List<IFormFile>? filesFotoAntes { get; set; }
 
         [NotMapped]
         [DisplayName("Fotos depois do carregamento")]
         [Required(ErrorMessage = "A Foto é obrigatória!")]
-        public List<IFormFile> filesFotoDepois { get; set; } = new List<IFormFile>();
+        public List<IFormFile>? filesFotoDepois { get; set; }
         
         [NotMapped]
         [DisplayName("Foto da Nota Fiscal")]
         [Required(ErrorMessage = "A Foto da Nota Fiscal é obrigatória!")]
-        public List<IFormFile> filesFotoNotaFiscal { get; set; } = new List<IFormFile>();
+        public List<IFormFile>? filesFotoNotaFiscal { get; set; }
 
         [NotMapped]
         [DisplayName("Foto do Romaneio")]
         [Required(ErrorMessage = "A Foto do Romaneio é obrigatória!")]
         public IFormFile fileFotoRomaneio { get; set; } = null!;
 
-        public virtual ICollection<TransporteMercadoriaFoto> Fotos { get; set; } = new List<TransporteMercadoriaFoto>();
+        public virtual ICollection<TransporteMercadoriaFoto>? Fotos { get; set; }
     }
 }

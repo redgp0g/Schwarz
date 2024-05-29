@@ -16,6 +16,6 @@ namespace Schwarz.Models
 
         [ForeignKey("Registro")]
         public int CodigoRegistro { get; set; }
-        public virtual Registro Registro { get; set; } = new Registro();
+        public virtual Registro? Registro { get; set; }
     }
 }

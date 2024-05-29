@@ -15,7 +15,7 @@ namespace Schwarz.Models
 
 		[ForeignKey("Ideia")]
         public int IDIdeia { get; set; }
-        public virtual Ideia Ideia { get; set; } = new Ideia();
+        public virtual Ideia? Ideia { get; set; }
 	
         public IdeiaAnexo(string nome,byte[] anexo, string tipoMIME, int iDIdeia)
         {

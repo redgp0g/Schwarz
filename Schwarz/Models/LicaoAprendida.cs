@@ -20,7 +20,7 @@ namespace Schwarz.Models
 
         [ForeignKey("Funcionario")]
         public int IDFuncionario { get; set; }
-        public virtual Funcionario Funcionario { get; set; } = new Funcionario();
+        public virtual Funcionario? Funcionario { get; set; }
 
         public DateTime Data { get; set; }
 
