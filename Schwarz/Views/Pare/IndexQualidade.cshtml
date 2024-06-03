@@ -1,0 +1,158 @@
+﻿@using Schwarz.Enums
+@model IEnumerable<PareQualidade>
+
+<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">
+    <div class="bg-white inline-block min-w-full shadow rounded-lg overflow-hidden p-5">
+        <table id="tableQualidade">
+            <thead>
+                <tr>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.Data)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.Funcionario.Nome)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.IDFalha)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.Setor)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.CodigoItem)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.QuantidadeBloqueada)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.Pontuacao)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Aprovações
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Ações
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var falha = item.Falha != null ? item.Falha.Descricao : item.DescricaoFalha;
+
+                    <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.Funcionario.Nome)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @falha
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.Setor)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.CodigoItem)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.QuantidadeBloqueada)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.Pontuacao)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
+                            {
+                                <span class="text-green-500">Aprovado pelo Líder</span>
+                            }
+                            else if (item.AprovacaoLider == EAprovacaoPare.Reprovado)
+                            {
+                                <span class="text-red-500">Reprovado pelo Líder</span>
+                            }
+                            @if (item.AprovacaoQualidade== EAprovacaoPare.Aprovado)
+                            {
+                                <span class="text-green-500">Aprovado pela Qualidade</span>
+                            }
+                            else if (item.AprovacaoQualidade == EAprovacaoPare.Reprovado)
+                            {
+                                <span class="text-red-500">Reprovado pela Qualidade</span>
+                            }
+
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="EditQualidade" asp-route-id="@item.IDPareQualidade">Editar</a>
+                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareQualidade">Deletar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.fn.dataTable.moment('DD/MM/YYYY');
+
+        var table = $('#tableQualidade').DataTable({
+            "order": [],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
+            },
+            "dom": 'lBfrtip',
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            "scrollY": "60vh",
+            "scrollCollapse": true,
+            "autoWidth": true,
+            "responsive": true,
+            "paging": true,
+            "buttons": [
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fa fa-file-excel"></i> Excel',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i> Imprimir',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="fa fa-file-pdf"></i> PDF',
+                    className: 'btn btn-danger',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    }
+                }
+            ]
+        });
+
+        $('.btn-delete').click(function () {
+            if (confirm('Tem certeza que deseja deletar o PARE?')) {
+                var pareId = $(this).data('id');
+                $.ajax({
+                    url: '/Pare/DeleteQualidade',
+                    method: 'POST',
+                    data: { id: pareId },
+                    success: function (data) {
+                        var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
+                        row.remove().draw();
+                        alert('PARE deletado com sucesso!')
+                    },
+                    error: function (error) {
+                        alert('Erro ao deletar o PARE: ' + error.responseText);
+                    }
+                });
+            }
+        });
+    });
+
+</script>

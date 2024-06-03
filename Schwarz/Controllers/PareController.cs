@@ -19,11 +19,24 @@ namespace Schwarz.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> IndexQualidade()
         {
-            var schwarzContext = _context.PareQualidade.Include(c => c.Falha).Include(c => c.Funcionario);
-            return View(await schwarzContext.ToListAsync());
+            var model = _context.PareQualidade.Include(c => c.Falha).Include(c => c.Funcionario);
+            return View(await model.ToListAsync());
         }
+
+        public async Task<IActionResult> IndexSeguranca()
+        {
+            var model = _context.PareSeguranca.Include(c => c.Funcionario);
+            return View(await model.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexMeioAmbiente()
+        {
+            var model = _context.PareMeioAmbiente.Include(c => c.Funcionario);
+            return View(await model.ToListAsync());
+        }
+
         public IActionResult Create()
         {
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "Descricao");
@@ -40,7 +53,7 @@ namespace Schwarz.Controllers
             {
                 _context.Add(pareQualidade);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("IndexQualidade");
             }
             return RedirectToAction("Create");
         }
@@ -66,7 +79,7 @@ namespace Schwarz.Controllers
             {
                 _context.Add(pareMeioAmbiente);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("IndexMeioAmbiente");
             }
             return RedirectToAction("Create");
         }
@@ -108,7 +121,7 @@ namespace Schwarz.Controllers
                     throw;
 
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("IndexQualidade");
             }
             ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", pareQualidade.IDFalha);
             ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", pareQualidade.IDFuncionario);
