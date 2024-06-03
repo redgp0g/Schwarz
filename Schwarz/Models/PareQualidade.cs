@@ -31,19 +31,23 @@ namespace Schwarz.Models
 
 		[Required(ErrorMessage = "O Código é obrigatório!")]
 		[Display(Name = "Código do Item")]
-		[MinLength(9, ErrorMessage = "O código deve ter 9 digítos!")]
-		public string CodigoItem { get; set; }
+		[MinLength(9, ErrorMessage = "O código deve ter no mínimo 9 digítos!")]
+		[MaxLength(9, ErrorMessage = "O código deve ter no máximo 9 digítos!")]
 		public string CodigoItem { get; set; } = string.Empty;
 
 		[Required(ErrorMessage = "A Quantidade é obrigatória!")]
 		[Display(Name = "Quantidade Bloqueada")]
 		public int QuantidadeBloqueada { get; set; }
-        public bool? AprovacaoLider { get; set; }
+
+		[Display(Name = "Aprovação do Líder")]
+		[Display(Name = "Data Aprovação do Líder")]
         public DateTime? DataAprovacaoLider { get; set; }
         
 		[Display(Name = "Observações do Líder")]
 		public string? ObservacoesLider { get; set; }
-		public bool? AprovacaoQualidade { get; set; }
+
+		[Display(Name = "Aprovação da Qualidade")]
+		[Display(Name = "Data Aprovação da Qualidade")]
 		public DateTime? DataAprovacaoQualidade{ get; set; }
 
 		[Display(Name = "Observações da Qualidade")]
