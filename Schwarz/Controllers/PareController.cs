@@ -66,7 +66,22 @@ namespace Schwarz.Controllers
             {
                 _context.Add(pareSeguranca);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                foreach (var foto in pareSeguranca.Fotos)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        foto.CopyTo(memoryStream);
+                        byte[] fileBytes = memoryStream.ToArray();
+
+                        string fileName = foto.FileName;
+                        string fileMime = foto.ContentType;
+
+                        PareSegurancaFoto pareSegurancaFoto = new(pareSeguranca.IDPareSeguranca, fileName, fileBytes, fileMime);
+                        _context.PareSegurancaFoto.Add(pareSegurancaFoto);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                return RedirectToAction("IndexSeguranca");
             }
             return RedirectToAction("Create");
         }
