@@ -100,7 +100,7 @@ namespace Schwarz.Controllers
         }
 
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditQualidade(int? id)
         {
             if (id == null)
             {
@@ -120,13 +120,13 @@ namespace Schwarz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, PareQualidade pareQualidade)
+        public async Task<IActionResult> EditQualidade(int id, PareQualidade pareQualidade)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(pareQualidade);
+                    _context.PareQualidade.Update(pareQualidade);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
