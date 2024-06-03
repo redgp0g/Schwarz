@@ -39,9 +39,9 @@ namespace Schwarz.Controllers
 
         public IActionResult Create()
         {
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "Descricao");
+            ViewData["Falhas"] = new SelectList(_context.Falha, "IDFalha", "Descricao");
             ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
-            ViewData["Setor"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.Setor }).Distinct(), "Setor", "Setor");
+            ViewData["Setores"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.Setor }).Distinct(), "Setor", "Setor");
             return View();
         }
 
@@ -97,8 +97,9 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", pareQualidade.IDFalha);
-            ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", pareQualidade.IDFuncionario);
+            ViewData["Falhas"] = new SelectList(_context.Falha, "IDFalha", "Descricao", pareQualidade.IDFalha);
+            ViewData["Setores"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.Setor }).Distinct(), "Setor", "Setor");
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
             return View(pareQualidade);
         }
 
@@ -123,8 +124,9 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction("IndexQualidade");
             }
-            ViewData["IDFalha"] = new SelectList(_context.Falha, "IDFalha", "IDFalha", pareQualidade.IDFalha);
-            ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", pareQualidade.IDFuncionario);
+            ViewData["Falhas"] = new SelectList(_context.Falha, "IDFalha", "Descricao", pareQualidade.IDFalha);
+            ViewData["Setores"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.Setor }).Distinct(), "Setor", "Setor");
+            ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
             return View(pareQualidade);
         }
 
