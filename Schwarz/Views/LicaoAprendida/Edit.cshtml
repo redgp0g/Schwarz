@@ -60,7 +60,7 @@
                 </div>
                 <div class="mb-4">
                     <label class="block mb-2 text-sm font-bold flex items-center">Anexos</label>
-                    @if (Model.LicaoAprendidaAnexos.Count() > 0)
+                    @if (Model.LicaoAprendidaAnexos != null)
                     {
                         @foreach (var anexo in Model.LicaoAprendidaAnexos)
                         {
