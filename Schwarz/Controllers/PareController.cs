@@ -129,14 +129,46 @@ namespace Schwarz.Controllers
         }
 
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public async Task<IActionResult> DeleteQualidade(int id)
         {
             var pareQualidade = await _context.PareQualidade.FindAsync(id);
             if (pareQualidade != null)
             {
                 _context.PareQualidade.Remove(pareQualidade);
+                return Ok();
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteSeguranca(int id)
+        {
+            var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
+            if (pareSeguranca != null)
+            {
+                if (pareSeguranca.PareSegurancaFotos != null)
+                {
+                    foreach (var foto in pareSeguranca.PareSegurancaFotos)
+                    {
+                        _context.PareSegurancaFoto.Remove(foto);
+                    }
+                }
+                _context.PareSeguranca.Remove(pareSeguranca);
+                return Ok();
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteMeioAmbiente(int id)
+        {
+            var pareMeioAmbiente = await _context.PareMeioAmbiente.FindAsync(id);
+            if (pareMeioAmbiente != null)
+            {
+                _context.PareMeioAmbiente.Remove(pareMeioAmbiente);
                 return Ok();
             }
 
