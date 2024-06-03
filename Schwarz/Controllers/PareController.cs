@@ -99,7 +99,7 @@ namespace Schwarz.Controllers
             return RedirectToAction("Create");
         }
 
-        // GET: CadastroPare/Edit/5
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -118,9 +118,6 @@ namespace Schwarz.Controllers
             return View(pareQualidade);
         }
 
-        // POST: CadastroPare/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, PareQualidade pareQualidade)
