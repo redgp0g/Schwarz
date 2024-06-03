@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
 using Schwarz.Models;
+using Schwarz.Services.Interfaces;
 
 namespace Schwarz.Controllers
 {
@@ -19,18 +20,20 @@ namespace Schwarz.Controllers
     {
         private readonly SchwarzContext _context;
         private readonly UserManager<SchwarzUser> _userManager;
+        private readonly IUserService _userService;
 
 
         public AlertaCotaController(SchwarzContext context, UserManager<SchwarzUser> userManager)
         {
             _context = context;
             _userManager = userManager;
+            _userService = userService;
         }
 
         [Authorize(Roles = "Admin, Lider, Especialista")]
         public async Task<IActionResult> IndexProducao()
         {
-            SchwarzUser user = await _userManager.GetUserAsync(User);
+            var user = _userService.GetUser(User);
             var schwarzContext = _context.AlertaCota.Include(c => c.FuncionarioLider).Include(c => c.RegistroCotas).Include(c => c.RegistroCotas.Registro).Where(x => (x.IDFuncionarioLider == user.IDFuncionario || x.IDFuncionarioEspecialista == user.IDFuncionario) && x.AcaoContencao == null && x.AcaoCorretiva == null);
             return View(await schwarzContext.ToListAsync());
         }

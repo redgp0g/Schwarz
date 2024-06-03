@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Schwarz.Data;
 using Schwarz.Areas.Identity.Data;
 using System.Globalization;
+using Schwarz.Services;
+using Schwarz.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddDbContext<SchwarzContext>
 (options => options.UseLazyLoadingProxies()
 .UseSqlServer(connectionString)
 );
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddIdentity<SchwarzUser, IdentityRole>(options =>
 	{
