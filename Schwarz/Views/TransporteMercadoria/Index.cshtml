@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Schwarz.Models.TransporteMercadoria>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Registros";
     Layout = "_Layout";
 }
 
@@ -88,7 +88,7 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @foreach (var foto in item.Fotos)
                             {
-                                <a href="data:@foto.TipoMIME;base64,@Convert.ToBase64String(foto.Conteudo)" download="@foto.Nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@foto.Nome</a>
+                                <button data-id="@foto.IDTransporteMercadoriaFoto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@foto.Nome</button>
                             }
                         </td>
                     </tr>
@@ -140,25 +140,5 @@
                 }
             ]
         });
-
-        table.on('init.dt', function () {
-            HideLoading();
-        });
-
-    });
-
-    document.getElementById('copyButton').addEventListener('click', function () {
-        var link = "file://username:password@servidor/Sch-fns03a/ds1/Inovacao1/Guilherme/fotosRTM/6ff09c0d-03ea-4382-81d2-e3726f32f7a4_lampada.png";
-
-        var textarea = document.createElement('textarea');
-        textarea.textContent = link;
-        document.body.appendChild(textarea);
-
-        textarea.select();
-        document.execCommand('copy');
-
-        document.body.removeChild(textarea);
-
-        alert('Link copiado para área de transferência: ' + link);
     });
 </script>
