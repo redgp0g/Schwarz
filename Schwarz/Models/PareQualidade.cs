@@ -1,4 +1,5 @@
 ﻿using Schwarz.Data;
+using Schwarz.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,7 +27,7 @@ namespace Schwarz.Models
 		[Required(ErrorMessage = "A Data é obrigatória!")]
 		public DateTime Data { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "Selecione o Setor onde ocorreu!")]
+		[Required(ErrorMessage = "Selecione o Setor onde ocorreu!")]
 		public string Setor { get; set; } = string.Empty;
 
 		[Required(ErrorMessage = "O Código é obrigatório!")]
@@ -40,6 +41,8 @@ namespace Schwarz.Models
 		public int QuantidadeBloqueada { get; set; }
 
 		[Display(Name = "Aprovação do Líder")]
+		public EAprovacaoPare AprovacaoLider { get; set; } = EAprovacaoPare.SemAprovacao;
+
 		[Display(Name = "Data Aprovação do Líder")]
         public DateTime? DataAprovacaoLider { get; set; }
         
@@ -47,6 +50,8 @@ namespace Schwarz.Models
 		public string? ObservacoesLider { get; set; }
 
 		[Display(Name = "Aprovação da Qualidade")]
+		public EAprovacaoPare AprovacaoQualidade { get; set; } = EAprovacaoPare.SemAprovacao;
+
 		[Display(Name = "Data Aprovação da Qualidade")]
 		public DateTime? DataAprovacaoQualidade{ get; set; }
 
