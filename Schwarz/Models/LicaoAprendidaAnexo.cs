@@ -11,19 +11,12 @@ namespace Schwarz.Models
 
 		[ForeignKey("LicaoAprendida")]
         public int IDLicaoAprendida{ get; set; }
-        public virtual LicaoAprendida LicaoAprendida { get; set; }
-        public string Nome { get; set; }
+        public virtual LicaoAprendida? LicaoAprendida { get; set; }
+        public string Nome { get; set; } = string.Empty;
 
         [Column(TypeName = "varbinary(max)")]
-        public byte[] Conteudo{ get; set; }
-        public string TipoMIME { get; set; }
-
-        private readonly SchwarzContext _context;
-	
-        public LicaoAprendidaAnexo()
-		{
-
-		}
+        public byte[] Conteudo{ get; set; } = new byte[0];
+        public string TipoMIME { get; set; } = string.Empty;
 
         public LicaoAprendidaAnexo(int iDLicaoAprendida, string nome, byte[] conteudo, string tipoMIME)
         {

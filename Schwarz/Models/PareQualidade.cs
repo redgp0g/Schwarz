@@ -13,7 +13,7 @@ namespace Schwarz.Models
 		[Display(Name = "Funcionário")]
 		[Required(ErrorMessage = "Selecione o Funcionário!")]
 		public int IDFuncionario { get; set; }
-		public virtual Funcionario Funcionario { get; set; }
+		public virtual Funcionario? Funcionario { get; set; }
 
 		[ForeignKey("Falha")]
 		[Display(Name = "Falha")]
@@ -27,22 +27,27 @@ namespace Schwarz.Models
 		public DateTime Data { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Selecione o Setor onde ocorreu!")]
-		public string Setor { get; set; }
+		public string Setor { get; set; } = string.Empty;
 
 		[Required(ErrorMessage = "O Código é obrigatório!")]
 		[Display(Name = "Código do Item")]
-		[MinLength(9, ErrorMessage = "O código deve ter 9 digítos!")]
-		public string CodigoItem { get; set; }
+		[MinLength(9, ErrorMessage = "O código deve ter no mínimo 9 digítos!")]
+		[MaxLength(9, ErrorMessage = "O código deve ter no máximo 9 digítos!")]
+		public string CodigoItem { get; set; } = string.Empty;
 
 		[Required(ErrorMessage = "A Quantidade é obrigatória!")]
 		[Display(Name = "Quantidade Bloqueada")]
 		public int QuantidadeBloqueada { get; set; }
-        public bool? AprovacaoLider { get; set; }
+
+		[Display(Name = "Aprovação do Líder")]
+		[Display(Name = "Data Aprovação do Líder")]
         public DateTime? DataAprovacaoLider { get; set; }
         
 		[Display(Name = "Observações do Líder")]
 		public string? ObservacoesLider { get; set; }
-		public bool? AprovacaoQualidade { get; set; }
+
+		[Display(Name = "Aprovação da Qualidade")]
+		[Display(Name = "Data Aprovação da Qualidade")]
 		public DateTime? DataAprovacaoQualidade{ get; set; }
 
 		[Display(Name = "Observações da Qualidade")]
@@ -54,14 +59,5 @@ namespace Schwarz.Models
 
 		[NotMapped]
 		public string DataFormatada => Data.ToString("dd/MM/yyyy");
-
-		private readonly SchwarzContext _context;
-		public PareQualidade(SchwarzContext contexto)
-		{
-			_context = contexto;
-		}
-		public PareQualidade()
-		{
-		}
 	}
 }

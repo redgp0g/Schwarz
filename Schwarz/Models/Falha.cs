@@ -11,25 +11,13 @@ namespace Schwarz.Models
         [Key]
         public int IDFalha { get; set; }
         [Display(Name = "Identificação")]
-        public string Identificacao { get; set; }
+        public string Identificacao { get; set; } = string.Empty;
         [Display(Name = "Código")]
         public int Codigo { get; set; }
         [Display(Name = "Descrição da Falha")]
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = string.Empty;
         public string? Setor1 { get; set; }
         public string? Setor2 { get; set; }
         public string? Setor3 { get; set; }
-
-        private readonly SchwarzContext _context;
-
-        public Falha()
-		{
-
-		}
-		public Falha(SchwarzContext contexto)
-		{
-			_context = contexto;
-		}
-
 	}
 }

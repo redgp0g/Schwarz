@@ -48,7 +48,7 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
 			[Display(Name = "Nome Completo")]
 			public string Nome { get; set; }
 
-			public string? Setor { get; set; }
+			public string Setor { get; set; } = string.Empty;
 
 			[Display(Name = "Data de Nascimento")]
 			[DataType(DataType.Date)]
@@ -57,16 +57,16 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
 			[Required]
 			[Display(Name = "Está ativo?")]
 			public bool Ativo { get; set; }
-			public string? Turno { get; set; }
-			public string? Email { get; set; }
+			public string Turno { get; set; } = string.Empty;
+			public string Email { get; set; } = string.Empty;
 
 			[Display(Name = "Líder/Gerente")]
 			public int? IDFuncionarioLider { get; set; }
-			public string? Cargo { get; set; }
-			public string? Ramal { get; set; }
-			public byte[]? Foto { get; set; }
-			public IFormFile? NovaFoto { get; set; }
-			public string? Telefone { get; set; }
+			public string Cargo { get; set; } = string.Empty;
+			public string Ramal { get; set; } = string.Empty;
+            public byte[] Foto { get; set; } = new byte[0];
+            public IFormFile NovaFoto { get; set; } = null!;
+			public string Telefone { get; set; } = string.Empty;
 		}
 
         private async Task LoadAsync(SchwarzUser user)

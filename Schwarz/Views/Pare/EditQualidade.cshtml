@@ -1,0 +1,96 @@
+﻿@model PareQualidade
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "_Layout";
+}
+
+<div class="container mx-auto">
+    <div class="flex justify-center px-6 my-12">
+        <div class="border border-1 border-red-500 w-full lg:w-7/12 bg-white p-2 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">Formulário de Edição</h3>
+            <form id="form" method="post" class="px-8">
+                <div class="mb-4">
+                    <label asp-for="IDFuncionario" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="IDFuncionario" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline select2" asp-items="ViewBag.Funcionarios">
+                    </select>
+                    @Html.ValidationMessageFor(x => x.IDFuncionario)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="DescricaoFalha" class="block mb-2 text-sm font-bold flex items-center"></label>
+                    <input asp-for="DescricaoFalha" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="IDFalha" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="IDFalha" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline select2" asp-items="ViewBag.Falhas">
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Data" class="block mb-2 text-sm font-bold flex items-center"></label>
+                    <input asp-for="Data" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    @Html.ValidationMessageFor(x => x.Data)
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Setor" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="Setor" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" asp-items="ViewBag.Setores">
+                    </select>
+                    @Html.ValidationMessageFor(x => x.Setor)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="CodigoItem" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="CodigoItem" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"/>
+                    @Html.ValidationMessageFor(x => x.CodigoItem)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="QuantidadeBloqueada" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="QuantidadeBloqueada" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"/>
+                    @Html.ValidationMessageFor(x => x.QuantidadeBloqueada)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="AprovacaoLider" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="AprovacaoLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="0">Sem Aprovação</option>
+                        <option value="1">Aprovado</option>
+                        <option value="2">Reprovado</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="DataAprovacaoLider" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="DataAprovacaoLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"/>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="ObservacoesLider" class="block mb-2 text-sm font-bold"></label>
+                    <textarea asp-for="ObservacoesLider" style="min-height: calc(1em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Observações do Líder"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="AprovacaoQualidade" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="AprovacaoQualidade" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="0">Sem Aprovação</option>
+                        <option value="1">Aprovado</option>
+                        <option value="2">Reprovado</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.AprovacaoQualidade)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="DataAprovacaoQualidade" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="DataAprovacaoQualidade" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"/>
+                    @Html.ValidationMessageFor(x => x.DataAprovacaoQualidade)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="ObservacoesQualidade" class="block mb-2 text-sm font-bold"></label>
+                    <textarea asp-for="ObservacoesQualidade" style="min-height: calc(1em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Observações da Qualidade"></textarea>
+                    @Html.ValidationMessageFor(x => x.ObservacoesQualidade)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Pontuacao" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="Pontuacao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Digite a pontuação" />
+                    @Html.ValidationMessageFor(x => x.Pontuacao)
+                </div>
+                <div class="my-6">
+                    <input type="hidden" asp-for="IDPareQualidade" />
+                    <input type="submit" value="Editar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-red-300 to-red-500 rounded-full hover:bg-gradient-to-r hover:from-red-500 hover:to-red-300 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

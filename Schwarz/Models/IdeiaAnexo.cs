@@ -8,26 +8,15 @@ namespace Schwarz.Models
 	{
 		[Key]
 		public int IDIdeiaAnexo { get; set; }
-        public string Nome { get; set; }
+        public string Nome { get; set; } = string.Empty;
         [Column(TypeName = "varbinary(max)")]
-        public byte[] Anexo { get; set; }
-        public string TipoMIME { get; set; }
+        public byte[] Anexo { get; set; } = new byte[0];
+        public string TipoMIME { get; set; } = string.Empty;
 
 		[ForeignKey("Ideia")]
         public int IDIdeia { get; set; }
         public virtual Ideia? Ideia { get; set; }
-
-		private readonly SchwarzContext _context;
 	
-        public IdeiaAnexo()
-		{
-
-		}
-		public IdeiaAnexo(SchwarzContext contexto)
-		{
-			_context = contexto;
-		}
-
         public IdeiaAnexo(string nome,byte[] anexo, string tipoMIME, int iDIdeia)
         {
             Nome = nome;

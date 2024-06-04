@@ -26,24 +26,24 @@ namespace Schwarz.Models
 
         [DisplayName("Nota Fiscal")]
         [Required(ErrorMessage = "A Nota Fiscal é obrigatória!")]
-        public string NotaFiscal { get; set; }
+        public string NotaFiscal { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "O Volume é obrigatório!")]
         public int Volume { get; set; }
 
         [Required(ErrorMessage = "O Tipo de Volume é obrigatório!")]
-        public string TipoVolume { get; set; }
+        public string TipoVolume { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "A Transportadora é obrigatória!")]
-        public string Transportadora { get; set; }
+        public string Transportadora { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "A Placa é obrigatória!")]
-        public string Placa { get; set; }
+        public string Placa { get; set; } = string.Empty;
 
         [NotMapped]
         [DisplayName("Foto da Placa")]
         [Required(ErrorMessage = "A Foto da Placa é obrigatório!")]
-        public IFormFile fileFotoPlaca { get; set; }
+        public IFormFile fileFotoPlaca { get; set; } = null!;
 
         [NotMapped]
         [DisplayName("Foto do Lacre")]
@@ -52,28 +52,23 @@ namespace Schwarz.Models
         [NotMapped]
         [DisplayName("Fotos antes do carregamento")]
         [Required(ErrorMessage = "A Foto é obrigatória!")]
-        public List<IFormFile> filesFotoAntes { get; set; }
+        public List<IFormFile>? filesFotoAntes { get; set; }
 
         [NotMapped]
         [DisplayName("Fotos depois do carregamento")]
         [Required(ErrorMessage = "A Foto é obrigatória!")]
-        public List<IFormFile> filesFotoDepois { get; set; }
+        public List<IFormFile>? filesFotoDepois { get; set; }
         
         [NotMapped]
         [DisplayName("Foto da Nota Fiscal")]
         [Required(ErrorMessage = "A Foto da Nota Fiscal é obrigatória!")]
-        public List<IFormFile> filesFotoNotaFiscal { get; set; }
-        
+        public List<IFormFile>? filesFotoNotaFiscal { get; set; }
+
         [NotMapped]
         [DisplayName("Foto do Romaneio")]
         [Required(ErrorMessage = "A Foto do Romaneio é obrigatória!")]
-        public IFormFile fileFotoRomaneio{ get; set; }
+        public IFormFile fileFotoRomaneio { get; set; } = null!;
 
-        public virtual ICollection<TransporteMercadoriaFoto> Fotos { get; set; }
-
-        public TransporteMercadoria()
-        {
-
-        }
+        public virtual ICollection<TransporteMercadoriaFoto>? Fotos { get; set; }
     }
 }

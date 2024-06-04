@@ -12,7 +12,7 @@ namespace Schwarz.Models
 
 		[Display(Name = "Descrição da Ideia")]
 		[Required(ErrorMessage = "Descreva a ideia")]
-		public string Descricao { get; set; }
+		public string Descricao { get; set; } = string.Empty;
 		public DateTime Data { get; set; } = DateTime.Now;
 
 		[Display(Name = "Data de Implantação")]
@@ -36,27 +36,15 @@ namespace Schwarz.Models
 		[Display(Name = "Ganho Realizado")]
 		public decimal? GanhoRealizado { get; set; }
 
-		public virtual ICollection <IdeiaEquipe> IdeiaEquipe { get; set; }
-        public virtual ICollection<IdeiaAnexo> IdeiaAnexo { get; set; }
+		public virtual ICollection<IdeiaEquipe>? IdeiaEquipe { get; set; }
+		public virtual ICollection<IdeiaAnexo>? IdeiaAnexo { get; set; }
 
         [NotMapped]
         [Required(ErrorMessage = "Selecione pelo menos um funcionário")]
 		public List<int>? Participantesids { get; set; }
         [NotMapped]
-        public IEnumerable<string> NomesEquipe { get; set; }
+        public IEnumerable<string>? NomesEquipe { get; set; }
         [NotMapped]
         public string DataFormatada => Data.ToString("dd/MM/yyyy");
-
-
-        private readonly SchwarzContext _context;
-
-		public Ideia()
-		{
-
-		}
-		public Ideia(SchwarzContext contexto)
-		{
-			_context = contexto;
-		}
 	}
 }

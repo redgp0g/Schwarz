@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<Schwarz.Models.AlertaCota>
-@using Schwarz.Areas.Identity.Data
-@using Microsoft.AspNetCore.Identity
+@using Schwarz.Services.Interfaces
 
-@inject UserManager<SchwarzUser> UserManager
+@inject IUserService UserService
 @{
     ViewData["Title"] = "Alertas Cotas";
     Layout = "_Layout";
-    var userId = UserManager.GetUserId(User);
-    var user = await UserManager.FindByIdAsync(userId);
+    var user = UserService.GetUser(User);
 }
 
 <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">

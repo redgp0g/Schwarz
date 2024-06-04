@@ -12,7 +12,7 @@ namespace Schwarz.Models
         [Key]
         public int IDFuncionario { get; set; }
 		public int? Matricula { get; set; }
-		public string Nome { get; set; }
+		public string Nome { get; set; } = string.Empty;
         public string? Setor { get; set; }
         public string? CentroCusto { get; set; }
         public DateTime? DataNascimento { get; set; }
@@ -30,7 +30,6 @@ namespace Schwarz.Models
         public DateTime? DataAdmissao { get; set; }
         public int? NumeroCentroCusto { get; set; }
         public virtual SchwarzUser? User { get; set; }
-        private readonly SchwarzContext _context;
         public virtual ICollection<IdeiaEquipe>? IdeiaEquipe { get; set; }
 
 
@@ -64,27 +63,5 @@ namespace Schwarz.Models
                 return nomes[0] + " " + nomes[nomes.Length - 1];
             }
         }
-
-        public Funcionario()
-        {
-
-        }
-        public Funcionario(SchwarzContext contexto)
-        {
-            _context = contexto;
-        }
     }
-
-    public class FuncionarioViewModel
-    {
-        public int? Matricula { get; set; }
-        public string Nome { get; set; }
-        public int IDFuncionario { get; set; }
-        public string Setor { get; set; }
-        public string Turno { get; set; }
-        public string Email { get; set; }
-        public string Cargo { get; set; }
-        public bool Ativo{ get; set; }
-    }
-
 }

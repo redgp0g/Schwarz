@@ -1,12 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Schwarz.Areas.Identity.Data
+@using Schwarz.Services.Interfaces
 
 @inject SignInManager<SchwarzUser> SignInManager
-@inject UserManager<SchwarzUser> UserManager
+@inject IUserService UserService
 
 @if (SignInManager.IsSignedIn(User))
 {
-    var funcionario = UserManager.GetUserAsync(User).Result.Funcionario;
+    var funcionario = UserService.GetUser(User).Funcionario;
     <div class="relative w-max">
         <button type="button" id="toggleMenuUser" class="flex items-center gap-x-2 text-base font-semibold leading-6 text-gray-900 capitalize" onclick="toggleHidden('subMenuUser',this.id)">
             @if (funcionario.Foto != null)
@@ -17,7 +18,7 @@
         </button>
 
 
-        <div class="absolute -left-8 top-full z-10 mt-3 w-100 max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-expanded="false" id="subMenuUser">
+        <div class="absolute -left-8 top-full z-10 mt-3 w-100 max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuUser">
             <div class="py-2">
                 <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
                     <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">

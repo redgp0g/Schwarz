@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Schwarz.Areas.Identity.Data;
 using Schwarz.Data;
 using Schwarz.Models;
+using Schwarz.Services.Interfaces;
 
 namespace Schwarz.Controllers
 {
@@ -19,18 +20,20 @@ namespace Schwarz.Controllers
     {
         private readonly SchwarzContext _context;
         private readonly UserManager<SchwarzUser> _userManager;
+        private readonly IUserService _userService;
 
 
-        public AlertaCotaController(SchwarzContext context, UserManager<SchwarzUser> userManager)
+        public AlertaCotaController(SchwarzContext context, UserManager<SchwarzUser> userManager, IUserService userService)
         {
             _context = context;
             _userManager = userManager;
+            _userService = userService;
         }
 
         [Authorize(Roles = "Admin, Lider, Especialista")]
         public async Task<IActionResult> IndexProducao()
         {
-            SchwarzUser user = await _userManager.GetUserAsync(User);
+            var user = _userService.GetUser(User);
             var schwarzContext = _context.AlertaCota.Include(c => c.FuncionarioLider).Include(c => c.RegistroCotas).Include(c => c.RegistroCotas.Registro).Where(x => (x.IDFuncionarioLider == user.IDFuncionario || x.IDFuncionarioEspecialista == user.IDFuncionario) && x.AcaoContencao == null && x.AcaoCorretiva == null);
             return View(await schwarzContext.ToListAsync());
         }
@@ -56,7 +59,7 @@ namespace Schwarz.Controllers
 
             var alertasArquivados = _context.AlertaCota
             .Include(x => x.RegistroCotas)
-            .GroupBy(x => x.RegistroCotas.Registro.DataFechamento.Value.Month)
+            .GroupBy(x => x.RegistroCotas.Registro.DataFechamento.Month)
             .OrderBy(x => x.Key)
             .Select(x => new {
                 Mes = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.Key)),
@@ -205,7 +208,7 @@ namespace Schwarz.Controllers
 
         public IActionResult responderAlerta(string acaoContencao,string acaoCorretiva, int idAlertaCota, DateTime prazoAcaoContencao, DateTime prazoAcaoCorretiva)
         {
-            AlertaCota alertaCota = _context.AlertaCota.Find(idAlertaCota);
+            AlertaCota? alertaCota = _context.AlertaCota.Find(idAlertaCota);
 
             if (alertaCota == null)
             {
@@ -224,7 +227,7 @@ namespace Schwarz.Controllers
 
         public IActionResult aprovarAlerta(int idAlertaCota, int idFuncionarioMetrologia)
         {
-            AlertaCota alertaCota = _context.AlertaCota.Find(idAlertaCota);
+            AlertaCota? alertaCota = _context.AlertaCota.Find(idAlertaCota);
 
             if (alertaCota == null)
             {
@@ -241,7 +244,7 @@ namespace Schwarz.Controllers
 
         public IActionResult reprovarAlerta(int idAlertaCota, int idFuncionarioMetrologia)
         {
-            AlertaCota alertaCota = _context.AlertaCota.Find(idAlertaCota);
+            AlertaCota? alertaCota = _context.AlertaCota.Find(idAlertaCota);
 
             if (alertaCota == null)
             {

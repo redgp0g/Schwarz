@@ -1,8 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Schwarz.Areas.Identity.Data
+@using Schwarz.Services.Interfaces
 
 @inject SignInManager<SchwarzUser> SignInManager
-@inject UserManager<SchwarzUser> UserManager
+@inject IUserService UserService
 @model PareSeguranca
 
 <form asp-action="CreateSeguranca" asp-asp-controller="Pare" method="post" id="formSeguranca" class="hidden" enctype="multipart/form-data">
@@ -19,7 +20,7 @@
         }
         else
         {
-            <input type="hidden" asp-for="IDFuncionario" value="@UserManager.GetUserAsync(User).Result.Funcionario.IDFuncionario" />
+            <input type="hidden" asp-for="IDFuncionario" value="@UserService.GetUser(User).Funcionario.IDFuncionario" />
         }
         @if (User.IsInRole("Admin") || User.IsInRole("ProgramaPareAdmin"))
         {

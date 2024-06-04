@@ -1,8 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Schwarz.Areas.Identity.Data
+@using Schwarz.Services.Interfaces
 
 @inject SignInManager<SchwarzUser> SignInManager
-@inject UserManager<SchwarzUser> UserManager
+@inject IUserService UserService
 @model PareQualidade
 
 <form asp-action="CreateQualidade" asp-asp-controller="Pare" method="post" id="formQualidade" class="hidden">
@@ -19,7 +20,7 @@
         }
         else
         {
-            <input type="hidden" asp-for="IDFuncionario" value="@UserManager.GetUserAsync(User).Result.Funcionario.IDFuncionario" />
+            <input type="hidden" asp-for="IDFuncionario" value="@UserService.GetUser(User).Funcionario.IDFuncionario" />
         }
         @if (User.IsInRole("Admin") || User.IsInRole("ProgramaPareAdmin"))
         {
@@ -31,10 +32,10 @@
         }
         <div class="mb-3">
             <label asp-for="Setor" class="block mb-2 text-sm font-bold"></label>
-            <select asp-for="Setor" class="select2" asp-items="ViewBag.Setor">
+            <select asp-for="Setor" class="select2" asp-items="ViewBag.Setores">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <option selected value="@UserManager.GetUserAsync(User).Result.Funcionario.Setor">@UserManager.GetUserAsync(User).Result.Funcionario.Setor</option>
+                    <option selected value="@UserService.GetUser(User).Funcionario.Setor">@UserService.GetUser(User).Funcionario.Setor</option>
                 }
                 {
                 <option selected disabled value="">Selecione o Setor</option>
@@ -55,7 +56,7 @@
         </div>
         <div class="mb-3">
             <label asp-for="IDFalha" class="block mb-2 text-sm font-bold"></label>
-            <select asp-for="IDFalha" class="select2" asp-items="ViewBag.IDFalha">
+            <select asp-for="IDFalha" class="select2" asp-items="ViewBag.Falhas">
                 <option selected value="">Selecione a Falha</option>
             </select>
         </div>
