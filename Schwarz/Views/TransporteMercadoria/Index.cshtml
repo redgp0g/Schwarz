@@ -88,7 +88,7 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @foreach (var foto in item.Fotos)
                             {
-                                <button data-id="@foto.IDTransporteMercadoriaFoto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@foto.Nome</button>
+                                <a href="data:@foto.TipoMIME;base64,@Convert.ToBase64String(foto.Conteudo)" download="@foto.Nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@foto.Nome</a>
                             }
                         </td>
                     </tr>
