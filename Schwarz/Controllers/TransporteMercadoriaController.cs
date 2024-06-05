@@ -110,7 +110,7 @@ namespace Schwarz.Controllers
                         byte[] fileBytes = memoryStream.ToArray();
 
                         string fileName = "Foto da Nota Fiscal " + (i + 1);
-                        string fileMime = transporteMercadoria.filesFotoAntes[i].ContentType;
+                        string fileMime = transporteMercadoria.filesFotoNotaFiscal[i].ContentType;
 
                         TransporteMercadoriaFoto transporteMercadoriaFoto = new(transporteMercadoria.IDTransporteMercadoria, fileName, fileBytes, fileMime);
                         _context.Add(transporteMercadoriaFoto);
