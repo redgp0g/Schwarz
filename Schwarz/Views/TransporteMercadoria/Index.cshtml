@@ -99,6 +99,31 @@
 </div>
 
 <script>
+    $('.image-viewer').on('click', function(){
+        var fotoId = $(this).data('id');
+        $.ajax({
+            url: '/api/TransporteMercadoriaFoto/Foto/' + fotoId,
+            method: 'GET',
+            success: function (data) {
+                $('#imagemOculta').attr('src', 'data:' + data.tipoMIME + ';base64,' + data.conteudoBase64);
+
+                const viewer = new Viewer(document.getElementById('imagemOculta'), {
+                    inline: true,
+                    viewed() {
+                        viewer.zoomTo(0.5);
+                    },
+                });
+            },
+
+            error: function (error) {
+                alert('Erro ao buscar foto: ' + error.responseText);
+            }
+        });
+
+
+    })
+
+    
     $(document).ready(function () {
         $.fn.dataTable.moment('DD/MM/YYYY');
 
