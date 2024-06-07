@@ -10,49 +10,416 @@
             <h3 class="pt-4 text-2xl text-center">Formulário de Edição</h3>
             <form id="form" method="post" class="px-8">
                 <div class="mb-4">
-                    <label asp-for="Motivo" class="block mb-2 text-sm font-bold flex items-center"></label>
-                    <textarea asp-for="Motivo" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
-                    @Html.ValidationMessageFor(x => x.Motivo)
-                </div>
-
-                <div class="mb-4">
-                    <label asp-for="Planejado" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="Planejado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o ganho" />
-                    @Html.ValidationMessageFor(x => x.Planejado)
-                </div>
-                <div class="mb-4">
-                    <label asp-for="Realizado" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="Realizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Ganho realizado" />
-                    @Html.ValidationMessageFor(x => x.Realizado)
-                </div>
-                <div class="mb-4">
-                    <label asp-for="Processo" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="Processo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o processo" />
-                    @Html.ValidationMessageFor(x => x.Processo)
-                </div>
-                <div class="mb-4">
-                    <label asp-for="NomePeca" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="NomePeca" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o nome da peça" />
-                    @Html.ValidationMessageFor(x => x.NomePeca)
-                </div>
-                <div class="mb-4">
-                    <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="CodigoInterno" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o código da peça" />
-                    @Html.ValidationMessageFor(x => x.CodigoInterno)
-                </div>
-                <div class="mb-4">
-                    <label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center"></label>
-                    <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a lição aprendida" required></textarea>
-                    @Html.ValidationMessageFor(x => x.Descricao)
-                </div>
-                <div class="mb-4">
-                    <label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="Data" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Digite o código da peça" />
+                    <label asp-for="Data" class="block mb-2 text-sm font-bold flex items-center"></label>
+                    <input asp-for="Data" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Planejado" />
                     @Html.ValidationMessageFor(x => x.Data)
                 </div>
                 <div class="mb-4">
+                    <label asp-for="Fonte" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="Fonte" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="Schwarz" >Schwarz</option>
+                        <option value="Consultoria George">Consultoria George</option>
+                        <option value="Consultoria Sakae">Consultoria Sakae</option>
+                        <option value="Consultoria Jürgen">Consultoria Jürgen</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.Fonte)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="IDCliente" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="IDCliente" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" asp-items="ViewBag.Clientes">
+                    </select>
+                    @Html.ValidationMessageFor(x => x.IDCliente)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Processo" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="Processo" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="Comercial">Comercial</option>
+                        <option value="Manutenção Predial">Manutenção Predial</option>
+                        <option value="Usinagem pistao">Usinagem pistao</option>
+                        <option value="Solda Pistões">Solda Pistões</option>
+                        <option value="Forja Hollow">Forja Hollow</option>
+                        <option value="Tampinha Hollow">Tampinha Hollow</option>
+                        <option value="Corte">Corte</option>
+                        <option value="Swash Plate">Swash Plate</option>
+                        <option value="Forja Conector">Forja Conector</option>
+                        <option value="Celulas - Usinagem Conectores">Celulas - Usinagem Conectores</option>
+                        <option value="BOSCH">BOSCH</option>
+                        <option value="SCHAEFFLER">SCHAEFFLER</option>
+                        <option value="Torno">Torno</option>
+                        <option value="Rebarbação">Rebarbação</option>
+                        <option value="Jateadora">Jateadora</option>
+                        <option value="Forjado a Frio">Forjado a Frio</option>
+                        <option value="ECM">ECM</option>
+                        <option value="TAMBOREADOR">TAMBOREADOR</option>
+                        <option value="BOSCH P">BOSCH P</option>
+                        <option value="INSPEÇÃO BOSCH">INSPEÇÃO BOSCH</option>
+                        <option value="BOSCH S">BOSCH S</option>
+                        <option value="Forjaria2">Forjaria2</option>
+                        <option value="INSPEÇÃO E RETRABALHO TAURUS">INSPEÇÃO E RETRABALHO TAURUS</option>
+                        <option value="Engenharia de Processos">Engenharia de Processos</option>
+                        <option value="Engenharia de Desenvolvimento">Engenharia de Desenvolvimento</option>
+                        <option value="Qualidade">Qualidade</option>
+                        <option value="Logistica PCP">Logistica PCP</option>
+                        <option value="Administracao da Producao">Administracao da Producao</option>
+                        <option value="Ferramentaria">Ferramentaria</option>
+                        <option value="Manutenção">Manutenção</option>
+                        <option value="Preset">Preset</option>
+                        <option value="Segurança Trabalho">Segurança Trabalho</option>
+                        <option value="Geral Produtivo">Geral Produtivo</option>
+                        <option value="Análise de Viabilidade Usinagem">Análise de Viabilidade Usinagem</option>
+                        <option value="Análise de Viabilidade Forjado">Análise de Viabilidade Forjado</option>
+                        <option value="Inspeção de Recebimento da Matéria Prima">Inspeção de Recebimento da Matéria Prima</option>
+                        <option value="Inspeção de Recebimento de Peças Tratadas">Inspeção de Recebimento de Peças Tratadas</option>
+                        <option value="Inspeção de Recebimento de Peças Anodizadas">Inspeção de Recebimento de Peças Anodizadas</option>
+                        <option value="Forjado">Forjado</option>
+                        <option value="Usinado">Usinado</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="CodigoInterno" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="110110314">110110314</option>
+                        <option value="111080320">111080320</option>
+                        <option value="110110315">110110315</option>
+                        <option value="110110316">110110316</option>
+                        <option value="111010313">111010313</option>
+                        <option value="111020004">111020004</option>
+                        <option value="111020010">111020010</option>
+                        <option value="111020018">111020018</option>
+                        <option value="111020020">111020020</option>
+                        <option value="111020028">111020028</option>
+                        <option value="111020320">111020320</option>
+                        <option value="111020321">111020321</option>
+                        <option value="111040033">111040033</option>
+                        <option value="111070005">111070005</option>
+                        <option value="111070007">111070007</option>
+                        <option value="111070014">111070014</option>
+                        <option value="111070015">111070015</option>
+                        <option value="111070016">111070016</option>
+                        <option value="111070021">111070021</option>
+                        <option value="111070026">111070026</option>
+                        <option value="111070027">111070027</option>
+                        <option value="111070028">111070028</option>
+                        <option value="111070040">111070040</option>
+                        <option value="111070041">111070041</option>
+                        <option value="111070047">111070047</option>
+                        <option value="111070059">111070059</option>
+                        <option value="111080318">111080318</option>
+                        <option value="111080319">111080319</option>
+                        <option value="111100212">111100212</option>
+                        <option value="111140002">111140002</option>
+                        <option value="111140004">111140004</option>
+                        <option value="111150004">111150004</option>
+                        <option value="111160224">111160224</option>
+                        <option value="201010010">201010010</option>
+                        <option value="201010011">201010011</option>
+                        <option value="201010102">201010102</option>
+                        <option value="211030001">211030001</option>
+                        <option value="211040001">211040001</option>
+                        <option value="211050001">211050001</option>
+                        <option value="211050002">211050002</option>
+                        <option value="211070015">211070015</option>
+                        <option value="211070016">211070016</option>
+                        <option value="211070021">211070021</option>
+                        <option value="211070022">211070022</option>
+                        <option value="211070029">211070029</option>
+                        <option value="211070033">211070033</option>
+                        <option value="211070034">211070034</option>
+                        <option value="211070035">211070035</option>
+                        <option value="211070040">211070040</option>
+                        <option value="211070041">211070041</option>
+                        <option value="211070046">211070046</option>
+                        <option value="211070047">211070047</option>
+                        <option value="211070067">211070067</option>
+                        <option value="211070078">211070078</option>
+                        <option value="211070224">211070224</option>
+                        <option value="211070225">211070225</option>
+                        <option value="211070226">211070226</option>
+                        <option value="211070227">211070227</option>
+                        <option value="211070313">211070313</option>
+                        <option value="211090001">211090001</option>
+                        <option value="211100001">211100001</option>
+                        <option value="211120001">211120001</option>
+                        <option value="211120002">211120002</option>
+                        <option value="211130009">211130009</option>
+                        <option value="211130022">211130022</option>
+                        <option value="211130030">211130030</option>
+                        <option value="211130031">211130031</option>
+                        <option value="211130032">211130032</option>
+                        <option value="211130033">211130033</option>
+                        <option value="211130035">211130035</option>
+                        <option value="211130036">211130036</option>
+                        <option value="211130040">211130040</option>
+                        <option value="211130044">211130044</option>
+                        <option value="211130051">211130051</option>
+                        <option value="211130084">211130084</option>
+                        <option value="211130094">211130094</option>
+                        <option value="211130178">211130178</option>
+                        <option value="211130187">211130187</option>
+                        <option value="211130188">211130188</option>
+                        <option value="211130189">211130189</option>
+                        <option value="211130202">211130202</option>
+                        <option value="211130224">211130224</option>
+                        <option value="211130313">211130313</option>
+                        <option value="211130318">211130318</option>
+                        <option value="211130319">211130319</option>
+                        <option value="211180212">211180212</option>
+                        <option value="211180318">211180318</option>
+                        <option value="211180319">211180319</option>
+                        <option value="211180320">211180320</option>
+                        <option value="211190224">211190224</option>
+                        <option value="211220012">211220012</option>
+                        <option value="211220013">211220013</option>
+                        <option value="211220224">211220224</option>
+                        <option value="211260012">211260012</option>
+                        <option value="211260013">211260013</option>
+                        <option value="212000059">212000059</option>
+                        <option value="212000060">212000060</option>
+                        <option value="212000061">212000061</option>
+                        <option value="212000085">212000085</option>
+                        <option value="212000139">212000139</option>
+                        <option value="212000140">212000140</option>
+                        <option value="212000154">212000154</option>
+                        <option value="212000155">212000155</option>
+                        <option value="212000164">212000164</option>
+                        <option value="212000181">212000181</option>
+                        <option value="212000194">212000194</option>
+                        <option value="212000210">212000210</option>
+                        <option value="212000211">212000211</option>
+                        <option value="212000221">212000221</option>
+                        <option value="212000313">212000313</option>
+                        <option value="212000318">212000318</option>
+                        <option value="212000319">212000319</option>
+                        <option value="212000320">212000320</option>
+                        <option value="212000321">212000321</option>
+                        <option value="212010172">212010172</option>
+                        <option value="212010242">212010242</option>
+                        <option value="212020001">212020001</option>
+                        <option value="212020059">212020059</option>
+                        <option value="212020060">212020060</option>
+                        <option value="212020061">212020061</option>
+                        <option value="212020085">212020085</option>
+                        <option value="212020122">212020122</option>
+                        <option value="212020139">212020139</option>
+                        <option value="212020140">212020140</option>
+                        <option value="212020154">212020154</option>
+                        <option value="212020162">212020162</option>
+                        <option value="212020164">212020164</option>
+                        <option value="212020178">212020178</option>
+                        <option value="212020181">212020181</option>
+                        <option value="212020194">212020194</option>
+                        <option value="212020210">212020210</option>
+                        <option value="212020212">212020212</option>
+                        <option value="212020221">212020221</option>
+                        <option value="212020313">212020313</option>
+                        <option value="212020318">212020318</option>
+                        <option value="212020319">212020319</option>
+                        <option value="212020320">212020320</option>
+                        <option value="212020321">212020321</option>
+                        <option value="212030002">212030002</option>
+                        <option value="212030058">212030058</option>
+                        <option value="212030059">212030059</option>
+                        <option value="212030060">212030060</option>
+                        <option value="212030069">212030069</option>
+                        <option value="212030120">212030120</option>
+                        <option value="212030121">212030121</option>
+                        <option value="212030128">212030128</option>
+                        <option value="212030164">212030164</option>
+                        <option value="212030181">212030181</option>
+                        <option value="212030194">212030194</option>
+                        <option value="212030210">212030210</option>
+                        <option value="212030212">212030212</option>
+                        <option value="212030221">212030221</option>
+                        <option value="212030313">212030313</option>
+                        <option value="212030318">212030318</option>
+                        <option value="212030319">212030319</option>
+                        <option value="212030320">212030320</option>
+                        <option value="212030321">212030321</option>
+                        <option value="212040053">212040053</option>
+                        <option value="212040054">212040054</option>
+                        <option value="212040055">212040055</option>
+                        <option value="212040063">212040063</option>
+                        <option value="212040102">212040102</option>
+                        <option value="212040103">212040103</option>
+                        <option value="212040110">212040110</option>
+                        <option value="212040164">212040164</option>
+                        <option value="212040318">212040318</option>
+                        <option value="212040319">212040319</option>
+                        <option value="212040320">212040320</option>
+                        <option value="212090001">212090001</option>
+                        <option value="212100059">212100059</option>
+                        <option value="212100139">212100139</option>
+                        <option value="212100154">212100154</option>
+                        <option value="212100211">212100211</option>
+                        <option value="212220001">212220001</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="NomePeca" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="NomePeca" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="ANODIZADO ALAVANCA AMBIDESTRO DO MANEJO">ANODIZADO ALAVANCA AMBIDESTRO DO MANEJO</option>
+                        <option value="ANODIZADO TRAVE DIREITA (ALAVANCA AMBIDESTRO)">ANODIZADO TRAVE DIREITA (ALAVANCA AMBIDESTRO)</option>
+                        <option value="ANODIZADO TRAVE ESQUERDA (ALAVANCA AMBIDESTRO)">ANODIZADO TRAVE ESQUERDA (ALAVANCA AMBIDESTRO)</option>
+                        <option value="ARMAÇÃO FORJADA (COM ABAS) - DIV 60">ARMAÇÃO FORJADA (COM ABAS) - DIV 60</option>
+                        <option value="BLOCO DE RODEIO">BLOCO DE RODEIO</option>
+                        <option value="BLOCO DE RODEIO - USINADO">BLOCO DE RODEIO - USINADO</option>
+                        <option value="BLOCO DE RODEIO - USINADO INTERMEDIARIO">BLOCO DE RODEIO - USINADO INTERMEDIARIO</option>
+                        <option value="BLOCO DE VALVULA">BLOCO DE VALVULA</option>
+                        <option value="BLOCO DE VALVULA - USINADO">BLOCO DE VALVULA - USINADO</option>
+                        <option value="BLOCO DE VALVULA - USINADO INTERMEDIARIO">BLOCO DE VALVULA - USINADO INTERMEDIARIO</option>
+                        <option value="BLOCO DE VALVULA USINADO">BLOCO DE VALVULA USINADO</option>
+                        <option value="BLOCO DE VALVULA USINADO - ECM">BLOCO DE VALVULA USINADO - ECM</option>
+                        <option value="BRACO OSCILANTE">BRACO OSCILANTE</option>
+                        <option value="BRIGDE FORK BOT">BRIGDE FORK BOT</option>
+                        <option value="CARCACA CILINDRO ESCRAVO">CARCACA CILINDRO ESCRAVO</option>
+                        <option value="CARCACA CILINDRO ESCRAVO - ECM">CARCACA CILINDRO ESCRAVO - ECM</option>
+                        <option value="CARCAÇA CILINDRO ESCRAVO - USINADO">CARCAÇA CILINDRO ESCRAVO - USINADO</option>
+                        <option value="CARCAÇA CILINDRO ESCRAVO - USINADO INTERMEDIARIO">CARCAÇA CILINDRO ESCRAVO - USINADO INTERMEDIARIO</option>
+                        <option value="CARCAÇA CS">CARCAÇA CS</option>
+                        <option value="CARCAÇA CSC">CARCAÇA CSC</option>
+                        <option value="CARCAÇA DO CILINDRO ESCRAVO">CARCAÇA DO CILINDRO ESCRAVO</option>
+                        <option value="CARCAÇA FRANÇA - USINADO">CARCAÇA FRANÇA - USINADO</option>
+                        <option value="CJ ALAVANCA AMBIDESTRO DE MANEJO T4 - DIV 10">CJ ALAVANCA AMBIDESTRO DE MANEJO T4 - DIV 10</option>
+                        <option value="CONEXAO HIDRAULICA">CONEXAO HIDRAULICA</option>
+                        <option value="CONEXAO HIDRAULICA - USINADO">CONEXAO HIDRAULICA - USINADO</option>
+                        <option value="CONEXAO HIDRAULICA - USINADO INTERMEDIARIO">CONEXAO HIDRAULICA - USINADO INTERMEDIARIO</option>
+                        <option value="CORPO USINADO OVERDRILL HOLLOW NACIONAL">CORPO USINADO OVERDRILL HOLLOW NACIONAL</option>
+                        <option value="CORPO USINADO OVERDRILL MINI PISTON">CORPO USINADO OVERDRILL MINI PISTON</option>
+                        <option value="CORTADO">CORTADO</option>
+                        <option value="CORTADO - &quot;PEÇA DE SEGURANÇA&quot;">CORTADO - "PEÇA DE SEGURANÇA"</option>
+                        <option value="CORTADO - ALAVANCA DO MANEJO DUPLA">CORTADO - ALAVANCA DO MANEJO DUPLA</option>
+                        <option value="CORTADO - ARMAÇÃO FORJADA">CORTADO - ARMAÇÃO FORJADA</option>
+                        <option value="CORTADO - CROWN SPIDER OVER FORJADO 3325-1">CORTADO - CROWN SPIDER OVER FORJADO 3325-1</option>
+                        <option value="CORTADO - NOVO GARFO 3276-1">CORTADO - NOVO GARFO 3276-1</option>
+                        <option value="CORTADO - TAMBOREADO">CORTADO - TAMBOREADO</option>
+                        <option value="CORTADO 1000MM PLACA OSCILANTE">CORTADO 1000MM PLACA OSCILANTE</option>
+                        <option value="CORTADO COROA AMORTECEDOR PSS">CORTADO COROA AMORTECEDOR PSS</option>
+                        <option value="CORTADO HONDA ARM CUSHION">CORTADO HONDA ARM CUSHION</option>
+                        <option value="CORTADO HONDA BRIGDE FORK BOT">CORTADO HONDA BRIGDE FORK BOT</option>
+                        <option value="CORTADO HONDA CONN ROD CUSHION">CORTADO HONDA CONN ROD CUSHION</option>
+                        <option value="CORTADO PISTOLA PT- 92AR">CORTADO PISTOLA PT- 92AR</option>
+                        <option value="CORTADO VALVE DPM1">CORTADO VALVE DPM1</option>
+                        <option value="CROWN SPIDER OVER FORJADO">CROWN SPIDER OVER FORJADO</option>
+                        <option value="CROWN SPIDER OVER FORJADO 3325-1">CROWN SPIDER OVER FORJADO 3325-1</option>
+                        <option value="DECAPADO INTERNO (COM ABAS)">DECAPADO INTERNO (COM ABAS)</option>
+                        <option value="DECAPADO INTERNO ARM CUSHION">DECAPADO INTERNO ARM CUSHION</option>
+                        <option value="DECAPADO INTERNO BRIGDE FORK BOT">DECAPADO INTERNO BRIGDE FORK BOT</option>
+                        <option value="DECAPADO INTERNO CONN ROD CUSHION">DECAPADO INTERNO CONN ROD CUSHION</option>
+                        <option value="DESEMPENO ALAVANCA DO MANEJO (AMBIDESTRO)">DESEMPENO ALAVANCA DO MANEJO (AMBIDESTRO)</option>
+                        <option value="EMBOLO - &quot;PEÇA DE SEGURANÇA&quot;">EMBOLO - "PEÇA DE SEGURANÇA"</option>
+                        <option value="FORJADO">FORJADO</option>
+                        <option value="FORJADO - NOVO GARFO 3276-1">FORJADO - NOVO GARFO 3276-1</option>
+                        <option value="FORJADO - &quot;PEÇA DE SEGURANÇA&quot;">FORJADO - "PEÇA DE SEGURANÇA"</option>
+                        <option value="FORJADO - ARMAÇÃO FORJADA (COM ABAS)">FORJADO - ARMAÇÃO FORJADA (COM ABAS)</option>
+                        <option value="FORJADO - CARCAÇA FRANÇA">FORJADO - CARCAÇA FRANÇA</option>
+                        <option value="FORJADO ARM CUSHION">FORJADO ARM CUSHION</option>
+                        <option value="FORJADO BOSCH G">FORJADO BOSCH G</option>
+                        <option value="FORJADO BRIGDE FORK BOT">FORJADO BRIGDE FORK BOT</option>
+                        <option value="FORJADO CARCAÇA DUALOGIC">FORJADO CARCAÇA DUALOGIC</option>
+                        <option value="FORJADO CONEXAO DUALOGIC">FORJADO CONEXAO DUALOGIC</option>
+                        <option value="FORJADO CONN ROD CUSHION">FORJADO CONN ROD CUSHION</option>
+                        <option value="FORJADO COROA AMORTECEDOR PSS">FORJADO COROA AMORTECEDOR PSS</option>
+                        <option value="FORJADO CORPO HOLLOW SCHWARZ">FORJADO CORPO HOLLOW SCHWARZ</option>
+                        <option value="FORJADO DUPLO - ALAVANCA DO MANEJO">FORJADO DUPLO - ALAVANCA DO MANEJO</option>
+                        <option value="FORJADO PISTOLA PT- 92AR">FORJADO PISTOLA PT- 92AR</option>
+                        <option value="FORJADO PLACA OSCILANTE 450MM">FORJADO PLACA OSCILANTE 450MM</option>
+                        <option value="FORJADO PRÉ-FORMA">FORJADO PRÉ-FORMA</option>
+                        <option value="FORJADO PRÉ-FORMA ARMAÇÃO FORJADA">FORJADO PRÉ-FORMA ARMAÇÃO FORJADA</option>
+                        <option value="FORJADO TAMPA HOLLOW AÇO PEÇAS">FORJADO TAMPA HOLLOW AÇO PEÇAS</option>
+                        <option value="GRAVAÇÃO LASER ALAVANCA AMBIDESTRA">GRAVAÇÃO LASER ALAVANCA AMBIDESTRA</option>
+                        <option value="HASTE CONEXAO AMORTECEDOR TRASEIRO">HASTE CONEXAO AMORTECEDOR TRASEIRO</option>
+                        <option value="INSPEÇÃO ALAVANCA DO MANEJO (AMBIDESTRO)">INSPEÇÃO ALAVANCA DO MANEJO (AMBIDESTRO)</option>
+                        <option value="INSPEÇÃO EMBALAGEM">INSPEÇÃO EMBALAGEM</option>
+                        <option value="JATEADO">JATEADO</option>
+                        <option value="JATEADO - CARCACA DUALOGIC">JATEADO - CARCACA DUALOGIC</option>
+                        <option value="JATEADO ALAVANCA AMBIDESTRO PÓS USINAGEM">JATEADO ALAVANCA AMBIDESTRO PÓS USINAGEM</option>
+                        <option value="JATEADO ARM CUSHION">JATEADO ARM CUSHION</option>
+                        <option value="JATEADO BOSCH G DPM2">JATEADO BOSCH G DPM2</option>
+                        <option value="JATEADO BRIGDE FORK BOT">JATEADO BRIGDE FORK BOT</option>
+                        <option value="JATEADO CARCAÇA FRANÇA">JATEADO CARCAÇA FRANÇA</option>
+                        <option value="JATEADO CONEXAO DUALOGIC">JATEADO CONEXAO DUALOGIC</option>
+                        <option value="JATEADO CONN ROD CUSHION">JATEADO CONN ROD CUSHION</option>
+                        <option value="NIVELAMENTO COROA AMORTECEDOR PSS">NIVELAMENTO COROA AMORTECEDOR PSS</option>
+                        <option value="NOVO GARFO - 3276-1">NOVO GARFO - 3276-1</option>
+                        <option value="PISTAO - USINADO INICIAL 6CVC & 7CVC">PISTAO - USINADO INICIAL 6CVC & 7CVC</option>
+                        <option value="PISTAO- JATEADO MINI PISTON">PISTAO- JATEADO MINI PISTON</option>
+                        <option value="PISTOLA PT- 92AR - DIV 10">PISTOLA PT- 92AR - DIV 10</option>
+                        <option value="PISTON - INITIAL MACHINING, 6CVC & 7CVC">PISTON - INITIAL MACHINING, 6CVC & 7CVC</option>
+                        <option value="REBARBAÇÃO ECM">REBARBAÇÃO ECM</option>
+                        <option value="SOBRA ALUMINIO PLACA OSCILANTE">SOBRA ALUMINIO PLACA OSCILANTE</option>
+                        <option value="SOBRA ALUMINIO SCH">SOBRA ALUMINIO SCH</option>
+                        <option value="SOBRA LATAO SCH">SOBRA LATAO SCH</option>
+                        <option value="SOLDADO CORPO SCHWARZ HOLLOW NACIONAL">SOLDADO CORPO SCHWARZ HOLLOW NACIONAL</option>
+                        <option value="SOLDADO CORPO SCHWARZ MINI PISTON">SOLDADO CORPO SCHWARZ MINI PISTON</option>
+                        <option value="STATOR SPACER">STATOR SPACER</option>
+                        <option value="SWASH PLATE 1W">SWASH PLATE 1W</option>
+                        <option value="SWASH PLATE SRE 11">SWASH PLATE SRE 11</option>
+                        <option value="SWASHPLATE - BRONZE, FORNING - 6CVC">SWASHPLATE - BRONZE, FORNING - 6CVC</option>
+                        <option value="SWASHPLATE - BRONZE,FORNING - 6CVC,6MM">SWASHPLATE - BRONZE,FORNING - 6CVC,6MM</option>
+                        <option value="TRATADO">TRATADO</option>
+                        <option value="TRATADO - &quot;PEÇA DE SEGURANÇA&quot;">TRATADO - "PEÇA DE SEGURANÇA"</option>
+                        <option value="TRATADO - ALAVANCA DO MANEJO">TRATADO - ALAVANCA DO MANEJO</option>
+                        <option value="TRATADO ARM CUSHION">TRATADO ARM CUSHION</option>
+                        <option value="TRATADO ARMAÇÃO FORJADA (COM ABAS)">TRATADO ARMAÇÃO FORJADA (COM ABAS)</option>
+                        <option value="TRATADO BRIGDE FORK BOT">TRATADO BRIGDE FORK BOT</option>
+                        <option value="TRATADO CARCACA DUALOGIC">TRATADO CARCACA DUALOGIC</option>
+                        <option value="TRATADO CARCAÇA FRANÇA">TRATADO CARCAÇA FRANÇA</option>
+                        <option value="TRATADO CONEXAO DUALOGIC">TRATADO CONEXAO DUALOGIC</option>
+                        <option value="TRATADO CONN ROD CUSHION">TRATADO CONN ROD CUSHION</option>
+                        <option value="TRATADO COROA AMORTECEDOR PSS">TRATADO COROA AMORTECEDOR PSS</option>
+                        <option value="TRATADO CORPO HOLLOW SCHWARZ">TRATADO CORPO HOLLOW SCHWARZ</option>
+                        <option value="TRATADO CROWN SPIDER OVER FORJADO 3325-1">TRATADO CROWN SPIDER OVER FORJADO 3325-1</option>
+                        <option value="TRATADO NOVO GARFO 3276-1">TRATADO NOVO GARFO 3276-1</option>
+                        <option value="TRATADO PISTOLA PT- 92AR">TRATADO PISTOLA PT- 92AR</option>
+                        <option value="TRAVA DIREITA DA ALAVANCA LAZER E JATEADA">TRAVA DIREITA DA ALAVANCA LAZER E JATEADA</option>
+                        <option value="TRAVA ESQUERDA DA ALAVANCA LAZER E JATEADA">TRAVA ESQUERDA DA ALAVANCA LAZER E JATEADA</option>
+                        <option value="TRAVE NOVA TRATADO 139mm">TRAVE NOVA TRATADO 139mm</option>
+                        <option value="TRAVE NOVA TRATADO 149mm">TRAVE NOVA TRATADO 149mm</option>
+                        <option value="TRAVE NOVA TRATADO 159mm">TRAVE NOVA TRATADO 159mm</option>
+                        <option value="USINADO ARM CUSHION">USINADO ARM CUSHION</option>
+                        <option value="USINADO BOSCH G DPM2">USINADO BOSCH G DPM2</option>
+                        <option value="USINADO CONN ROD CUSHION">USINADO CONN ROD CUSHION</option>
+                        <option value="USINADO INTERM. DESMEMBRADO BROTHER - (199)">USINADO INTERM. DESMEMBRADO BROTHER - (199)</option>
+                        <option value="USINADO INTERM. DESMEMBRADO BROTHER - (303)">USINADO INTERM. DESMEMBRADO BROTHER - (303)</option>
+                        <option value="USINADO INTERM. DESMEMBRADO BROTHER - (MAN)">USINADO INTERM. DESMEMBRADO BROTHER - (MAN)</option>
+                        <option value="USINADO INTERM. DESMEMBRADO MORI - (MAN)">USINADO INTERM. DESMEMBRADO MORI - (MAN)</option>
+                        <option value="USINADO INTERMEDIARIO">USINADO INTERMEDIARIO</option>
+                        <option value="USINADO SPACER">USINADO SPACER</option>
+                        <option value="USINADO TORNO - &quot;PEÇA DE SEGURANÇA&quot;">USINADO TORNO - "PEÇA DE SEGURANÇA"</option>
+                        <option value="USINAGEM 10  ALAVANCA DO MANEJO (AMBIDESTRO)">USINAGEM 10 ALAVANCA DO MANEJO (AMBIDESTRO)</option>
+                        <option value="USINAGEM 20  ALAVANCA DO MANEJO (AMBIDESTRO)">USINAGEM 20 ALAVANCA DO MANEJO (AMBIDESTRO)</option>
+                        <option value="USINAGEM FINAL - COROA AMORTECEDOR PSS">USINAGEM FINAL - COROA AMORTECEDOR PSS</option>
+                        <option value="USINAGEM OPERAÇÃO 10 - PSS">USINAGEM OPERAÇÃO 10 - PSS</option>
+                        <option value="USINAGEM OPERAÇÃO 10 HOLLOW NACIONAL">USINAGEM OPERAÇÃO 10 HOLLOW NACIONAL</option>
+                        <option value="USINAGEM OPERAÇÃO 10 MINI PISTON">USINAGEM OPERAÇÃO 10 MINI PISTON</option>
+                        <option value="USINAGEM OPERAÇÃO 20 HOLLOW NACIONAL">USINAGEM OPERAÇÃO 20 HOLLOW NACIONAL</option>
+                        <option value="USINAGEM OPERAÇÃO 20 MINI PISTON">USINAGEM OPERAÇÃO 20 MINI PISTON</option>
+                        <option value="USINAGEM TORNO">USINAGEM TORNO</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Planejado" class="block mb-2 text-sm font-bold flex items-center"></label>
+                    <input asp-for="Planejado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Planejado" />
+                    @Html.ValidationMessageFor(x => x.Planejado)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Realizado" class="block mb-2 text-sm font-bold">Realizado (O que aconteceu?)</label>
+                    <input asp-for="Realizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Realizado" />
+                    @Html.ValidationMessageFor(x => x.Realizado)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Motivo" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="Motivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Motivo" />
+                    @Html.ValidationMessageFor(x => x.Motivo)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center">Descrição da Lição</label>
+                    <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a Lição Aprendida"></textarea>
+                    @Html.ValidationMessageFor(x => x.Descricao)
+                </div>
+                <div class="mb-4">
                     <label asp-for="Positivo" class="block mb-2 text-sm font-bold"></label>
-                    <select asp-for="Positivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
+                    <select asp-for="Positivo" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
                         <option value="@true">Positivo</option>
                         <option value="@false">Negativo</option>
                     </select>

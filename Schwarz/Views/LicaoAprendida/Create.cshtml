@@ -17,9 +17,28 @@
                 <h3 class="pt-4 text-2xl text-center">Formulário de Cadastro</h3>
                 <form asp-action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
                     <div class="mb-4">
+                        <label asp-for="Fonte" class="block mb-2 text-sm font-bold"></label>
+                        <select asp-for="Fonte" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                            <option value="Schwarz" selected>Schwarz</option>
+                            <option value="Consultoria George">Consultoria George</option>
+                            <option value="Consultoria Sakae">Consultoria Sakae</option>
+                            <option value="Consultoria Jürgen">Consultoria Jürgen</option>
+                        </select>
+                        @Html.ValidationMessageFor(x => x.Fonte)
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="IDCliente" class="block mb-2 text-sm font-bold"></label>
+                        <select asp-for="IDCliente" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" asp-items="ViewBag.Clientes">
+                            <option value="" selected disabled>Selecione o Cliente</option>
+                        </select>
+                        @Html.ValidationMessageFor(x => x.IDCliente)
+                    </div>
+                    <div class="mb-4">
                         <label asp-for="Processo" class="block mb-2 text-sm font-bold"></label>
                         <select asp-for="Processo" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                            <option value="" selected>Selecione o Processo</option>
                             <option value="Comercial">Comercial</option>
+                            <option value="Manutenção Predial">Manutenção Predial</option>
                             <option value="Usinagem pistao">Usinagem pistao</option>
                             <option value="Solda Pistões">Solda Pistões</option>
                             <option value="Forja Hollow">Forja Hollow</option>
@@ -58,13 +77,12 @@
                             <option value="Inspeção de Recebimento de Peças Anodizadas">Inspeção de Recebimento de Peças Anodizadas</option>
                             <option value="Forjado">Forjado</option>
                             <option value="Usinado">Usinado</option>
-                            <option value="Consultoria George">Consultoria George</option>
                         </select>
-                        @Html.ValidationMessageFor(x => x.Processo)
                     </div>
                     <div class="mb-4">
                         <label asp-for="CodigoInterno" class="block mb-2 text-sm font-bold"></label>
                         <select asp-for="CodigoInterno" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                            <option value="" selected>Selecione o Código</option>
                             <option value="110110314">110110314</option>
                             <option value="111080320">111080320</option>
                             <option value="110110315">110110315</option>
@@ -240,12 +258,11 @@
                             <option value="212100211">212100211</option>
                             <option value="212220001">212220001</option>
                         </select>
-                        @Html.ValidationMessageFor(x => x.CodigoInterno)
                     </div>
                     <div class="mb-4">
                         <label asp-for="NomePeca" class="block mb-2 text-sm font-bold"></label>
                         <select asp-for="NomePeca" class="select2 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
-                            <option value="" selected disabled>Selecione a Peça</option>
+                            <option value="" selected>Selecione a Peça</option>
                             <option value="ANODIZADO ALAVANCA AMBIDESTRO DO MANEJO">ANODIZADO ALAVANCA AMBIDESTRO DO MANEJO</option>
                             <option value="ANODIZADO TRAVE DIREITA (ALAVANCA AMBIDESTRO)">ANODIZADO TRAVE DIREITA (ALAVANCA AMBIDESTRO)</option>
                             <option value="ANODIZADO TRAVE ESQUERDA (ALAVANCA AMBIDESTRO)">ANODIZADO TRAVE ESQUERDA (ALAVANCA AMBIDESTRO)</option>
@@ -385,7 +402,6 @@
                             <option value="USINAGEM OPERAÇÃO 20 MINI PISTON">USINAGEM OPERAÇÃO 20 MINI PISTON</option>
                             <option value="USINAGEM TORNO">USINAGEM TORNO</option>
                         </select>
-                        @Html.ValidationMessageFor(x => x.NomePeca)
                     </div>
                     <div class="mb-4">
                         <label asp-for="Planejado" class="block mb-2 text-sm font-bold flex items-center"></label>

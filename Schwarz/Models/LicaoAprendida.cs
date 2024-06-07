@@ -9,6 +9,9 @@ namespace Schwarz.Models
         [Key]
         public int IDLicaoAprendida { get; set; }
 
+        [Required(ErrorMessage = "O campo Fonte é obrigatório!")]
+        public string Fonte { get; set; } = "Schwarz";
+        
         [Required(ErrorMessage = "O campo Planejado é obrigatório!")]
         public string Planejado { get; set; } = string.Empty;
 
@@ -18,22 +21,26 @@ namespace Schwarz.Models
         [Required(ErrorMessage = "O campo Motivo é obrigatório!")]
         public string Motivo { get; set; } = string.Empty;
 
+        [Display(Name = "Funcionário")]
         [ForeignKey("Funcionario")]
         public int IDFuncionario { get; set; }
         public virtual Funcionario? Funcionario { get; set; }
 
-        public DateTime Data { get; set; }
+        [Display(Name = "Cliente")]
+        [ForeignKey("Cliente")]
+        [Required(ErrorMessage = "O campo Cliente é obrigatório!")]
+        public int IDCliente{ get; set; }
+        public virtual Cliente? Cliente { get; set; }
 
-        [Required(ErrorMessage = "O Processo é obrigatório!")]
-        public string Processo { get; set; } = string.Empty;
+        public DateTime Data { get; set; } = DateTime.Now;
+
+        public string? Processo { get; set; }
 
         [Display(Name = "Nome da Peça")]
-        [Required(ErrorMessage = "O nome da peça é obrigatória!")]
-        public string NomePeca { get; set; } = string.Empty;
+        public string? NomePeca { get; set; }
 
         [Display(Name = "Código Interno")]
-        [Required(ErrorMessage = "O Código Interno é obrigatório!")]
-        public string CodigoInterno { get; set; } = string.Empty;
+        public string? CodigoInterno { get; set; }
 
         [Display(Name = "Lição Aprendida")]
         [Required(ErrorMessage = "A Lição Aprendida é obrigatória!")]
