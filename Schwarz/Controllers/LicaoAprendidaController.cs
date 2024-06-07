@@ -46,6 +46,7 @@ namespace Schwarz.Controllers
 
         public IActionResult Create()
         {
+            ViewData["Clientes"] = new SelectList(_context.Cliente, "IDCliente", "Nome");
             return View();
         }
 
@@ -108,6 +109,7 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
+            ViewData["Clientes"] = new SelectList(_context.Cliente, "IDCliente", "Nome");
             return View(licaoAprendida);
         }
 
