@@ -6,6 +6,7 @@ using Schwarz.Areas.Identity.Data;
 using System.Globalization;
 using Schwarz.Services;
 using Schwarz.Services.Interfaces;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
