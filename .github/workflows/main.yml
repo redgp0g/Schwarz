@@ -18,7 +18,9 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: NPM Install
+    - name: Init npm
+      run: npm init
+    - name: Install npm packages
       run: npm install
     - name: Set and Use Environment Variable
       run: |
