@@ -18,8 +18,6 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Install npm packages
-      run: npm install
     - name: Set and Use Environment Variable
       run: |
         setx SCHWARZ_DATABASE_STRING_CONNECTION "${{ secrets.DATABASE_STRING_CONNECTION }}" /M
