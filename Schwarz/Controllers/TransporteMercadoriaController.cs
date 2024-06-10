@@ -29,6 +29,7 @@ namespace Schwarz.Controllers
             IEnumerable<TransporteMercadoria> transporteMercadorias = (from t in _context.TransporteMercadoria
                                                                        select new TransporteMercadoria
                                                                        {
+                                                                           IDTransporteMercadoria = t.IDTransporteMercadoria,
                                                                            Data = t.Data,
                                                                            Cliente = new Cliente
                                                                            {
