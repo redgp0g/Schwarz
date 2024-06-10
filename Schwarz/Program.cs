@@ -71,15 +71,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-var currentDirectory = Directory.GetCurrentDirectory();
-var parentDirectory = Directory.GetParent(currentDirectory).FullName;
-
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(parentDirectory, "node_modules")),
-	RequestPath = new PathString("/vendor")
-});
-
 app.UseRouting();
 app.UseAuthentication(); ;
 
