@@ -89,9 +89,6 @@
 
                             @foreach (var foto in item.Fotos)
                             {
-
-                                
-
                                 <button data-id="@foto.IDTransporteMercadoriaFoto" class="image-viewer rounded p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block">
                                     @foto.Nome
                                 </button>
@@ -105,32 +102,35 @@
     </div>
 </div>
 
-<img id="imagemOculta" class="hidden" alt="imagem">
+<a id="linkOculto" class="hidden"></a>
 
 <script>
-    $('.image-viewer').on('click', function(){
-        var fotoId = $(this).data('id');
-        $.ajax({
-            url: '/api/TransporteMercadoriaFoto/Foto/' + fotoId,
-            method: 'GET',
-            success: function (data) {
-                $('#imagemOculta').attr('src', 'data:' + data.tipoMIME + ';base64,' + data.conteudoBase64);
-
-                const viewer = new Viewer(document.getElementById('imagemOculta'), {
-                    inline: true,
-                    viewed() {
-                        viewer.zoomTo(0.5);
-                    },
-                });
-            },
-
-            error: function (error) {
-                alert('Erro ao buscar foto: ' + error.responseText);
-            }
+    $(document).ready(function () {
+        var vbInstance = new VenoBox({
+            selector: "#linkOculto",
+            share: true,
+            fitView: true,
+            spinner: 'circle-fade',
+            numeration: true,
         });
 
+        $('.image-viewer').on('click', function () {
+            var fotoId = $(this).data('id');
+            $.ajax({
+                url: '/api/TransporteMercadoriaFoto/Foto/' + fotoId,
+                method: 'GET',
+                success: async function (data) {
+                    $('#linkOculto').attr('href', 'data:' + data.tipoMIME + ';base64,' + data.conteudoBase64);
+                    var linkOculto = document.querySelector('#linkOculto');
+                    vbInstance.open(linkOculto)
+                },
+                error: function (error) {
+                    alert('Erro ao buscar foto: ' + error.responseText);
+                }
+            });
+        });
+    });
 
-    })
 
     
     $(document).ready(function () {
