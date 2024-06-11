@@ -26,8 +26,35 @@ namespace Schwarz.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.TransporteMercadoria.Include(t => t.Cliente).Include(t => t.Funcionario);
-            return View(await schwarzContext.ToListAsync());
+            IEnumerable<TransporteMercadoria> transporteMercadorias = (from t in _context.TransporteMercadoria
+                                                                       select new TransporteMercadoria
+                                                                       {
+                                                                           IDTransporteMercadoria = t.IDTransporteMercadoria,
+                                                                           Data = t.Data,
+                                                                           Cliente = new Cliente
+                                                                           {
+                                                                               Nome = t.Cliente.Nome,
+                                                                           },
+                                                                           Funcionario = new Funcionario
+                                                                           {
+                                                                               Nome = t.Funcionario.Nome,
+                                                                           },
+                                                                           NotaFiscal = t.NotaFiscal,
+                                                                           Volume = t.Volume,
+                                                                           TipoVolume = t.TipoVolume,
+                                                                           Transportadora = t.Transportadora,
+                                                                           Placa = t.Placa,
+                                                                           Fotos = _context.TransporteMercadoriaFoto
+                                                                                   .Where(f => f.IDTransporteMercadoria == t.IDTransporteMercadoria)
+                                                                                   .Select(x => new TransporteMercadoriaFoto
+                                                                                   {
+                                                                                       IDTransporteMercadoriaFoto = x.IDTransporteMercadoriaFoto,
+                                                                                       Nome = x.Nome,
+                                                                                       TipoMIME = x.TipoMIME
+
+                                                                                   }).ToList()
+                                                                       });
+            return View(transporteMercadorias);
         }
 
         public async Task<IActionResult> Details(int? id)
