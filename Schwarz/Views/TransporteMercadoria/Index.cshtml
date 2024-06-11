@@ -85,11 +85,19 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Placa)
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="grid grid-cols-2 gap-4">
 
                             @foreach (var foto in item.Fotos)
                             {
-                                <button data-id="@foto.IDTransporteMercadoriaFoto" class="image-viewer rounded p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block">
+                                <button class="image-viewer 
+
+                                text-black hover:text-white 
+                                antialiased transition ease-in-out delay-100 bg-white 
+                                hover:scale-110 hover:bg-gray-600 duration-300
+                                rounded-sm rounded-tl-lg rounded-br-lg border-2 border-black text-balance 
+                                flex items-center justify-center grid grid-cols-2 gap-4 mb-0.5 button-width w-42 h-14 font-semibold"
+
+                                data-id="@foto.IDTransporteMercadoriaFoto" >
                                     @foto.Nome
                                 </button>
                             }
@@ -101,6 +109,17 @@
         </table>
     </div>
 </div>
+
+<style>
+    .button-width{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+</style>
+
 
 <a id="linkOculto" class="hidden"></a>
 
@@ -130,7 +149,6 @@
             });
         });
     });
-
 
     
     $(document).ready(function () {
