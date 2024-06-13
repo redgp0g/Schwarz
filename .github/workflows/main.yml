@@ -21,6 +21,8 @@ jobs:
     - name: Set and Use Environment Variable
       run: |
         setx SCHWARZ_DATABASE_STRING_CONNECTION "${{ secrets.DATABASE_STRING_CONNECTION }}" /M
+        setx SCHWARZ_EMAIL_COMUNICACAO "${{ secrets.EMAIL_COMUNICACAO }}" /M
+        setx SCHWARZ_SENHA_EMAIL_COMUNICACAO "${{ secrets.SENHA_EMAIL_COMUNICACAO }}" /M
         dotnet test --no-build --verbosity normal
     - name: Stop Website
       run: C:\Windows\System32\inetsrv\appcmd stop site "Schwarz"
