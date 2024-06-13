@@ -5,10 +5,27 @@
     Layout = "_Layout";
 }
 
-<div class="my-2 flex sm:flex-row flex-col">
+<style>
+    .button-width {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+</style>
+
+<div class="center max-h-screen max-w-screen flex px-5">
     <a asp-action="Create" class="group block max-w-xs ml-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-red-600 hover:ring-red-800">
         <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-6 h-6 group-hover:text-white">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
             </svg>
 
@@ -17,7 +34,7 @@
     </a>
 </div>
 
-<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">
+<div class="max-h-screen max-w-screen flex px-5 py-1">
     <div class="bg-white inline-block min-w-full shadow rounded-lg overflow-hidden p-5">
         <table id="table">
             <thead>
@@ -85,11 +102,18 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Placa)
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-
+                        <td class="grid grid-cols-2 gap-4">
                             @foreach (var foto in item.Fotos)
                             {
-                                <button data-id="@foto.IDTransporteMercadoriaFoto" class="image-viewer rounded p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block">
+                                <button class="image-viewer 
+
+                                text-black hover:text-white 
+                                antialiased transition ease-in-out delay-100 bg-white 
+                                hover:scale-110 hover:bg-gray-600 duration-300
+                                rounded-sm rounded-tl-lg rounded-br-lg border-2 border-black text-balance 
+                                flex items-center justify-center grid grid-cols-2 gap-4 mb-0.5 button-width w-42 h-14 font-semibold"
+
+                                data-id="@foto.IDTransporteMercadoriaFoto" >
                                     @foto.Nome
                                 </button>
                             }
@@ -101,6 +125,7 @@
         </table>
     </div>
 </div>
+
 
 <a id="linkOculto" class="hidden"></a>
 
@@ -119,7 +144,7 @@
             $.ajax({
                 url: '/api/TransporteMercadoriaFoto/Foto/' + fotoId,
                 method: 'GET',
-                success: async function (data) {
+                success: function (data) {
                     $('#linkOculto').attr('href', 'data:' + data.tipoMIME + ';base64,' + data.conteudoBase64);
                     var linkOculto = document.querySelector('#linkOculto');
                     vbInstance.open(linkOculto)
@@ -130,7 +155,6 @@
             });
         });
     });
-
 
     
     $(document).ready(function () {
