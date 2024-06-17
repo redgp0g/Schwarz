@@ -6,7 +6,7 @@ namespace Schwarz.Models
     {
         [Key]
         public int IDCliente { get; set; }
-        public string Nome { get; set; } = string.Empty;
+        public string Nome { get; set; }
 
         public Cliente() { }
         public Cliente(int iDCliente, string nome)

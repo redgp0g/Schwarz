@@ -17,10 +17,10 @@ namespace Schwarz.Models
         public DateTime Data { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "O Local é obrigatório!")]
-        public string Local { get; set; } = string.Empty;
+        public string Local { get; set; }
 
         [Required(ErrorMessage = "O Desvio é obrigatório!")]
-        public string Desvio { get; set; } = string.Empty;
+        public string Desvio { get; set; }
 
         [Display(Name = "Pontuação")]
         public int? Pontuacao { get; set; }
@@ -28,7 +28,7 @@ namespace Schwarz.Models
 
         [Display(Name = "Ordem de Serviço")]
         [Required(ErrorMessage = "A Ordem de Serviço é obrigatória!")]
-        public string OrdemServico { get; set; } = string.Empty;
+        public string OrdemServico { get; set; }
 
         [Display(Name = "Aprovação do Líder")]
         public bool? AprovacaoLider { get; set; }

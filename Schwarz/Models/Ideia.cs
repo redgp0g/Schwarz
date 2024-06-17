@@ -12,7 +12,7 @@ namespace Schwarz.Models
 
 		[Display(Name = "Descrição da Ideia")]
 		[Required(ErrorMessage = "Descreva a ideia")]
-		public string Descricao { get; set; } = string.Empty;
+		public string Descricao { get; set; }
 		public DateTime Data { get; set; } = DateTime.Now;
 
 		[Display(Name = "Data de Implantação")]

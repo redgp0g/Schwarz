@@ -22,6 +22,7 @@ builder.Services.AddDbContext<SchwarzContext>
 .UseSqlServer(connectionString)
 );
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddIdentity<SchwarzUser, IdentityRole>(options =>
 	{

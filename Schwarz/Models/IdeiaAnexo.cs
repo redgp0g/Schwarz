@@ -8,10 +8,10 @@ namespace Schwarz.Models
 	{
 		[Key]
 		public int IDIdeiaAnexo { get; set; }
-        public string Nome { get; set; } = string.Empty;
+        public string Nome { get; set; }
         [Column(TypeName = "varbinary(max)")]
-        public byte[] Anexo { get; set; } = new byte[0];
-        public string TipoMIME { get; set; } = string.Empty;
+        public byte[] Anexo { get; set; }
+        public string TipoMIME { get; set; }
 
 		[ForeignKey("Ideia")]
         public int IDIdeia { get; set; }
