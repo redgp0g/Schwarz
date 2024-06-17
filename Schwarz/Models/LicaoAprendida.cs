@@ -13,13 +13,13 @@ namespace Schwarz.Models
         public string Fonte { get; set; } = "Schwarz";
         
         [Required(ErrorMessage = "O campo Planejado é obrigatório!")]
-        public string Planejado { get; set; } = string.Empty;
+        public string Planejado { get; set; }
 
         [Required(ErrorMessage = "O campo Realizado é obrigatório!")]
-        public string Realizado { get; set; } = string.Empty;
+        public string Realizado { get; set; }
 
         [Required(ErrorMessage = "O campo Motivo é obrigatório!")]
-        public string Motivo { get; set; } = string.Empty;
+        public string Motivo { get; set; }
 
         [Display(Name = "Funcionário")]
         [ForeignKey("Funcionario")]
@@ -44,7 +44,7 @@ namespace Schwarz.Models
 
         [Display(Name = "Lição Aprendida")]
         [Required(ErrorMessage = "A Lição Aprendida é obrigatória!")]
-        public string Descricao { get; set; } = string.Empty;
+        public string Descricao { get; set; }
 
         [Display(Name = "Positivo/Negativo")]
         public bool Positivo { get; set; }

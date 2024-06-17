@@ -12,7 +12,7 @@ namespace Schwarz.Models
         [Key]
         public int IDFuncionario { get; set; }
 		public int? Matricula { get; set; }
-		public string Nome { get; set; } = string.Empty;
+		public string Nome { get; set; }
         public string? Setor { get; set; }
         public string? CentroCusto { get; set; }
         public DateTime? DataNascimento { get; set; }

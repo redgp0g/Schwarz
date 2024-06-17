@@ -28,13 +28,13 @@ namespace Schwarz.Models
 		public DateTime Data { get; set; } = DateTime.Now;
 
 		[Required(ErrorMessage = "Selecione o Setor onde ocorreu!")]
-		public string Setor { get; set; } = string.Empty;
+		public string Setor { get; set; }
 
 		[Required(ErrorMessage = "O Código é obrigatório!")]
 		[Display(Name = "Código do Item")]
 		[MinLength(9, ErrorMessage = "O código deve ter no mínimo 9 digítos!")]
 		[MaxLength(9, ErrorMessage = "O código deve ter no máximo 9 digítos!")]
-		public string CodigoItem { get; set; } = string.Empty;
+		public string CodigoItem { get; set; }
 
 		[Required(ErrorMessage = "A Quantidade é obrigatória!")]
 		[Display(Name = "Quantidade Bloqueada")]

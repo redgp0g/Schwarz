@@ -18,10 +18,10 @@ namespace Schwarz.Models
         public DateTime Data { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "O Local é obrigatório!")]
-        public string Local { get; set; } = string.Empty;
+        public string Local { get; set; }
 
         [Required(ErrorMessage = "O Desvio é obrigatório!")]
-        public string Desvio { get; set; } = string.Empty;
+        public string Desvio { get; set; }
 
         [Display(Name = "Pontuação")]
         public int? Pontuacao { get; set; }
