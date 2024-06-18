@@ -45,7 +45,6 @@ namespace Schwarz.Controllers
             }
 
             var funcionario = await _context.Funcionario
-                .Include(f => f.FuncionarioLider)
                 .FirstOrDefaultAsync(m => m.IDFuncionario == id);
             if (funcionario == null)
             {
@@ -137,7 +136,6 @@ namespace Schwarz.Controllers
             }
 
             var funcionario = await _context.Funcionario
-                .Include(f => f.FuncionarioLider)
                 .FirstOrDefaultAsync(m => m.IDFuncionario == id);
             if (funcionario == null)
             {
