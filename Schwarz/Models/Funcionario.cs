@@ -28,7 +28,6 @@ namespace Schwarz.Models
 		public byte[]? Foto { get; set; }
 		public string? Telefone { get; set; }
         public DateTime? DataAdmissao { get; set; }
-        public int? NumeroCentroCusto { get; set; }
         public virtual SchwarzUser? User { get; set; }
         public virtual ICollection<IdeiaEquipe>? IdeiaEquipe { get; set; }
 

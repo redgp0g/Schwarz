@@ -203,7 +203,6 @@ namespace Schwarz.Controllers
                 Foto = funcionario.Foto,
                 Telefone = funcionario.Telefone,
                 CentroCusto = funcionario.CentroCusto,
-                NumeroCentroCusto = funcionario.NumeroCentroCusto,
                 DataAdmissao = funcionario.DataAdmissao.HasValue
         ? funcionario.DataAdmissao.Value.ToString("yyyy-MM-dd")
         : null,
