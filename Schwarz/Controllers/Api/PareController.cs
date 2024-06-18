@@ -22,6 +22,7 @@ namespace Schwarz.Controllers.Api
             if (pareQualidade != null)
             {
                 _context.PareQualidade.Remove(pareQualidade);
+                _context.SaveChanges();
                 return Ok();
             }
 
@@ -42,6 +43,7 @@ namespace Schwarz.Controllers.Api
                     }
                 }
                 _context.PareSeguranca.Remove(pareSeguranca);
+                _context.SaveChanges();
                 return Ok();
             }
 
@@ -55,6 +57,7 @@ namespace Schwarz.Controllers.Api
             if (pareMeioAmbiente != null)
             {
                 _context.PareMeioAmbiente.Remove(pareMeioAmbiente);
+                _context.SaveChanges();
                 return Ok();
             }
 
