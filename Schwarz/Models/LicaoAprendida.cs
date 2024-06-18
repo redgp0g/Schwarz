@@ -28,8 +28,7 @@ namespace Schwarz.Models
 
         [Display(Name = "Cliente")]
         [ForeignKey("Cliente")]
-        [Required(ErrorMessage = "O campo Cliente é obrigatório!")]
-        public int IDCliente{ get; set; }
+        public int? IDCliente{ get; set; }
         public virtual Cliente? Cliente { get; set; }
 
         public DateTime Data { get; set; } = DateTime.Now;

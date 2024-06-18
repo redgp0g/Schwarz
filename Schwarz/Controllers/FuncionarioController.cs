@@ -45,7 +45,6 @@ namespace Schwarz.Controllers
             }
 
             var funcionario = await _context.Funcionario
-                .Include(f => f.FuncionarioLider)
                 .FirstOrDefaultAsync(m => m.IDFuncionario == id);
             if (funcionario == null)
             {
@@ -137,7 +136,6 @@ namespace Schwarz.Controllers
             }
 
             var funcionario = await _context.Funcionario
-                .Include(f => f.FuncionarioLider)
                 .FirstOrDefaultAsync(m => m.IDFuncionario == id);
             if (funcionario == null)
             {
@@ -205,7 +203,6 @@ namespace Schwarz.Controllers
                 Foto = funcionario.Foto,
                 Telefone = funcionario.Telefone,
                 CentroCusto = funcionario.CentroCusto,
-                NumeroCentroCusto = funcionario.NumeroCentroCusto,
                 DataAdmissao = funcionario.DataAdmissao.HasValue
         ? funcionario.DataAdmissao.Value.ToString("yyyy-MM-dd")
         : null,

@@ -21,19 +21,19 @@ namespace Schwarz.Controllers
 
         public async Task<IActionResult> IndexQualidade()
         {
-            var model = _context.PareQualidade.Include(c => c.Falha).Include(c => c.Funcionario);
+            var model = _context.PareQualidade;
             return View(await model.ToListAsync());
         }
 
         public async Task<IActionResult> IndexSeguranca()
         {
-            var model = _context.PareSeguranca.Include(c => c.Funcionario);
+            var model = _context.PareSeguranca;
             return View(await model.ToListAsync());
         }
 
         public async Task<IActionResult> IndexMeioAmbiente()
         {
-            var model = _context.PareMeioAmbiente.Include(c => c.Funcionario);
+            var model = _context.PareMeioAmbiente;
             return View(await model.ToListAsync());
         }
 

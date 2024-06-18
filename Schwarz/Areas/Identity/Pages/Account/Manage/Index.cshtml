@@ -54,15 +54,10 @@
                     </div>
                     <div class="form-floating">
                         <div class="mb-8">
-                            @if (Model.Input.Foto != null)
-                            {
-                                <img id="preview" class="object-center object-cover rounded-full h-48 w-36" src="data:image;base64,@(Convert.ToBase64String(Model.Input.Foto))" alt="Foto">
+                            @{
+                                var imageSrc = Model.Input.Foto != null ? $"data:image/jpeg;base64,{Convert.ToBase64String(Model.Input.Foto)}" : Url.Content("~/image/user.png");
                             }
-
-                            else
-                            {
-                                <img id="preview" class="object-center object-cover rounded-full h-48 w-36" src="~/image/user.png" alt="Foto">
-                            }
+                            <img id="preview" class="object-center object-cover rounded-full h-48 w-36 venobox" data-href="@imageSrc" src="@imageSrc" alt="Foto">
 
                         </div>
                         <input asp-for="Input.NovaFoto" class="form-control" type="file" accept="image/*" onchange="previewImage(this)" />
@@ -84,6 +79,14 @@
 <script>
     var preview = document.getElementById('preview');
     var fotoOriginal = preview.src;
+
+    var venobox = new VenoBox({
+        selector: ".venobox",
+        share: true,
+        fitView: true,
+        spinner: 'circle-fade',
+    });
+
     function previewImage(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
