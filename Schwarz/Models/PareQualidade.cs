@@ -38,17 +38,11 @@ namespace Schwarz.Models
 		[Display(Name = "Aprovação do Líder")]
 		public EAprovacaoPare AprovacaoLider { get; set; } = EAprovacaoPare.SemAprovacao;
 
-		[Display(Name = "Data Aprovação do Líder")]
-        public DateTime? DataAprovacaoLider { get; set; }
-        
 		[Display(Name = "Observações do Líder")]
 		public string? ObservacoesLider { get; set; }
 
 		[Display(Name = "Aprovação da Qualidade")]
 		public EAprovacaoPare AprovacaoQualidade { get; set; } = EAprovacaoPare.SemAprovacao;
-
-		[Display(Name = "Data Aprovação da Qualidade")]
-		public DateTime? DataAprovacaoQualidade{ get; set; }
 
 		[Display(Name = "Observações da Qualidade")]
 		public string? ObservacoesQualidade { get; set; }
