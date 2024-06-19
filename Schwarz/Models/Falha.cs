@@ -19,5 +19,8 @@ namespace Schwarz.Models
         public string? Setor1 { get; set; }
         public string? Setor2 { get; set; }
         public string? Setor3 { get; set; }
-	}
+
+        [NotMapped]
+        public string CodigoEDescricao => $"{Codigo} - {Descricao}";
+    }
 }
