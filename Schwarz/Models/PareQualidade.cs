@@ -16,13 +16,8 @@ namespace Schwarz.Models
 		public int IDFuncionario { get; set; }
 		public virtual Funcionario? Funcionario { get; set; }
 
-		[ForeignKey("Falha")]
-		[Display(Name = "Falha")]
-		public int? IDFalha { get; set; }
-		public virtual Falha? Falha { get; set; }
-
-		[Display(Name = "Descrição da Falha")]
-		public string? DescricaoFalha{ get; set; }
+		[Display(Name = "Descrição")]
+		public string Descricao { get; set; }
 
 		[Required(ErrorMessage = "A Data é obrigatória!")]
 		public DateTime Data { get; set; } = DateTime.Now;
