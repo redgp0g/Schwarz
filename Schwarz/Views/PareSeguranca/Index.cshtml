@@ -1,8 +1,13 @@
-﻿@model IEnumerable<PareMeioAmbiente>
+﻿@using Schwarz.Enums
+@model IEnumerable<PareSeguranca>
+
+@{
+    ViewData["Title"] = "Registros";
+}
 
 <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">
     <div class="bg-white inline-block min-w-full shadow rounded-lg overflow-hidden p-5">
-        <table id="tableMeioAmbiente">
+        <table id="tableSeguranca">
             <thead>
                 <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -18,7 +23,13 @@
                         @Html.DisplayNameFor(model => model.Desvio)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Aprovações
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         @Html.DisplayNameFor(model => model.Pontuacao)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Fotos
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Ações
@@ -42,11 +53,36 @@
                             @Html.DisplayFor(modelItem => item.Desvio)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
+                            {
+                                <span class="text-green-500">Aprovado pelo Líder</span> <br />
+                            }
+                            else if (item.AprovacaoLider == EAprovacaoPare.Reprovado)
+                            {
+                                <span class="text-red-500">Reprovado pelo Líder</span> <br />
+                            }
+                            @if (item.AprovacaoSeguranca == EAprovacaoPare.Aprovado)
+                            {
+                                <span class="text-green-500">Aprovado pela Segurança</span> <br />
+                            }
+                            else if (item.AprovacaoSeguranca == EAprovacaoPare.Reprovado)
+                            {
+                                <span class="text-red-500">Reprovado pela Segurança</span> <br />
+                            }
+
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Pontuacao)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="EditMeioAmbiente" asp-route-id="@item.IDPareMeioAmbiente">Editar</a>
-                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareMeioAmbiente">Deletar</button>
+                            @foreach (var foto in item.PareSegurancaFotos)
+                            {
+                                <a href="data:@foto.TipoMIME;base64,@Convert.ToBase64String(foto.Conteudo)" download="@foto.Nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@foto.Nome</a>
+                            }
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareSeguranca">Editar</a>
+                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareSeguranca">Deletar</button>
                         </td>
                     </tr>
                 }
@@ -59,7 +95,7 @@
     $(document).ready(function () {
         $.fn.dataTable.moment('DD/MM/YYYY');
 
-        var table = $('#tableMeioAmbiente').DataTable({
+        var table = $('#tableSeguranca').DataTable({
             "order": [],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
@@ -102,9 +138,8 @@
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
                 var pareId = $(this).data('id');
                 $.ajax({
-                    url: '/Pare/DeleteMeioAmbiente',
-                    method: 'POST',
-                    data: { id: pareId },
+                    url: '/' + pareId,
+                    method: 'DELETE',
                     success: function (data) {
                         var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
                         row.remove().draw();

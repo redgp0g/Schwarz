@@ -6,7 +6,7 @@
 @inject IUserService UserService
 @model PareQualidade
 
-<form asp-action="CreateQualidade" asp-asp-controller="Pare" method="post" id="formQualidade" class="hidden">
+<form asp-action="Create" asp-controller="PareQualidade" method="post" id="formQualidade" class="hidden">
     <div>
         @if (!SignInManager.IsSignedIn(User))
         {
@@ -46,7 +46,7 @@
 
         <div class="mb-3">
             <label asp-for="CodigoItem" class="block mb-2 text-sm font-bold"></label>
-            <input asp-for="CodigoItem" type="number" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Código do item" />
+            <input asp-for="CodigoItem" type="number" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Código do item" maxlength="9" />
             @Html.ValidationMessageFor(x => x.CodigoItem)
         </div>
         <div class="mb-3">
@@ -55,14 +55,14 @@
             @Html.ValidationMessageFor(x => x.QuantidadeBloqueada)
         </div>
         <div class="mb-3">
-            <label asp-for="IDFalha" class="block mb-2 text-sm font-bold"></label>
-            <select asp-for="IDFalha" class="select2" asp-items="ViewBag.Falhas">
+            <label asp-for="Descricao" class="block mb-2 text-sm font-bold"></label>
+            <select asp-for="Descricao" class="select2" asp-items="ViewBag.Falhas">
                 <option selected value="">Selecione a Falha</option>
             </select>
         </div>
         <div class="mb-3">
-            <label asp-for="DescricaoFalha" class="block mb-2 text-sm font-bold"></label>
-            <textarea asp-for="DescricaoFalha" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a Falha"></textarea>
+            <label asp-for="Descricao" class="block mb-2 text-sm font-bold"></label>
+            <textarea asp-for="Descricao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a Falha"></textarea>
         </div>
     </div>
     <div class="mb-3">

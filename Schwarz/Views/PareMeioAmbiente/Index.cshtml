@@ -1,9 +1,13 @@
 ﻿@using Schwarz.Enums
-@model IEnumerable<PareQualidade>
+@model IEnumerable<PareMeioAmbiente>
+
+@{
+    ViewData["Title"] = "Registros";
+}
 
 <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">
     <div class="bg-white inline-block min-w-full shadow rounded-lg overflow-hidden p-5">
-        <table id="tableQualidade">
+        <table id="tableMeioAmbiente">
             <thead>
                 <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -13,16 +17,10 @@
                         @Html.DisplayNameFor(model => model.Funcionario.Nome)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        @Html.DisplayNameFor(model => model.IDFalha)
+                        @Html.DisplayNameFor(model => model.Local)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        @Html.DisplayNameFor(model => model.Setor)
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        @Html.DisplayNameFor(model => model.CodigoItem)
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        @Html.DisplayNameFor(model => model.QuantidadeBloqueada)
+                        @Html.DisplayNameFor(model => model.Desvio)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         @Html.DisplayNameFor(model => model.Pontuacao)
@@ -38,8 +36,6 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    var falha = item.Falha != null ? item.Falha.Descricao : item.DescricaoFalha;
-
                     <tr>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Data)
@@ -48,16 +44,10 @@
                             @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @falha
+                            @Html.DisplayFor(modelItem => item.Local)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.Setor)
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.CodigoItem)
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.QuantidadeBloqueada)
+                            @Html.DisplayFor(modelItem => item.Desvio)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Pontuacao)
@@ -65,25 +55,25 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
                             {
-                                <span class="text-green-500">Aprovado pelo Líder</span>
+                                <span class="text-green-500">Aprovado pelo Líder</span> <br />
                             }
                             else if (item.AprovacaoLider == EAprovacaoPare.Reprovado)
                             {
-                                <span class="text-red-500">Reprovado pelo Líder</span>
+                                <span class="text-red-500">Reprovado pelo Líder</span> <br />
                             }
-                            @if (item.AprovacaoQualidade== EAprovacaoPare.Aprovado)
+                            @if (item.AprovacaoMeioAmbiente == EAprovacaoPare.Aprovado)
                             {
-                                <span class="text-green-500">Aprovado pela Qualidade</span>
+                                <span class="text-green-500">Aprovado pela Segurança</span> <br />
                             }
-                            else if (item.AprovacaoQualidade == EAprovacaoPare.Reprovado)
+                            else if (item.AprovacaoMeioAmbiente == EAprovacaoPare.Reprovado)
                             {
-                                <span class="text-red-500">Reprovado pela Qualidade</span>
+                                <span class="text-red-500">Reprovado pela Segurança</span> <br />
                             }
 
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="EditQualidade" asp-route-id="@item.IDPareQualidade">Editar</a>
-                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareQualidade">Deletar</button>
+                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareMeioAmbiente">Editar</a>
+                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareMeioAmbiente">Deletar</button>
                         </td>
                     </tr>
                 }
@@ -96,7 +86,7 @@
     $(document).ready(function () {
         $.fn.dataTable.moment('DD/MM/YYYY');
 
-        var table = $('#tableQualidade').DataTable({
+        var table = $('#tableMeioAmbiente').DataTable({
             "order": [],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
@@ -113,7 +103,7 @@
                     extend: 'excelHtml5',
                     text: '<i class="fa fa-file-excel"></i> Excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+                        columns: [0, 1, 2, 3, 4]
                     }
                 },
                 {
@@ -121,7 +111,7 @@
                     text: '<i class="fa fa-print"></i> Imprimir',
                     className: 'btn btn-primary',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+                        columns: [0, 1, 2, 3, 4]
                     }
                 },
                 {
@@ -129,7 +119,7 @@
                     text: '<i class="fa fa-file-pdf"></i> PDF',
                     className: 'btn btn-danger',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+                        columns: [0, 1, 2, 3, 4]
                     }
                 }
             ]
@@ -139,9 +129,8 @@
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
                 var pareId = $(this).data('id');
                 $.ajax({
-                    url: '/Pare/DeleteQualidade',
-                    method: 'POST',
-                    data: { id: pareId },
+                    url: '/' + pareId,
+                    method: 'DELETE',
                     success: function (data) {
                         var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
                         row.remove().draw();
