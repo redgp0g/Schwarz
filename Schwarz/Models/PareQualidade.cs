@@ -16,13 +16,8 @@ namespace Schwarz.Models
 		public int IDFuncionario { get; set; }
 		public virtual Funcionario? Funcionario { get; set; }
 
-		[ForeignKey("Falha")]
-		[Display(Name = "Falha")]
-		public int? IDFalha { get; set; }
-		public virtual Falha? Falha { get; set; }
-
-		[Display(Name = "Descrição da Falha")]
-		public string? DescricaoFalha{ get; set; }
+		[Display(Name = "Descrição")]
+		public string Descricao { get; set; }
 
 		[Required(ErrorMessage = "A Data é obrigatória!")]
 		public DateTime Data { get; set; } = DateTime.Now;
@@ -43,17 +38,11 @@ namespace Schwarz.Models
 		[Display(Name = "Aprovação do Líder")]
 		public EAprovacaoPare AprovacaoLider { get; set; } = EAprovacaoPare.SemAprovacao;
 
-		[Display(Name = "Data Aprovação do Líder")]
-        public DateTime? DataAprovacaoLider { get; set; }
-        
 		[Display(Name = "Observações do Líder")]
 		public string? ObservacoesLider { get; set; }
 
 		[Display(Name = "Aprovação da Qualidade")]
 		public EAprovacaoPare AprovacaoQualidade { get; set; } = EAprovacaoPare.SemAprovacao;
-
-		[Display(Name = "Data Aprovação da Qualidade")]
-		public DateTime? DataAprovacaoQualidade{ get; set; }
 
 		[Display(Name = "Observações da Qualidade")]
 		public string? ObservacoesQualidade { get; set; }

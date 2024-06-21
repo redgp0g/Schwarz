@@ -27,13 +27,10 @@
                                         <img class="object-center object-cover rounded-full h-48 w-36" src="data:image;base64,@(Convert.ToBase64String(participante.Funcionario.Foto))" alt="imagem">
                                     </div>
                                 }
-                                
+
                                 <div class="text-center">
                                     <p class="text-xl text-gray-700 font-bold mb-2 capitalize">@participante.Funcionario.Nome.ToLower()</p>
-                                    @if (participante.Funcionario.Setor != null)
-                                    {
-                                        <p class="text-base text-gray-400 font-normal">@participante.Funcionario.Setor.ToUpper()</p>
-                                    }
+                                    <p class="text-base text-gray-400 font-normal">@participante.Funcionario.Setor.ToUpper()</p>
                                 </div>
                             </div>
                         }
@@ -44,7 +41,7 @@
                         <label class="block mb-2 text-sm font-bold flex items-center">@Html.DisplayNameFor(model => model.Descricao)</label>
                         <label class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@Html.DisplayFor(model => model.Descricao)</label>
                     </div>
-                   
+
                     <div class="mb-6 md:flex md:justify-between">
                         <div class="my-2">
                             <label class="block mb-2 text-sm font-bold">@Html.DisplayNameFor(model => model.Ganho)</label>
@@ -87,13 +84,13 @@
                         <label class="block mb-2 text-sm font-bold">Anexos</label>
                         @if (Model.IdeiaAnexo != null)
                         {
-                            foreach(var anexo in Model.IdeiaAnexo)
+                            foreach (var anexo in Model.IdeiaAnexo)
                             {
                                 <div class="mb-5">
                                     <a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Anexo)" download="@anexo.Nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@anexo.Nome</a>
                                 </div>
                             }
-                            
+
                         }
                         else
                         {

@@ -1,8 +1,12 @@
-﻿@model IEnumerable<PareSeguranca>
+﻿@using Schwarz.Enums
+@model IEnumerable<PareQualidade>
+@{
+    ViewData["Title"] = "Registros";
+}
 
-<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto my-4">
-    <div class="bg-white inline-block min-w-full shadow rounded-lg overflow-hidden p-5">
-        <table id="tableSeguranca">
+<div class="mx-4 py-2 my-4 max-w-screen">
+    <div class="bg-white inline-block w-full shadow rounded-lg overflow-hidden p-5">
+        <table id="tableQualidade">
             <thead>
                 <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -12,16 +16,22 @@
                         @Html.DisplayNameFor(model => model.Funcionario.Nome)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        @Html.DisplayNameFor(model => model.Local)
+                        @Html.DisplayNameFor(model => model.Descricao)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        @Html.DisplayNameFor(model => model.Desvio)
+                        @Html.DisplayNameFor(model => model.Setor)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.CodigoItem)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.QuantidadeBloqueada)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         @Html.DisplayNameFor(model => model.Pontuacao)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Fotos
+                        Aprovações
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Ações
@@ -39,23 +49,42 @@
                             @Html.DisplayFor(modelItem => item.Funcionario.Nome)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.Local)
+                            @Html.DisplayFor(modelItem => item.Descricao)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.Desvio)
+                            @Html.DisplayFor(modelItem => item.Setor)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.CodigoItem)
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.QuantidadeBloqueada)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Pontuacao)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @foreach (var foto in item.PareSegurancaFotos)
+                            @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
                             {
-                                <a href="data:@foto.TipoMIME;base64,@Convert.ToBase64String(foto.Conteudo)" download="@foto.Nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">@foto.Nome</a>
+                                <span class="text-green-500">Aprovado pelo Líder</span> <br />
                             }
+                            else if (item.AprovacaoLider == EAprovacaoPare.Reprovado)
+                            {
+                                <span class="text-red-500">Reprovado pelo Líder</span> <br />
+                            }
+                            @if (item.AprovacaoQualidade== EAprovacaoPare.Aprovado)
+                            {
+                                <span class="text-green-500">Aprovado pela Qualidade</span> <br />
+                            }
+                            else if (item.AprovacaoQualidade == EAprovacaoPare.Reprovado)
+                            {
+                                <span class="text-red-500">Reprovado pela Qualidade</span> <br/>
+                            }
+
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="EditSeguranca" asp-route-id="@item.IDPareSeguranca">Editar</a>
-                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareSeguranca">Deletar</button>
+                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareQualidade">Editar</a>
+                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareQualidade">Deletar</button>
                         </td>
                     </tr>
                 }
@@ -68,7 +97,7 @@
     $(document).ready(function () {
         $.fn.dataTable.moment('DD/MM/YYYY');
 
-        var table = $('#tableSeguranca').DataTable({
+        var table = $('#tableQualidade').DataTable({
             "order": [],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
@@ -85,7 +114,7 @@
                     extend: 'excelHtml5',
                     text: '<i class="fa fa-file-excel"></i> Excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: [0, 1, 2, 3, 4, 5, 6]
                     }
                 },
                 {
@@ -93,7 +122,7 @@
                     text: '<i class="fa fa-print"></i> Imprimir',
                     className: 'btn btn-primary',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: [0, 1, 2, 3, 4, 5, 6]
                     }
                 },
                 {
@@ -101,7 +130,7 @@
                     text: '<i class="fa fa-file-pdf"></i> PDF',
                     className: 'btn btn-danger',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: [0, 1, 2, 3, 4, 5, 6]
                     }
                 }
             ]
@@ -111,9 +140,8 @@
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
                 var pareId = $(this).data('id');
                 $.ajax({
-                    url: '/Pare/DeleteSeguranca',
-                    method: 'POST',
-                    data: { id: pareId },
+                    url: '/' + pareId,
+                    method: 'DELETE',
                     success: function (data) {
                         var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
                         row.remove().draw();

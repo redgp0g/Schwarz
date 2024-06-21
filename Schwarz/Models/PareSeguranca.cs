@@ -1,3 +1,4 @@
+using Schwarz.Enums;
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -31,14 +32,14 @@ namespace Schwarz.Models
         public string OrdemServico { get; set; }
 
         [Display(Name = "Aprovação do Líder")]
-        public bool? AprovacaoLider { get; set; }
+        public EAprovacaoPare AprovacaoLider { get; set; } = EAprovacaoPare.SemAprovacao;
         public DateTime? DataAprovacaoLider { get; set; }
 
         [Display(Name = "Observações do Líder")]
         public string? ObservacoesLider { get; set; }
 
         [Display(Name = "Aprovação da Segurança")]
-        public bool? AprovacaoSeguranca { get; set; }
+        public EAprovacaoPare AprovacaoSeguranca { get; set; } = EAprovacaoPare.SemAprovacao;
         public DateTime? DataAprovacaoSeguranca { get; set; }
 
         [Display(Name = "Observações do Segurança")]
