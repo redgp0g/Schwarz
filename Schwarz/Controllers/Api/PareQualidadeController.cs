@@ -36,7 +36,7 @@ namespace Schwarz.Controllers.Api
        
         
         [HttpPut("/AprovacaoLider")]
-        public async Task<IActionResult> AprovarLider(int idPareQualidade, EAprovacaoPare aprovacaoPare, string? acao = null)
+        public async Task<IActionResult> AprovarLider(int idPareQualidade, EAprovacaoPare aprovacaoPare, string? observacoes = null)
         {
             var pareQualidade= await _context.PareQualidade.FindAsync(idPareQualidade);
             if(pareQualidade == null)
@@ -44,7 +44,7 @@ namespace Schwarz.Controllers.Api
                 return NotFound();
             }
             pareQualidade.AprovacaoLider = aprovacaoPare;
-            pareQualidade.AcaoLider = acao;
+            pareQualidade.ObservacoesLider = observacoes;
             _context.PareQualidade.Update(pareQualidade);
             _context.SaveChanges();
 
