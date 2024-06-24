@@ -110,3 +110,33 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function () {
+        var vbInstance = new VenoBox({
+            selector: '.image-viewer',
+            share: true,
+            fitView: true,
+            spinner: 'circle-fade',
+            numeration: true,
+        });
+
+        $('.image-viewer').on('click', function (e) {
+            e.preventDefault();
+
+            var fotoData = $(this).attr('href');
+            var fotoType = $(this).data('type');
+
+            var linkOculto = $('<a>', {
+                href: fotoData,
+                class: 'venobox',
+                'data-gall': 'gallery',
+                'data-type': 'image',
+            }).hide().appendTo('body');
+
+            vbInstance.open(linkOculto[0]);
+        });
+    });
+
+</script>
