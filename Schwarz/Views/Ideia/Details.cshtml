@@ -103,7 +103,7 @@
                             foreach (var anexo in Model.IdeiaAnexo)
                             {
                                 <div class="mb-5">
-                                    @if (anexo.TipoMIME.Contains("img"))
+                                    @if (anexo.TipoMIME.Contains("image/"))
                                     {
                                         <a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Anexo)"
                                         class="image-viewer
@@ -115,8 +115,7 @@
                                     {
                                         <a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Anexo)" download="@anexo.Nome"
                                            
-                                        class="image-viewer
-                                        bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
                                         block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                         dark:focus:ring-blue-500 dark:focus:border-blue-500" data-type="@anexo.TipoMIME">@anexo.Nome</a>
                                     }
