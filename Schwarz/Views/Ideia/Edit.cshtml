@@ -23,7 +23,12 @@
 						qtdparticipantes++;
 						<div class="participante my-2">
 							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline capitalize">@participante.Funcionario.Nome</label>
-							<button class="p-2 text-white bg-gradient-to-r from-red-400 to-orange-700 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-900 hover:cursor-pointer focus:outline-none focus:shadow-outline remover-participante" data-id="@participante.IDIdeiaEquipe">
+							<button class="p-2 text-white bg-red-700 rounded-sm
+							rounded-tl-lg rounded-br-lg
+							remover-participante transition ease-in-out delay-50 hover:scale-105 hover:bg-red-800" data-id="@participante.IDIdeiaEquipe">
+								
+
+							
 								Deletar
 							</button>
 						</div>
@@ -32,8 +37,14 @@
 				<div class="my-3">
 					<select class="form-select select2" id="novoparticipante" asp-items="ViewBag.Funcionarios">
 					</select>
-					<button class="p-2 text-white bg-gradient-to-r from-green-500 to-emerald-700 rounded-lg hover:bg-gradient-to-r hover:from-emerald-500 hover:to-green-800 hover:cursor-pointer focus:outline-none focus:shadow-outline adicionar-participante">
-						Adicionar
+					<button class="
+
+					p-2 text-white bg-green-700 rounded-sm 
+					rounded-tl-lg rounded-br-lg adicionar-participante 
+					transition ease-in-out delay-50 hover:scale-105 hover:bg-green-800">
+						
+					
+					Adicionar
 					</button>
 				</div>
 			</div>
@@ -42,58 +53,70 @@
 					<label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center"><div class="text-red-500 text-2xl">*</div>Descrição da Ideia</label>
 					<textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
 					@Html.ValidationMessageFor(x => x.Descricao)
+
+
+					<div class="">
+						<div class="mb-8">
+							<label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
+							<select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
+								<option value="Aplicada">Aplicada</option>
+								<option value="Recebida">Recebida</option>
+								<option value="Aprovada">Aprovada</option>
+								<option value="Cancelada">Cancelada</option>
+								<option value="Direcionada">Direcionada</option>
+								<option value="Em Processo">Em Processo</option>
+							</select>
+							@Html.ValidationMessageFor(x => x.Status)
+						</div>
+
+						<div class="row grid grid-cols-2 gap-4 mb-4">
+							<div class="mt-4">
+								<label asp-for="SolicitacaoAnalise" class="block mb-2 text-sm font-bold"></label>
+								<input asp-for="SolicitacaoAnalise" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Solicitação de Análise">
+							</div>
+							<div class="mt-4">
+								<label asp-for="OrdemServico" class="block mb-2 text-sm font-bold"></label>
+								<input asp-for="OrdemServico" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="OS">
+							</div>
+						</div>
+					</div>
+
+					<div class="grid grid-cols-2 gap-4 mt-4 mb-4">
+						<div>
+								<label asp-for="Ganho" class="block mb-2 text-sm font-bold"></label>
+								<input asp-for="Ganho" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o ganho" />
+						</div>
+						<div>
+								<label asp-for="GanhoRealizado" class="block mb-2 text-sm font-bold"></label>
+								<input type="number" asp-for="GanhoRealizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Ganho realizado" />
+						</div>
+					</div>
+
+					<div class="grid grid-cols-2 gap-4 mt-4 mb-4">
+						<div>
+							<label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
+							<input asp-for="Data" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+						</div>
+						<div>
+							<label asp-for="DataImplantacao" class="block mb-2 text-sm font-bold"></label>
+							<input asp-for="DataImplantacao" type="date" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+						</div>
+					</div>	
+					
+					
+					</div>
+				<div class="row">
+					<div class="mb-4">
+						<label asp-for="Feedback" class="block mb-2 text-sm font-bold"></label>
+						<input asp-for="Feedback" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Qual o feedback para a ideia?" />
+					</div>
+					<div class="mb-4">
+					<label asp-for="Investimento" class="block mb-2 text-sm font-bold"></label>
+					<input asp-for="Investimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Qual o investimento?">
 				</div>
-				<div class="mb-4 md:flex md:justify-between">
-					<div>
-						<label asp-for="Ganho" class="block mb-2 text-sm font-bold"></label>
-						<input asp-for="Ganho" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o ganho" />
-					</div>
-					<div>
-						<label asp-for="GanhoRealizado" class="block mb-2 text-sm font-bold"></label>
-						<input type="number" asp-for="GanhoRealizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Ganho realizado" />
-					</div>
-					<div>
-						<label asp-for="Investimento" class="block mb-2 text-sm font-bold"></label>
-						<input asp-for="Investimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Quanto é o investimento?">
-					</div>
-					<div>
-						<label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
-						<input asp-for="Data" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
-					</div>
-					<div>
-						<label asp-for="DataImplantacao" class="block mb-2 text-sm font-bold"></label>
-						<input asp-for="DataImplantacao" type="date" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
-					</div>
 				</div>
 
-				<div class="mb-4 md:flex md:justify-between">
-					<div>
-						<label asp-for="SolicitacaoAnalise" class="block mb-2 text-sm font-bold"></label>
-						<input asp-for="SolicitacaoAnalise" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Solicitação de Análise">
-					</div>
-					<div>
-						<label asp-for="OrdemServico" class="block mb-2 text-sm font-bold"></label>
-						<input asp-for="OrdemServico" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="OS">
-					</div>
-					<div>
-						<label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
-						<select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
-							<option value="Aplicada">Aplicada</option>
-							<option value="Recebida">Recebida</option>
-							<option value="Aprovada">Aprovada</option>
-							<option value="Cancelada">Cancelada</option>
-							<option value="Direcionada">Direcionada</option>
-							<option value="Em Processo">Em Processo</option>
-						</select>
-						@Html.ValidationMessageFor(x => x.Status)
-					</div>
-				</div>
-				<div class="row">
-					<div>
-						<label asp-for="Feedback" class="block mb-2 text-sm font-bold"></label>
-						<input asp-for="Feedback" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
-					</div>
-				</div>
+
 				<div class="mb-4">
 					<label class="block mb-2 text-sm font-bold flex items-center">Anexos</label>
 					@if (Model.IdeiaAnexo.Count() > 0)
@@ -102,8 +125,11 @@
 						{
 							<div class="my-2">
 								<a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Anexo)" download="@anexo.Nome" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@anexo.Nome</a>
-								<button class="p-2 text-white bg-gradient-to-r from-red-400 to-orange-700 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-900 hover:cursor-pointer focus:outline-none focus:shadow-outline remover-anexo" data-id="@anexo.IDIdeiaAnexo">
-									Deletar
+								<button class="p-2 text-white bg-red-700 rounded-sm
+							rounded-tl-lg rounded-br-lg transition ease-in-out delay-50 
+							hover:scale-105 hover:bg-red-800 remover-anexo" data-id="@anexo.IDIdeiaAnexo">
+							
+								Deletar
 								</button>
 							</div>
 						}
@@ -115,7 +141,12 @@
 				</div>
 				<div class="my-3">
 					<input type="file" id="novoanexo" multiple>
-					<label class="p-2 text-white bg-gradient-to-r from-green-500 to-emerald-700 rounded-lg hover:bg-gradient-to-r hover:from-emerald-500 hover:to-green-800 hover:cursor-pointer focus:outline-none focus:shadow-outline adicionar-anexo">
+					<label class="
+
+					p-2 text-white bg-green-700 rounded-sm
+					rounded-tl-lg rounded-br-lg transition ease-in-out delay-50 hover:scale-105 hover:bg-green-800
+					adicionar-anexo">
+
 						Adicionar
 					</label>
 				</div>
@@ -123,7 +154,7 @@
 				<div class="my-6">
 					<input id="idideia" type="hidden" asp-for="IDIdeia" />
 					<input type="hidden" asp-for="NomeEquipe" />
-					<input type="submit" value="Editar" class="text-xl w-full px-2 py-2 font-bold text-white bg-gradient-to-r from-orange-300 to-yellow-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+					<input type="submit" value="Editar" class="transition ease-in-out hover:scale-105 delay-100 bg-gray-800 hover:bg-gray-900 text-xl w-full px-2 py-2 font-bold text-white rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
 				</div>
 			</form>
 		</div>
