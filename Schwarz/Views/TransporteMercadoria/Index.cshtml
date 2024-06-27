@@ -19,6 +19,11 @@
 
     }
 
+    .text-responsive{
+        font-size: calc(1vw + 1vh + 0.5vmin);
+    }
+
+
 
 </style>
 
@@ -102,7 +107,7 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Placa)
                         </td>
-                        <td class="grid grid-cols-2 gap-4">
+                        <td class="grid grid-cols-2 gap-4 border-gray-200 border-b">
                             @foreach (var foto in item.Fotos)
                             {
                                 <button class="image-viewer 
@@ -111,9 +116,9 @@
                                 antialiased transition ease-in-out delay-100 bg-white 
                                 hover:scale-110 hover:bg-gray-600 duration-300
                                 rounded-sm rounded-tl-lg rounded-br-lg border-2 border-black text-balance 
-                                flex items-center justify-center grid grid-cols-2 gap-4 mb-0.5 button-width w-42 h-14 font-semibold"
+                                flex items-center justify-center grid grid-cols-2 gap-4 mb-0.5 button-width p-1 font-semibold object-cover white-scape-nowrap text-ellipsis overflow-hidden"
 
-                                data-id="@foto.IDTransporteMercadoriaFoto" >
+                                data-id="@foto.IDTransporteMercadoriaFoto">
                                     @foto.Nome
                                 </button>
                             }
