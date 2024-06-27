@@ -20,11 +20,11 @@ jobs:
       run: dotnet build --no-restore
     - name: Init npm
       run: |
-        cd frontend
+        cd Schwarz
         npm init -y
     - name: Install npm packages
       run: |
-        cd frontend
+        cd Schwarz
         npm install
     - name: Set and Use Environment Variable
       run: |
