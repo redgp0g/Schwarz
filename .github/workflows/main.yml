@@ -18,17 +18,23 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Init npm
+      run: |
+        cd frontend
+        npm init -y
+    - name: Install npm packages
+      run: |
+        cd frontend
+        npm install
     - name: Set and Use Environment Variable
       run: |
         setx SCHWARZ_DATABASE_STRING_CONNECTION "${{ secrets.DATABASE_STRING_CONNECTION }}" /M
-        setx SCHWARZ_EMAIL_COMUNICACAO "${{ secrets.EMAIL_COMUNICACAO }}" /M
-        setx SCHWARZ_SENHA_EMAIL_COMUNICACAO "${{ secrets.SENHA_EMAIL_COMUNICACAO }}" /M
         dotnet test --no-build --verbosity normal
     - name: Stop Website
       run: C:\Windows\System32\inetsrv\appcmd stop site "Schwarz"
     - name: Publish Release
       run: |
-       del /S /Q "C:\Sites\Schwarz\*.*"
+       del /S /Q "C:\Sites\Schwarz\."
        dotnet publish -c Release -o "C:\Sites\Schwarz"
     - name: Start Website
       run: C:\Windows\System32\inetsrv\appcmd start site "Schwarz"
