@@ -14,27 +14,45 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Init npm
       run: |
         cd Schwarz
         npm init -y
+        
     - name: Install npm packages
       run: |
         cd Schwarz
         npm install
+        
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Build
       run: dotnet build --no-restore
+      
     - name: Set and Use Environment Variable
       run: |
         setx SCHWARZ_DATABASE_STRING_CONNECTION "${{ secrets.DATABASE_STRING_CONNECTION }}" /M
         dotnet test --no-build --verbosity normal
+        
     - name: Stop Website
-      run: C:\Windows\System32\inetsrv\appcmd stop site "Schwarz"
+      run: |
+        C:\Windows\System32\inetsrv\appcmd stop site "Schwarz"
+        IF ERRORLEVEL 1 EXIT /B 1
+        
+    - name: Ensure Permissions for Deployment
+      run: |
+        icacls "C:\Sites\Schwarz" /grant "IIS_IUSRS:(OI)(CI)F" /T
+        IF ERRORLEVEL 1 EXIT /B 1
+        
     - name: Publish Release
       run: |
-       del /S /Q "C:\Sites\Schwarz\."
-       dotnet publish -c Release -o "C:\Sites\Schwarz"
+        del /S /Q "C:\Sites\Schwarz\."
+        dotnet publish -c Release -o "C:\Sites\Schwarz"
+        IF ERRORLEVEL 1 EXIT /B 1
+        
     - name: Start Website
-      run: C:\Windows\System32\inetsrv\appcmd start site "Schwarz"
+      run: |
+        C:\Windows\System32\inetsrv\appcmd start site "Schwarz"
+        IF ERRORLEVEL 1 EXIT /B 1
