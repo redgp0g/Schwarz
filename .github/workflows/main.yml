@@ -14,17 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
-    - name: Init npm
-      run: |
-        cd Schwarz
-        npm init -y
-        
-    - name: Install npm packages
-      run: |
-        cd Schwarz
-        npm install
-        
     - name: Restore dependencies
       run: dotnet restore
       
@@ -51,6 +40,16 @@ jobs:
         del /S /Q "C:\Sites\Schwarz\."
         dotnet publish -c Release -o "C:\Sites\Schwarz"
         IF ERRORLEVEL 1 EXIT /B 1
+        
+    - name: Init npm
+      run: |
+        cd "C:\Sites\Schwarz"
+        npm init -y
+        
+    - name: Install npm packages
+      run: |
+        cd "C:\Sites\Schwarz"
+        npm install
         
     - name: Start Website
       run: |
