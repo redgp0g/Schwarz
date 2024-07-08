@@ -36,7 +36,7 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <option selected value="@UserService.GetUser(User).Funcionario.Setor">@UserService.GetUser(User).Funcionario.Setor</option>
-                }
+                }else
                 {
                 <option selected disabled value="">Selecione o Setor</option>
                 }
