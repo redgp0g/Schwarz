@@ -53,21 +53,13 @@
                             @Html.DisplayFor(modelItem => item.Desvio)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
+                            @if (item.AcaoLider != null)
                             {
-                                <span class="text-green-500">Aprovado pelo Líder</span> <br />
+                                <span class="text-green-500">Visualizado pelo Líder</span> <br />
                             }
-                            else if (item.AprovacaoLider == EAprovacaoPare.Reprovado)
+                            else
                             {
-                                <span class="text-red-500">Reprovado pelo Líder</span> <br />
-                            }
-                            @if (item.AprovacaoSeguranca == EAprovacaoPare.Aprovado)
-                            {
-                                <span class="text-green-500">Aprovado pela Segurança</span> <br />
-                            }
-                            else if (item.AprovacaoSeguranca == EAprovacaoPare.Reprovado)
-                            {
-                                <span class="text-red-500">Reprovado pela Segurança</span> <br />
+                                <span class="text-red-500">Sem Ação do Líder</span> <br />
                             }
 
                         </td>
@@ -81,8 +73,21 @@
                             }
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareSeguranca">Editar</a>
-                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareSeguranca">Deletar</button>
+                            <a class="text-black rounded-lg p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareSeguranca">Editar</a>
+                            <button class="btnDeletar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Deletar</button>
+                            @if (item.AcaoLider == null)
+                            {
+                                <button style="padding: 7px 10px;" class="btnAprovar text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Ação</button>
+                            }
+                            @if (item.AcaoLider != null && item.Realizado == false)
+                            {
+                                <button style="padding: 7px 10px;" class="btnConcluirLider text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Concluir</button>
+                            }
+                            @if (item.Realizado && item.DataValidado == null)
+                            {
+                                <button style="padding: 7px 10px;" class="btnValidar text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Validar</button>
+                                <button style="padding: 7px 10px;" class="btnInvalidar text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-yellow-800 shadow-lg space-y-3 hover:bg-yellow-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Invalidar</button>
+                            }
                         </td>
                     </tr>
                 }
@@ -90,6 +95,34 @@
         </table>
     </div>
 </div>
+<dialog class="m-auto" id="dialogLider">
+    <h3 class="pt-4 text-2xl text-center">Plano de Ação</h3>
+    <div class="flex justify-center px-6 my-12">
+        <form id="formResponderAlerta" method="post" class="px-8">
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold">Ação do Líder</label>
+                <input required type="text" name="acao" id="acao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold">Ação Realizada?</label>
+                <div class="flex items-center">
+                    <input type="radio" id="realizadaSim" name="realizada" value="true" class="mr-2">
+                    <label for="realizadaSim" class="mr-8">Sim</label>
+                    <input type="radio" id="realizadaNao" name="realizada" value="false" class="mr-2" checked>
+                    <label for="realizadaNao">Não</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold">Prazo da Ação</label>
+                <input type="datetime-local" name="prazoAcao" id="prazoAcao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <input required type="hidden" name="idAlertaCota" id="idAlertaCota" value="" />
+                <input type="submit" value="Enviar" class="text-xl w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-emerald-300 to-green-500 rounded-full hover:bg-gradient-to-r hover:from-emerald-300 hover:to-green-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+            </div>
+        </form>
+    </div>
+</dialog>
 
 <script>
     $(document).ready(function () {
@@ -134,11 +167,11 @@
             ]
         });
 
-        $('.btn-delete').click(function () {
+        $('.btnDeletar').click(function () {
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
                 var pareId = $(this).data('id');
                 $.ajax({
-                    url: '/' + pareId,
+                    url: 'api/PareSeguranca/' + pareId,
                     method: 'DELETE',
                     success: function (data) {
                         var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
@@ -147,6 +180,92 @@
                     },
                     error: function (error) {
                         alert('Erro ao deletar o PARE: ' + error.responseText);
+                    }
+                });
+            }
+        });
+
+        $('.btnAprovar').on('click', function () {
+            var cadastroId = $(this).data('id');
+
+            var dialog = document.getElementById('dialogLider');
+            dialog.showModal();
+
+            $('#formResponderAlerta').submit(function (event) {
+                event.preventDefault();
+                var acao = $('#acao').val();
+                var prazoAcao = $('#prazoAcao').val();
+                var realizada = $('input[name="realizada"]:checked').val() === "true";
+
+                $.ajax({
+                    url: 'api/PareSeguranca/PlanoAcao',
+                    type: 'PUT',
+                    data: { id: cadastroId, acao: acao, realizada: realizada, prazoAcao: prazoAcao },
+                    success: function () {
+                        alert('Ação registrada com sucesso!');
+                        dialog.close();
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o cadastro.');
+                    }
+                });
+            });
+        });
+
+        $('.btnConcluir').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja Concluir a ação deste cadastro?");
+
+            if (confirmacao) {
+                $.ajax({
+                    url: 'api/PareSeguranca/Concluir',
+                    type: 'PUT',
+                    data: { id: idPare },
+                    success: function () {
+                        alert('Concluido com sucesso!');
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnValidar').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja Validar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite as observações");
+                $.ajax({
+                    url: 'api/PareSeguranca/Invalidar',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes},
+                    success: function () {
+                        alert('Validado com sucesso!');
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnInvalidar').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja Invalidar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite as observações");
+                $.ajax({
+                    url: 'api/PareSeguranca/Validar',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes },
+                    success: function () {
+                        alert('Validado com sucesso!');
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
                     }
                 });
             }
