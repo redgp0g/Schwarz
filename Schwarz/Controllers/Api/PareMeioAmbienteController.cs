@@ -19,7 +19,7 @@ namespace Schwarz.Controllers.Api
             _context = schwarzContext;
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var pareMeioAmbiente = await _context.PareMeioAmbiente.FindAsync(id);
@@ -33,33 +33,34 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
-        [HttpPut("/AprovacaoLider")]
-        public async Task<IActionResult> AprovacaoLider(int idPareMeioAmbiente, EAprovacaoPare aprovacaoPare, string? observacoes = null)
+        [HttpPut("AprovacaoLider")]
+        public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] EAprovacaoPare aprovacaoPare, [FromForm] string? observacoes = null)
         {
-            var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(idPareMeioAmbiente);
+            var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(id);
             if(pareMeioAmbiente == null)
             {
                 return NotFound();
             }
             pareMeioAmbiente.AprovacaoLider = aprovacaoPare;
             pareMeioAmbiente.ObservacoesLider = observacoes;
-            _context.Update(pareMeioAmbiente);
+            _context.PareMeioAmbiente.Update(pareMeioAmbiente);
             _context.SaveChanges();
 
             return Ok();
         }
 
-        [HttpPut("/AprovacaoMeioAmbiente")]
-        public async Task<IActionResult> AprovacaoMeioAmbiente(int idPareMeioAmbiente, EAprovacaoPare aprovacaoPare, string? observacoes = null)
+        [HttpPut("AprovacaoMeioAmbiente")]
+        public async Task<IActionResult> AprovacaoMeioAmbiente([FromForm] int id, [FromForm] EAprovacaoPare aprovacaoPare, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
-            var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(idPareMeioAmbiente);
+            var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(id);
             if(pareMeioAmbiente == null)
             {
                 return NotFound();
             }
-            pareMeioAmbiente.AprovacaoLider = aprovacaoPare;
-            pareMeioAmbiente.ObservacoesLider = observacoes;
-            _context.Update(pareMeioAmbiente);
+            pareMeioAmbiente.AprovacaoMeioAmbiente = aprovacaoPare;
+            pareMeioAmbiente.ObservacoesMeioAmbiente = observacoes;
+            pareMeioAmbiente.Pontuacao = pontuacao;
+            _context.PareMeioAmbiente.Update(pareMeioAmbiente);
             _context.SaveChanges();
 
             return Ok();
