@@ -30,14 +30,12 @@ namespace Schwarz.Models
 
         [Display(Name = "Aprovação do Líder")]
         public EAprovacaoPare AprovacaoLider { get; set; } = EAprovacaoPare.SemAprovacao;
-        public DateTime? DataAprovacaoLider { get; set; }
 
         [Display(Name = "Observações do Líder")]
         public string? ObservacoesLider { get; set; }
 
         [Display(Name = "Aprovação do Meio Ambiente")]
         public EAprovacaoPare AprovacaoMeioAmbiente { get; set; } = EAprovacaoPare.SemAprovacao;
-        public DateTime? DataAprovacaoMeioAmbiente { get; set; }
 
         [Display(Name = "Observações do Meio Ambiente")]
         public string? ObservacoesMeioAmbiente { get; set; }
