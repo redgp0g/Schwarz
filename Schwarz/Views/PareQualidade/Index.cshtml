@@ -41,7 +41,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr data-id="@item.IDPareQualidade">
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Data)
                         </td>
@@ -60,10 +60,10 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.QuantidadeBloqueada)
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Pontuacao">
                             @Html.DisplayFor(modelItem => item.Pontuacao)
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Aprovacao">
                             @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
                             {
                                 <span class="text-green-500">Aprovado pelo Líder</span> <br />
@@ -72,19 +72,29 @@
                             {
                                 <span class="text-red-500">Reprovado pelo Líder</span> <br />
                             }
-                            @if (item.AprovacaoQualidade== EAprovacaoPare.Aprovado)
+                            @if (item.AprovacaoQualidade == EAprovacaoPare.Aprovado)
                             {
                                 <span class="text-green-500">Aprovado pela Qualidade</span> <br />
                             }
                             else if (item.AprovacaoQualidade == EAprovacaoPare.Reprovado)
                             {
-                                <span class="text-red-500">Reprovado pela Qualidade</span> <br/>
+                                <span class="text-red-500">Reprovado pela Qualidade</span> <br />
                             }
 
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareQualidade">Editar</a>
-                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareQualidade">Deletar</button>
+                            <a class="text-black rounded-lg p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareQualidade">Editar</a>
+                            <button class="btnDelete text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Deletar</button>
+                            @if (item.AprovacaoLider == EAprovacaoPare.SemAprovacao)
+                            {
+                                <button class="btnAprovarLider text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Aprovar</button>
+                                <button class="btnReprovarLider text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Reprovar</button>
+                            }
+                            @if (item.AprovacaoQualidade == EAprovacaoPare.SemAprovacao && item.AprovacaoLider != EAprovacaoPare.SemAprovacao)
+                            {
+                                <button class="btnAprovarQualidade text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Aprovar</button>
+                                <button class="btnReprovarQualidade text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Reprovar</button>
+                            }
                         </td>
                     </tr>
                 }
@@ -136,11 +146,11 @@
             ]
         });
 
-        $('.btn-delete').click(function () {
+        $('.btnDelete').click(function () {
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
                 var pareId = $(this).data('id');
                 $.ajax({
-                    url: '/' + pareId,
+                    url: 'api/PareQualidade/' + pareId,
                     method: 'DELETE',
                     success: function (data) {
                         var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
@@ -149,6 +159,108 @@
                     },
                     error: function (error) {
                         alert('Erro ao deletar o PARE: ' + error.responseText);
+                    }
+                });
+            }
+        });
+
+        $('.btnAprovarLider').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja aprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite a observação");
+                $.ajax({
+                    url: 'api/PareQualidade/AprovacaoLider',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1 },
+                    success: function () {
+                        var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-green-500'>Aprovado pelo Líder</span><br/>");
+
+                        $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
+
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnReprovarLider').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja reprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite a observação");
+                $.ajax({
+                    url: 'api/PareQualidade/AprovacaoLider',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
+                    success: function () {
+                        var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
+
+                        $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
+
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnAprovarQualidade').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja aprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite a observação");
+                var pontuacao = prompt("Digite a pontuação!");
+                $.ajax({
+                    url: 'api/PareQualidade/AprovacaoQualidade',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1, pontuacao: pontuacao },
+                    success: function () {
+                        var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-green-500'>Aprovado pela Qualidade</span><br/>");
+                        linha.find('td[data-label="Pontuacao"]').html(pontuacao);
+
+                        $('.btnReprovarQualidade[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarQualidade[data-id="' + idPare + '"]').hide();
+
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnReprovarQualidade').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja reprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite a observação");
+                $.ajax({
+                    url: 'api/PareQualidade/AprovacaoQualidade',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
+                    success: function () {
+                        var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-red-500'>Reprovado pela Qualidade</span><br/>");
+
+                        $('.btnReprovarQualidade[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarQualidade[data-id="' + idPare + '"]').hide();
+
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
                     }
                 });
             }

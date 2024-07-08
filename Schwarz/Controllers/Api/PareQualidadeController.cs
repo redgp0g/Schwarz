@@ -19,7 +19,7 @@ namespace Schwarz.Controllers.Api
             _context = schwarzContext;
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteQualidade(int id)
         {
             var pareQualidade = await _context.PareQualidade.FindAsync(id);
@@ -33,12 +33,11 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
-       
         
-        [HttpPut("/AprovacaoLider")]
-        public async Task<IActionResult> AprovarLider(int idPareQualidade, EAprovacaoPare aprovacaoPare, string? observacoes = null)
+        [HttpPut("AprovacaoLider")]
+        public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] EAprovacaoPare aprovacaoPare, [FromForm] string? observacoes = null)
         {
-            var pareQualidade= await _context.PareQualidade.FindAsync(idPareQualidade);
+            var pareQualidade= await _context.PareQualidade.FindAsync(id);
             if(pareQualidade == null)
             {
                 return NotFound();
@@ -51,16 +50,17 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
         
-        [HttpPut("/AprovacaoQualidade")]
-        public async Task<IActionResult> AprovarQualidade(int idPareQualidade, EAprovacaoPare aprovacaoPare, string? observacoes = null)
+        [HttpPut("AprovacaoQualidade")]
+        public async Task<IActionResult> AprovacaoQualidade([FromForm] int id, [FromForm] EAprovacaoPare aprovacaoPare, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
-            var pareQualidade= await _context.PareQualidade.FindAsync(idPareQualidade);
+            var pareQualidade= await _context.PareQualidade.FindAsync(id);
             if(pareQualidade == null)
             {
                 return NotFound();
             }
             pareQualidade.AprovacaoQualidade = aprovacaoPare;
             pareQualidade.ObservacoesQualidade = observacoes;
+            pareQualidade.Pontuacao = pontuacao;
             _context.PareQualidade.Update(pareQualidade);
             _context.SaveChanges();
 
