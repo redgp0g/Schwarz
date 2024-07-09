@@ -24,7 +24,17 @@
                     <input asp-for="Data" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
                     @Html.ValidationMessageFor(x => x.Data)
                 </div>
-
+                <div class="mb-4">
+                    <label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="Em Análise">Em Análise</option>
+                        <option value="Ação Pendente">Ação Pendente</option>
+                        <option value="Ação Concluída">Ação Concluída</option>
+                        <option value="Ação Validada">Ação Validada</option>
+                        <option value="Ação Invalidada">Ação Invalidada</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.Status)
+                </div>
                 <div class="mb-4">
                     <label asp-for="Local" class="block mb-2 text-sm font-bold"></label>
                     <select asp-for="Local" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" asp-items="ViewBag.Setores">

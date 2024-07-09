@@ -1,5 +1,4 @@
-﻿@using Schwarz.Enums
-@model IEnumerable<PareQualidade>
+﻿@model IEnumerable<PareQualidade>
 @{
     ViewData["Title"] = "Registros";
 }
@@ -64,33 +63,20 @@
                             @Html.DisplayFor(modelItem => item.Pontuacao)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Aprovacao">
-                            @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
-                            {
-                                <span class="text-green-500">Aprovado pelo Líder</span> <br />
+                            @{
+                                var cor = item.Status.Contains("Aprovado") ? "text-green-500" : "text-red-500";
                             }
-                            else if (item.AprovacaoLider == EAprovacaoPare.Reprovado)
-                            {
-                                <span class="text-red-500">Reprovado pelo Líder</span> <br />
-                            }
-                            @if (item.AprovacaoQualidade == EAprovacaoPare.Aprovado)
-                            {
-                                <span class="text-green-500">Aprovado pela Qualidade</span> <br />
-                            }
-                            else if (item.AprovacaoQualidade == EAprovacaoPare.Reprovado)
-                            {
-                                <span class="text-red-500">Reprovado pela Qualidade</span> <br />
-                            }
-
+                            <span class="@cor">@item.Status</span>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <a class="text-black rounded-lg p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareQualidade">Editar</a>
                             <button class="btnDelete text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Deletar</button>
-                            @if (item.AprovacaoLider == EAprovacaoPare.SemAprovacao)
+                            @if (item.Status == "Em Análise")
                             {
                                 <button class="btnAprovarLider text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Aprovar</button>
                                 <button class="btnReprovarLider text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Reprovar</button>
                             }
-                            @if (item.AprovacaoQualidade == EAprovacaoPare.SemAprovacao && item.AprovacaoLider != EAprovacaoPare.SemAprovacao)
+                            @if (item.Status == "Aprovado pelo Líder")
                             {
                                 <button class="btnAprovarQualidade text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Aprovar</button>
                                 <button class="btnReprovarQualidade text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareQualidade">Reprovar</button>
@@ -173,10 +159,10 @@
                 $.ajax({
                     url: 'api/PareQualidade/AprovacaoLider',
                     type: 'PUT',
-                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1 },
+                    data: { id: idPare, observacoes: observacoes },
                     success: function () {
                         var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-green-500'>Aprovado pelo Líder</span><br/>");
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pelo Líder</span><br/>");
 
                         $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
@@ -196,12 +182,12 @@
             if (confirmacao) {
                 var observacoes = prompt("Se houver, digite a observação");
                 $.ajax({
-                    url: 'api/PareQualidade/AprovacaoLider',
+                    url: 'api/PareQualidade/ReprovacaoLider',
                     type: 'PUT',
-                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
+                    data: { id: idPare, observacoes: observacoes },
                     success: function () {
                         var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
 
                         $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
@@ -224,10 +210,10 @@
                 $.ajax({
                     url: 'api/PareQualidade/AprovacaoQualidade',
                     type: 'PUT',
-                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1, pontuacao: pontuacao },
+                    data: { id: idPare, observacoes: observacoes, pontuacao: pontuacao },
                     success: function () {
                         var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-green-500'>Aprovado pela Qualidade</span><br/>");
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pela Qualidade</span><br/>");
                         linha.find('td[data-label="Pontuacao"]').html(pontuacao);
 
                         $('.btnReprovarQualidade[data-id="' + idPare + '"]').hide();
@@ -248,12 +234,12 @@
             if (confirmacao) {
                 var observacoes = prompt("Se houver, digite a observação");
                 $.ajax({
-                    url: 'api/PareQualidade/AprovacaoQualidade',
+                    url: 'api/PareQualidade/ReprovacaoQualidade',
                     type: 'PUT',
-                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
+                    data: { id: idPare, observacoes: observacoes },
                     success: function () {
                         var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-red-500'>Reprovado pela Qualidade</span><br/>");
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pela Qualidade</span><br/>");
 
                         $('.btnReprovarQualidade[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarQualidade[data-id="' + idPare + '"]').hide();

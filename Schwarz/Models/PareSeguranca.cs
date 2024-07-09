@@ -1,4 +1,3 @@
-using Schwarz.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,6 +26,9 @@ namespace Schwarz.Models
         [Required(ErrorMessage = "A Ordem de Serviço é obrigatória!")]
         public string OrdemServico { get; set; }
 
+        [Display(Name = "Status")]
+        public string Status { get; set; } = "Em Análise";
+
         [ForeignKey("FuncionarioLider")]
         public int IDFuncionarioLider { get; set; }
         public virtual Funcionario? FuncionarioLider { get; set; }
@@ -37,8 +39,8 @@ namespace Schwarz.Models
         [Display(Name = "Prazo da Ação do Líder")]
         public DateTime? PrazoAcaoLider { get; set; }
 
-        [Display(Name = "Foi Realizado?")]
-        public bool Realizado { get; set; } = false;
+        [Display(Name = "Data de Conclusão")]
+        public DateTime? DataConclusao { get; set; }
 
         [ForeignKey("FuncionarioSeguranca")]
         public int? IDFuncionarioSeguranca { get; set; }
@@ -46,7 +48,10 @@ namespace Schwarz.Models
 
         [Display(Name = "Observações da Segurança")]
         public string? ObservacoesSeguranca { get; set; }
+
+        [Display(Name = "Data de Validação")]
         public DateTime? DataValidado { get; set; }
+
         public int? ClassificacaoGUT { get; set; }
 
         [Display(Name = "Pontuação")]

@@ -1,5 +1,4 @@
-﻿@using Schwarz.Enums
-@model IEnumerable<PareMeioAmbiente>
+﻿@model IEnumerable<PareMeioAmbiente>
 
 @{
     ViewData["Title"] = "Registros";
@@ -53,33 +52,20 @@
                             @Html.DisplayFor(modelItem => item.Pontuacao)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Aprovacao">
-                            @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
-                            {
-                                <span class="text-green-500">Aprovado pelo Líder</span> <br />
+                            @{
+                                var cor = item.Status.Contains("Aprovado") ? "text-green-500" : "text-red-500";
                             }
-                            else if (item.AprovacaoLider == EAprovacaoPare.Reprovado)
-                            {
-                                <span class="text-red-500">Reprovado pelo Líder</span> <br />
-                            }
-                            @if (item.AprovacaoMeioAmbiente == EAprovacaoPare.Aprovado)
-                            {
-                                <span class="text-green-500">Aprovado pelo Meio Ambiente</span> <br />
-                            }
-                            else if (item.AprovacaoMeioAmbiente == EAprovacaoPare.Reprovado)
-                            {
-                                <span class="text-red-500">Reprovado pelo Meio Ambiente</span> <br />
-                            }
-
+                            <span class="@cor">@item.Status</span>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareMeioAmbiente">Editar</a>
                             <button style="padding: 7px 10px;" class="btnDelete text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareMeioAmbiente">Deletar</button>
-                            @if (item.AprovacaoLider == EAprovacaoPare.SemAprovacao)
+                            @if (item.Status == "Em Analise")
                             {
                                 <button style="padding: 7px 10px;" class="btnAprovarLider text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDPareMeioAmbiente">Aprovar</button>
                                 <button style="padding: 7px 10px;" class="btnReprovarLider text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareMeioAmbiente">Reprovar</button>
                             }
-                            @if (item.AprovacaoMeioAmbiente == EAprovacaoPare.SemAprovacao)
+                            @if (item.Status == "Aprovado pelo Líder")
                             {
                                 <button style="padding: 7px 10px;" class="btnAprovarMeioAmbiente text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareMeioAmbiente">Aprovar</button>
                                 <button style="padding: 7px 10px;" class="btnReprovarMeioAmbiente text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareMeioAmbiente">Reprovar</button>
@@ -165,7 +151,7 @@
                     data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1 },
                     success: function () {
                         var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-green-500'>Aprovado pelo Líder</span><br/>");
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pelo Líder</span><br/>");
 
                         $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
@@ -190,7 +176,7 @@
                     data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
                     success: function () {
                         var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
 
                         $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
@@ -216,7 +202,7 @@
                     data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1, pontuacao: pontuacao },
                     success: function () {
                         var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-green-500'>Aprovado pelo Meio Ambiente</span><br/>");
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pelo Meio Ambiente</span><br/>");
                         linha.find('td[data-label="Pontuacao"]').html(pontuacao);
 
                         $('.btnReprovarMeioAmbiente[data-id="' + idPare + '"]').hide();
@@ -242,7 +228,7 @@
                     data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
                     success: function () {
                         var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').append("<span class='text-red-500'>Reprovado pelo Meio Ambiente</span><br/>");
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pelo Meio Ambiente</span><br/>");
 
                         $('.btnReprovarMeioAmbiente[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarMeioAmbiente[data-id="' + idPare + '"]').hide();
