@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Data;
-using Schwarz.Enums;
 using Schwarz.Models;
 using Schwarz.Services.Interfaces;
 
@@ -87,9 +86,13 @@ namespace Schwarz.Controllers.Api
                 return NotFound();
             }
 
-            pareSeguranca.Realizado = realizada;
+            pareSeguranca.Status = "Ação Pendente";
             pareSeguranca.AcaoLider = acao;
             pareSeguranca.PrazoAcaoLider = prazoAcao;
+            if (realizada)
+            {
+                pareSeguranca.DataConclusao = DateTime.Now;
+            }
             _context.Update(pareSeguranca);
             _context.SaveChanges();
             string emailMessage = $"Foi criada uma ação para o PARE por {pareSeguranca.Funcionario.FuncionarioLider.Nome} cuja descrição é: {acao} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/Pare/IndexSeguranca\">Sistema Integrado</a>";
@@ -112,7 +115,8 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareSeguranca.Realizado = true;
+            pareSeguranca.DataConclusao= DateTime.Now;
+            pareSeguranca.Status = "Ação Concluída";
             _context.Update(pareSeguranca);
             _context.SaveChanges();
 
@@ -129,6 +133,7 @@ namespace Schwarz.Controllers.Api
             }
             pareSeguranca.ObservacoesSeguranca = observacoes;
             pareSeguranca.DataValidado = DateTime.Now;
+            pareSeguranca.Status = "Ação Validada";
             _context.Update(pareSeguranca);
             _context.SaveChanges();
 
@@ -144,7 +149,7 @@ namespace Schwarz.Controllers.Api
                 return NotFound();
             }
             pareSeguranca.ObservacoesSeguranca = observacoes;
-            pareSeguranca.Realizado = false;
+            pareSeguranca.Status = "Ação Invalidada";
             _context.Update(pareSeguranca);
             _context.SaveChanges();
 

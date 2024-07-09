@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Data;
-using Schwarz.Enums;
 using Schwarz.Models;
 
 namespace Schwarz.Controllers.Api
@@ -34,14 +33,30 @@ namespace Schwarz.Controllers.Api
         }
 
         [HttpPut("AprovacaoLider")]
-        public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] EAprovacaoPare aprovacaoPare, [FromForm] string? observacoes = null)
+        public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
             var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(id);
             if(pareMeioAmbiente == null)
             {
                 return NotFound();
             }
-            pareMeioAmbiente.AprovacaoLider = aprovacaoPare;
+            pareMeioAmbiente.Status = "Aprovado pelo Lider";
+            pareMeioAmbiente.ObservacoesLider = observacoes;
+            _context.PareMeioAmbiente.Update(pareMeioAmbiente);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpPut("ReprovacaoLider")]
+        public async Task<IActionResult> ReprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
+        {
+            var pareMeioAmbiente = await _context.PareMeioAmbiente.FindAsync(id);
+            if (pareMeioAmbiente == null)
+            {
+                return NotFound();
+            }
+            pareMeioAmbiente.Status = "Reprovado pelo Lider";
             pareMeioAmbiente.ObservacoesLider = observacoes;
             _context.PareMeioAmbiente.Update(pareMeioAmbiente);
             _context.SaveChanges();
@@ -50,14 +65,14 @@ namespace Schwarz.Controllers.Api
         }
 
         [HttpPut("AprovacaoMeioAmbiente")]
-        public async Task<IActionResult> AprovacaoMeioAmbiente([FromForm] int id, [FromForm] EAprovacaoPare aprovacaoPare, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
+        public async Task<IActionResult> AprovacaoMeioAmbiente([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
             var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(id);
             if(pareMeioAmbiente == null)
             {
                 return NotFound();
             }
-            pareMeioAmbiente.AprovacaoMeioAmbiente = aprovacaoPare;
+            pareMeioAmbiente.Status = "Aprovado pelo Meio Ambiente";
             pareMeioAmbiente.ObservacoesMeioAmbiente = observacoes;
             pareMeioAmbiente.Pontuacao = pontuacao;
             _context.PareMeioAmbiente.Update(pareMeioAmbiente);
@@ -65,6 +80,23 @@ namespace Schwarz.Controllers.Api
 
             return Ok();
         }
-       
+
+        [HttpPut("ReprovacaoMeioAmbiente")]
+        public async Task<IActionResult> ReprovacaoMeioAmbiente([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
+        {
+            var pareMeioAmbiente = await _context.PareMeioAmbiente.FindAsync(id);
+            if (pareMeioAmbiente == null)
+            {
+                return NotFound();
+            }
+            pareMeioAmbiente.Status = "Reprovado pelo Meio Ambiente";
+            pareMeioAmbiente.ObservacoesMeioAmbiente = observacoes;
+            pareMeioAmbiente.Pontuacao = pontuacao;
+            _context.PareMeioAmbiente.Update(pareMeioAmbiente);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
     }
 }

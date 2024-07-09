@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Data;
-using Schwarz.Enums;
 using Schwarz.Models;
 
 namespace Schwarz.Controllers.Api
@@ -33,32 +32,48 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
-        
+
         [HttpPut("AprovacaoLider")]
-        public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] EAprovacaoPare aprovacaoPare, [FromForm] string? observacoes = null)
+        public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
-            var pareQualidade= await _context.PareQualidade.FindAsync(id);
-            if(pareQualidade == null)
+            var pareQualidade = await _context.PareQualidade.FindAsync(id);
+            if (pareQualidade == null)
             {
                 return NotFound();
             }
-            pareQualidade.AprovacaoLider = aprovacaoPare;
+            pareQualidade.Status = "Aprovado pelo Lider";
             pareQualidade.ObservacoesLider = observacoes;
             _context.PareQualidade.Update(pareQualidade);
             _context.SaveChanges();
 
             return Ok();
         }
-        
-        [HttpPut("AprovacaoQualidade")]
-        public async Task<IActionResult> AprovacaoQualidade([FromForm] int id, [FromForm] EAprovacaoPare aprovacaoPare, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
+
+        [HttpPut("ReprovacaoLider")]
+        public async Task<IActionResult> ReprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
-            var pareQualidade= await _context.PareQualidade.FindAsync(id);
-            if(pareQualidade == null)
+            var pareQualidade = await _context.PareQualidade.FindAsync(id);
+            if (pareQualidade == null)
             {
                 return NotFound();
             }
-            pareQualidade.AprovacaoQualidade = aprovacaoPare;
+            pareQualidade.Status = "Reprovado pelo Lider";
+            pareQualidade.ObservacoesLider = observacoes;
+            _context.PareQualidade.Update(pareQualidade);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpPut("AprovacaoQualidade")]
+        public async Task<IActionResult> AprovacaoQualidade([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
+        {
+            var pareQualidade = await _context.PareQualidade.FindAsync(id);
+            if (pareQualidade == null)
+            {
+                return NotFound();
+            }
+            pareQualidade.Status = "Aprovado pela Qualidade";
             pareQualidade.ObservacoesQualidade = observacoes;
             pareQualidade.Pontuacao = pontuacao;
             _context.PareQualidade.Update(pareQualidade);
@@ -66,7 +81,24 @@ namespace Schwarz.Controllers.Api
 
             return Ok();
         }
-        
-       
+
+        [HttpPut("ReprovacaoQualidade")]
+        public async Task<IActionResult> ReprovacaoQualidade([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
+        {
+            var pareQualidade = await _context.PareQualidade.FindAsync(id);
+            if (pareQualidade == null)
+            {
+                return NotFound();
+            }
+            pareQualidade.Status = "Reprovado pela Qualidade";
+            pareQualidade.ObservacoesQualidade = observacoes;
+            pareQualidade.Pontuacao = pontuacao;
+            _context.PareQualidade.Update(pareQualidade);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+
     }
 }
