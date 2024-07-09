@@ -1,5 +1,4 @@
 ﻿using Schwarz.Data;
-using Schwarz.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -35,14 +34,11 @@ namespace Schwarz.Models
 		[Display(Name = "Quantidade Bloqueada")]
 		public int QuantidadeBloqueada { get; set; }
 
-		[Display(Name = "Aprovação do Líder")]
-		public EAprovacaoPare AprovacaoLider { get; set; } = EAprovacaoPare.SemAprovacao;
+		[Display(Name = "Status")]
+		public string Status { get; set; } = "Em Análise";
 
 		[Display(Name = "Observações do Líder")]
 		public string? ObservacoesLider { get; set; }
-
-		[Display(Name = "Aprovação da Qualidade")]
-		public EAprovacaoPare AprovacaoQualidade { get; set; } = EAprovacaoPare.SemAprovacao;
 
 		[Display(Name = "Observações da Qualidade")]
 		public string? ObservacoesQualidade { get; set; }

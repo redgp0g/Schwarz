@@ -38,6 +38,9 @@ namespace Schwarz.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                pareSeguranca.IDFuncionarioLider = _context.Funcionario.Find(pareSeguranca.IDFuncionario).IDLider;
+
                 _context.Add(pareSeguranca);
                 await _context.SaveChangesAsync();
                 foreach (var foto in pareSeguranca.Fotos)
@@ -56,23 +59,26 @@ namespace Schwarz.Controllers
                     }
                 }
                 string nomeFuncionario = _context.Funcionario.Find(pareSeguranca.IDFuncionario).Nome;
-                string emailMessage = $"Uma nova falha foi cadastrada no site do PARE por {pareSeguranca.Funcionario.Nome} cuja descrição é: {pareSeguranca.Desvio} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/Pare/IndexQualidade\">Sistema Integrado</a>";
+                string emailMessage = $"Uma nova falha foi cadastrada no site do PARE por {pareSeguranca.Funcionario.Nome} cuja descrição é: {pareSeguranca.Desvio} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/Pare/IndexSeguranca\">Sistema Integrado</a>";
                 string subject = "PARE de Qualidade do Produto Cadastrado";
-                //_emailService.SendEmail(subject, emailMessage, "luiz.gouvea@schwarz.com.br");
-                //_emailService.SendEmail(subject, emailMessage, "alan.kuzma@schwarz.com.br");
+                List<string> emails = _context.Funcionario.Where(x => x.Ativo).Where(x => x.Setor == "Segurança do Trabalho").Select(x => x.Email).ToList();
+                foreach (var email in emails)
+                {
+                    //_emailService.SendEmail(subject, emailMessage, email);
+                }
                 //if (pareSeguranca.Funcionario.FuncionarioLider.Email != null)
                 //{
                 //    _emailService.SendEmail(subject, emailMessage, pareSeguranca.Funcionario.FuncionarioLider.Email);
                 //}
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Create","Pare");
+            return RedirectToAction("Create", "Pare");
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var pareSeguranca= await _context.PareSeguranca.FindAsync(id);
+            var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
             if (pareSeguranca == null)
             {
                 return NotFound();
