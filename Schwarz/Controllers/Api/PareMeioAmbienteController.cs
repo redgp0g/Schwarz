@@ -37,12 +37,12 @@ namespace Schwarz.Controllers.Api
         [HttpPut("AprovacaoLider")]
         public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
-            var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(id);
-            if(pareMeioAmbiente == null)
+            var pareMeioAmbiente = await _context.PareMeioAmbiente.FindAsync(id);
+            if (pareMeioAmbiente == null)
             {
                 return NotFound();
             }
-            pareMeioAmbiente.Status = "Aprovado pelo Lider";
+            pareMeioAmbiente.Status = "Aprovado pelo Líder";
             pareMeioAmbiente.ObservacoesLider = observacoes;
             _context.PareMeioAmbiente.Update(pareMeioAmbiente);
             _context.SaveChanges();
@@ -59,7 +59,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareMeioAmbiente.Status = "Reprovado pelo Lider";
+            pareMeioAmbiente.Status = "Reprovado pelo Líder";
             pareMeioAmbiente.ObservacoesLider = observacoes;
             _context.PareMeioAmbiente.Update(pareMeioAmbiente);
             _context.SaveChanges();
@@ -71,8 +71,8 @@ namespace Schwarz.Controllers.Api
         [HttpPut("AprovacaoMeioAmbiente")]
         public async Task<IActionResult> AprovacaoMeioAmbiente([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
-            var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(id);
-            if(pareMeioAmbiente == null)
+            var pareMeioAmbiente = await _context.PareMeioAmbiente.FindAsync(id);
+            if (pareMeioAmbiente == null)
             {
                 return NotFound();
             }

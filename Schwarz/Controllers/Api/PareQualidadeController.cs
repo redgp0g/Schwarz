@@ -41,7 +41,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareQualidade.Status = "Aprovado pelo Lider";
+            pareQualidade.Status = "Aprovado pelo Líder";
             pareQualidade.ObservacoesLider = observacoes;
             _context.PareQualidade.Update(pareQualidade);
             _context.SaveChanges();
@@ -58,7 +58,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareQualidade.Status = "Reprovado pelo Lider";
+            pareQualidade.Status = "Reprovado pelo Líder";
             pareQualidade.ObservacoesLider = observacoes;
             _context.PareQualidade.Update(pareQualidade);
             _context.SaveChanges();
