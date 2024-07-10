@@ -19,7 +19,7 @@ namespace Schwarz.Services
                 EnableSsl = true,
                 Timeout = 60000 * 6000,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(emailComunicacao, senhaEmailComunicacao)
+                Credentials = new NetworkCredential(emailComunicacao, senhaEmailComunicacao),
             };
             emailMessage.From = new MailAddress(emailComunicacao, "Schwarz Comunicação");
 
@@ -28,6 +28,7 @@ namespace Schwarz.Services
             emailMessage.IsBodyHtml = true;
             emailMessage.Priority = MailPriority.Normal;
             emailMessage.To.Add(email);
+
             smtpClient.Send(emailMessage);
         }
     }

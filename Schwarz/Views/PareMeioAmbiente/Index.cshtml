@@ -1,5 +1,4 @@
-﻿@using Schwarz.Enums
-@model IEnumerable<PareMeioAmbiente>
+﻿@model IEnumerable<PareMeioAmbiente>
 
 @{
     ViewData["Title"] = "Registros";
@@ -23,10 +22,10 @@
                         @Html.DisplayNameFor(model => model.Desvio)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        @Html.DisplayNameFor(model => model.Pontuacao)
+                        @Html.DisplayNameFor(model => model.Status)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Aprovações
+                        @Html.DisplayNameFor(model => model.Pontuacao)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Ações
@@ -36,7 +35,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr data-id="@item.IDPareMeioAmbiente">
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Data)
                         </td>
@@ -49,31 +48,28 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Desvio)
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Aprovacao">
+                            @{
+                                var cor = item.Status.Contains("Aprovado") ? "text-green-500" : "text-red-500";
+                            }
+                            <span class="@cor">@item.Status</span>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Pontuacao">
                             @Html.DisplayFor(modelItem => item.Pontuacao)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @if (item.AprovacaoLider == EAprovacaoPare.Aprovado)
-                            {
-                                <span class="text-green-500">Aprovado pelo Líder</span> <br />
-                            }
-                            else if (item.AprovacaoLider == EAprovacaoPare.Reprovado)
-                            {
-                                <span class="text-red-500">Reprovado pelo Líder</span> <br />
-                            }
-                            @if (item.AprovacaoMeioAmbiente == EAprovacaoPare.Aprovado)
-                            {
-                                <span class="text-green-500">Aprovado pela Segurança</span> <br />
-                            }
-                            else if (item.AprovacaoMeioAmbiente == EAprovacaoPare.Reprovado)
-                            {
-                                <span class="text-red-500">Reprovado pela Segurança</span> <br />
-                            }
-
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareMeioAmbiente">Editar</a>
-                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareMeioAmbiente">Deletar</button>
+                            <button style="padding: 7px 10px;" class="btnDelete text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-id="@item.IDPareMeioAmbiente">Deletar</button>
+                            @if (item.Status == "Em Análise" && (User.IsInRole("Lider") || User.IsInRole("Admin")))
+                            {
+                                <button style="padding: 7px 10px;" class="btnAprovarLider text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDPareMeioAmbiente">Aprovar</button>
+                                <button style="padding: 7px 10px;" class="btnReprovarLider text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareMeioAmbiente">Reprovar</button>
+                            }
+                            @if (item.Status == "Aprovado pelo Líder" && (User.IsInRole("PareMeioAmbiente") || User.IsInRole("Admin")))
+                            {
+                                <button style="padding: 7px 10px;" class="btnAprovarMeioAmbiente text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareMeioAmbiente">Aprovar</button>
+                                <button style="padding: 7px 10px;" class="btnReprovarMeioAmbiente text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareMeioAmbiente">Reprovar</button>
+                            }
                         </td>
                     </tr>
                 }
@@ -125,11 +121,11 @@
             ]
         });
 
-        $('.btn-delete').click(function () {
+        $('.btnDelete').click(function () {
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
                 var pareId = $(this).data('id');
                 $.ajax({
-                    url: '/' + pareId,
+                    url: 'api/PareMeioAmbiente/' + pareId,
                     method: 'DELETE',
                     success: function (data) {
                         var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
@@ -138,6 +134,108 @@
                     },
                     error: function (error) {
                         alert('Erro ao deletar o PARE: ' + error.responseText);
+                    }
+                });
+            }
+        });
+
+        $('.btnAprovarLider').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja aprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite a observação");
+                $.ajax({
+                    url: 'api/PareMeioAmbiente/AprovacaoLider',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1 },
+                    success: function () {
+                        var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pelo Líder</span><br/>");
+
+                        $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
+
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnReprovarLider').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja reprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite a observação");
+                $.ajax({
+                    url: 'api/PareMeioAmbiente/AprovacaoLider',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
+                    success: function () {
+                        var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
+
+                        $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
+
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnAprovarMeioAmbiente').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja aprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite a observação");
+                var pontuacao = prompt("Digite a pontuação!");
+                $.ajax({
+                    url: 'api/PareMeioAmbiente/AprovacaoMeioAmbiente',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1, pontuacao: pontuacao },
+                    success: function () {
+                        var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pelo Meio Ambiente</span><br/>");
+                        linha.find('td[data-label="Pontuacao"]').html(pontuacao);
+
+                        $('.btnReprovarMeioAmbiente[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarMeioAmbiente[data-id="' + idPare + '"]').hide();
+
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnReprovarMeioAmbiente').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja reprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite a observação");
+                $.ajax({
+                    url: 'api/PareMeioAmbiente/AprovacaoMeioAmbiente',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
+                    success: function () {
+                        var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pelo Meio Ambiente</span><br/>");
+
+                        $('.btnReprovarMeioAmbiente[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarMeioAmbiente[data-id="' + idPare + '"]').hide();
+
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
                     }
                 });
             }
