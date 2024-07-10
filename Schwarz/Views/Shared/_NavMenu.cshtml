@@ -228,21 +228,21 @@
                 </div>
             </div>
         }
-        @if (User.IsInRole("Admin"))
+        @if (SignInManager.IsSignedIn(User))
         {
             <div class="relative">
                 <button id="toggleMenuPARE" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPARE',this.id)">
                     PARE
                 </button>
 
-            <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuPARE">
+                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuPARE">
                     <div class="p-4">
                         <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
                             </div>
                             <div class="flex-auto">
-                            <a asp-action="Create" asp-controller="Pare" class="block font-semibold text-gray-900">
+                                <a asp-action="Create" asp-controller="Pare" class="block font-semibold text-gray-900">
                                     Cadastrar
                                     <span class="absolute inset-0"></span>
                                 </a>
@@ -253,29 +253,29 @@
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
-                        <div class="relative inline-block text-left">
-                            <div>
-                                <a class="block font-semibold text-gray-900 hover:cursor-pointer" aria-autoclose="false" onclick="toggleHidden('dropDownIndexPare')">
-                                    Registros
-                                    <span class="absolute inset-0"></span>
-                                </a>
+                            <div class="relative inline-block text-left">
+                                <div>
+                                    <a class="block font-semibold text-gray-900 hover:cursor-pointer" aria-autoclose="false" onclick="toggleHidden('dropDownIndexPare')">
+                                        Registros
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
+                                <div id="dropDownIndexPare" class="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                                    <div class="py-1" role="none">
+                                        <a asp-action="Index" asp-controller="PareQualidade" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-0">Qualidade do Produto</a>
+                                        <a asp-action="Index" asp-controller="PareSeguranca" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-1">Segurança do Colaborador</a>
+                                        <a asp-action="Index" asp-controller="PareMeioAmbiente" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">Meio Ambiente</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="dropDownIndexPare" class="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
-                                <div class="py-1" role="none">
-                                    <a asp-action="Index" asp-controller="PareQualidade" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-0">Qualidade do Produto</a>
-                                    <a asp-action="Index" asp-controller="PareSeguranca" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-1">Segurança do Colaborador</a>
-                                    <a asp-action="Index" asp-controller="PareMeioAmbiente" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">Meio Ambiente</a>
-                        </div>
-                            </div>
-                        </div>
 
-                    </div>
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                        </div>
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50 hidden">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
                             </div>
                             <div class="flex-auto">
-                            <a asp-action="Leaderboard" asp-controller="Pare" class="block font-semibold text-gray-900">
+                                <a asp-action="Leaderboard" asp-controller="Pare" class="block font-semibold text-gray-900">
                                     Competidores
                                     <span class="absolute inset-0"></span>
                                 </a>
