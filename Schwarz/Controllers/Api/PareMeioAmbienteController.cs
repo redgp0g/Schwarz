@@ -9,7 +9,7 @@ namespace Schwarz.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "PareMeioAmbiente, Lider, Admin")]
     public class PareMeioAmbienteController : ControllerBase
     {
         private readonly SchwarzContext _context;
@@ -18,6 +18,7 @@ namespace Schwarz.Controllers.Api
             _context = schwarzContext;
         }
 
+        [Authorize(Roles = "PareMeioAmbiente, Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -32,6 +33,7 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
+        [Authorize(Roles = "Lider, Admin")]
         [HttpPut("AprovacaoLider")]
         public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -48,6 +50,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "Lider, Admin")]
         [HttpPut("ReprovacaoLider")]
         public async Task<IActionResult> ReprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -64,6 +67,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "PareMeioAmbiente, Admin")]
         [HttpPut("AprovacaoMeioAmbiente")]
         public async Task<IActionResult> AprovacaoMeioAmbiente([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
@@ -81,6 +85,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "PareMeioAmbiente, Admin")]
         [HttpPut("ReprovacaoMeioAmbiente")]
         public async Task<IActionResult> ReprovacaoMeioAmbiente([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {

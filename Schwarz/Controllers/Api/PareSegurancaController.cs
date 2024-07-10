@@ -10,7 +10,7 @@ namespace Schwarz.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "PareSeguranca, Lider, Admin")]
     public class PareSegurancaController : ControllerBase
     {
         private readonly SchwarzContext _context;
@@ -21,6 +21,7 @@ namespace Schwarz.Controllers.Api
             _emailService = emailService;
         }
 
+        [Authorize(Roles = "PareSeguranca, Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -42,6 +43,7 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
+        [Authorize(Roles = "PareSeguranca, Admin")]
         [HttpDelete("Foto/{id}")]
         public IActionResult DeleteFoto(int id)
         {
@@ -55,6 +57,7 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
+        [Authorize(Roles = "PareSeguranca, Admin")]
         [HttpPost("Foto")]
         public IActionResult AdicionarFoto(IFormFileCollection fotos, int idPareSeguranca)
         {
@@ -77,6 +80,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "Lider, Admin")]
         [HttpPut("PlanoAcao")]
         public async Task<IActionResult> PlanoAcao([FromForm] int id, [FromForm] string acao, [FromForm] bool realizada = false, [FromForm] DateTime? prazoAcao = null)
         {
@@ -107,6 +111,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "Lider, Admin")]
         [HttpPut("Concluir")]
         public async Task<IActionResult> Concluir([FromForm] int id)
         {
@@ -123,6 +128,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "PareSeguranca, Admin")]
         [HttpPut("Validar")]
         public async Task<IActionResult> Validar([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -140,6 +146,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "PareSeguranca, Admin")]
         [HttpPut("Invalidar")]
         public async Task<IActionResult> Invalidar([FromForm] int id,[FromForm] string? observacoes = null)
         {

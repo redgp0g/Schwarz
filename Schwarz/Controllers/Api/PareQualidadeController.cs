@@ -9,7 +9,7 @@ namespace Schwarz.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "PareQualidade, Lider, Admin")]
     public class PareQualidadeController : ControllerBase
     {
         private readonly SchwarzContext _context;
@@ -32,7 +32,7 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
-
+        [Authorize(Roles = "PareQualidade, Admin")]
         [HttpPut("AprovacaoLider")]
         public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -49,6 +49,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "Lider, Admin")]
         [HttpPut("ReprovacaoLider")]
         public async Task<IActionResult> ReprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -65,6 +66,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "PareQualidade, Admin")]
         [HttpPut("AprovacaoQualidade")]
         public async Task<IActionResult> AprovacaoQualidade([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
@@ -82,6 +84,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [Authorize(Roles = "PareQualidade, Admin")]
         [HttpPut("ReprovacaoQualidade")]
         public async Task<IActionResult> ReprovacaoQualidade([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
