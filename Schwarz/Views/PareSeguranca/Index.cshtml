@@ -49,18 +49,12 @@
                             @Html.DisplayFor(modelItem => item.Local)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @Html.DisplayFor(modelItem => item.Desvio)
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @if (item.AcaoLider != null)
-                            {
-                                <span class="text-green-500">Ação pelo Líder</span> <br />
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Status">
+                            @{
+                                var cor = item.Status.Contains("Aprovado") ? "text-green-500" : "text-red-500";
                             }
-                            else
-                            {
-                                <span class="text-red-500">Sem Ação do Líder</span> <br />
-                            }
-
+                            <span class="@cor">@item.Status</span>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Pontuacao)
