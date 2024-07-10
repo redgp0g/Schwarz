@@ -162,7 +162,7 @@
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
                         var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pelo Líder</span><br/>");
+                        linha.find('td[data-label="Status"]').html("<span class='text-green-500'>Aprovado pelo Líder</span><br/>");
 
                         $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
@@ -187,7 +187,7 @@
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
                         var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
+                        linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
 
                         $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
@@ -213,7 +213,7 @@
                     data: { id: idPare, observacoes: observacoes, pontuacao: pontuacao },
                     success: function () {
                         var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pela Qualidade</span><br/>");
+                        linha.find('td[data-label="Status"]').html("<span class='text-green-500'>Aprovado pela Qualidade</span><br/>");
                         linha.find('td[data-label="Pontuacao"]').html(pontuacao);
 
                         $('.btnReprovarQualidade[data-id="' + idPare + '"]').hide();
@@ -239,7 +239,7 @@
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
                         var linha = $('#tableQualidade').find('tr[data-id="' + idPare + '"]');
-                        linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pela Qualidade</span><br/>");
+                        linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Reprovado pela Qualidade</span><br/>");
 
                         $('.btnReprovarQualidade[data-id="' + idPare + '"]').hide();
                         $('.btnAprovarQualidade[data-id="' + idPare + '"]').hide();
