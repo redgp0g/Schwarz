@@ -27,10 +27,10 @@
                         @Html.DisplayNameFor(model => model.QuantidadeBloqueada)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        @Html.DisplayNameFor(model => model.Pontuacao)
+                        @Html.DisplayNameFor(model => model.Status)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Aprovações
+                        @Html.DisplayNameFor(model => model.Pontuacao)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Ações
@@ -59,14 +59,14 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.QuantidadeBloqueada)
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Pontuacao">
-                            @Html.DisplayFor(modelItem => item.Pontuacao)
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Aprovacao">
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Status">
                             @{
                                 var cor = item.Status.Contains("Aprovado") ? "text-green-500" : "text-red-500";
                             }
                             <span class="@cor">@item.Status</span>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Pontuacao">
+                            @Html.DisplayFor(modelItem => item.Pontuacao)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <a class="text-black rounded-lg p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareQualidade">Editar</a>
