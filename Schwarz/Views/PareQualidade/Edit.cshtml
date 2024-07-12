@@ -20,11 +20,6 @@
                     <input asp-for="Descricao" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Descricao" class="block mb-2 text-sm font-bold"></label>
-                    <select asp-for="Descricao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline select2" asp-items="ViewBag.Falhas">
-                    </select>
-                </div>
-                <div class="mb-4">
                     <label asp-for="Data" class="block mb-2 text-sm font-bold flex items-center"></label>
                     <input asp-for="Data" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
                     @Html.ValidationMessageFor(x => x.Data)
@@ -47,25 +42,19 @@
                     @Html.ValidationMessageFor(x => x.QuantidadeBloqueada)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="AprovacaoLider" class="block mb-2 text-sm font-bold"></label>
-                    <select asp-for="AprovacaoLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
-                        <option value="0">Sem Aprovação</option>
-                        <option value="1">Aprovado</option>
-                        <option value="2">Reprovado</option>
+                    <label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="Em Análise">Em Análise</option>
+                        <option value="Aprovado pelo Líder">Aprovado pelo Líder</option>
+                        <option value="Reprovado pelo Líder">Reprovado pelo Líder</option>
+                        <option value="Aprovado pela Qualidade">Aprovado pela Qualidade</option>
+                        <option value="Reprovado pela Qualidade">Reprovado pela Qualidade</option>
                     </select>
+                    @Html.ValidationMessageFor(x => x.Status)
                 </div>
                 <div class="mb-4">
                     <label asp-for="ObservacoesLider" class="block mb-2 text-sm font-bold"></label>
                     <textarea asp-for="ObservacoesLider" style="min-height: calc(1em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Observações do Líder"></textarea>
-                </div>
-                <div class="mb-4">
-                    <label asp-for="AprovacaoQualidade" class="block mb-2 text-sm font-bold"></label>
-                    <select asp-for="AprovacaoQualidade" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
-                        <option value="0">Sem Aprovação</option>
-                        <option value="1">Aprovado</option>
-                        <option value="2">Reprovado</option>
-                    </select>
-                    @Html.ValidationMessageFor(x => x.AprovacaoQualidade)
                 </div>
                 <div class="mb-4">
                     <label asp-for="ObservacoesQualidade" class="block mb-2 text-sm font-bold"></label>

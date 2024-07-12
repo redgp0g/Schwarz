@@ -1,5 +1,4 @@
-﻿using Schwarz.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
@@ -28,16 +27,11 @@ namespace Schwarz.Models
         public int? Pontuacao { get; set; }
         public bool PontuacaoValida { get; set; } = true;
 
-        [Display(Name = "Aprovação do Líder")]
-        public EAprovacaoPare AprovacaoLider { get; set; } = EAprovacaoPare.SemAprovacao;
-        public DateTime? DataAprovacaoLider { get; set; }
+        [Display(Name = "Status")]
+        public string Status { get; set; } = "Em Análise";
 
         [Display(Name = "Observações do Líder")]
         public string? ObservacoesLider { get; set; }
-
-        [Display(Name = "Aprovação do Meio Ambiente")]
-        public EAprovacaoPare AprovacaoMeioAmbiente { get; set; } = EAprovacaoPare.SemAprovacao;
-        public DateTime? DataAprovacaoMeioAmbiente { get; set; }
 
         [Display(Name = "Observações do Meio Ambiente")]
         public string? ObservacoesMeioAmbiente { get; set; }

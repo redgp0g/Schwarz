@@ -8,20 +8,21 @@
 
 <form asp-action="Create" asp-controller="PareMeioAmbiente" method="post" id="formMeioAmbiente" class="hidden">
     <div>
-        @if (!SignInManager.IsSignedIn(User))
-        {
-            <div class="mb-3">
-                <label asp-for="IDFuncionario" class="block mb-2 text-sm font-bold"></label>
-                <select asp-for="IDFuncionario" id="funcionarioMeioAmbiente" asp-items="ViewBag.Funcionarios" class="select2">
+        <div class="mb-3">
+            <label asp-for="IDFuncionario" class="block mb-2 text-sm font-bold"></label>
+            <select asp-for="IDFuncionario" id="funcionarioMeioAmbiente" asp-items="ViewBag.Funcionarios" class="select2">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <option selected value="@UserService.GetUser(User).Funcionario.IDFuncionario">@UserService.GetUser(User).Funcionario.Nome</option>
+                }
+                else
+                {
                     <option selected disabled value="">Selecione o funcionário</option>
-                </select>
-                @Html.ValidationMessageFor(x => x.IDFuncionario)
-            </div>
-        }
-        else
-        {
-            <input type="hidden" asp-for="IDFuncionario" value="@UserService.GetUser(User).Funcionario.IDFuncionario" />
-        }
+                }
+            </select>
+            @Html.ValidationMessageFor(x => x.IDFuncionario)
+        </div>
+
         @if (User.IsInRole("Admin") || User.IsInRole("ProgramaPareAdmin"))
         {
             <div class="mb-3">

@@ -21,7 +21,7 @@ namespace Schwarz.Models
 		public string? Email { get; set; }
 
         [ForeignKey("FuncionarioLider")]
-        public int? IDLider { get; set; }
+        public int IDLider { get; set; }
         public virtual Funcionario? FuncionarioLider { get; set; }
 		public string? Cargo { get; set; }
 		public string? Ramal { get; set; }
