@@ -4,12 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Data;
 using Schwarz.Models;
+using Schwarz.Statics;
 
 namespace Schwarz.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "PareQualidade, Lider, Admin")]
+    [Authorize(Roles = $"{Roles.PareQualidade}, {Roles.Lider}, {Roles.Admin}")]
     public class PareQualidadeController : ControllerBase
     {
         private readonly SchwarzContext _context;
@@ -18,6 +19,7 @@ namespace Schwarz.Controllers.Api
             _context = schwarzContext;
         }
 
+        [Authorize(Roles = $"{Roles.PareQualidade}, {Roles.Admin}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteQualidade(int id)
         {
@@ -32,7 +34,7 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
-        [Authorize(Roles = "PareQualidade, Admin")]
+        [Authorize(Roles = $"{Roles.Lider}, {Roles.Admin}")]
         [HttpPut("AprovacaoLider")]
         public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -41,7 +43,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareQualidade.Status = "Aprovado pelo Líder";
+            pareQualidade.Status = StatusPare.AprovadoLider;
             pareQualidade.ObservacoesLider = observacoes;
             _context.PareQualidade.Update(pareQualidade);
             _context.SaveChanges();
@@ -49,7 +51,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
-        [Authorize(Roles = "Lider, Admin")]
+        [Authorize(Roles = $"{Roles.Lider}, {Roles.Admin}")]
         [HttpPut("ReprovacaoLider")]
         public async Task<IActionResult> ReprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -58,7 +60,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareQualidade.Status = "Reprovado pelo Líder";
+            pareQualidade.Status = StatusPare.ReprovadoLider;
             pareQualidade.ObservacoesLider = observacoes;
             _context.PareQualidade.Update(pareQualidade);
             _context.SaveChanges();
@@ -66,7 +68,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
-        [Authorize(Roles = "PareQualidade, Admin")]
+        [Authorize(Roles = $"{Roles.PareQualidade}, {Roles.Admin}")]
         [HttpPut("AprovacaoQualidade")]
         public async Task<IActionResult> AprovacaoQualidade([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
@@ -75,7 +77,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareQualidade.Status = "Aprovado pela Qualidade";
+            pareQualidade.Status = StatusPare.AprovadoQualidade;
             pareQualidade.ObservacoesQualidade = observacoes;
             pareQualidade.Pontuacao = pontuacao;
             _context.PareQualidade.Update(pareQualidade);
@@ -84,7 +86,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
-        [Authorize(Roles = "PareQualidade, Admin")]
+        [Authorize(Roles = $"{Roles.PareQualidade}, {Roles.Admin}")]
         [HttpPut("ReprovacaoQualidade")]
         public async Task<IActionResult> ReprovacaoQualidade([FromForm] int id, [FromForm] string? observacoes = null, [FromForm] int? pontuacao = null)
         {
@@ -93,7 +95,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareQualidade.Status = "Reprovado pela Qualidade";
+            pareQualidade.Status = StatusPare.ReprovadoQualidade;
             pareQualidade.ObservacoesQualidade = observacoes;
             pareQualidade.Pontuacao = pontuacao;
             _context.PareQualidade.Update(pareQualidade);

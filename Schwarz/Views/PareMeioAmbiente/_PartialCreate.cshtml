@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Schwarz.Areas.Identity.Data
 @using Schwarz.Services.Interfaces
+@using Schwarz.Statics
 
 @inject SignInManager<SchwarzUser> SignInManager
 @inject IUserService UserService
@@ -23,7 +24,7 @@
             @Html.ValidationMessageFor(x => x.IDFuncionario)
         </div>
 
-        @if (User.IsInRole("Admin") || User.IsInRole("ProgramaPareAdmin"))
+        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.PareMeioAmbiente))
         {
             <div class="mb-3">
                 <label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
