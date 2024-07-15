@@ -92,20 +92,17 @@ namespace Schwarz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, PareSeguranca pareSeguranca)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.PareSeguranca.Update(pareSeguranca);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-
-                }
-                return RedirectToAction("Index");
+                _context.PareSeguranca.Update(pareSeguranca);
+                await _context.SaveChangesAsync();
             }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+
+            }
+            
             ViewData["Setores"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.Setor }).Distinct(), "Setor", "Setor");
             ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
             return View(pareSeguranca);
