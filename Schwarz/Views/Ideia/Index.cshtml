@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Ideia>
+﻿@using Schwarz.Statics
+@model IEnumerable<Ideia>
 @{
     ViewData["Title"] = "Ideias";
     List<string> equipe = new();
@@ -28,7 +29,7 @@
                 </select>
             </div>
         </div>
-        <a asp-action="Create" asp-controller="Ideia" class="group block max-w-xs ml-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-red-600 hover:ring-red-800">
+        <a asp-action="Create" asp-controller="Ideia" class="transition ease-in-out hover:scale-110 group block max-w-xs ml-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-red-600 hover:ring-red-800">
             <div class="flex items-center space-x-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
@@ -66,14 +67,9 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        equipe.Clear();
-                        foreach (var func in item.NomesEquipe)
-                        {
-                            equipe.Add(func);
-                        }
                         <tr>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm capitalize" data-label="Equipe:">
-                                @string.Join(", ", equipe)
+                                @string.Join(", ", item.NomesEquipe)
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Data:">
                                 @Html.DisplayFor(modelItem => item.DataFormatada)
@@ -85,12 +81,12 @@
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-                                @if (User.IsInRole("IdeiaAdmin") || User.IsInRole("Admin"))
+                                @if (User.IsInRole(Roles.IdeiaAdmin) || User.IsInRole(Roles.Admin))
                                 {
-                                    <a style="padding: 7px 10px;margin-top: 0;" class="rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDIdeia">Editar</a>
-                                    <a style="padding: 7px 10px;" class="rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" asp-action="Delete" asp-route-id="@item.IDIdeia">Deletar</a>
+                                    <a class="rounded-lg mt-2 p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDIdeia">Editar</a>
+                                    <button class="btnDelete rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDIdeia">Deletar</button>
                                 }
-                                <a style="padding: 7px 10px;" class="rounded-lg mt-2 p-6 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" asp-action="Details" asp-route-id="@item.IDIdeia">Detalhes</a>
+                                <a class="rounded-lg mt-2 p-2 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" asp-action="Details" asp-route-id="@item.IDIdeia">Detalhes</a>
                             </td>
                         </tr>
                     }
@@ -156,6 +152,25 @@
             var filtro = $(this).val();
 
             table.column(1).search(filtro).draw();
+        });
+
+        $('.btnDelete').on('click', function () {
+            var id = $(this).data('id');
+
+            if (confirm('Deseja deletar esta ideia?')) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: 'api/Ideia/' + id,
+                    success: function (data) {
+                        var row = table.row($('button[data-id="' + id + '"]').closest('tr'));
+                        row.remove().draw();
+                        alert('Ideia deletada com sucesso!')
+                    },
+                    error: function (error) {
+                        alert('Erro ao deletar a Ideia: ' + error.responseText);
+                    }
+                });
+            }
         });
     });
 </script>

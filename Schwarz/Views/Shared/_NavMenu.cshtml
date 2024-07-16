@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Schwarz.Areas.Identity.Data
+@using Schwarz.Statics
 
 
 @inject SignInManager<SchwarzUser> SignInManager
@@ -68,7 +69,7 @@
                 </div>
             </div>
         </div>
-        @if (User.IsInRole("FuncionarioAdmin") || User.IsInRole("Admin"))
+        @if (User.IsInRole(Roles.Admin))
         {
             <div class="relative">
                 <button id="toggleMenuFuncionario" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFuncionario',this.id)">
@@ -103,7 +104,7 @@
                 </div>
             </div>
         }
-        @if (User.IsInRole("Admin") || User.IsInRole("Metrologia") || User.IsInRole("Lider") || User.IsInRole("Especialista"))
+        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Metrologia) || User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Especialista))
         {
             <div class="relative">
                 <button id="toggleMenuAlertaCota" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuAlertaCota',this.id)">
@@ -112,7 +113,7 @@
 
                 <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuAlertaCota">
                     <div class="p-4">
-                        @if (User.IsInRole("Lider") || User.IsInRole("Admin") || User.IsInRole("Especialista"))
+                        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Especialista))
                         {
                             <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                                 <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
@@ -127,7 +128,7 @@
                             </div>
 
                         }
-                        @if (User.IsInRole("Metrologia") || User.IsInRole("Admin"))
+                        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Metrologia))
                         {
                             <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                                 <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
@@ -156,7 +157,7 @@
                 </div>
             </div>
         }
-        @if (User.IsInRole("Admin") || User.IsInRole("LicaoAprendida"))
+        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.LicaoAprendida))
         {
             <div class="relative">
                 <button id="toggleMenuLicoesAprendidas" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuLicoesAprendidas',this.id)">
@@ -192,7 +193,7 @@
                 </div>
             </div>
         }
-        @if (User.IsInRole("Admin") || User.IsInRole("TransporteMercadoria"))
+        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.TransporteMercadoria))
         {
             <div class="relative">
                 <button id="toggleMenuTransporteMercadorias" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuTransporteMercadorias',this.id)">
@@ -370,7 +371,7 @@
                             <a asp-action="Leaderboard" asp-controller="CadastroPare" class="block no-underline rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Competidores</a>
                         </div>
                     </div>
-                    @if (User.IsInRole("TransporteMercadoria") || User.IsInRole("Admin"))
+                    @if (User.IsInRole(Roles.TransporteMercadoria) || User.IsInRole(Roles.Admin))
                     {
                         <div class="-mx-3">
                             <button id="toggleMenuTransporteMercadoria" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" onclick="toggleHidden('subMenuMobileTransporteMercadoria',this.id)">

@@ -1,4 +1,5 @@
-﻿@model PareQualidade
+﻿@using Schwarz.Statics
+@model PareQualidade
 @{
     ViewData["Title"] = "Editar";
     Layout = "_Layout";
@@ -33,22 +34,21 @@
                 </div>
                 <div class="mb-4">
                     <label asp-for="CodigoItem" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="CodigoItem" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"/>
+                    <input asp-for="CodigoItem" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
                     @Html.ValidationMessageFor(x => x.CodigoItem)
                 </div>
                 <div class="mb-4">
                     <label asp-for="QuantidadeBloqueada" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="QuantidadeBloqueada" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"/>
+                    <input asp-for="QuantidadeBloqueada" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
                     @Html.ValidationMessageFor(x => x.QuantidadeBloqueada)
                 </div>
                 <div class="mb-4">
                     <label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
                     <select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
-                        <option value="Em Análise">Em Análise</option>
-                        <option value="Aprovado pelo Líder">Aprovado pelo Líder</option>
-                        <option value="Reprovado pelo Líder">Reprovado pelo Líder</option>
-                        <option value="Aprovado pela Qualidade">Aprovado pela Qualidade</option>
-                        <option value="Reprovado pela Qualidade">Reprovado pela Qualidade</option>
+                        @foreach (var status in StatusPare.QualidadeStatus)
+                        {
+                            <option value="@status">@status</option>
+                        }
                     </select>
                     @Html.ValidationMessageFor(x => x.Status)
                 </div>

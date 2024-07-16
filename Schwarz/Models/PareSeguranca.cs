@@ -1,3 +1,4 @@
+using Schwarz.Statics;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,7 +28,7 @@ namespace Schwarz.Models
         public string OrdemServico { get; set; }
 
         [Display(Name = "Status")]
-        public string Status { get; set; } = "Em Análise";
+        public string Status { get; set; } = StatusPare.EmAnalise;
 
         [ForeignKey("FuncionarioLider")]
         public int IDFuncionarioLider { get; set; }

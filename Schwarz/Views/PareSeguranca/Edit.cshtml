@@ -1,4 +1,5 @@
-﻿@model PareSeguranca
+﻿@using Schwarz.Statics
+@model PareSeguranca
 @{
     ViewData["Title"] = "Editar";
     Layout = "_Layout";
@@ -27,11 +28,10 @@
                 <div class="mb-4">
                     <label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
                     <select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
-                        <option value="Em Análise">Em Análise</option>
-                        <option value="Ação Pendente">Ação Pendente</option>
-                        <option value="Ação Concluída">Ação Concluída</option>
-                        <option value="Ação Validada">Ação Validada</option>
-                        <option value="Ação Invalidada">Ação Invalidada</option>
+                        @foreach (var status in StatusPare.SegurancaStatus)
+                        {
+                            <option value="@status">@status</option>
+                        }
                     </select>
                     @Html.ValidationMessageFor(x => x.Status)
                 </div>

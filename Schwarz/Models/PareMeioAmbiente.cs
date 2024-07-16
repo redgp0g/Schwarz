@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Schwarz.Statics;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Schwarz.Models
@@ -28,7 +29,7 @@ namespace Schwarz.Models
         public bool PontuacaoValida { get; set; } = true;
 
         [Display(Name = "Status")]
-        public string Status { get; set; } = "Em Análise";
+        public string Status { get; set; } = StatusPare.EmAnalise;
 
         [Display(Name = "Observações do Líder")]
         public string? ObservacoesLider { get; set; }

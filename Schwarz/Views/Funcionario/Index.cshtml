@@ -64,9 +64,9 @@
                                 @Html.DisplayFor(modelItem => item.Cargo)
                             </td>
                             <td>
-                                <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-edit" data-employee-id="@item.IDFuncionario">Editar</a>
-                                <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-info" asp-action="Details" asp-route-id="@item.IDFuncionario">Detalhes</a>
-                                <a style="padding: 7px 10px;margin-top: 0;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDFuncionario">Deletar</a>
+                                <a class="btn btn-edit" data-employee-id="@item.IDFuncionario">Editar</a>
+                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.IDFuncionario">Detalhes</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IDFuncionario">Deletar</a>
                             </td>
                         </tr>
                     }

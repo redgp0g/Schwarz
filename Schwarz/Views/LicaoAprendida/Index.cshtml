@@ -128,15 +128,14 @@
                             }
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a style="padding: 7px 10px;margin-top: 0;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDLicaoAprendida">Editar</a>
-                            <button style="padding: 7px 10px;" class="text-black rounded-lg mt-2 p-6 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-licao-id="@item.IDLicaoAprendida">Deletar</button>
+                            <a class="text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDLicaoAprendida">Editar</a>
+                            <button class="text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block btn-delete" data-licao-id="@item.IDLicaoAprendida">Deletar</button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-</div>
 </div>
 <script>
     $(document).ready(function () {

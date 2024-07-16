@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Schwarz.Data;
 using Schwarz.Models;
 using Schwarz.Services.Interfaces;
+using Schwarz.Statics;
 
 namespace Schwarz.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "PareSeguranca, Lider, Admin")]
+    [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Lider}, {Roles.Admin}")]
     public class PareSegurancaController : ControllerBase
     {
         private readonly SchwarzContext _context;
@@ -21,7 +22,7 @@ namespace Schwarz.Controllers.Api
             _emailService = emailService;
         }
 
-        [Authorize(Roles = "PareSeguranca, Admin")]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -43,7 +44,7 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
-        [Authorize(Roles = "PareSeguranca, Admin")]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [HttpDelete("Foto/{id}")]
         public IActionResult DeleteFoto(int id)
         {
@@ -57,7 +58,7 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
-        [Authorize(Roles = "PareSeguranca, Admin")]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [HttpPost("Foto")]
         public IActionResult AdicionarFoto(IFormFileCollection fotos, int idPareSeguranca)
         {
@@ -90,7 +91,7 @@ namespace Schwarz.Controllers.Api
                 return NotFound();
             }
 
-            pareSeguranca.Status = "Ação Pendente";
+            pareSeguranca.Status = StatusPare.AcaoPendente;
             pareSeguranca.AcaoLider = acao;
             pareSeguranca.PrazoAcaoLider = prazoAcao;
             if (realizada)
@@ -121,14 +122,14 @@ namespace Schwarz.Controllers.Api
                 return NotFound();
             }
             pareSeguranca.DataConclusao= DateTime.Now;
-            pareSeguranca.Status = "Ação Concluída";
+            pareSeguranca.Status = StatusPare.AcaoConcluida;
             _context.Update(pareSeguranca);
             _context.SaveChanges();
 
             return Ok();
         }
 
-        [Authorize(Roles = "PareSeguranca, Admin")]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [HttpPut("Validar")]
         public async Task<IActionResult> Validar([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -139,14 +140,14 @@ namespace Schwarz.Controllers.Api
             }
             pareSeguranca.ObservacoesSeguranca = observacoes;
             pareSeguranca.DataValidado = DateTime.Now;
-            pareSeguranca.Status = "Ação Validada";
+            pareSeguranca.Status = StatusPare.AcaoValidada;
             _context.Update(pareSeguranca);
             _context.SaveChanges();
 
             return Ok();
         }
 
-        [Authorize(Roles = "PareSeguranca, Admin")]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [HttpPut("Invalidar")]
         public async Task<IActionResult> Invalidar([FromForm] int id,[FromForm] string? observacoes = null)
         {
@@ -156,7 +157,7 @@ namespace Schwarz.Controllers.Api
                 return NotFound();
             }
             pareSeguranca.ObservacoesSeguranca = observacoes;
-            pareSeguranca.Status = "Ação Invalidada";
+            pareSeguranca.Status = StatusPare.AcaoInvalidada;
             _context.Update(pareSeguranca);
             _context.SaveChanges();
 
