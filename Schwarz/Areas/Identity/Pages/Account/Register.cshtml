@@ -1,49 +1,52 @@
 ﻿@page
 @model RegisterModel
+
+
+
 @{
-	ViewData["Title"] = "Registrar";
+	ViewData["Title"] = "Registrar funcionário";
 }
 
-<h1>@ViewData["Title"]</h1>
 
-<div class="row">
-	<div class="col-md-4">
-		<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
-			<h2>Criar uma conta nova.</h2>
-			<hr />
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-floating">
-				<input asp-for="Input.Usuario" class="form-control" autocomplete="username" aria-required="true" />
-				<label asp-for="Input.Usuario"></label>
-				<span asp-validation-for="Input.Usuario" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-				<label asp-for="Input.Password"></label>
-				<span asp-validation-for="Input.Password" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-				<label asp-for="Input.ConfirmPassword"></label>
-				<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<select asp-for="Input.IDFuncionario" asp-items="ViewBag.Funcionarios" class="form-control" autocomplete="username" aria-required="true">
-					<option value="" disabled selected>Selecione o funcionário</option>
-				</select>
-				<label asp-for="Input.IDFuncionario">Funcionário da conta</label>
-				<span asp-validation-for="Input.IDFuncionario" class="text-danger"></span>
-			</div>
-
-
-			<button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrar</button>
-		</form>
+<div class="min-h-screen flex flex-col items-center p-5">
+	<div class="border-5 bg-white rounded-lg p-5 mx-5 w-6/12 mt-5">
+		<h1 class="text-2xl">@ViewData["Title"]</h1>
+		<h3 class="text-lg italic">Registre uma conta para aproveitar o site ao máximo!</h3>
 	</div>
-	<div class="col-md-6 col-md-offset-2">
-		<section>
-			<h3>Crie uma conta para aproveitar ao máximo o site.</h3>
-			<hr />
-		</section>
+
+	<div class="border-5 bg-white rounded-lg p-5 w-6/12 mt-5">
+		<div class="col-md-4 m-3">
+			<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+				<h2 class="mb-5 text-xl">Insira os dados do funcionário</h2>
+				<hr />
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="form-floating mb-3">
+					<input asp-for="Input.Usuario" class="form-control outline" autocomplete="username" aria-required="true" />
+					<label asp-for="Input.Usuario" class="ml-2"></label>
+					<span asp-validation-for="Input.Usuario" class="text-danger"></span>
+				</div>
+				<div class="form-floating mb-3">
+					<input asp-for="Input.Password" class="form-control outline" autocomplete="new-password" aria-required="true" />
+					<label asp-for="Input.Password" class="ml-2"></label>
+					<span asp-validation-for="Input.Password" class="text-danger"></span>
+				</div>
+				<div class="form-floating mb-3">
+					<input asp-for="Input.ConfirmPassword" class="form-control outline" autocomplete="new-password" aria-required="true" />
+					<label asp-for="Input.ConfirmPassword" class="ml-2">Confirme sua senha</label>
+					<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+				</div>
+				<div class="form-floating mb-3">
+					<select asp-for="Input.IDFuncionario" asp-items="ViewBag.Funcionarios" class="form-control outline" autocomplete="username" aria-required="true">
+						<option value="" disabled selected>Selecione o funcionário</option>
+					</select>
+					<label asp-for="Input.IDFuncionario" class="ml-2">Funcionário associado à conta</label>
+					<span asp-validation-for="Input.IDFuncionario" class="text-danger"></span>
+				</div>
+
+
+				<button id="registerSubmit" type="submit" class="border text-white text-lg transition hover:scale-105 duration-100 bg-gray-600 outline p-2 rounded-lg hover:bg-gray-800 btn btn-lg btn-primary">Registrar funcionário</button>
+			</form>
+		</div>
 	</div>
 </div>
 
