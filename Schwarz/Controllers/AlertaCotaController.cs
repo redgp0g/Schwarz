@@ -55,6 +55,7 @@ namespace Schwarz.Controllers
              AlertaProducao = x.Count(x => x.DataConfirmacaoProducao == null),
              AlertaMetrologia = x.Count(x => x.DataConfirmacaoProducao != null && x.DataConfirmacaoMetrologia == null)
             })
+            .Where(x => x.AlertaProducao > 0 || x.AlertaMetrologia > 0)
             .ToList();
 
             var alertasArquivados = _context.AlertaCota
