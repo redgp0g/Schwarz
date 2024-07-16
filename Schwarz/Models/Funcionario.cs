@@ -11,42 +11,41 @@ namespace Schwarz.Models
     {
         [Key]
         public int IDFuncionario { get; set; }
-		public int? Matricula { get; set; }
-		public string Nome { get; set; }
+        public int? Matricula { get; set; }
+
+        [Required(ErrorMessage = "O Nome do Funcionário é obrigatório")]
+        public string Nome { get; set; }
+
+        [Required(ErrorMessage = "O Setor do Funcionário é obrigatório")]
         public string Setor { get; set; }
         public DateTime? DataNascimento { get; set; }
-		public bool Ativo { get; set; }
-		public string? Turno { get; set; }
-		public string? Email { get; set; }
+        public bool Ativo { get; set; }
+
+        [Required(ErrorMessage = "O Turno do Funcionário é obrigatório")]
+        public string Turno { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        public string? Email { get; set; }
 
         [ForeignKey("FuncionarioLider")]
+        [Required(ErrorMessage = "O Líder do Funcionário é obrigatório")]
         public int IDLider { get; set; }
         public virtual Funcionario? FuncionarioLider { get; set; }
-		public string? Cargo { get; set; }
-		public string? Ramal { get; set; }
-		public byte[]? Foto { get; set; }
+
+        [Required(ErrorMessage = "O Cargo do Funcionário é obrigatório")]
+        public string Cargo { get; set; }
+        public string? Ramal { get; set; }
+        public byte[]? Foto { get; set; }
         public DateTime? DataAdmissao { get; set; }
+        public int? NumeroCentroCusto { get; set; }
+        public string? CPF { get; set; }
         public virtual SchwarzUser? User { get; set; }
         public virtual ICollection<IdeiaEquipe>? IdeiaEquipe { get; set; }
 
-
         [NotMapped]
-		public int QuantidadeIdeias2023
-		{
-			get
-			{
-                return IdeiaEquipe != null ? IdeiaEquipe.Count(e => e.Ideia.Data.Year == 2023) : 0;
-            }
-		}
-
-		[NotMapped]
-		public int QuantidadeIdeiasImplementadas2023
-		{
-			get
-			{
-                return IdeiaEquipe != null ? IdeiaEquipe.Count(e => e.Ideia.Status == "Implementada" && (e.Ideia.Data.Year == 2023 || (e.Ideia.DataImplantacao.HasValue && e.Ideia.DataImplantacao.Value.Year == 2023))) : 0;
-            }
-		}
+        [Required(ErrorMessage = "A imagem do Funcionário é obrigatória")]
+        [Display(Name = "Foto do Funcionário")]
+        public IFormFile? FileFoto { get; set; }
 
         [NotMapped]
         public string PrimeiroUltimoNome
