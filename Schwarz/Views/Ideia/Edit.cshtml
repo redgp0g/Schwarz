@@ -1,304 +1,270 @@
 ﻿@model Ideia
 @{
-	ViewData["Title"] = "Editar";
-	Layout = "_Layout";
-	var qtdparticipantes = 0;
+    ViewData["Title"] = "Editar";
+    Layout = "_Layout";
+    var qtdparticipantes = 0;
 }
 
 <div class="container mx-auto">
-	<div class="flex justify-center px-6 my-12">
-		<div class="w-full lg:w-7/12 bg-white p-2 rounded-lg">
-			<h3 class="pt-4 text-2xl text-center">Formulário de Edição</h3>
-			<div class="text-center">
-				<p class="inline-block text-sm text-red-500 align-baseline">
-					Os campos com * são obrigatórios
-				</p>
-			</div>
-			<div class="px-8">
-				<div class="mb-4 listaparticipantes">
-					<label class="block mb-2 text-sm font-bold flex items-center"><span class="text-red-500 text-2xl">*</span>Participantes</label>
+    <div class="flex justify-center px-6 my-12">
+        <div class="w-full lg:w-7/12 bg-white p-2 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">Formulário de Edição</h3>
+            <div class="text-center">
+                <p class="inline-block text-sm text-red-500 align-baseline">
+                    Os campos com * são obrigatórios
+                </p>
+            </div>
+            <div class="px-8">
+                <div class="mb-4 listaparticipantes">
+                    <label class="block mb-2 text-sm font-bold flex items-center"><span class="text-red-500 text-2xl">*</span>Participantes</label>
 
-					@foreach (var participante in Model.IdeiaEquipe)
-					{
-						qtdparticipantes++;
-						<div class="participante my-2">
-							<label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline capitalize">@participante.Funcionario.Nome</label>
-							<button class="p-2 text-white bg-red-700 rounded-sm
-							rounded-tl-lg rounded-br-lg
-							remover-participante transition ease-in-out delay-50 hover:scale-105 hover:bg-red-800" data-id="@participante.IDIdeiaEquipe">
-								
+                    @foreach (var participante in Model.IdeiaEquipe)
+                    {
+                        qtdparticipantes++;
+                        <div class="participante my-2">
+                            <label class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline capitalize">@participante.Funcionario.Nome</label>
+                            <button class="p-2 text-white bg-red-700 rounded-sm rounded-tl-lg rounded-br-lg remover-participante transition ease-in-out delay-50 hover:scale-105 hover:bg-red-800" data-id="@participante.IDIdeiaEquipe">Deletar</button>
+                        </div>
+                    }
+                </div>
+                <div class="my-3">
+                    <select class="form-select select2" id="novoparticipante" asp-items="ViewBag.Funcionarios">
+                    </select>
+                    <button class="p-2 text-white bg-green-700 rounded-sm rounded-tl-lg rounded-br-lg adicionar-participante transition ease-in-out delay-50 hover:scale-105 hover:bg-green-800">Adicionar</button>
+                </div>
+            </div>
+            <form id="form" method="post" class="px-8">
+                <div class="mb-4">
+                    <label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center"><div class="text-red-500 text-2xl">*</div>Descrição da Ideia</label>
+                    <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
+                    @Html.ValidationMessageFor(x => x.Descricao)
+                    <div class="">
+                        <div class="mb-8">
+                            <label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
+                            <select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
+                                <option value="Aplicada">Aplicada</option>
+                                <option value="Recebida">Recebida</option>
+                                <option value="Aprovada">Aprovada</option>
+                                <option value="Cancelada">Cancelada</option>
+                                <option value="Direcionada">Direcionada</option>
+                                <option value="Em Processo">Em Processo</option>
+                            </select>
+                            @Html.ValidationMessageFor(x => x.Status)
+                        </div>
 
-							
-								Deletar
-							</button>
-						</div>
-					}
-				</div>
-				<div class="my-3">
-					<select class="form-select select2" id="novoparticipante" asp-items="ViewBag.Funcionarios">
-					</select>
-					<button class="
+                        <div class="row grid grid-cols-2 gap-4 mb-4">
+                            <div class="mt-4">
+                                <label asp-for="SolicitacaoAnalise" class="block mb-2 text-sm font-bold"></label>
+                                <input asp-for="SolicitacaoAnalise" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Solicitação de Análise">
+                            </div>
+                            <div class="mt-4">
+                                <label asp-for="OrdemServico" class="block mb-2 text-sm font-bold"></label>
+                                <input asp-for="OrdemServico" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="OS">
+                            </div>
+                        </div>
+                    </div>
 
-					p-2 text-white bg-green-700 rounded-sm 
-					rounded-tl-lg rounded-br-lg adicionar-participante 
-					transition ease-in-out delay-50 hover:scale-105 hover:bg-green-800">
-						
-					
-					Adicionar
-					</button>
-				</div>
-			</div>
-			<form id="form" method="post" class="px-8">
-				<div class="mb-4">
-					<label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center"><div class="text-red-500 text-2xl">*</div>Descrição da Ideia</label>
-					<textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
-					@Html.ValidationMessageFor(x => x.Descricao)
+                    <div class="grid grid-cols-2 gap-4 mt-4 mb-4">
+                        <div>
+                            <label asp-for="Ganho" class="block mb-2 text-sm font-bold"></label>
+                            <input asp-for="Ganho" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o ganho" />
+                        </div>
+                        <div>
+                            <label asp-for="GanhoRealizado" class="block mb-2 text-sm font-bold"></label>
+                            <input type="number" asp-for="GanhoRealizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Ganho realizado" />
+                        </div>
+                    </div>
 
+                    <div class="grid grid-cols-2 gap-4 mt-4 mb-4">
+                        <div>
+                            <label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
+                            <input asp-for="Data" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                        </div>
+                        <div>
+                            <label asp-for="DataImplantacao" class="block mb-2 text-sm font-bold"></label>
+                            <input asp-for="DataImplantacao" type="date" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-4">
+                        <label asp-for="Feedback" class="block mb-2 text-sm font-bold"></label>
+                        <input asp-for="Feedback" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Qual o feedback para a ideia?" />
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Investimento" class="block mb-2 text-sm font-bold"></label>
+                        <input asp-for="Investimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Qual o investimento?">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2 text-sm font-bold flex items-center">Anexos</label>
+                    @if (Model.IdeiaAnexo.Count() > 0)
+                    {
+                        @foreach (var anexo in Model.IdeiaAnexo)
+                        {
+                            <div class="my-2">
+                                <a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Anexo)" download="@anexo.Nome" class="image-viewer w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline transition delay-30 hover:text-white hover:bg-gray-800">@anexo.Nome</a>
+                                <button class="image-viewer p-2 text-white bg-red-700 rounded-sm rounded-tl-lg rounded-br-lg transition ease-in-out delay-50 hover:scale-105 hover:bg-red-800 remover-anexo" data-id="@anexo.IDIdeiaAnexo">Deletar</button>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <label class="block w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">Sem Anexo</label>
+                    }
+                </div>
+                <div class="my-3">
+                    <input type="file" id="novoanexo" multiple>
+                    <label class="p-2 text-white bg-green-700 rounded-sm rounded-tl-lg rounded-br-lg transition ease-in-out delay-50 hover:scale-105 hover:bg-green-800 adicionar-anexo">Adicionar</label>
+                </div>
 
-					<div class="">
-						<div class="mb-8">
-							<label asp-for="Status" class="block mb-2 text-sm font-bold"></label>
-							<select asp-for="Status" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" required>
-								<option value="Aplicada">Aplicada</option>
-								<option value="Recebida">Recebida</option>
-								<option value="Aprovada">Aprovada</option>
-								<option value="Cancelada">Cancelada</option>
-								<option value="Direcionada">Direcionada</option>
-								<option value="Em Processo">Em Processo</option>
-							</select>
-							@Html.ValidationMessageFor(x => x.Status)
-						</div>
-
-						<div class="row grid grid-cols-2 gap-4 mb-4">
-							<div class="mt-4">
-								<label asp-for="SolicitacaoAnalise" class="block mb-2 text-sm font-bold"></label>
-								<input asp-for="SolicitacaoAnalise" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Solicitação de Análise">
-							</div>
-							<div class="mt-4">
-								<label asp-for="OrdemServico" class="block mb-2 text-sm font-bold"></label>
-								<input asp-for="OrdemServico" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="OS">
-							</div>
-						</div>
-					</div>
-
-					<div class="grid grid-cols-2 gap-4 mt-4 mb-4">
-						<div>
-								<label asp-for="Ganho" class="block mb-2 text-sm font-bold"></label>
-								<input asp-for="Ganho" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o ganho" />
-						</div>
-						<div>
-								<label asp-for="GanhoRealizado" class="block mb-2 text-sm font-bold"></label>
-								<input type="number" asp-for="GanhoRealizado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Ganho realizado" />
-						</div>
-					</div>
-
-					<div class="grid grid-cols-2 gap-4 mt-4 mb-4">
-						<div>
-							<label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
-							<input asp-for="Data" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
-						</div>
-						<div>
-							<label asp-for="DataImplantacao" class="block mb-2 text-sm font-bold"></label>
-							<input asp-for="DataImplantacao" type="date" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
-						</div>
-					</div>	
-					
-					
-					</div>
-				<div class="row">
-					<div class="mb-4">
-						<label asp-for="Feedback" class="block mb-2 text-sm font-bold"></label>
-						<input asp-for="Feedback" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Qual o feedback para a ideia?" />
-					</div>
-					<div class="mb-4">
-					<label asp-for="Investimento" class="block mb-2 text-sm font-bold"></label>
-					<input asp-for="Investimento" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Qual o investimento?">
-				</div>
-				</div>
-
-
-				<div class="mb-4">
-					<label class="block mb-2 text-sm font-bold flex items-center">Anexos</label>
-					@if (Model.IdeiaAnexo.Count() > 0)
-					{
-						@foreach (var anexo in Model.IdeiaAnexo)
-						{
-							<div class="my-2">
-								<a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Anexo)" download="@anexo.Nome" class=" image-viewer w-full px-3 py-2 text-sm leading-tight text-gray-700
-								border rounded shadow appearance-none focus:outline-none focus:shadow-outline transition delay-30 hover:text-white hover:bg-gray-800">@anexo.Nome</a>
-								<button class="image-viewer p-2 text-white bg-red-700 rounded-sm
-							rounded-tl-lg rounded-br-lg transition ease-in-out delay-50 
-							hover:scale-105 hover:bg-red-800 remover-anexo" data-id="@anexo.IDIdeiaAnexo">
-							
-								Deletar
-								</button>
-							</div>
-						}
-					}
-					else
-					{
-						<label class="block w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">Sem Anexo</label>
-					}
-				</div>
-				<div class="my-3">
-					<input type="file" id="novoanexo" multiple>
-					<label class="
-
-					p-2 text-white bg-green-700 rounded-sm
-					rounded-tl-lg rounded-br-lg transition ease-in-out delay-50 hover:scale-105 hover:bg-green-800
-					adicionar-anexo">
-
-						Adicionar
-					</label>
-				</div>
-
-				<div class="my-6">
-					<input id="idideia" type="hidden" asp-for="IDIdeia" />
-					<input type="hidden" asp-for="NomeEquipe" />
-					<input type="submit" value="Editar" class="transition ease-in-out hover:scale-105 delay-100 bg-gray-800 hover:bg-gray-900 text-xl w-full px-2 py-2 font-bold text-white rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
-				</div>
-			</form>
-		</div>
-	</div>
+                <div class="my-6">
+                    <input id="idideia" type="hidden" asp-for="IDIdeia" />
+                    <input type="hidden" asp-for="NomeEquipe" />
+                    <input type="submit" value="Editar" class="transition ease-in-out hover:scale-105 delay-100 bg-gray-800 hover:bg-gray-900 text-xl w-full px-2 py-2 font-bold text-white rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>
-	var qtdpartc = @qtdparticipantes;
-	$(document).ready(function () {
-		$('.select2').select2();
-	});
+    var qtdpartc = @qtdparticipantes;
+    $(document).ready(function () {
+        $('.select2').select2();
+    });
 
-	$(document).on('click', '.adicionar-participante', function () {	
-		var idideia = $('#idideia').val();
-		var idFuncionario = $('#novoparticipante').val();
+    $(document).on('click', '.adicionar-participante', function () {
+        var idideia = $('#idideia').val();
+        var idFuncionario = $('#novoparticipante').val();
 
 
-		$.ajax({
-			url: '/Ideia/AdicionarParticipante',
-			type: 'POST',
-			data: { idFuncionario: idFuncionario, idideia: idideia },
-			success: function (response) {
-				var nome = response.nome;
-				var idIdeiaEquipe = response.idEquipe;
+        $.ajax({
+            url: '/Ideia/AdicionarParticipante',
+            type: 'POST',
+            data: { idFuncionario: idFuncionario, idideia: idideia },
+            success: function (response) {
+                var nome = response.nome;
+                var idIdeiaEquipe = response.idEquipe;
 
-				var divParticipanteExistente = $('.participante:first');
-				var divParticipanteClonada = divParticipanteExistente.clone();
-				divParticipanteClonada.find('label').text(nome);
-				divParticipanteClonada.find('button').attr('data-id', idIdeiaEquipe);
+                var divParticipanteExistente = $('.participante:first');
+                var divParticipanteClonada = divParticipanteExistente.clone();
+                divParticipanteClonada.find('label').text(nome);
+                divParticipanteClonada.find('button').attr('data-id', idIdeiaEquipe);
 
-				$('.listaparticipantes').append(divParticipanteClonada);
-				qtdpartc++;
-			},
-			error: function (xhr, status, error) {
-				if (xhr.status == 409) {
-					alert('Este participante já está na equipe.');
-				} else {
-					alert('Ocorreu um erro ao adicionar o participante.');
-				}
-			}
-		});
-	});
-	$(document).on('click', '.remover-participante', function () {
-		if (qtdpartc > 1) {
-			var divParticipante = $(this).parent();
-			var id = $(this).data('id');
-			var confirmar = confirm("Tem certeza que deseja excluir este participante?");
+                $('.listaparticipantes').append(divParticipanteClonada);
+                qtdpartc++;
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status == 409) {
+                    alert('Este participante já está na equipe.');
+                } else {
+                    alert('Ocorreu um erro ao adicionar o participante.');
+                }
+            }
+        });
+    });
+    $(document).on('click', '.remover-participante', function () {
+        if (qtdpartc > 1) {
+            var divParticipante = $(this).parent();
+            var id = $(this).data('id');
+            var confirmar = confirm("Tem certeza que deseja excluir este participante?");
 
-			if (confirmar) {
-				// Se o usuário
-				$.ajax({
-					url: '/Ideia/DeletarParticipante',
-					type: 'POST',
-					data: { id: id },
-					success: function () {
-						divParticipante.remove();
-						qtdpartc--;
-					},
-					error: function () {
-						alert('Ocorreu um erro ao remover o participante.');
-					}
-				});
-			}
-		}
-		else{
-			alert('Não é possível excluir todos os participantes!');
-		}
-	});
+            if (confirmar) {
+                // Se o usuário
+                $.ajax({
+                    url: '/Ideia/DeletarParticipante',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function () {
+                        divParticipante.remove();
+                        qtdpartc--;
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao remover o participante.');
+                    }
+                });
+            }
+        }
+        else {
+            alert('Não é possível excluir todos os participantes!');
+        }
+    });
 
-	$(document).on('click', '.adicionar-anexo', function () {
-		var files = $('#novoanexo')[0].files;
-		var idideia = $('#idideia').val();
+    $(document).on('click', '.adicionar-anexo', function () {
+        var files = $('#novoanexo')[0].files;
+        var idideia = $('#idideia').val();
 
-		if(files.length === 0){
-			alert("Selecione pelo menos um arquivo para adicionar!");
-			return;
-		}
+        if (files.length === 0) {
+            alert("Selecione pelo menos um arquivo para adicionar!");
+            return;
+        }
 
-		var formData = new FormData();
-		for (var i = 0; i < files.length; i++) {
-			formData.append('files', files[i]);
-		}
-		formData.append('idideia', idideia); // Adicionar o parâmetro idideia ao FormData
+        var formData = new FormData();
+        for (var i = 0; i < files.length; i++) {
+            formData.append('files', files[i]);
+        }
+        formData.append('idideia', idideia); // Adicionar o parâmetro idideia ao FormData
 
-		$.ajax({
-			url: '/Ideia/AdicionarAnexo',
-			type: 'POST',
-			data: formData,
-			processData: false,
-			contentType: false,
-			success: function (response) {
-				// Processar a resposta do servidor, se necessário
-				location.reload(); // Recarregar a página após adicionar os anexos com sucesso
-			},
-			fail: function (jqXHR, textStatus, errorThrown) {
-				alert('Ocorreu um erro ao adicionar o anexo: ' + errorThrown);
-			}
-		});
-	});
+        $.ajax({
+            url: '/Ideia/AdicionarAnexo',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                // Processar a resposta do servidor, se necessário
+                location.reload(); // Recarregar a página após adicionar os anexos com sucesso
+            },
+            fail: function (jqXHR, textStatus, errorThrown) {
+                alert('Ocorreu um erro ao adicionar o anexo: ' + errorThrown);
+            }
+        });
+    });
 
-	$(document).on('click', '.remover-anexo', function () {
-		var id = $(this).data('id');
-		var confirmar = confirm("Tem certeza que deseja excluir este anexo?");
+    $(document).on('click', '.remover-anexo', function () {
+        var id = $(this).data('id');
+        var confirmar = confirm("Tem certeza que deseja excluir este anexo?");
 
-		if (confirmar) {
-			$.ajax({
-				url: '/Ideia/RemoverAnexo',
-				type: 'POST',
-				data: { id: id },
-				success: function () {
-					// Processar a resposta do servidor, se necessário
-					location.reload(); // Recarregar a página após remover o anexo com sucesso
-				},
-				error: function () {
-					alert('Ocorreu um erro ao remover o anexo.');
-				}
-			});
-		}
-	});
+        if (confirmar) {
+            $.ajax({
+                url: '/Ideia/RemoverAnexo',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Processar a resposta do servidor, se necessário
+                    location.reload(); // Recarregar a página após remover o anexo com sucesso
+                },
+                error: function () {
+                    alert('Ocorreu um erro ao remover o anexo.');
+                }
+            });
+        }
+    });
 
-	$(document).ready(function () {
-		var vbInstance = new VenoBox({
-			selector: '.image-viewer',
-			share: true,
-			fitView: true,
-			spinner: 'circle-fade',
-			numeration: true,
-		});
+    $(document).ready(function () {
+        var vbInstance = new VenoBox({
+            selector: '.image-viewer',
+            share: true,
+            fitView: true,
+            spinner: 'circle-fade',
+            numeration: true,
+        });
 
-		$('.image-viewer').on('click', function (e) {
-			e.preventDefault();
+        $('.image-viewer').on('click', function (e) {
+            e.preventDefault();
 
-			var fotoData = $(this).attr('href');
-			var fotoType = $(this).data('type');
+            var fotoData = $(this).attr('href');
+            var fotoType = $(this).data('type');
 
-			var linkOculto = $('<a>', {
-				href: fotoData,
-				class: 'venobox',
-				'data-gall': 'gallery',
-				'data-type': 'image',
-			}).hide().appendTo('body');
+            var linkOculto = $('<a>', {
+                href: fotoData,
+                class: 'venobox',
+                'data-gall': 'gallery',
+                'data-type': 'image',
+            }).hide().appendTo('body');
 
-			vbInstance.open(linkOculto[0]);
-		});
-	});
+            vbInstance.open(linkOculto[0]);
+        });
+    });
 </script>
