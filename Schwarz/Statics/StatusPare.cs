@@ -9,6 +9,8 @@
         public const string ReprovadoMeioAmbiente = "Reprovado pelo Meio Ambiente";
         public const string AprovadoQualidade = "Aprovado pela Qualidade";
         public const string ReprovadoQualidade = "Reprovado pela Qualidade";
+        public const string AprovadoSeguranca = "Aprovado pela Segurança";
+        public const string ReprovadoSeguranca = "Reprovado pela Segurança";
         public const string AcaoPendente = "Ação Pendente";
         public const string AcaoConcluida = "Ação Concluída";
         public const string AcaoValidada = "Ação Validada";
@@ -27,6 +29,8 @@
         public static readonly List<string> SegurancaStatus = new List<string>
         {
             EmAnalise,
+            AprovadoSeguranca,
+            ReprovadoSeguranca,
             AcaoPendente,
             AcaoConcluida,
             AcaoValidada,

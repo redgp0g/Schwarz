@@ -19,7 +19,7 @@ namespace Schwarz.Models
         [Required(ErrorMessage = "O Setor do Funcionário é obrigatório")]
         public string Setor { get; set; }
         public DateTime? DataNascimento { get; set; }
-        public bool Ativo { get; set; }
+        public bool Ativo { get; set; } = true;
 
         [Required(ErrorMessage = "O Turno do Funcionário é obrigatório")]
         public string Turno { get; set; }

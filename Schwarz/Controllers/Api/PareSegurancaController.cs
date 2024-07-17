@@ -81,7 +81,41 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
-        [Authorize(Roles = "Lider, Admin")]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
+        [HttpPut("Aprovar")]
+        public async Task<IActionResult> Aprovar([FromForm] int id, [FromForm] string? observacoes = null)
+        {
+            var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
+            if (pareSeguranca == null)
+            {
+                return NotFound();
+            }
+            pareSeguranca.ObservacoesSeguranca = observacoes;
+            pareSeguranca.Status = StatusPare.AprovadoSeguranca;
+            _context.Update(pareSeguranca);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
+        [HttpPut("Reprovar")]
+        public async Task<IActionResult> Reprovar([FromForm] int id, [FromForm] string? observacoes = null)
+        {
+            var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
+            if (pareSeguranca == null)
+            {
+                return NotFound();
+            }
+            pareSeguranca.ObservacoesSeguranca = observacoes;
+            pareSeguranca.Status = StatusPare.ReprovadoSeguranca;
+            _context.Update(pareSeguranca);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [Authorize(Roles = $"{Roles.Lider}, {Roles.Admin}")]
         [HttpPut("PlanoAcao")]
         public async Task<IActionResult> PlanoAcao([FromForm] int id, [FromForm] string acao, [FromForm] bool realizada = false, [FromForm] DateTime? prazoAcao = null)
         {
@@ -112,7 +146,7 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
-        [Authorize(Roles = "Lider, Admin")]
+        [Authorize(Roles = $"{Roles.Lider}, {Roles.Admin}")]
         [HttpPut("Concluir")]
         public async Task<IActionResult> Concluir([FromForm] int id)
         {

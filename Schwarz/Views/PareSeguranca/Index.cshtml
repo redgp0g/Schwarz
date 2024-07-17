@@ -69,11 +69,16 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <a class="text-black rounded-lg p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareSeguranca">Editar</a>
                             <button class="btnDeletar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Deletar</button>
-                            @if (item.Status == StatusPare.EmAnalise && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin)))
+                            @if (item.Status == StatusPare.EmAnalise && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.PareSeguranca)))
+                            {
+                                <button class="btnAprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Aprovar</button>
+                                <button class="btnReprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Reprovar</button>
+                            }
+                            @if (item.Status == StatusPare.AprovadoSeguranca && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.PareSeguranca)))
                             {
                                 <button class="btnAcao text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Ação</button>
                             }
-                            @if (item.Status == StatusPare.AcaoPendente && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin)))
+                            @if (item.Status == StatusPare.AcaoPendente && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.PareSeguranca)))
                             {
                                 <button class="btnConcluir text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Concluir</button>
                             }
@@ -179,6 +184,46 @@
             }
         });
 
+        $('.btnAprovar').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja Aprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite as observações");
+                $.ajax({
+                    url: 'api/PareSeguranca/Aprovar',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes },
+                    success: function () {
+                        alert('Aprovado com sucesso!');
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnReprovar').click(function () {
+            var idPare = $(this).data('id');
+            var confirmacao = confirm("Tem certeza de que deseja Reprovar este cadastro?");
+
+            if (confirmacao) {
+                var observacoes = prompt("Se houver, digite as observações");
+                $.ajax({
+                    url: 'api/PareSeguranca/Reprovar',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes },
+                    success: function () {
+                        alert('Reprovado com sucesso!');
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao Reprovar o PARE.');
+                    }
+                });
+            }
+        });
+
         $('.btnAcao').on('click', function () {
             var cadastroId = $(this).data('id');
 
@@ -200,7 +245,7 @@
                         dialog.close();
                     },
                     error: function () {
-                        alert('Ocorreu um erro ao aprovar o cadastro.');
+                        alert('Ocorreu um erro ao Responder o cadastro.');
                     }
                 });
             });
@@ -219,7 +264,7 @@
                         alert('Concluido com sucesso!');
                     },
                     error: function () {
-                        alert('Ocorreu um erro ao aprovar o PARE.');
+                        alert('Ocorreu um erro ao Concluir o PARE.');
                     }
                 });
             }
@@ -239,7 +284,7 @@
                         alert('Validado com sucesso!');
                     },
                     error: function () {
-                        alert('Ocorreu um erro ao aprovar o PARE.');
+                        alert('Ocorreu um erro ao Validar o PARE.');
                     }
                 });
             }
@@ -259,7 +304,7 @@
                         alert('Invalidado com sucesso!');
                     },
                     error: function () {
-                        alert('Ocorreu um erro ao aprovar o PARE.');
+                        alert('Ocorreu um erro ao Invalidar o PARE.');
                     }
                 });
             }
