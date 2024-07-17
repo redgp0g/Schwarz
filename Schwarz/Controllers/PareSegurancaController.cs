@@ -67,7 +67,7 @@ namespace Schwarz.Controllers
                 List<string> emails = _context.Funcionario.Where(x => x.Ativo).Where(x => x.Setor == "Segurança do Trabalho").Select(x => x.Email).ToList();
                 foreach (var email in emails)
                 {
-                    //_emailService.SendEmail(subject, emailMessage, email);
+                    _emailService.SendEmail(subject, emailMessage, email);
                 }
                 //if (pareSeguranca.Funcionario.FuncionarioLider.Email != null)
                 //{
