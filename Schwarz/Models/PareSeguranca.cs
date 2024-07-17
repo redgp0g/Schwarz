@@ -24,8 +24,7 @@ namespace Schwarz.Models
         public string Desvio { get; set; }
 
         [Display(Name = "Ordem de Serviço")]
-        [Required(ErrorMessage = "A Ordem de Serviço é obrigatória!")]
-        public string OrdemServico { get; set; }
+        public string? OrdemServico { get; set; }
 
         [Display(Name = "Status")]
         public string Status { get; set; } = StatusPare.EmAnalise;
@@ -61,7 +60,6 @@ namespace Schwarz.Models
         public virtual ICollection<PareSegurancaFoto>? PareSegurancaFotos { get; set; }
 
         [NotMapped]
-        [Required(ErrorMessage = "É obrigatório pelo menos uma Foto!")]
         [Display(Name = "Fotos do Local")]
         public List<IFormFile>? Fotos { get; set; }
 
