@@ -87,7 +87,6 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
 				IDFuncionarioLider = user.Funcionario.IDLider,
 				Cargo = user.Funcionario.Cargo,
 				Ramal = user.Funcionario.Ramal,
-				Telefone = user.Funcionario.Telefone,
 				Foto = user.Funcionario.Foto
             };
         }

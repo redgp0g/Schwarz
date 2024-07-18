@@ -43,19 +43,22 @@ namespace Schwarz.Controllers
 
                 _context.Add(pareSeguranca);
                 await _context.SaveChangesAsync();
-                foreach (var foto in pareSeguranca.Fotos)
+                if (pareSeguranca.Fotos != null)
                 {
-                    using (var memoryStream = new MemoryStream())
+                    foreach (var foto in pareSeguranca.Fotos)
                     {
-                        foto.CopyTo(memoryStream);
-                        byte[] fileBytes = memoryStream.ToArray();
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            foto.CopyTo(memoryStream);
+                            byte[] fileBytes = memoryStream.ToArray();
 
-                        string fileName = foto.FileName;
-                        string fileMime = foto.ContentType;
+                            string fileName = foto.FileName;
+                            string fileMime = foto.ContentType;
 
-                        PareSegurancaFoto pareSegurancaFoto = new(pareSeguranca.IDPareSeguranca, fileName, fileBytes, fileMime);
-                        _context.PareSegurancaFoto.Add(pareSegurancaFoto);
-                        await _context.SaveChangesAsync();
+                            PareSegurancaFoto pareSegurancaFoto = new(pareSeguranca.IDPareSeguranca, fileName, fileBytes, fileMime);
+                            _context.PareSegurancaFoto.Add(pareSegurancaFoto);
+                            await _context.SaveChangesAsync();
+                        }
                     }
                 }
                 string nomeFuncionario = _context.Funcionario.Find(pareSeguranca.IDFuncionario).Nome;
@@ -64,7 +67,7 @@ namespace Schwarz.Controllers
                 List<string> emails = _context.Funcionario.Where(x => x.Ativo).Where(x => x.Setor == "Segurança do Trabalho").Select(x => x.Email).ToList();
                 foreach (var email in emails)
                 {
-                    //_emailService.SendEmail(subject, emailMessage, email);
+                    _emailService.SendEmail(subject, emailMessage, email);
                 }
                 //if (pareSeguranca.Funcionario.FuncionarioLider.Email != null)
                 //{
@@ -102,7 +105,7 @@ namespace Schwarz.Controllers
                 throw;
 
             }
-            
+
             ViewData["Setores"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.Setor }).Distinct(), "Setor", "Setor");
             ViewData["Funcionarios"] = new SelectList(_context.Funcionario.Where(x => x.Ativo).Select(x => new { x.IDFuncionario, x.Nome }), "IDFuncionario", "Nome");
             return View(pareSeguranca);

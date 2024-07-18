@@ -201,8 +201,6 @@ namespace Schwarz.Controllers
                 Cargo = funcionario.Cargo,
                 Ramal = funcionario.Ramal,
                 Foto = funcionario.Foto,
-                Telefone = funcionario.Telefone,
-                CentroCusto = funcionario.CentroCusto,
                 DataAdmissao = funcionario.DataAdmissao.HasValue
         ? funcionario.DataAdmissao.Value.ToString("yyyy-MM-dd")
         : null,
