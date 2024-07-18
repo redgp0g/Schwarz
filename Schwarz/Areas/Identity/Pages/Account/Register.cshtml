@@ -10,33 +10,34 @@
 
 <div class="max-h-screen flex flex-col items-center p-5">
 	<div class="border-5 bg-white rounded-lg p-5 mx-5 w-6/12 mt-5">
-		<h1 class="text-2xl">@ViewData["Title"]</h1>
-		<h3 class="text-lg italic">Registre uma conta para aproveitar o site ao máximo!</h3>
+		<h1 class="text-2xl font-bold">@ViewData["Title"]</h1>
+		<h3 class="text-lg">Registre uma conta para aproveitar o site ao máximo!</h3>
 	</div>
 
 	<div class="border-5 bg-white rounded-lg p-5 w-6/12 mt-5">
 		<div class="col-md-4 m-3">
 			<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
-				<h2 class="mb-5 text-xl">Insira os dados do funcionário</h2>
+				<h2 class="font-bold mb-5 text-xl">Insira os dados do funcionário</h2>
 				<hr />
 				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 				<div class="form-floating mb-3">
-					<input asp-for="Input.Usuario" class="form-control outline" autocomplete="username" aria-required="true" />
-					<label asp-for="Input.Usuario" class="ml-2"></label>
+					<label asp-for="Input.Usuario" class="font-bold ml-2"></label>
+					<input asp-for="Input.Usuario" class="block w-6/12 form-control w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="username" aria-required="true" />
 					<span asp-validation-for="Input.Usuario" class="text-danger"></span>
 				</div>
 				<div class="form-floating mb-3">
-					<input asp-for="Input.Password" class="form-control outline" autocomplete="new-password" aria-required="true" />
-					<label asp-for="Input.Password" class="ml-2"></label>
+					<label asp-for="Input.Password" class="font-bold ml-2"></label>
+					<input asp-for="Input.Password" class="block w-6/12 form-control w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="new-password" aria-required="true" />
 					<span asp-validation-for="Input.Password" class="text-danger"></span>
 				</div>
 				<div class="form-floating mb-3">
-					<input asp-for="Input.ConfirmPassword" class="form-control outline" autocomplete="new-password" aria-required="true" />
-					<label asp-for="Input.ConfirmPassword" class="ml-2">Confirme sua senha</label>
+					<label asp-for="Input.ConfirmPassword" required class="font-bold ml-2">Confirme sua senha</label>
+					<input asp-for="Input.ConfirmPassword" class="block w-6/12 form-control w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="new-password" aria-required="true" />
 					<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 				</div>
 				<div class="form-floating mb-3">
-					<select asp-for="Input.IDFuncionario" asp-items="ViewBag.Funcionarios" class="form-control outline" autocomplete="username" aria-required="true">
+					<label asp-for="Input.IDFuncionario" required class="font-bold ml-2">Funcionário associado à conta</label>
+					<select asp-for="Input.IDFuncionario" asp-items="ViewBag.Funcionarios" class="block w-6/12 form-control w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="username" aria-required="true">
 						<option value="" disabled selected>Selecione o funcionário</option>
 					</select>
 					<label asp-for="Input.IDFuncionario" class="ml-2">Funcionário associado à conta</label>
