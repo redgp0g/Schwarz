@@ -73,7 +73,7 @@ namespace Schwarz.Areas.Identity.Pages.Account
 
             [DataType(DataType.Password,ErrorMessage = "A senha é obrigatória")]
             [Display(Name = "Senha de confirmação")]
-            [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não são iguas.")]
+            [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não são iguais.")]
             public string ConfirmPassword { get; set; }
 
 			[Required(ErrorMessage = "Selecione o funcionário")]
