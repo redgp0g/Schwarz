@@ -64,7 +64,7 @@ namespace Schwarz.Controllers
                 string nomeFuncionario = _context.Funcionario.Find(pareSeguranca.IDFuncionario).Nome;
                 string emailMessage = $"Uma nova falha foi cadastrada no site do PARE por {pareSeguranca.Funcionario.Nome} cuja descrição é: {pareSeguranca.Desvio} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/Pare/IndexSeguranca\">Sistema Integrado</a>";
                 string subject = "PARE de Segurança Cadastrado";
-                List<string> emails = _context.Funcionario.Where(x => x.Ativo).Where(x => x.Setor == "Segurança do Trabalho").Select(x => x.Email).ToList();
+                List<string> emails = _context.Funcionario.Where(x => x.Ativo).Where(x => x.Setor == "Segurança do Trabalho").Where(x => x.Email != null).Select(x => x.Email).ToList();
                 foreach (var email in emails)
                 {
                     _emailService.SendEmail(subject, emailMessage, email);
