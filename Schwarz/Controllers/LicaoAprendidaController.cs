@@ -23,8 +23,24 @@ namespace Schwarz.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var schwarzContext = _context.LicaoAprendida.Include(x => x.LicaoAprendidaAnexos);
-            return View(await schwarzContext.ToListAsync());
+            IEnumerable<LicaoAprendida> schwarzContext = (from l in _context.LicaoAprendida select new LicaoAprendida
+            {
+                IDLicaoAprendida = l.IDLicaoAprendida,
+                Cliente = new Cliente { Nome = l.Cliente.Nome },
+                Fonte = l.Fonte,
+                Data = l.Data,
+                Processo = l.Processo,
+                CodigoInterno = l.CodigoInterno,
+                NomePeca = l.NomePeca,
+                Planejado = l.Planejado,
+                Realizado = l.Realizado,
+                Motivo = l.Motivo,
+                Descricao = l.Descricao,
+                Positivo = l.Positivo,
+                LicaoAprendidaAnexos = l.LicaoAprendidaAnexos,
+                Funcionario = new Funcionario { Nome = l.Funcionario.Nome }
+            }).ToList();
+            return View(schwarzContext);
         }
 
         public async Task<IActionResult> Details(int? id)
