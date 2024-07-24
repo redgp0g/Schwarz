@@ -42,7 +42,7 @@ namespace Schwarz.Controllers
                 await _context.SaveChangesAsync();
                 string subject = "PARE de Qualidade do Produto Cadastrado";
                 string nomeFuncionario = _context.Funcionario.Find(pareQualidade.IDFuncionario).Nome;
-                string emailMessage = $"PARE de Qualidade cadastrada por: {nomeFuncionario} <br/> Descrição: {pareQualidade.Descricao} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/Pare/IndexQualidade\">Sistema Integrado</a>";
+                string emailMessage = $"PARE de Qualidade cadastrada por: {nomeFuncionario} <br/> Descrição: {pareQualidade.Descricao} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/PareQualidade\">Sistema Integrado</a>";
 
                 //_emailService.SendEmail(subject, emailMessage, "rtavares@schwarz.com.br");
                 //_emailService.SendEmail(subject, emailMessage, "thiago.iaczkowski@schwarz.com.br");
