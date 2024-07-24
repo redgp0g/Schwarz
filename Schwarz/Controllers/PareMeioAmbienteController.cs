@@ -41,7 +41,7 @@ namespace Schwarz.Controllers
                 await _context.SaveChangesAsync();
 
                 string nomeFuncionario = _context.Funcionario.Find(pareMeioAmbiente.IDFuncionario).Nome;
-                string emailMessage = $"Uma nova falha foi cadastrada no site do PARE por {pareMeioAmbiente.Funcionario.Nome} cuja descrição é: {pareMeioAmbiente.Desvio} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/Pare/IndexMeioAmbiente\">Sistema Integrado</a>";
+                string emailMessage = $"Uma nova falha foi cadastrada no site do PARE por {pareMeioAmbiente.Funcionario.Nome} cuja descrição é: {pareMeioAmbiente.Desvio} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/PareMeioAmbiente\">Sistema Integrado</a>";
                 string subject = "PARE de Meio Ambiente Cadastrado";
                 //_emailService.SendEmail(subject, emailMessage, "natalia.nadolny@schwarz.com.br");
                 //if (pareMeioAmbiente.Funcionario.FuncionarioLider.Email != null)
