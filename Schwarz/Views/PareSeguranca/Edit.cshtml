@@ -47,13 +47,34 @@
                     @Html.ValidationMessageFor(x => x.OrdemServico)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="ClassificacaoGUT" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="ClassificacaoGUT" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
-                    @Html.ValidationMessageFor(x => x.ClassificacaoGUT)
+                    <label asp-for="IDFuncionarioLider" class="block mb-2 text-sm font-bold"></label>
+                    <select asp-for="IDFuncionarioLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline select2" asp-items="ViewBag.Funcionarios">
+                    </select>
+                    @Html.ValidationMessageFor(x => x.IDFuncionario)
                 </div>
                 <div class="mb-4">
                     <label asp-for="AcaoLider" class="block mb-2 text-sm font-bold"></label>
                     <input asp-for="AcaoLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                </div>
+                <div class="mb-4">
+                    <label asp-for="PrazoAcaoLider" class="block mb-2 text-sm font-bold flex items-center"></label>
+                    <input asp-for="PrazoAcaoLider" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    @Html.ValidationMessageFor(x => x.PrazoAcaoLider)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="DataConclusao" class="block mb-2 text-sm font-bold flex items-center"></label>
+                    <input asp-for="DataConclusao" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    @Html.ValidationMessageFor(x => x.DataConclusao)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="ObservacoesLider" class="block mb-2 text-sm font-bold"></label>
+                    <textarea asp-for="ObservacoesLider" style="min-height: calc(1em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Observações da Qualidade"></textarea>
+                    @Html.ValidationMessageFor(x => x.ObservacoesLider)
+                </div>
+                <div class="mb-4">
+                    <label asp-for="ClassificacaoGUT" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="ClassificacaoGUT" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
+                    @Html.ValidationMessageFor(x => x.ClassificacaoGUT)
                 </div>
                 <div class="mb-4">
                     <label asp-for="ObservacoesSeguranca" class="block mb-2 text-sm font-bold"></label>
