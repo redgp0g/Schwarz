@@ -29,6 +29,7 @@ namespace Schwarz.Models
         [Display(Name = "Status")]
         public string Status { get; set; } = StatusPare.EmAnalise;
 
+        [Display(Name = "Líder")]
         [ForeignKey("FuncionarioLider")]
         public int IDFuncionarioLider { get; set; }
         public virtual Funcionario? FuncionarioLider { get; set; }

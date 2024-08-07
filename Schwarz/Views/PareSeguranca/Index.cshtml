@@ -26,6 +26,9 @@
                         @Html.DisplayNameFor(model => model.Status)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        @Html.DisplayNameFor(model => model.ClassificacaoGUT)
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         @Html.DisplayNameFor(model => model.Pontuacao)
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -54,9 +57,28 @@
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Status">
                             @{
-                                var cor = item.Status.Contains("Aprovado") ? "text-green-500" : "text-red-500";
+                                string cor;
+                                switch (item.Status)
+                                {
+                                    case StatusPare.AcaoValidada or StatusPare.AcaoConcluida:
+                                        cor = "text-green-500";
+                                        break;
+                                    case StatusPare.EmAnalise or StatusPare.AcaoPendente or StatusPare.AprovadoSeguranca:
+                                        cor = "text-yellow-500";
+                                        break;
+                                    case StatusPare.ReprovadoSeguranca or StatusPare.AcaoInvalidada:
+                                        cor = "text-red-500";
+                                        break;
+                                    default:
+                                        cor = "";
+                                        break;
+                                }
                             }
                             <span class="@cor">@item.Status</span>
+                        </td>
+
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @Html.DisplayFor(modelItem => item.ClassificacaoGUT)
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Pontuacao)

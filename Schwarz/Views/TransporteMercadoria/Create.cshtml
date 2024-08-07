@@ -48,13 +48,27 @@
                         @Html.ValidationMessageFor(x => x.Placa)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="IDCliente" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="Cliente" class="block mb-2 text-sm font-bold flex items-center"></label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <select asp-for="IDCliente" class="block w-full rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-600 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" asp-items="ViewBag.Clientes">
-                                <option selected disabled value="">Selecione o Cliente</option>
-                            </select>
+                        <input asp-for="Cliente" list="list-clientes" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Cliente" />
+                            <datalist id="list-clientes">
+                                <option value="Aço Peças">Aço Peças</option>
+                                <option value="Bosch">Bosch</option>
+                                <option value="Corax">Corax</option>
+                                <option value="Denso">Denso</option>
+                                <option value="Honda">Honda</option>
+                                <option value="Ladis">Ladis</option>
+                                <option value="Lopsa">Lopsa</option>
+                                <option value="Mahle">Mahle</option>
+                                <option value="Oerlikon">Oerlikon</option>
+                                <option value="Pss">Pss</option>
+                                <option value="Schaeffler">Schaeffler</option>
+                                <option value="Taurus">Taurus</option>
+                                <option value="Temperapar">Temperapar</option>
+                                <option value="Trurium">Trurium</option>
+                            </datalist>
                         </div>
-                        @Html.ValidationMessageFor(x => x.IDCliente)
+                        @Html.ValidationMessageFor(x => x.Cliente)
                     </div>
                     <div class="mb-4">
                         <label asp-for="Observacoes" class="block mb-2 text-sm font-bold"></label>
