@@ -15,8 +15,7 @@ namespace Schwarz.Models
         [ForeignKey("Cliente")]
         [DisplayName("Cliente")]
         [Required(ErrorMessage = "O Cliente é obrigatório!")]
-        public int IDCliente { get; set; }
-        public virtual Cliente? Cliente { get; set; }
+        public string Cliente { get; set; }
 
         [Required]
         [ForeignKey("Funcionario")]

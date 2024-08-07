@@ -31,10 +31,7 @@ namespace Schwarz.Controllers
                                                                        {
                                                                            IDTransporteMercadoria = t.IDTransporteMercadoria,
                                                                            Data = t.Data,
-                                                                           Cliente = new Cliente
-                                                                           {
-                                                                               Nome = t.Cliente.Nome,
-                                                                           },
+                                                                           Cliente = t.Cliente,
                                                                            Funcionario = new Funcionario
                                                                            {
                                                                                Nome = t.Funcionario.Nome,
@@ -60,7 +57,6 @@ namespace Schwarz.Controllers
 
         public IActionResult Create()
         {
-            ViewData["Clientes"] = new SelectList(_context.Cliente, "IDCliente", "Nome");
             return View();
         }
 
@@ -193,7 +189,6 @@ namespace Schwarz.Controllers
             {
                 return NotFound();
             }
-            ViewData["IDCliente"] = new SelectList(_context.Cliente, "IDCliente", "Nome", transporteMercadoria.IDCliente);
             ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", transporteMercadoria.IDFuncionario);
             return View(transporteMercadoria);
         }
@@ -227,7 +222,6 @@ namespace Schwarz.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IDCliente"] = new SelectList(_context.Cliente, "IDCliente", "Nome", transporteMercadoria.IDCliente);
             ViewData["IDFuncionario"] = new SelectList(_context.Funcionario, "IDFuncionario", "Nome", transporteMercadoria.IDFuncionario);
             return View(transporteMercadoria);
         }
@@ -240,7 +234,6 @@ namespace Schwarz.Controllers
             }
 
             var transporteMercadoria = await _context.TransporteMercadoria
-                .Include(t => t.Cliente)
                 .Include(t => t.Funcionario)
                 .FirstOrDefaultAsync(m => m.IDTransporteMercadoria == id);
             if (transporteMercadoria == null)
