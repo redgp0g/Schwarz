@@ -54,7 +54,22 @@
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" data-label="Status">
                             @{
-                                var cor = item.Status.Contains("Aprovado") ? "text-green-500" : "text-red-500";
+                                string cor;
+                                switch (item.Status)
+                                {
+                                    case StatusPare.AcaoValidada or StatusPare.AcaoConcluida:
+                                        cor = "text-green-500";
+                                        break;
+                                    case StatusPare.EmAnalise or StatusPare.AcaoPendente or StatusPare.AprovadoSeguranca:
+                                        cor = "text-yellow-500";
+                                        break;
+                                    case StatusPare.ReprovadoSeguranca or StatusPare.AcaoInvalidada:
+                                        cor = "text-red-500";
+                                        break;
+                                    default:
+                                        cor = "";
+                                        break;
+                                }
                             }
                             <span class="@cor">@item.Status</span>
                         </td>
