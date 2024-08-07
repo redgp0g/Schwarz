@@ -42,6 +42,9 @@ namespace Schwarz.Models
         [Display(Name = "Data de Conclusão")]
         public DateTime? DataConclusao { get; set; }
 
+        [Display(Name = "Observações do Líder")]
+        public string? ObservacoesLider{ get; set; }
+
         [ForeignKey("FuncionarioSeguranca")]
         public int? IDFuncionarioSeguranca { get; set; }
         public virtual Funcionario? FuncionarioSeguranca { get; set; }
