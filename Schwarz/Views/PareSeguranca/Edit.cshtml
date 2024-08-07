@@ -88,11 +88,19 @@
                 </div>
                 <div class="mb-4">
                     <label class="block mb-2 text-sm font-bold flex items-center">Fotos</label>
-
-                    @foreach (var anexo in Model.PareSegurancaFotos)
+                    @if (Model.PareSegurancaFotos != null && Model.PareSegurancaFotos.Count > 0)
+                    {
+                        @foreach (var anexo in Model.PareSegurancaFotos)
+                        {
+                            <div class="my-2">
+                                <a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Conteudo)" download="@anexo.Nome" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@anexo.Nome</a>
+                            </div>
+                        }
+                    }
+                    else
                     {
                         <div class="my-2">
-                            <a href="data:@anexo.TipoMIME;base64,@Convert.ToBase64String(anexo.Conteudo)" download="@anexo.Nome" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">@anexo.Nome</a>
+                            <p class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">Nenhuma imagem encontrada</p>
                         </div>
                     }
                 </div>
