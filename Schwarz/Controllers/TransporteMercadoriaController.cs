@@ -58,25 +58,6 @@ namespace Schwarz.Controllers
             return View(transporteMercadorias);
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transporteMercadoria = await _context.TransporteMercadoria
-                .Include(t => t.Cliente)
-                .Include(t => t.Funcionario)
-                .FirstOrDefaultAsync(m => m.IDTransporteMercadoria == id);
-            if (transporteMercadoria == null)
-            {
-                return NotFound();
-            }
-
-            return View(transporteMercadoria);
-        }
-
         public IActionResult Create()
         {
             ViewData["Clientes"] = new SelectList(_context.Cliente, "IDCliente", "Nome");
@@ -251,7 +232,6 @@ namespace Schwarz.Controllers
             return View(transporteMercadoria);
         }
 
-        // GET: TransporteMercadoria/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -271,7 +251,6 @@ namespace Schwarz.Controllers
             return View(transporteMercadoria);
         }
 
-        // POST: TransporteMercadoria/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
