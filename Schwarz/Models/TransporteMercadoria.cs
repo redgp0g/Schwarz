@@ -39,6 +39,8 @@ namespace Schwarz.Models
 
         [Required(ErrorMessage = "A Placa é obrigatória!")]
         public string Placa { get; set; } = string.Empty;
+        [DisplayName("Observações")]
+        public string? Observacoes { get; set; }
 
         [NotMapped]
         [DisplayName("Foto da Placa")]

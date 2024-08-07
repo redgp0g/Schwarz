@@ -56,6 +56,10 @@
                         @Html.ValidationMessageFor(x => x.IDCliente)
                     </div>
                     <div class="mb-4">
+                        <label asp-for="Observacoes" class="block mb-2 text-sm font-bold"></label>
+                        <input asp-for="Observacoes" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Observações" />
+                    </div>
+                    <div class="mb-4">
                         <label asp-for="filesFotoNotaFiscal" class="block mb-2 text-sm font-bold flex items-center"></label>
                         <input asp-for="filesFotoNotaFiscal" accept="image/*" />
                         @Html.ValidationMessageFor(x => x.filesFotoNotaFiscal)

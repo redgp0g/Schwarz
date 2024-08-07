@@ -44,6 +44,7 @@ namespace Schwarz.Controllers
                                                                            TipoVolume = t.TipoVolume,
                                                                            Transportadora = t.Transportadora,
                                                                            Placa = t.Placa,
+                                                                           Observacoes = t.Observacoes,
                                                                            Fotos = _context.TransporteMercadoriaFoto
                                                                                    .Where(f => f.IDTransporteMercadoria == t.IDTransporteMercadoria)
                                                                                    .Select(x => new TransporteMercadoriaFoto
