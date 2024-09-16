@@ -11,17 +11,14 @@
     <div class="relative w-max">
         <button type="button" id="toggleMenuUser" class="flex items-center gap-x-2 text-base font-semibold leading-6 text-gray-900 capitalize" onclick="toggleHidden('subMenuUser',this.id)">
             @if (funcionario.Foto != null)
-        {
+            {
                 <img class="object-center object-cover rounded-full h-12 w-12" src="data:image;base64,@(Convert.ToBase64String(funcionario.Foto))" alt="imagem">
-        }
+            }
             Olá, @funcionario.PrimeiroUltimoNome.ToLower()!
         </button>
 
-
         <div class="absolute -left-8 top-full z-10 mt-3 w-100 max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuUser">
             <div class="py-2">
-
-
                 <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
                     <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -34,7 +31,6 @@
                     </div>
                 </div>
 
-
                 <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
                     <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -46,26 +42,23 @@
                     </div>
                 </div>
 
-
                 <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
                     <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                         </svg>
                     </div>
-                <div class="flex-auto">
-                    <a asp-area="Identity" asp-page="/Account/Manage/Index" class="block font-semibold text-black">Gerar Assinatura<span class="absolute inset-0"></span></a>
+                    <div class="flex-auto">
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="block font-semibold text-black">Gerar Assinatura<span class="absolute inset-0"></span></a>
+                    </div>
                 </div>
-            </div>
 
-
-
-            <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
-                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
+                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                </div>
+                    </div>
 
                     <div class="flex-auto">
                         <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -76,7 +69,6 @@
             </div>
         </div>
     </div>
-
 }
 else
 {
