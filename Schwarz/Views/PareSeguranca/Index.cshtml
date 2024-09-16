@@ -221,6 +221,11 @@
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Aprovado pela Segurança</span>");
+
+                        $('.btnReprovar[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovar[data-id="' + idPare + '"]').hide();
                         alert('Aprovado com sucesso!');
                     },
                     error: function () {
@@ -241,6 +246,11 @@
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Reprovado pela Segurança</span>");
+
+                        $('.btnReprovar[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovar[data-id="' + idPare + '"]').hide();
                         alert('Reprovado com sucesso!');
                     },
                     error: function () {
@@ -251,7 +261,7 @@
         });
 
         $('.btnAcao').on('click', function () {
-            var cadastroId = $(this).data('id');
+            var idPare = $(this).data('id');
 
             var dialog = document.getElementById('dialogLider');
             dialog.showModal();
@@ -265,10 +275,19 @@
                 $.ajax({
                     url: 'api/PareSeguranca/PlanoAcao',
                     type: 'PUT',
-                    data: { id: cadastroId, acao: acao, realizada: realizada, prazoAcao: prazoAcao },
+                    data: { id: idPare, acao: acao, realizada: realizada, prazoAcao: prazoAcao },
                     success: function () {
-                        alert('Ação registrada com sucesso!');
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        if (realizada) {
+                            linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Concluída</span>");
+                        }
+                        else {
+                            linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Pendente</span>");
+                        }
+
+                        $('.btnAcao[data-id="' + idPare + '"]').hide();
                         dialog.close();
+                        alert('Ação registrada com sucesso!');
                     },
                     error: function () {
                         alert('Ocorreu um erro ao Responder o cadastro.');
@@ -287,6 +306,10 @@
                     type: 'PUT',
                     data: { id: idPare },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Concluída</span>");
+
+                        $('.btnConcluir[data-id="' + idPare + '"]').hide();
                         alert('Concluido com sucesso!');
                     },
                     error: function () {
@@ -307,6 +330,11 @@
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-green-500'>Ação Validada</span>");
+
+                        $('.btnValidar[data-id="' + idPare + '"]').hide();
+                        $('.btnInvalidar[data-id="' + idPare + '"]').hide();
                         alert('Validado com sucesso!');
                     },
                     error: function () {
@@ -327,6 +355,11 @@
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Ação Invalidada</span>");
+
+                        $('.btnValidar[data-id="' + idPare + '"]').hide();
+                        $('.btnInvalidar[data-id="' + idPare + '"]').hide();
                         alert('Invalidado com sucesso!');
                     },
                     error: function () {
