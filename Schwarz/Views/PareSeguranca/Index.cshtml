@@ -199,7 +199,7 @@
                     url: 'api/PareSeguranca/' + pareId,
                     method: 'DELETE',
                     success: function (data) {
-                        var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
+                        var row = $('#tableSeguranca').row($('button[data-id="' + pareId + '"]').closest('tr'));
                         row.remove().draw();
                         alert('PARE deletado com sucesso!')
                     },
