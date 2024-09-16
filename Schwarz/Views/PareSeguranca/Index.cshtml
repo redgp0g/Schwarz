@@ -90,8 +90,11 @@
                             }
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            @if (User.IsInRole(Roles.PareSeguranca) || User.IsInRole(Roles.Admin))
+                            {
                             <a class="text-black rounded-lg p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareSeguranca">Editar</a>
                             <button class="btnDeletar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Deletar</button>
+                            }
                             @if (item.Status == StatusPare.EmAnalise && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.PareSeguranca)))
                             {
                                 <button class="btnAprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Aprovar</button>
