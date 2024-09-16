@@ -159,7 +159,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareSeguranca.DataConclusao= DateTime.Now;
+            pareSeguranca.DataConclusao = DateTime.Now;
             pareSeguranca.Status = StatusPare.AcaoConcluida;
             _context.Update(pareSeguranca);
             _context.SaveChanges();
@@ -169,7 +169,7 @@ namespace Schwarz.Controllers.Api
 
         [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [HttpPut("Validar")]
-        public async Task<IActionResult> Validar([FromForm] int id, [FromForm] string? observacoes = null)
+        public async Task<IActionResult> Validar([FromForm] int id, [FromForm] int classificaoGut = 1, [FromForm] string? observacoes = null)
         {
             var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
             if (pareSeguranca == null)
@@ -178,6 +178,7 @@ namespace Schwarz.Controllers.Api
             }
             pareSeguranca.ObservacoesSeguranca = observacoes;
             pareSeguranca.DataValidado = DateTime.Now;
+            pareSeguranca.ClassificacaoGUT = classificaoGut;
             pareSeguranca.Status = StatusPare.AcaoValidada;
             _context.Update(pareSeguranca);
             _context.SaveChanges();
