@@ -5,12 +5,14 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Castle.Core.Smtp;
 using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Data;
 using Schwarz.Models;
 using Schwarz.Services.Interfaces;
+using Schwarz.Statics;
 
 namespace Schwarz.Controllers
 {
@@ -64,22 +66,19 @@ namespace Schwarz.Controllers
                 string nomeFuncionario = _context.Funcionario.Find(pareSeguranca.IDFuncionario).Nome;
                 string emailMessage = $"Uma nova falha foi cadastrada no site do PARE por {pareSeguranca.Funcionario.Nome} cuja descrição é: {pareSeguranca.Desvio} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/PareSeguranca\">Sistema Integrado</a>";
                 string subject = "PARE de Segurança Cadastrado";
-                List<string> emails = _context.Funcionario.Where(x => x.Ativo).Where(x => x.Setor == "Segurança do Trabalho").Where(x => x.Email != null).Select(x => x.Email).ToList();
+                IEnumerable<string> emails = _context.Funcionario.Where(x => x.Ativo).Where(x => x.Setor == "Segurança do Trabalho").Where(x => x.Email != null).Select(x => x.Email).ToList();
                 foreach (var email in emails)
                 {
-                    //_emailService.SendEmail(subject, emailMessage, email);
+                    _emailService.SendEmail(subject, emailMessage, email);
                 }
-                _emailService.SendEmail(subject, emailMessage, "guilherme.gordiano@schwarz.com.br");
-                //if (pareSeguranca.Funcionario.FuncionarioLider.Email != null)
-                //{
-                //    _emailService.SendEmail(subject, emailMessage, pareSeguranca.Funcionario.FuncionarioLider.Email);
-                //}
+                
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Create", "Pare");
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         public async Task<IActionResult> Edit(int id)
         {
             var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
@@ -94,6 +93,7 @@ namespace Schwarz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         public async Task<IActionResult> Edit(int id, PareSeguranca pareSeguranca)
         {
             if (ModelState.IsValid)
@@ -106,7 +106,6 @@ namespace Schwarz.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     throw;
-
                 }
                 return RedirectToAction("Index");
             }

@@ -6,13 +6,19 @@ namespace Schwarz.Services
 {
     public class EmailService : IEmailService
     {
-
+        private readonly IWebHostEnvironment _env;
+        public EmailService(IWebHostEnvironment env) { _env = env; }
         public void SendEmail(string subject, string message, string email)
         {
+            if (_env.IsDevelopment())
+            {
+                email = "guilherme.gordiano@schwarz.com.br";
+            }
+
             MailMessage emailMessage = new();
 
             var emailComunicacao = Environment.GetEnvironmentVariable("SCHWARZ_EMAIL_COMUNICACAO");
-            var senhaEmailComunicacao= Environment.GetEnvironmentVariable("SCHWARZ_SENHA_EMAIL_COMUNICACAO");
+            var senhaEmailComunicacao = Environment.GetEnvironmentVariable("SCHWARZ_SENHA_EMAIL_COMUNICACAO");
 
             var smtpClient = new SmtpClient("smtp.gmail.com", 587)
             {

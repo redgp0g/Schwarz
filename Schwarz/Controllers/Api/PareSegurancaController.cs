@@ -125,17 +125,21 @@ namespace Schwarz.Controllers.Api
                 return NotFound();
             }
 
-            pareSeguranca.Status = StatusPare.AcaoPendente;
             pareSeguranca.AcaoLider = acao;
             pareSeguranca.PrazoAcaoLider = prazoAcao;
             if (realizada)
             {
+                pareSeguranca.Status = StatusPare.AcaoConcluida;
                 pareSeguranca.DataConclusao = DateTime.Now;
+            }
+            else
+            {
+                pareSeguranca.Status = StatusPare.AcaoPendente;
             }
             _context.Update(pareSeguranca);
             _context.SaveChanges();
             string emailMessage = $"Foi criada uma ação para o PARE por {pareSeguranca.Funcionario.FuncionarioLider.Nome} cuja descrição é: {acao} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/PareSeguranca\">Sistema Integrado</a>";
-            string subject = "Ação do Líder para PARE de Segurança";
+            string subject = "Plano de Ação para PARE de Segurança";
             List<string> emails = _context.Funcionario.Where(x => x.Ativo).Where(x => x.Setor == "Segurança do Trabalho").Where(x => x.Email != null).Select(x => x.Email).ToList();
             foreach (var email in emails)
             {
@@ -155,7 +159,7 @@ namespace Schwarz.Controllers.Api
             {
                 return NotFound();
             }
-            pareSeguranca.DataConclusao= DateTime.Now;
+            pareSeguranca.DataConclusao = DateTime.Now;
             pareSeguranca.Status = StatusPare.AcaoConcluida;
             _context.Update(pareSeguranca);
             _context.SaveChanges();
@@ -165,7 +169,7 @@ namespace Schwarz.Controllers.Api
 
         [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [HttpPut("Validar")]
-        public async Task<IActionResult> Validar([FromForm] int id, [FromForm] string? observacoes = null)
+        public async Task<IActionResult> Validar([FromForm] int id, [FromForm] int classificaoGut = 1, [FromForm] string? observacoes = null)
         {
             var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
             if (pareSeguranca == null)
@@ -174,6 +178,7 @@ namespace Schwarz.Controllers.Api
             }
             pareSeguranca.ObservacoesSeguranca = observacoes;
             pareSeguranca.DataValidado = DateTime.Now;
+            pareSeguranca.ClassificacaoGUT = classificaoGut;
             pareSeguranca.Status = StatusPare.AcaoValidada;
             _context.Update(pareSeguranca);
             _context.SaveChanges();
@@ -183,7 +188,7 @@ namespace Schwarz.Controllers.Api
 
         [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [HttpPut("Invalidar")]
-        public async Task<IActionResult> Invalidar([FromForm] int id,[FromForm] string? observacoes = null)
+        public async Task<IActionResult> Invalidar([FromForm] int id, [FromForm] string? observacoes = null)
         {
             var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
             if (pareSeguranca == null)

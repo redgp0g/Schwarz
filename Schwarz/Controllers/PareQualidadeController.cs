@@ -5,12 +5,14 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Castle.Core.Smtp;
 using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Data;
 using Schwarz.Models;
 using Schwarz.Services.Interfaces;
+using Schwarz.Statics;
 
 namespace Schwarz.Controllers
 {
@@ -44,21 +46,21 @@ namespace Schwarz.Controllers
                 string nomeFuncionario = _context.Funcionario.Find(pareQualidade.IDFuncionario).Nome;
                 string emailMessage = $"PARE de Qualidade cadastrada por: {nomeFuncionario} <br/> Descrição: {pareQualidade.Descricao} <br/>" + "Link do site:  <a href =\"http://192.168.2.96:5242/PareQualidade\">Sistema Integrado</a>";
 
-                //_emailService.SendEmail(subject, emailMessage, "rtavares@schwarz.com.br");
-                //_emailService.SendEmail(subject, emailMessage, "thiago.iaczkowski@schwarz.com.br");
-                //_emailService.SendEmail(subject, emailMessage, "jose@schwarz.com.br");
-                _emailService.SendEmail(subject, emailMessage, pareQualidade.Funcionario.Email);
+                _emailService.SendEmail(subject, emailMessage, "rtavares@schwarz.com.br");
+                _emailService.SendEmail(subject, emailMessage, "thiago.iaczkowski@schwarz.com.br");
+                _emailService.SendEmail(subject, emailMessage, "jose@schwarz.com.br");
 
-                //if (pareQualidade.Funcionario.FuncionarioLider.Email != null)
-                //{
-                //    _emailService.SendEmail(subject, emailMessage, pareQualidade.Funcionario.FuncionarioLider.Email);
-                //}
+                if (pareQualidade.Funcionario.FuncionarioLider.Email != null)
+                {
+                    _emailService.SendEmail(subject, emailMessage, pareQualidade.Funcionario.FuncionarioLider.Email);
+                }
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Create", "Pare");
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         public async Task<IActionResult> Edit(int id)
         {
             var pareQualidade = await _context.PareQualidade.FindAsync(id);
@@ -73,6 +75,7 @@ namespace Schwarz.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PareQualidade pareQualidade)
         {

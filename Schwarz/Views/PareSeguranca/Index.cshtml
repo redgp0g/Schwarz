@@ -1,4 +1,10 @@
-﻿@using Schwarz.Statics
+﻿@using Microsoft.AspNetCore.Identity
+@using Schwarz.Areas.Identity.Data
+@using Schwarz.Services.Interfaces
+@using Schwarz.Statics
+
+@inject IUserService UserService
+@inject SignInManager<SchwarzUser> SignInManager
 @model IEnumerable<PareSeguranca>
 
 @{
@@ -42,7 +48,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr data-id="@item.IDPareSeguranca">
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             @Html.DisplayFor(modelItem => item.Data)
                         </td>
@@ -60,10 +66,10 @@
                                 string cor;
                                 switch (item.Status)
                                 {
-                                    case StatusPare.AcaoValidada or StatusPare.AcaoConcluida:
+                                    case StatusPare.AcaoValidada:
                                         cor = "text-green-500";
                                         break;
-                                    case StatusPare.EmAnalise or StatusPare.AcaoPendente or StatusPare.AprovadoSeguranca:
+                                    case StatusPare.EmAnalise or StatusPare.AcaoPendente or StatusPare.AprovadoSeguranca or StatusPare.AcaoConcluida:
                                         cor = "text-yellow-500";
                                         break;
                                     case StatusPare.ReprovadoSeguranca or StatusPare.AcaoInvalidada:
@@ -90,25 +96,32 @@
                             }
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <a class="text-black rounded-lg p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareSeguranca">Editar</a>
-                            <button class="btnDeletar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Deletar</button>
-                            @if (item.Status == StatusPare.EmAnalise && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.PareSeguranca)))
+                            @if (User.IsInRole(Roles.PareSeguranca) || User.IsInRole(Roles.Admin))
                             {
-                                <button class="btnAprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Aprovar</button>
-                                <button class="btnReprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Reprovar</button>
+                                <a class="text-black rounded-lg p-2 bg-white ring-2 ring-amber-800 shadow-lg space-y-3 hover:bg-amber-500 hover:text-white inline-block" asp-action="Edit" asp-route-id="@item.IDPareSeguranca">Editar</a>
+                                <button class="btnDeletar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Deletar</button>
                             }
-                            @if (item.Status == StatusPare.AprovadoSeguranca && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.PareSeguranca)))
+                            @if (SignInManager.IsSignedIn(User))
                             {
-                                <button class="btnAcao text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Ação</button>
-                            }
-                            @if (item.Status == StatusPare.AcaoPendente && (User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.PareSeguranca)))
-                            {
-                                <button class="btnConcluir text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Concluir</button>
-                            }
-                            @if (item.Status == StatusPare.AcaoConcluida && (User.IsInRole(Roles.PareSeguranca) || User.IsInRole(Roles.Admin)))
-                            {
-                                <button class="btnValidar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Validar</button>
-                                <button class="btnInvalidar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-yellow-800 shadow-lg space-y-3 hover:bg-yellow-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Invalidar</button>
+                                @if (item.Status == StatusPare.EmAnalise && (item.Funcionario.FuncionarioLider.User.Id == UserService.GetUser(User).Id || User.IsInRole(Roles.Admin)))
+                                {
+                                    <button class="btnAprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Aprovar</button>
+                                    <button class="btnReprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Reprovar</button>
+                                }
+
+                                @if ((item.Status == StatusPare.AprovadoSeguranca || item.Status == StatusPare.AcaoInvalidada) && ((item.Funcionario.FuncionarioLider.User.Id == UserService.GetUser(User).Id && SignInManager.IsSignedIn(User)) || User.IsInRole(Roles.Admin)))
+                                {
+                                    <button class="btnAcao text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-blue-800 shadow-lg space-y-3 hover:bg-blue-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Ação</button>
+                                }
+                                @if (item.Status == StatusPare.AcaoPendente && ((item.Funcionario.FuncionarioLider.User.Id == UserService.GetUser(User).Id && SignInManager.IsSignedIn(User)) || User.IsInRole(Roles.Admin)))
+                                {
+                                    <button class="btnConcluir text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Concluir</button>
+                                }
+                                @if (item.Status == StatusPare.AcaoConcluida && (User.IsInRole(Roles.PareSeguranca) || User.IsInRole(Roles.Admin)))
+                                {
+                                    <button class="btnValidar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Validar</button>
+                                    <button class="btnInvalidar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-yellow-800 shadow-lg space-y-3 hover:bg-yellow-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Invalidar</button>
+                                }
                             }
                         </td>
                     </tr>
@@ -120,7 +133,7 @@
 <dialog class="m-auto" id="dialogLider">
     <h3 class="pt-4 text-2xl text-center">Plano de Ação</h3>
     <div class="flex justify-center px-6 my-12">
-        <form id="formResponderAlerta" method="post" class="px-8">
+        <form id="formPlanoAcao" method="post" class="px-8">
             <div class="mb-4">
                 <label class="block mb-2 text-sm font-bold">Ação do Líder</label>
                 <input required type="text" name="acao" id="acao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
@@ -196,7 +209,7 @@
                     url: 'api/PareSeguranca/' + pareId,
                     method: 'DELETE',
                     success: function (data) {
-                        var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
+                        var row = $('#tableSeguranca').row($('button[data-id="' + pareId + '"]').closest('tr'));
                         row.remove().draw();
                         alert('PARE deletado com sucesso!')
                     },
@@ -218,6 +231,11 @@
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Aprovado pela Segurança</span>");
+
+                        $('.btnReprovar[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovar[data-id="' + idPare + '"]').hide();
                         alert('Aprovado com sucesso!');
                     },
                     error: function () {
@@ -238,6 +256,11 @@
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Reprovado pela Segurança</span>");
+
+                        $('.btnReprovar[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovar[data-id="' + idPare + '"]').hide();
                         alert('Reprovado com sucesso!');
                     },
                     error: function () {
@@ -248,24 +271,37 @@
         });
 
         $('.btnAcao').on('click', function () {
-            var cadastroId = $(this).data('id');
+            var idPare = $(this).data('id');
 
             var dialog = document.getElementById('dialogLider');
             dialog.showModal();
 
-            $('#formResponderAlerta').submit(function (event) {
+            $('#formPlanoAcao').submit(function (event) {
                 event.preventDefault();
                 var acao = $('#acao').val();
                 var prazoAcao = $('#prazoAcao').val();
                 var realizada = $('input[name="realizada"]:checked').val() === "true";
+                if (!realizada && prazoAcao == null) {
+                    alert("Selecione o prazo da ação");
+                    return false;
+                }
 
                 $.ajax({
                     url: 'api/PareSeguranca/PlanoAcao',
                     type: 'PUT',
-                    data: { id: cadastroId, acao: acao, realizada: realizada, prazoAcao: prazoAcao },
+                    data: { id: idPare, acao: acao, realizada: realizada, prazoAcao: prazoAcao },
                     success: function () {
-                        alert('Ação registrada com sucesso!');
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        if (realizada) {
+                            linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Concluída</span>");
+                        }
+                        else {
+                            linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Pendente</span>");
+                        }
+
+                        $('.btnAcao[data-id="' + idPare + '"]').hide();
                         dialog.close();
+                        alert('Ação registrada com sucesso!');
                     },
                     error: function () {
                         alert('Ocorreu um erro ao Responder o cadastro.');
@@ -284,6 +320,10 @@
                     type: 'PUT',
                     data: { id: idPare },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Concluída</span>");
+
+                        $('.btnConcluir[data-id="' + idPare + '"]').hide();
                         alert('Concluido com sucesso!');
                     },
                     error: function () {
@@ -299,11 +339,18 @@
 
             if (confirmacao) {
                 var observacoes = prompt("Se houver, digite as observações");
+                var classificacaoGut = 1;
+                classificacaoGut = prompt("Digite a classificação GUT (1 a 5)");
                 $.ajax({
                     url: 'api/PareSeguranca/Validar',
                     type: 'PUT',
-                    data: { id: idPare, observacoes: observacoes },
+                    data: { id: idPare, classificacaoGut: classificacaoGut, observacoes: observacoes },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-green-500'>Ação Validada</span>");
+
+                        $('.btnValidar[data-id="' + idPare + '"]').hide();
+                        $('.btnInvalidar[data-id="' + idPare + '"]').hide();
                         alert('Validado com sucesso!');
                     },
                     error: function () {
@@ -324,6 +371,11 @@
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
+                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Ação Invalidada</span>");
+
+                        $('.btnValidar[data-id="' + idPare + '"]').hide();
+                        $('.btnInvalidar[data-id="' + idPare + '"]').hide();
                         alert('Invalidado com sucesso!');
                     },
                     error: function () {

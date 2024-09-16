@@ -34,7 +34,6 @@ namespace Schwarz.Controllers.Api
             return NotFound();
         }
 
-        [Authorize(Roles = $"{Roles.Lider}, {Roles.Admin}")]
         [HttpPut("AprovacaoLider")]
         public async Task<IActionResult> AprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
@@ -51,7 +50,6 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
-        [Authorize(Roles = $"{Roles.Lider}, {Roles.Admin}")]
         [HttpPut("ReprovacaoLider")]
         public async Task<IActionResult> ReprovacaoLider([FromForm] int id, [FromForm] string? observacoes = null)
         {
