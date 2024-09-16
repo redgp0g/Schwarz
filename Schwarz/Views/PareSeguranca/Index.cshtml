@@ -60,10 +60,10 @@
                                 string cor;
                                 switch (item.Status)
                                 {
-                                    case StatusPare.AcaoValidada or StatusPare.AcaoConcluida:
+                                    case StatusPare.AcaoValidada:
                                         cor = "text-green-500";
                                         break;
-                                    case StatusPare.EmAnalise or StatusPare.AcaoPendente or StatusPare.AprovadoSeguranca:
+                                    case StatusPare.EmAnalise or StatusPare.AcaoPendente or StatusPare.AprovadoSeguranca or StatusPare.AcaoConcluida:
                                         cor = "text-yellow-500";
                                         break;
                                     case StatusPare.ReprovadoSeguranca or StatusPare.AcaoInvalidada:
