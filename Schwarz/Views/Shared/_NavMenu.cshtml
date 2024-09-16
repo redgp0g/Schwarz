@@ -12,148 +12,55 @@
             <img b-i2l1w8dhfo="" class="h-8 w-auto" src="\image\Logo PNG Preta.png">
         </a>
     </div>
-    <div class="flex xl:hidden">
-        <button id="toggleSideBar" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onclick="toggleHidden('sideBar')">
-            <span class="sr-only">Abrir Menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-        </button>
-    </div>
-
-    <div class="items-center hidden xl:flex lg:gap-x-12 flex-1 justify-end">
-        <div class="relative">
-            <button id="toggleMenuIdeias" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias',this.id)">
-                Ideias
+        <div class="flex xl:hidden">
+            <button id="toggleSideBar" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onclick="toggleHidden('sideBar')">
+                <span class="sr-only">Abrir Menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
             </button>
-
-            <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoClose="false" id="subMenuIdeias">
-                <div class="p-4">
-                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
-                        </div>
-                        <div class="flex-auto">
-                            <a asp-action="Create" asp-controller="Ideia" class="block font-semibold text-gray-900">
-                                Cadastrar
-                                <span class="absolute inset-0"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                        </div>
-                        <div class="flex-auto">
-                            <a asp-action="Index" asp-controller="Ideia" class="block font-semibold text-gray-900">
-                                Cadastradas
-                                <span class="absolute inset-0"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
-                            </svg>
-                        </div>
-                        <div class="flex-auto">
-                            <a asp-action="Dashboard" asp-controller="Ideia" class="block font-semibold text-gray-900">
-                                Dashboard
-                                <span class="absolute inset-0"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-        @if (User.IsInRole(Roles.Admin))
-        {
+
+        <div class="items-center hidden xl:flex lg:gap-x-12 flex-1 justify-end">
             <div class="relative">
-                <button id="toggleMenuFuncionario" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFuncionario',this.id)">
-                    Funcionários
+                <button id="toggleMenuIdeias" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuIdeias',this.id)">
+                    Ideias
                 </button>
 
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuFuncionario">
+                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoClose="false" id="subMenuIdeias">
                     <div class="p-4">
                         <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
                             <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+                            </div>
+                            <div class="flex-auto">
+                                <a asp-action="Create" asp-controller="Ideia" class="block font-semibold text-gray-900">
+                                    Cadastrar
+                                    <span class="absolute inset-0"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+                            </div>
+                            <div class="flex-auto">
+                                <a asp-action="Index" asp-controller="Ideia" class="block font-semibold text-gray-900">
+                                    Cadastradas
+                                    <span class="absolute inset-0"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
                                 </svg>
                             </div>
                             <div class="flex-auto">
-                                <a asp-action="Index" asp-controller="Funcionario" class="block font-semibold text-gray-900">
-                                    Funcionários
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-area="Identity" asp-page="/Account/Register" class="block font-semibold text-gray-900">
-                                    Registrar Conta
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Metrologia) || User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Especialista))
-        {
-            <div class="relative">
-                <button id="toggleMenuAlertaCota" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuAlertaCota',this.id)">
-                    Alertas Cotas
-                </button>
-
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuAlertaCota">
-                    <div class="p-4">
-                        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Especialista))
-                        {
-                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                                    </svg>
-                                </div>
-                                <div class="flex-auto">
-                                    <a asp-action="IndexProducao" asp-controller="AlertaCota" class="block font-semibold text-gray-900">
-                                        Alertas de Produção
-                                        <span class="absolute inset-0"></span>
-                                    </a>
-                                </div>
-                            </div>
-
-                        }
-                        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Metrologia))
-                        {
-                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                                    </svg>
-                                </div>
-                                <div class="flex-auto">
-                                    <a asp-action="IndexMetrologia" asp-controller="AlertaCota" class="block font-semibold text-gray-900">
-                                        Alertas da Metrologia
-                                        <span class="absolute inset-0"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-action="Dashboard" asp-controller="AlertaCota" class="block font-semibold text-gray-900">
+                                <a asp-action="Dashboard" asp-controller="Ideia" class="block font-semibold text-gray-900">
                                     Dashboard
                                     <span class="absolute inset-0"></span>
                                 </a>
@@ -162,85 +69,176 @@
                     </div>
                 </div>
             </div>
-        }
-        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.LicaoAprendida))
-        {
-            <div class="relative">
-                <button id="toggleMenuLicoesAprendidas" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuLicoesAprendidas',this.id)">
-                    Lições Aprendidas
-                </button>
+            @if (User.IsInRole(Roles.Admin))
+            {
+                <div class="relative">
+                    <button id="toggleMenuFuncionario" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuFuncionario',this.id)">
+                        Funcionários
+                    </button>
 
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuLicoesAprendidas">
-                    <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+                    <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuFuncionario">
+                        <div class="p-4">
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                    </svg>
+                                </div>
+                                <div class="flex-auto">
+                                    <a asp-action="Index" asp-controller="Funcionario" class="block font-semibold text-gray-900">
+                                        Funcionários
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="flex-auto">
-                                <a asp-action="Create" asp-controller="LicaoAprendida" class="block font-semibold text-gray-900">
-                                    Cadastrar
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
-                                </svg>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-action="Index" asp-controller="LicaoAprendida" class="block font-semibold text-gray-900">
-                                    Lições Cadastradas
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.TransporteMercadoria))
-        {
-            <div class="relative">
-                <button id="toggleMenuTransporteMercadorias" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuTransporteMercadorias',this.id)">
-                    Transporte de Mercadorias
-                </button>
-
-                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuTransporteMercadorias">
-                    <div class="p-4">
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-action="Create" asp-controller="TransporteMercadoria" class="block font-semibold text-gray-900">
-                                    Cadastrar
-                                    <span class="absolute inset-0"></span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                                </svg>
-                            </div>
-                            <div class="flex-auto">
-                                <a asp-action="Index" asp-controller="TransporteMercadoria" class="block font-semibold text-gray-900">
-                                    Registros
-                                    <span class="absolute inset-0"></span>
-                                </a>
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+                                </div>
+                                <div class="flex-auto">
+                                    <a asp-area="Identity" asp-page="/Account/Register" class="block font-semibold text-gray-900">
+                                        Registrar Conta
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-        @if (SignInManager.IsSignedIn(User))
-        {
+            }
+            @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Metrologia) || User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Especialista))
+            {
+                <div class="relative">
+                    <button id="toggleMenuAlertaCota" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuAlertaCota',this.id)">
+                        Alertas Cotas
+                    </button>
+
+                    <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuAlertaCota">
+                        <div class="p-4">
+                            @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Lider) || User.IsInRole(Roles.Especialista))
+                            {
+                                <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a asp-action="IndexProducao" asp-controller="AlertaCota" class="block font-semibold text-gray-900">
+                                            Alertas de Produção
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            }
+                            @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.Metrologia))
+                            {
+                                <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                    <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a asp-action="IndexMetrologia" asp-controller="AlertaCota" class="block font-semibold text-gray-900">
+                                            Alertas da Metrologia
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/1244/1244786.png?w=740&t=st=1680792505~exp=1680793105~hmac=9de02dd97a23bf4e508ad2cc3d2a5c2bbded4a87f078ab0c3ef8d31e0dee7b31"></image>
+                                </div>
+                                <div class="flex-auto">
+                                    <a asp-action="Dashboard" asp-controller="AlertaCota" class="block font-semibold text-gray-900">
+                                        Dashboard
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.LicaoAprendida))
+            {
+                <div class="relative">
+                    <button id="toggleMenuLicoesAprendidas" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuLicoesAprendidas',this.id)">
+                        Lições Aprendidas
+                    </button>
+
+                    <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuLicoesAprendidas">
+                        <div class="p-4">
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+                                </div>
+                                <div class="flex-auto">
+                                    <a asp-action="Create" asp-controller="LicaoAprendida" class="block font-semibold text-gray-900">
+                                        Cadastrar
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                                    </svg>
+                                </div>
+                                <div class="flex-auto">
+                                    <a asp-action="Index" asp-controller="LicaoAprendida" class="block font-semibold text-gray-900">
+                                        Lições Cadastradas
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.TransporteMercadoria))
+            {
+                <div class="relative">
+                    <button id="toggleMenuTransporteMercadorias" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuTransporteMercadorias',this.id)">
+                        Transporte de Mercadorias
+                    </button>
+
+                    <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuTransporteMercadorias">
+                        <div class="p-4">
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <image class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" src="https://cdn-icons-png.flaticon.com/512/3447/3447545.png"></image>
+                                </div>
+                                <div class="flex-auto">
+                                    <a asp-action="Create" asp-controller="TransporteMercadoria" class="block font-semibold text-gray-900">
+                                        Cadastrar
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                                <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                                    </svg>
+                                </div>
+                                <div class="flex-auto">
+                                    <a asp-action="Index" asp-controller="TransporteMercadoria" class="block font-semibold text-gray-900">
+                                        Registros
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
             <div class="relative">
                 <button id="toggleMenuPARE" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuPARE',this.id)">
                     PARE
@@ -297,48 +295,48 @@
                     </div>
                 </div>
             </div>
-        }
-        <div class="relative">
-            <button id="toggleMenuRecursosHumanos" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuRecursosHumanos',this.id)">
-                Recursos Humanos
-            </button>
 
-            <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuRecursosHumanos">
-                <div class="p-4">
-                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-                            </svg>
+            <div class="relative">
+                <button id="toggleMenuRecursosHumanos" type="button" class="flex items-center gap-x-1 text-base font-semibold leading-6 text-gray-900" onclick="toggleHidden('subMenuRecursosHumanos',this.id)">
+                    Recursos Humanos
+                </button>
 
+                <div class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-72 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden" aria-autoclose="false" id="subMenuRecursosHumanos">
+                    <div class="p-4">
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                                </svg>
+
+                            </div>
+                            <div class="flex-auto">
+                                <a asp-action="Ramais" asp-controller="RecursosHumanos" class="block font-semibold text-gray-900">
+                                    Ramais
+                                    <span class="absolute inset-0"></span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="flex-auto">
-                            <a asp-action="Ramais" asp-controller="RecursosHumanos" class="block font-semibold text-gray-900">
-                                Ramais
-                                <span class="absolute inset-0"></span>
-                            </a>
-                        </div>
-                    </div>
 
-                    <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
-                        <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z" />
-                            </svg>
+                        <div class="group relative flex items-center gap-x-6 rounded-lg px-1 py-2 text-base leading-6 hover:bg-gray-50">
+                            <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z" />
+                                </svg>
 
-                        </div>
-                        <div class="flex-auto">
-                            <a asp-action="Aniversariantes" asp-controller="RecursosHumanos" class="block font-semibold text-gray-900">
-                                Aniversariantes
-                                <span class="absolute inset-0"></span>
-                            </a>
+                            </div>
+                            <div class="flex-auto">
+                                <a asp-action="Aniversariantes" asp-controller="RecursosHumanos" class="block font-semibold text-gray-900">
+                                    Aniversariantes
+                                    <span class="absolute inset-0"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <partial name="~/Views/Shared/_LoginPartial.cshtml" />
         </div>
-        <partial name="~/Views/Shared/_LoginPartial.cshtml" />
-    </div>
 </nav>
 <!-- NavBar Menu Mobile-->
 <div class="xl:hidden hidden" role="dialog" aria-modal="true" aria-autoclose="false" id="sideBar">
