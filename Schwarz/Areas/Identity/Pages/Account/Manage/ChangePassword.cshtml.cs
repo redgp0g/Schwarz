@@ -48,7 +48,7 @@ namespace Schwarz.Areas.Identity.Pages.Account.Manage
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmação da Nova Senha")]
+            [Display(Name = "Confirme sua Senha")]
             [Compare("NewPassword", ErrorMessage = "A nova senha a senha de confirmação não são iguais.")]
             public string ConfirmPassword { get; set; }
         }
