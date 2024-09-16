@@ -123,7 +123,7 @@
 <dialog class="m-auto" id="dialogLider">
     <h3 class="pt-4 text-2xl text-center">Plano de Ação</h3>
     <div class="flex justify-center px-6 my-12">
-        <form id="formResponderAlerta" method="post" class="px-8">
+        <form id="formPlanoAcao" method="post" class="px-8">
             <div class="mb-4">
                 <label class="block mb-2 text-sm font-bold">Ação do Líder</label>
                 <input required type="text" name="acao" id="acao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
@@ -266,7 +266,7 @@
             var dialog = document.getElementById('dialogLider');
             dialog.showModal();
 
-            $('#formResponderAlerta').submit(function (event) {
+            $('#formPlanoAcao').submit(function (event) {
                 event.preventDefault();
                 var acao = $('#acao').val();
                 var prazoAcao = $('#prazoAcao').val();
