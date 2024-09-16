@@ -325,10 +325,12 @@
 
             if (confirmacao) {
                 var observacoes = prompt("Se houver, digite as observações");
+                var classificacaoGut = 1;
+                classificacaoGut = prompt("Digite a classificação GUT (1 a 5)");
                 $.ajax({
                     url: 'api/PareSeguranca/Validar',
                     type: 'PUT',
-                    data: { id: idPare, observacoes: observacoes },
+                    data: { id: idPare, classificacaoGut: classificacaoGut, observacoes: observacoes },
                     success: function () {
                         var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-green-500'>Ação Validada</span>");
