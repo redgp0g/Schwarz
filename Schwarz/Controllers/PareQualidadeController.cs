@@ -5,12 +5,14 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Castle.Core.Smtp;
 using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Schwarz.Data;
 using Schwarz.Models;
 using Schwarz.Services.Interfaces;
+using Schwarz.Statics;
 
 namespace Schwarz.Controllers
 {
@@ -59,6 +61,7 @@ namespace Schwarz.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         public async Task<IActionResult> Edit(int id)
         {
             var pareQualidade = await _context.PareQualidade.FindAsync(id);
@@ -73,6 +76,7 @@ namespace Schwarz.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PareQualidade pareQualidade)
         {
