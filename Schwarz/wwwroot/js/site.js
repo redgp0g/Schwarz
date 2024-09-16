@@ -46,3 +46,7 @@ $('.ordemServico').on('input', function () {
 $('.select2').select2({
     width: '100%',
 });
+
+$(document).ready(function () {
+    $.fn.dataTable.moment('DD/MM/YYYY');
+})
