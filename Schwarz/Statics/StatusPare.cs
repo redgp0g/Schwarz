@@ -29,6 +29,8 @@
         public static readonly List<string> SegurancaStatus = new List<string>
         {
             EmAnalise,
+            AprovadoLider,
+            ReprovadoLider,
             AprovadoSeguranca,
             ReprovadoSeguranca,
             AcaoPendente,

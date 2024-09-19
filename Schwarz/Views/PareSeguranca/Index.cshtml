@@ -75,10 +75,10 @@
                                     case StatusPare.AcaoValidada:
                                         cor = "text-green-500";
                                         break;
-                                    case StatusPare.EmAnalise or StatusPare.AcaoPendente or StatusPare.AprovadoSeguranca or StatusPare.AcaoConcluida:
+                                    case StatusPare.EmAnalise or StatusPare.AcaoPendente or StatusPare.AprovadoSeguranca or StatusPare.AcaoConcluida or StatusPare.AprovadoLider:
                                         cor = "text-yellow-500";
                                         break;
-                                    case StatusPare.ReprovadoSeguranca or StatusPare.AcaoInvalidada:
+                                    case StatusPare.ReprovadoSeguranca or StatusPare.AcaoInvalidada or StatusPare.ReprovadoLider:
                                         cor = "text-red-500";
                                         break;
                                     default:
@@ -117,8 +117,13 @@
                             {
                                 @if (item.Status == StatusPare.EmAnalise && (item.Funcionario.FuncionarioLider.User.Id == UserService.GetUser(User).Id || User.IsInRole(Roles.Admin)))
                                 {
-                                    <button class="btnAprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Aprovar</button>
-                                    <button class="btnReprovar text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Reprovar</button>
+                                    <button class="btnAprovarLider text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Aprovar</button>
+                                    <button class="btnReprovarLider text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Reprovar</button>
+                                }
+                                @if (item.Status == StatusPare.AprovadoLider && (item.Funcionario.FuncionarioLider.User.Id == UserService.GetUser(User).Id || User.IsInRole(Roles.Admin)))
+                                {
+                                    <button class="btnAprovarSeguranca text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-green-800 shadow-lg space-y-3 hover:bg-green-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Aprovar</button>
+                                    <button class="btnReprovarSeguranca text-black rounded-lg mt-2 p-2 bg-white ring-2 ring-red-800 shadow-lg space-y-3 hover:bg-red-600 hover:text-white inline-block" data-id="@item.IDPareSeguranca">Reprovar</button>
                                 }
 
                                 @if ((item.Status == StatusPare.AprovadoSeguranca || item.Status == StatusPare.AcaoInvalidada) && ((item.Funcionario.FuncionarioLider.User.Id == UserService.GetUser(User).Id && SignInManager.IsSignedIn(User)) || User.IsInRole(Roles.Admin)))
@@ -232,22 +237,22 @@
             }
         });
 
-        $('.btnAprovar').click(function () {
+        $('.btnAprovarLider').click(function () {
             const idPare = $(this).data('id');
             const confirmacao = confirm("Tem certeza de que deseja Aprovar este cadastro?");
 
             if (confirmacao) {
                 const observacoes = prompt("Se houver, digite as observações");
                 $.ajax({
-                    url: 'api/PareSeguranca/Aprovar',
+                    url: 'api/PareSeguranca/AprovarLider',
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
-                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
-                        linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Aprovado pela Segurança</span>");
+                        const linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Aprovado pelo Líder</span>");
 
-                        $('.btnReprovar[data-id="${idPare}"]').hide();
-                        $('.btnAprovar[data-id="${idPare}"]').hide();
+                        $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
                         alert('Aprovado com sucesso!');
                     },
                     error: function () {
@@ -257,22 +262,72 @@
             }
         });
 
-        $('.btnReprovar').click(function () {
+        $('.btnReprovarLider').click(function () {
             const idPare = $(this).data('id');
             const confirmacao = confirm("Tem certeza de que deseja Reprovar este cadastro?");
 
             if (confirmacao) {
                 const observacoes = prompt("Se houver, digite as observações");
                 $.ajax({
-                    url: 'api/PareSeguranca/Reprovar',
+                    url: 'api/PareSeguranca/ReprovarLider',
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
-                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Reprovado pelo Líder</span>");
+
+                        $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarLider[data-id="' + idPare + '"]').hide();
+                        alert('Reprovado com sucesso!');
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao Reprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnAprovarSeguranca').click(function () {
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja Aprovar este cadastro?");
+
+            if (confirmacao) {
+                const observacoes = prompt("Se houver, digite as observações");
+                $.ajax({
+                    url: 'api/PareSeguranca/AprovarSeguranca',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes },
+                    success: function () {
+                        const linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Aprovado pela Segurança</span>");
+
+                        $('.btnReprovarSeguranca[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarSeguranca[data-id="' + idPare + '"]').hide();
+                        alert('Aprovado com sucesso!');
+                    },
+                    error: function () {
+                        alert('Ocorreu um erro ao aprovar o PARE.');
+                    }
+                });
+            }
+        });
+
+        $('.btnReprovarSeguranca').click(function () {
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja Reprovar este cadastro?");
+
+            if (confirmacao) {
+                const observacoes = prompt("Se houver, digite as observações");
+                $.ajax({
+                    url: 'api/PareSeguranca/ReprovarSeguranca',
+                    type: 'PUT',
+                    data: { id: idPare, observacoes: observacoes },
+                    success: function () {
+                        const linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Reprovado pela Segurança</span>");
 
-                        $('.btnReprovar[data-id="${idPare}"]').hide();
-                        $('.btnAprovar[data-id="${idPare}"]').hide();
+                        $('.btnReprovarSeguranca[data-id="' + idPare + '"]').hide();
+                        $('.btnAprovarSeguranca[data-id="' + idPare + '"]').hide();
                         alert('Reprovado com sucesso!');
                     },
                     error: function () {
@@ -303,7 +358,7 @@
                     type: 'PUT',
                     data: { id: idPare, acao: acao, realizada: realizada, prazoAcao: prazoAcao },
                     success: function () {
-                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
                         if (realizada) {
                             linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Concluída</span>");
                         }
@@ -311,7 +366,7 @@
                             linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Pendente</span>");
                         }
 
-                        $('.btnAcao[data-id="${idPare}"]').hide();
+                        $('.btnAcao[data-id="' + idPare + '"]').hide();
                         dialog.close();
                         alert('Ação registrada com sucesso!');
                     },
@@ -332,10 +387,10 @@
                     type: 'PUT',
                     data: { id: idPare },
                     success: function () {
-                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Concluída</span>");
 
-                        $('.btnConcluir[data-id="${idPare}"]').hide();
+                        $('.btnConcluir[data-id="' + idPare + '"]').hide();
                         alert('Concluido com sucesso!');
                     },
                     error: function () {
@@ -358,11 +413,11 @@
                     type: 'PUT',
                     data: { id: idPare, classificacaoGut: classificacaoGut, observacoes: observacoes },
                     success: function () {
-                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-green-500'>Ação Validada</span>");
 
-                        $('.btnValidar[data-id="${idPare}"]').hide();
-                        $('.btnInvalidar[data-id="${idPare}"]').hide();
+                        $('.btnValidar[data-id="' + idPare + '"]').hide();
+                        $('.btnInvalidar[data-id="' + idPare + '"]').hide();
                         alert('Validado com sucesso!');
                     },
                     error: function () {
@@ -383,11 +438,11 @@
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
-                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Ação Invalidada</span>");
 
-                        $('.btnValidar[data-id="${idPare}"]').hide();
-                        $('.btnInvalidar[data-id="${idPare}"]').hide();
+                        $('.btnValidar[data-id="' + idPare + '"]').hide();
+                        $('.btnInvalidar[data-id="' + idPare + '"]').hide();
                         alert('Invalidado com sucesso!');
                     },
                     error: function () {
