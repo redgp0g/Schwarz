@@ -81,9 +81,41 @@ namespace Schwarz.Controllers.Api
             return Ok();
         }
 
+        [HttpPut("AprovarLider")]
+        public async Task<IActionResult> AprovarLider([FromForm] int id, [FromForm] string? observacoes = null)
+        {
+            var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
+            if (pareSeguranca == null)
+            {
+                return NotFound();
+            }
+            pareSeguranca.ObservacoesLider = observacoes;
+            pareSeguranca.Status = StatusPare.AprovadoLider;
+            _context.Update(pareSeguranca);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpPut("ReprovarLider")]
+        public async Task<IActionResult> ReprovarLider([FromForm] int id, [FromForm] string? observacoes = null)
+        {
+            var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
+            if (pareSeguranca == null)
+            {
+                return NotFound();
+            }
+            pareSeguranca.ObservacoesLider = observacoes;
+            pareSeguranca.Status = StatusPare.ReprovadoLider;
+            _context.Update(pareSeguranca);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
-        [HttpPut("Aprovar")]
-        public async Task<IActionResult> Aprovar([FromForm] int id, [FromForm] string? observacoes = null)
+        [HttpPut("AprovarSeguranca")]
+        public async Task<IActionResult> AprovarSeguranca([FromForm] int id, [FromForm] string? observacoes = null)
         {
             var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
             if (pareSeguranca == null)
@@ -99,8 +131,8 @@ namespace Schwarz.Controllers.Api
         }
 
         [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
-        [HttpPut("Reprovar")]
-        public async Task<IActionResult> Reprovar([FromForm] int id, [FromForm] string? observacoes = null)
+        [HttpPut("ReprovarSeguranca")]
+        public async Task<IActionResult> ReprovarSeguranca([FromForm] int id, [FromForm] string? observacoes = null)
         {
             var pareSeguranca = await _context.PareSeguranca.FindAsync(id);
             if (pareSeguranca == null)

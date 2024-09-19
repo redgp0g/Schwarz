@@ -96,7 +96,7 @@
     $(document).ready(function () {
         $.fn.dataTable.moment('DD/MM/YYYY');
 
-        var table = $('#tableMeioAmbiente').DataTable({
+        const table = $('#tableMeioAmbiente').DataTable({
             "order": [],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
@@ -137,12 +137,12 @@
 
         $('.btnDelete').click(function () {
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
-                var pareId = $(this).data('id');
+                const pareId = $(this).data('id');
                 $.ajax({
                     url: 'api/PareMeioAmbiente/' + pareId,
                     method: 'DELETE',
                     success: function (data) {
-                        var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
+                        const row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
                         row.remove().draw();
                         alert('PARE deletado com sucesso!')
                     },
@@ -154,8 +154,8 @@
         });
 
         $('.btnAprovarLider').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja aprovar este cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja aprovar este cadastro?");
 
             if (confirmacao) {
                 var observacoes = prompt("Se houver, digite a observação");
@@ -179,17 +179,17 @@
         });
 
         $('.btnReprovarLider').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja reprovar este cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja reprovar este cadastro?");
 
             if (confirmacao) {
-                var observacoes = prompt("Se houver, digite a observação");
+                const observacoes = prompt("Se houver, digite a observação");
                 $.ajax({
                     url: 'api/PareMeioAmbiente/AprovacaoLider',
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
                     success: function () {
-                        var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
                         linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pelo Líder</span><br/>");
 
                         $('.btnReprovarLider[data-id="' + idPare + '"]').hide();
@@ -204,18 +204,18 @@
         });
 
         $('.btnAprovarMeioAmbiente').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja aprovar este cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja aprovar este cadastro?");
 
             if (confirmacao) {
-                var observacoes = prompt("Se houver, digite a observação");
-                var pontuacao = prompt("Digite a pontuação!");
+                const observacoes = prompt("Se houver, digite a observação");
+                const pontuacao = prompt("Digite a pontuação!");
                 $.ajax({
                     url: 'api/PareMeioAmbiente/AprovacaoMeioAmbiente',
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes, aprovacaoPare: 1, pontuacao: pontuacao },
                     success: function () {
-                        var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
                         linha.find('td[data-label="Aprovacao"]').html("<span class='text-green-500'>Aprovado pelo Meio Ambiente</span><br/>");
                         linha.find('td[data-label="Pontuacao"]').html(pontuacao);
 
@@ -231,17 +231,17 @@
         });
 
         $('.btnReprovarMeioAmbiente').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja reprovar este cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja reprovar este cadastro?");
 
             if (confirmacao) {
-                var observacoes = prompt("Se houver, digite a observação");
+                const observacoes = prompt("Se houver, digite a observação");
                 $.ajax({
                     url: 'api/PareMeioAmbiente/AprovacaoMeioAmbiente',
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes, aprovacaoPare: 2 },
                     success: function () {
-                        var linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableMeioAmbiente').find('tr[data-id="' + idPare + '"]');
                         linha.find('td[data-label="Aprovacao"]').html("<span class='text-red-500'>Reprovado pelo Meio Ambiente</span><br/>");
 
                         $('.btnReprovarMeioAmbiente[data-id="' + idPare + '"]').hide();
