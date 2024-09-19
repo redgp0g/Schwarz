@@ -27,14 +27,14 @@ function HideLoading() {
     }
 }
 $('.ordemServico').on('input', function () {
-    var num = $(this).val().replace(/\D/g, '');
+    let num = $(this).val().replace(/\D/g, '');
 
     if (num.length > 9) {
         num = num.substring(0, 9);
     }
 
-    var formattedNum = '';
-    for (var i = 0; i < num.length; i++) {
+    let formattedNum = '';
+    for (let i = 0; i < num.length; i++) {
         if (i === 3 || i === 6) {
             formattedNum += '.';
         }

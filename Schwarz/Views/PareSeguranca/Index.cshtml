@@ -175,7 +175,7 @@
     $(document).ready(function () {
         $.fn.dataTable.moment('DD/MM/YYYY');
 
-        var table = $('#tableSeguranca').DataTable({
+        const table = $('#tableSeguranca').DataTable({
             "order": [],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"
@@ -216,38 +216,38 @@
 
         $('.btnDeletar').click(function () {
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
-                var pareId = $(this).data('id');
+                const pareId = $(this).data('id');
                 $.ajax({
-                    url: 'api/PareSeguranca/' + pareId,
+                    url: 'api/PareSeguranca/${pareId}',
                     method: 'DELETE',
                     success: function () {
-                        var row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
+                        const row = table.row($('button[data-id="${pareId}"]').closest('tr'));
                         row.remove().draw();
                         alert('PARE deletado com sucesso!')
                     },
                     error: function (error) {
-                        alert('Erro ao deletar o PARE: ' + error.responseText);
+                        alert('Erro ao deletar o PARE:${error.responseText}');
                     }
                 });
             }
         });
 
         $('.btnAprovar').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja Aprovar este cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja Aprovar este cadastro?");
 
             if (confirmacao) {
-                var observacoes = prompt("Se houver, digite as observações");
+                const observacoes = prompt("Se houver, digite as observações");
                 $.ajax({
                     url: 'api/PareSeguranca/Aprovar',
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
-                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Aprovado pela Segurança</span>");
 
-                        $('.btnReprovar[data-id="' + idPare + '"]').hide();
-                        $('.btnAprovar[data-id="' + idPare + '"]').hide();
+                        $('.btnReprovar[data-id="${idPare}"]').hide();
+                        $('.btnAprovar[data-id="${idPare}"]').hide();
                         alert('Aprovado com sucesso!');
                     },
                     error: function () {
@@ -258,21 +258,21 @@
         });
 
         $('.btnReprovar').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja Reprovar este cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja Reprovar este cadastro?");
 
             if (confirmacao) {
-                var observacoes = prompt("Se houver, digite as observações");
+                const observacoes = prompt("Se houver, digite as observações");
                 $.ajax({
                     url: 'api/PareSeguranca/Reprovar',
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
-                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Reprovado pela Segurança</span>");
 
-                        $('.btnReprovar[data-id="' + idPare + '"]').hide();
-                        $('.btnAprovar[data-id="' + idPare + '"]').hide();
+                        $('.btnReprovar[data-id="${idPare}"]').hide();
+                        $('.btnAprovar[data-id="${idPare}"]').hide();
                         alert('Reprovado com sucesso!');
                     },
                     error: function () {
@@ -283,16 +283,16 @@
         });
 
         $('.btnAcao').on('click', function () {
-            var idPare = $(this).data('id');
+            const idPare = $(this).data('id');
 
-            var dialog = document.getElementById('dialogLider');
+            const dialog = document.getElementById('dialogLider');
             dialog.showModal();
 
             $('#formPlanoAcao').submit(function (event) {
                 event.preventDefault();
-                var acao = $('#acao').val();
-                var prazoAcao = $('#prazoAcao').val();
-                var realizada = $('input[name="realizada"]:checked').val() === "true";
+                const acao = $('#acao').val();
+                const prazoAcao = $('#prazoAcao').val();
+                const realizada = $('input[name="realizada"]:checked').val() === "true";
                 if (!realizada && prazoAcao == null) {
                     alert("Selecione o prazo da ação");
                     return false;
@@ -303,7 +303,7 @@
                     type: 'PUT',
                     data: { id: idPare, acao: acao, realizada: realizada, prazoAcao: prazoAcao },
                     success: function () {
-                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
                         if (realizada) {
                             linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Concluída</span>");
                         }
@@ -311,7 +311,7 @@
                             linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Pendente</span>");
                         }
 
-                        $('.btnAcao[data-id="' + idPare + '"]').hide();
+                        $('.btnAcao[data-id="${idPare}"]').hide();
                         dialog.close();
                         alert('Ação registrada com sucesso!');
                     },
@@ -323,8 +323,8 @@
         });
 
         $('.btnConcluir').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja Concluir a ação deste cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja Concluir a ação deste cadastro?");
 
             if (confirmacao) {
                 $.ajax({
@@ -332,10 +332,10 @@
                     type: 'PUT',
                     data: { id: idPare },
                     success: function () {
-                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-yellow-500'>Ação Concluída</span>");
 
-                        $('.btnConcluir[data-id="' + idPare + '"]').hide();
+                        $('.btnConcluir[data-id="${idPare}"]').hide();
                         alert('Concluido com sucesso!');
                     },
                     error: function () {
@@ -346,23 +346,23 @@
         });
 
         $('.btnValidar').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja Validar este cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja Validar este cadastro?");
 
             if (confirmacao) {
-                var observacoes = prompt("Se houver, digite as observações");
-                var classificacaoGut = 1;
+                const observacoes = prompt("Se houver, digite as observações");
+                const classificacaoGut = 1;
                 classificacaoGut = prompt("Digite a classificação GUT (1 a 5)");
                 $.ajax({
                     url: 'api/PareSeguranca/Validar',
                     type: 'PUT',
                     data: { id: idPare, classificacaoGut: classificacaoGut, observacoes: observacoes },
                     success: function () {
-                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-green-500'>Ação Validada</span>");
 
-                        $('.btnValidar[data-id="' + idPare + '"]').hide();
-                        $('.btnInvalidar[data-id="' + idPare + '"]').hide();
+                        $('.btnValidar[data-id="${idPare}"]').hide();
+                        $('.btnInvalidar[data-id="${idPare}"]').hide();
                         alert('Validado com sucesso!');
                     },
                     error: function () {
@@ -373,21 +373,21 @@
         });
 
         $('.btnInvalidar').click(function () {
-            var idPare = $(this).data('id');
-            var confirmacao = confirm("Tem certeza de que deseja Invalidar este cadastro?");
+            const idPare = $(this).data('id');
+            const confirmacao = confirm("Tem certeza de que deseja Invalidar este cadastro?");
 
             if (confirmacao) {
-                var observacoes = prompt("Se houver, digite as observações");
+                const observacoes = prompt("Se houver, digite as observações");
                 $.ajax({
                     url: 'api/PareSeguranca/Invalidar',
                     type: 'PUT',
                     data: { id: idPare, observacoes: observacoes },
                     success: function () {
-                        var linha = $('#tableSeguranca').find('tr[data-id="' + idPare + '"]');
+                        const linha = $('#tableSeguranca').find('tr[data-id="${idPare}"]');
                         linha.find('td[data-label="Status"]').html("<span class='text-red-500'>Ação Invalidada</span>");
 
-                        $('.btnValidar[data-id="' + idPare + '"]').hide();
-                        $('.btnInvalidar[data-id="' + idPare + '"]').hide();
+                        $('.btnValidar[data-id="${idPare}"]').hide();
+                        $('.btnInvalidar[data-id="${idPare}"]').hide();
                         alert('Invalidado com sucesso!');
                     },
                     error: function () {
