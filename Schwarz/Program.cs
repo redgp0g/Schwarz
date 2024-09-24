@@ -64,6 +64,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 builder.Services.AddMudServices();
 builder.Services.AddMudTranslations();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
 
 var app = builder.Build();
 
