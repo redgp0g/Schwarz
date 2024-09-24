@@ -8,6 +8,9 @@ using Schwarz.Services;
 using Schwarz.Services.Interfaces;
 using Microsoft.Extensions.FileProviders;
 using Schwarz.Components;
+using MudBlazor.Services;
+using MudBlazor;
+using MudBlazor.Translations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,7 +62,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 	options.SlidingExpiration = true;
 });
 
-builder.Services.AddServerSideBlazor();
+builder.Services.AddMudServices();
+builder.Services.AddMudTranslations();
 
 var app = builder.Build();
 
