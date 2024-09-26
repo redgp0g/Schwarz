@@ -51,6 +51,7 @@ builder.Services.AddIdentity<SchwarzUser, IdentityRole>(options =>
 	}).AddDefaultUI()
 	.AddEntityFrameworkStores<SchwarzContext>()
 	.AddDefaultTokenProviders();
+builder.Services.AddCascadingAuthenticationState();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -86,6 +87,7 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.UseRouting();
+app.UseAntiforgery();
 app.UseAuthentication();
 app.UseAuthorization();
 
