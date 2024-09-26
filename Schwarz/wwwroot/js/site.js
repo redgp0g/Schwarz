@@ -46,3 +46,12 @@ $('.ordemServico').on('input', function () {
 $('.select2').select2({
     width: '100%',
 });
+
+function converterTabelaEmExcel(idTabela, nomeArquivo) {
+    TableToExcel.convert(document.getElementById(idTabela), {
+        name: nomeArquivo + '.xlsx',
+        sheet: {
+            name: nomeArquivo
+        }
+    });
+}
