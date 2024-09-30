@@ -55,3 +55,5 @@ function converterTabelaEmExcel(idTabela, nomeArquivo) {
         }
     });
 }
+
+$('#ano').text(new Date().getFullYear());
