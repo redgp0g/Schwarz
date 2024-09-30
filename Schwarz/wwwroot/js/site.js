@@ -57,3 +57,10 @@ function converterTabelaEmExcel(idTabela, nomeArquivo) {
 }
 
 $('#ano').text(new Date().getFullYear());
+
+setTimeout(function () {
+    const notificacao = document.getElementById('notification');
+    if (notificacao) {
+        notificacao.classList.add('hidden');
+    }
+}, 7000);
