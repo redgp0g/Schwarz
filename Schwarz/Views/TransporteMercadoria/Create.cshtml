@@ -24,7 +24,7 @@
                         <label asp-for="Volume" class="block text-sm font-medium leading-6 text-gray-900">Volume</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
                             <input asp-for="Volume" class="block w-full rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Quantidade de volumes">
-                            <div class="absolute inset-y-0 right-0 flex items-center">
+                            <div class="absolute inset-y-0 right-0">
                                 <label asp-for="TipoVolume" class="sr-only">Tipo de Volume</label>
                                 <select asp-for="TipoVolume" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
                                     <option value="" disabled selected>Selecione o Tipo</option>
@@ -47,7 +47,7 @@
                         @Html.ValidationMessageFor(x => x.Placa)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="Cliente" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="Cliente" class="block mb-2 text-sm font-bold"></label>
                         <div class="relative mt-2 rounded-md shadow-sm">
                         <input asp-for="Cliente" list="list-clientes" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Cliente" />
                             <datalist id="list-clientes">
@@ -74,36 +74,36 @@
                         <input asp-for="Observacoes" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Observações" />
                     </div>
                     <div class="mb-4">
-                        <label asp-for="filesFotoNotaFiscal" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="filesFotoNotaFiscal" class="block mb-2 text-sm font-bold"></label>
                         <input asp-for="filesFotoNotaFiscal" accept="image/*" />
                         @Html.ValidationMessageFor(x => x.filesFotoNotaFiscal)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="fileFotoRomaneio" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="fileFotoRomaneio" class="block mb-2 text-sm font-bold"></label>
                         <input asp-for="fileFotoRomaneio" accept="image/*" />
                         @Html.ValidationMessageFor(x => x.fileFotoRomaneio)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="fileFotoPlaca" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="fileFotoPlaca" class="block mb-2 text-sm font-bold"></label>
                         <input asp-for="fileFotoPlaca" accept="image/*" />
                         @Html.ValidationMessageFor(x => x.fileFotoPlaca)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="filesFotoAntes" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="filesFotoAntes" class="block mb-2 text-sm font-bold"></label>
                         <input asp-for="filesFotoAntes" accept="image/*" />
                         @Html.ValidationMessageFor(x => x.filesFotoAntes)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="filesFotoDepois" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="filesFotoDepois" class="block mb-2 text-sm font-bold"></label>
                         <input asp-for="filesFotoDepois" accept="image/*" />
                         @Html.ValidationMessageFor(x => x.filesFotoDepois)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="fileFotoLacre" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="fileFotoLacre" class="block mb-2 text-sm font-bold"></label>
                         <input asp-for="fileFotoLacre" accept="image/*" />
                     </div>
                     <div class="mb-6 text-center">
-                        <input type="submit" value="Registrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+                        <input type="submit" value="Registrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-yellow-300 to-amber-500 rounded-full hover:bg-gradient-to-r hover:from-amber-300 hover:to-yellow-500 hover:cursor-pointer focus:outline-none focus:shadow-outline" />
                     </div>
                 </form>
             </div>

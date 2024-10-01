@@ -15,7 +15,7 @@
             <div class="w-full bg-white p-2 rounded-lg">
                 <h3 class="pt-4 text-2xl text-center">Detalhes da Ideia</h3>
                 <div class="px-8 ">
-                    <label class="block mb-2 text-sm font-bold flex items-center">Participantes</label>
+                    <label class="block mb-2 text-sm font-bold">Participantes</label>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach (var participante in Model.IdeiaEquipe)
                         {
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="pd-4 mt-4">
-                        <label class="block mb-2 font-bold text-lg flex items-center">@Html.DisplayNameFor(model => model.Descricao)</label>
+                        <label class="block mb-2 font-bold text-lg">@Html.DisplayNameFor(model => model.Descricao)</label>
                         <label class="block mb-4 border bg-gray-600 text-sm rounded-md p-2 text-white">@Html.DisplayFor(model => model.Descricao)</label>
                     </div>
                    

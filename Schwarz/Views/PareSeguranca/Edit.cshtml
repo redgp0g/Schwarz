@@ -17,12 +17,12 @@
                     @Html.ValidationMessageFor(x => x.IDFuncionario)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Desvio" class="block mb-2 text-sm font-bold flex items-center"></label>
-                    <input asp-for="Desvio" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    <label asp-for="Desvio" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="Desvio" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Data" class="block mb-2 text-sm font-bold flex items-center"></label>
-                    <input asp-for="Data" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    <label asp-for="Data" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="Data" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
                     @Html.ValidationMessageFor(x => x.Data)
                 </div>
                 <div class="mb-4">
@@ -57,18 +57,18 @@
                     <input asp-for="AcaoLider" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
                 </div>
                 <div class="mb-4">
-                    <label asp-for="PrazoAcaoLider" class="block mb-2 text-sm font-bold flex items-center"></label>
-                    <input asp-for="PrazoAcaoLider" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    <label asp-for="PrazoAcaoLider" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="PrazoAcaoLider" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
                     @Html.ValidationMessageFor(x => x.PrazoAcaoLider)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="DataConclusao" class="block mb-2 text-sm font-bold flex items-center"></label>
-                    <input asp-for="DataConclusao" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    <label asp-for="DataConclusao" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="DataConclusao" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
                     @Html.ValidationMessageFor(x => x.DataConclusao)
                 </div>
                 <div class="mb-4">
                     <label asp-for="ObservacoesLider" class="block mb-2 text-sm font-bold"></label>
-                    <textarea asp-for="ObservacoesLider" style="min-height: calc(1em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Observações da Qualidade"></textarea>
+                    <textarea asp-for="ObservacoesLider" style="min-height: calc(1em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Observações da Qualidade"></textarea>
                     @Html.ValidationMessageFor(x => x.ObservacoesLider)
                 </div>
                 <div class="mb-4">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="mb-4">
                     <label asp-for="ObservacoesSeguranca" class="block mb-2 text-sm font-bold"></label>
-                    <textarea asp-for="ObservacoesSeguranca" style="min-height: calc(1em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Observações da Qualidade"></textarea>
+                    <textarea asp-for="ObservacoesSeguranca" style="min-height: calc(1em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Observações da Qualidade"></textarea>
                     @Html.ValidationMessageFor(x => x.ObservacoesSeguranca)
                 </div>
                 <div class="mb-4">
@@ -87,7 +87,7 @@
                     @Html.ValidationMessageFor(x => x.Pontuacao)
                 </div>
                 <div class="mb-4">
-                    <label class="block mb-2 text-sm font-bold flex items-center">Fotos</label>
+                    <label class="block mb-2 text-sm font-bold">Fotos</label>
                     @if (Model.PareSegurancaFotos != null && Model.PareSegurancaFotos.Count > 0)
                     {
                         @foreach (var anexo in Model.PareSegurancaFotos)
@@ -107,7 +107,7 @@
 
                 <div class="my-6">
                     <input type="hidden" asp-for="IDPareSeguranca" />
-                    <input type="submit" value="Editar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-red-300 to-red-500 rounded-full hover:bg-gradient-to-r hover:from-red-500 hover:to-red-300 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+                    <input type="submit" value="Editar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-red-300 to-red-500 rounded-full hover:bg-gradient-to-r hover:from-red-500 hover:to-red-300 hover:cursor-pointer focus:outline-none focus:shadow-outline" />
                 </div>
             </form>
         </div>

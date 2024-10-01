@@ -403,7 +403,7 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label asp-for="Planejado" class="block mb-2 text-sm font-bold flex items-center"></label>
+                        <label asp-for="Planejado" class="block mb-2 text-sm font-bold"></label>
                         <input asp-for="Planejado" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva o Planejado" />
                         @Html.ValidationMessageFor(x => x.Planejado)
                     </div>
@@ -418,8 +418,8 @@
                         @Html.ValidationMessageFor(x => x.Motivo)
                     </div>
                     <div class="mb-4">
-                        <label asp-for="Descricao" class="block mb-2 text-sm font-bold flex items-center">Descrição da Lição</label>
-                        <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva a Lição Aprendida"></textarea>
+                        <label asp-for="Descricao" class="block mb-2 text-sm font-bold">Descrição da Lição</label>
+                        <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full px-3 py-2 mb-3 text-sm leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-gray-700 focus:shadow-outline" autocomplete="off" placeholder="Descreva a Lição Aprendida"></textarea>
                         @Html.ValidationMessageFor(x => x.Descricao)
                     </div>
                     <div class="mb-4">
