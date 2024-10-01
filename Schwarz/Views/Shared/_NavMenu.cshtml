@@ -438,7 +438,7 @@
 
 <script>
     function toggleHidden(id, idbtn = "") {
-        $(`#${id}`).toggle();
+        $(`#${id}`).toggleClass("hidden");
 
         var isAutoClose = $(`#${id}`).attr("aria-autoclose");
 
@@ -448,7 +448,7 @@
                 const element = document.getElementById(id);
 
                 if (!element.contains(event.target) && event.target.id !== idbtn) {
-                    $(`#${id}`).hide()
+                    $(`#${id}`).addClass("hidden");
                 }
             });
         }
