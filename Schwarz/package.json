@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/tailwind.min.css --minify --watch",
+    "build": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/tailwind.min.css --minify"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +16,8 @@
     "jquery-validation-unobtrusive": "^4.0.0",
     "select2": "^4.1.0-rc.0",
     "venobox": "^2.1.8"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
   }
 }

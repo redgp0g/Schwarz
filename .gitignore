@@ -503,3 +503,4 @@ $RECYCLE.BIN/
 /Schwarz/bin/Debug/net6.0/Schwarz.pdb
 /Schwarz/bin/Debug/net6.0/Schwarz.dll
 /Schwarz/Views/PlanoControles/CreateCota.cshtml
+/Schwarz/wwwroot/css/tailwind.min.css
