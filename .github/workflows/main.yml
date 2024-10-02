@@ -34,13 +34,7 @@ jobs:
       run: |
         icacls "C:\Sites\Schwarz" /grant "IIS_IUSRS:(OI)(CI)F" /T
         IF ERRORLEVEL 1 EXIT /B 1
-        
-    - name: Publish Release
-      run: |
-        del /S /Q "C:\Sites\Schwarz\."
-        dotnet publish -c Release -o "C:\Sites\Schwarz"
-        IF ERRORLEVEL 1 EXIT /B 1
-        
+
     - name: Install npm packages
       run: |
         cd "C:\Sites\Schwarz"
@@ -50,7 +44,13 @@ jobs:
       run: |
         cd "C:\Sites\Schwarz"
         npm run build
-
+        
+    - name: Publish Release
+      run: |
+        del /S /Q "C:\Sites\Schwarz\."
+        dotnet publish -c Release -o "C:\Sites\Schwarz"
+        IF ERRORLEVEL 1 EXIT /B 1
+        
     - name: Start Website
       run: |
         C:\Windows\System32\inetsrv\appcmd start site "Schwarz"
