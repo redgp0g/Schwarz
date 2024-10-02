@@ -24,6 +24,12 @@ jobs:
       run: |
         setx SCHWARZ_DATABASE_STRING_CONNECTION "${{ secrets.DATABASE_STRING_CONNECTION }}" /M
         dotnet test --no-build --verbosity normal
+
+    - name: Install npm packages
+      run: npm install
+        
+    - name: Build Tailwind CSS
+      run: npm run build
         
     - name: Stop Website
       run: |
@@ -34,16 +40,6 @@ jobs:
       run: |
         icacls "C:\Sites\Schwarz" /grant "IIS_IUSRS:(OI)(CI)F" /T
         IF ERRORLEVEL 1 EXIT /B 1
-
-    - name: Install npm packages
-      run: |
-        cd "C:\Sites\Schwarz"
-        npm install
-        
-    - name: Build Tailwind CSS
-      run: |
-        cd "C:\Sites\Schwarz"
-        npm run build
         
     - name: Publish Release
       run: |
