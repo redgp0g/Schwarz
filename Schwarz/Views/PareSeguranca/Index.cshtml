@@ -160,17 +160,16 @@
                 <div class="flex items-center">
                     <input type="radio" id="realizadaSim" name="realizada" value="true" class="mr-2">
                     <label for="realizadaSim" class="mr-8">Sim</label>
-                    <input type="radio" id="realizadaNao" name="realizada" value="false" class="mr-2" checked>
+                    <input type="radio" id="realizadaNao" name="realizada" value="false" class="mr-2">
                     <label for="realizadaNao">Não</label>
                 </div>
             </div>
-            <div class="mb-4">
+            <div id="divPrazoAcao" class="mb-4 d-none">
                 <label class="block mb-2 text-sm font-bold">Prazo da Ação</label>
                 <input type="datetime-local" name="prazoAcao" id="prazoAcao" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" />
             </div>
             <div class="mb-4">
-                <input required type="hidden" name="idAlertaCota" id="idAlertaCota" value="" />
-                <input type="submit" value="Enviar" class="text-xl w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-emerald-300 to-green-500 rounded-full hover:bg-gradient-to-r hover:from-emerald-300 hover:to-green-500 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+                <input type="submit" value="Enviar" class="text-xl w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-emerald-300 to-green-500 rounded-full hover:bg-gradient-to-r hover:from-emerald-300 hover:to-green-500 hover:cursor-pointer focus:outline-none focus:shadow-outline" />
             </div>
         </form>
     </div>
@@ -348,10 +347,6 @@
                 const acao = $('#acao').val();
                 const prazoAcao = $('#prazoAcao').val();
                 const realizada = $('input[name="realizada"]:checked').val() === "true";
-                if (!realizada && prazoAcao == null) {
-                    alert("Selecione o prazo da ação");
-                    return false;
-                }
 
                 $.ajax({
                     url: 'api/PareSeguranca/PlanoAcao',
@@ -375,6 +370,16 @@
                     }
                 });
             });
+        });
+
+        $('input[name="realizada"]').on('change', function () {
+            if ($('#realizadaNao').is(':checked')) {
+                $('#divPrazoAcao').removeClass('d-none');
+                $('#prazoAcao').attr('required', 'required');
+            } else {
+                $('#divPrazoAcao').addClass('d-none');
+                $('#prazoAcao').removeAttr('required');
+            }
         });
 
         $('.btnConcluir').click(function () {
@@ -452,5 +457,4 @@
             }
         });
     });
-
 </script>

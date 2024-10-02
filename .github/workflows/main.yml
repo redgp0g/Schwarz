@@ -41,16 +41,16 @@ jobs:
         dotnet publish -c Release -o "C:\Sites\Schwarz"
         IF ERRORLEVEL 1 EXIT /B 1
         
-    - name: Init npm
-      run: |
-        cd "C:\Sites\Schwarz"
-        npm init -y
-        
     - name: Install npm packages
       run: |
         cd "C:\Sites\Schwarz"
         npm install
         
+    - name: Build Tailwind CSS
+      run: |
+        cd "C:\Sites\Schwarz"
+        npm run build
+
     - name: Start Website
       run: |
         C:\Windows\System32\inetsrv\appcmd start site "Schwarz"

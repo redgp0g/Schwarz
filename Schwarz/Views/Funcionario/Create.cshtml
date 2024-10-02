@@ -12,16 +12,16 @@
             <form id="form" method="post" class="px-8">
                 <div class="mb-4">
                     <label asp-for="Matricula" class="block mb-2 text-sm font-bold"></label>
-                    <input asp-for="Nome" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    <input asp-for="Nome" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:shadow-outline"></input>
                     @Html.ValidationMessageFor(x => x.Matricula)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Nome" class="block mb-2 text-sm font-bold flex items-center"></label>
-                    <input asp-for="Nome" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"></input>
+                    <label asp-for="Nome" class="block mb-2 text-sm font-bold"></label>
+                    <input asp-for="Nome" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:shadow-outline"></input>
                     @Html.ValidationMessageFor(x => x.Nome)
                 </div>
                 <div class="mb-4">
-                    <label asp-for="Setor" class="block mb-2 text-sm font-bold flex items-center"></label>
+                    <label asp-for="Setor" class="block mb-2 text-sm font-bold"></label>
                     <select asp-for="Setor" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" asp-items="ViewBag.Setores">
                     </select>
                     @Html.ValidationMessageFor(x => x.Setor)
@@ -86,7 +86,7 @@
                     @Html.ValidationMessageFor(x => x.NumeroCentroCusto)
                 </div>
                 <div class="my-6">
-                    <input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-red-300 to-red-500 rounded-full hover:bg-gradient-to-r hover:from-red-500 hover:to-red-300 rounded-full hover:cursor-pointer focus:outline-none focus:shadow-outline" />
+                    <input type="submit" value="Cadastrar" class="w-full px-4 py-4 font-bold text-white bg-gradient-to-r from-red-300 to-red-500 rounded-full hover:bg-gradient-to-r hover:from-red-500 hover:to-red-300 hover:cursor-pointer focus:outline-none focus:shadow-outline" />
                 </div>
             </form>
         </div>

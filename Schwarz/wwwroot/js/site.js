@@ -46,3 +46,21 @@ $('.ordemServico').on('input', function () {
 $('.select2').select2({
     width: '100%',
 });
+
+function converterTabelaEmExcel(idTabela, nomeArquivo) {
+    TableToExcel.convert(document.getElementById(idTabela), {
+        name: nomeArquivo + '.xlsx',
+        sheet: {
+            name: nomeArquivo
+        }
+    });
+}
+
+$('#ano').text(new Date().getFullYear());
+
+setTimeout(function () {
+    const notificacao = document.getElementById('notification');
+    if (notificacao) {
+        notificacao.classList.add('hidden');
+    }
+}, 7000);
