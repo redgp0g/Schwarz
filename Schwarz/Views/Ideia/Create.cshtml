@@ -17,7 +17,7 @@
                         Os campos com * são obrigatórios
                     </p>
                 </div>
-                <form id="formIdeia" action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
+                <form id="formIdeia" asp-action="Create" asp-controller="Ideia" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold"><span class="text-red-500 text-2xl">*</span>Participantes</label>
                         <select asp-for="Participantesids" class="form-select select2 w-full" required multiple asp-items="ViewBag.Funcionarios">
