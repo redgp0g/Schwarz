@@ -25,12 +25,8 @@ jobs:
         setx SCHWARZ_DATABASE_STRING_CONNECTION "${{ secrets.DATABASE_STRING_CONNECTION }}" /M
         dotnet test --no-build --verbosity normal
 
-    - name: Install npm packages
-      working-directory: ./Schwarz # Especifica o diretório onde o npm está
-      run: npm install
-
     - name: Build Tailwind CSS
-      working-directory: ./Schwarz # Especifica o diretório onde o npm está
+      working-directory: ./Schwarz
       run: npm run build
 
     - name: Stop Website
@@ -48,6 +44,11 @@ jobs:
         del /S /Q "C:\Sites\Schwarz\."
         dotnet publish -c Release -o "C:\Sites\Schwarz"
         IF ERRORLEVEL 1 EXIT /B 1
+
+    - name: Install npm packages
+      run: |
+        cd "C:\Sites\Schwarz"
+        npm install
 
     - name: Start Website
       run: |
