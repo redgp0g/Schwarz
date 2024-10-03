@@ -17,7 +17,7 @@
                         Os campos com * são obrigatórios
                     </p>
                 </div>
-                <form id="formIdeia" action="Create" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
+                <form id="formIdeia" asp-action="Create" asp-controller="Ideia" method="post" class="px-8 bg-white rounded" enctype="multipart/form-data">
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold"><span class="text-red-500 text-2xl">*</span>Participantes</label>
                         <select asp-for="Participantesids" class="form-select select2 w-full" required multiple asp-items="ViewBag.Funcionarios">
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label asp-for="Descricao" class="block mb-2 text-sm font-bold"><div class="text-red-500 text-2xl">*</div>Descrição da Ideia</label>
+                        <label asp-for="Descricao" class="flex items-center mb-2 text-sm font-bold"><div class="text-red-500 text-2xl">*</div>Descrição da Ideia</label>
                         <textarea asp-for="Descricao" style="min-height: calc(1.5em + 0.75rem + 100px);" class="w-full py-2 mb-3 text-sm leading-tight border rounded focus:shadow-outline px-3 shadow appearance-none focus:outline-none focus:shadow-outline" autocomplete="off" placeholder="Descreva sobre sua ideia" required></textarea>
                         @Html.ValidationMessageFor(x => x.Descricao)
                     </div>
