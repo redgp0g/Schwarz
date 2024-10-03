@@ -25,6 +25,11 @@ jobs:
         setx SCHWARZ_DATABASE_STRING_CONNECTION "${{ secrets.DATABASE_STRING_CONNECTION }}" /M
         dotnet test --no-build --verbosity normal
 
+    - name: Install npm packages
+      run: |
+        cd "C:\Sites\Schwarz"
+        npm install
+
     - name: Build Tailwind CSS
       working-directory: ./Schwarz
       run: npm run build
@@ -45,10 +50,9 @@ jobs:
         dotnet publish -c Release -o "C:\Sites\Schwarz"
         IF ERRORLEVEL 1 EXIT /B 1
 
-    - name: Install npm packages
+    - name: Copy node_modules after publish (optional)
       run: |
-        cd "C:\Sites\Schwarz"
-        npm install
+        xcopy "C:\Sites\Schwarz\node_modules" "C:\Sites\Schwarz\wwwroot\node_modules" /E /I /Y
 
     - name: Start Website
       run: |
