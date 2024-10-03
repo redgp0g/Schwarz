@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Tailwind CSS
       working-directory: ./Schwarz
-      run: npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/tailwind.min.css --minify
+      run: npm run build
 
     - name: Stop Website
       run: |
