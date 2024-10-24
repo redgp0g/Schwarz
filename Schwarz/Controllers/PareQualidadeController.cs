@@ -60,7 +60,7 @@ namespace Schwarz.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
+        [Authorize(Roles = $"{Roles.PareQualidade}, {Roles.Admin}")]
         public async Task<IActionResult> Edit(int id)
         {
             var pareQualidade = await _context.PareQualidade.FindAsync(id);
@@ -75,7 +75,7 @@ namespace Schwarz.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
+        [Authorize(Roles = $"{Roles.PareQualidade}, {Roles.Admin}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PareQualidade pareQualidade)
         {
