@@ -56,7 +56,7 @@ namespace Schwarz.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
+        [Authorize(Roles = $"{Roles.PareMeioAmbiente}, {Roles.Admin}")]
         public async Task<IActionResult> Edit(int id)
         {
             var pareMeioAmbiente= await _context.PareMeioAmbiente.FindAsync(id);
@@ -71,7 +71,7 @@ namespace Schwarz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = $"{Roles.PareSeguranca}, {Roles.Admin}")]
+        [Authorize(Roles = $"{Roles.PareMeioAmbiente}, {Roles.Admin}")]
         public async Task<IActionResult> Edit(PareMeioAmbiente pareMeioAmbiente)
         {
             if (ModelState.IsValid)
