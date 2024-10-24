@@ -222,15 +222,15 @@
             if (confirm('Tem certeza que deseja deletar o PARE?')) {
                 const pareId = $(this).data('id');
                 $.ajax({
-                    url: 'api/PareSeguranca/${pareId}',
+                    url: 'api/PareSeguranca/' + pareId,
                     method: 'DELETE',
                     success: function () {
-                        const row = table.row($('button[data-id="${pareId}"]').closest('tr'));
+                        const row = table.row($('button[data-id="' + pareId + '"]').closest('tr'));
                         row.remove().draw();
                         alert('PARE deletado com sucesso!')
                     },
                     error: function (error) {
-                        alert('Erro ao deletar o PARE:${error.responseText}');
+                        alert('Erro ao deletar o PARE:' + error.responseText);
                     }
                 });
             }
